@@ -1,0 +1,48 @@
+package com.PSVM.dopamin.service;
+
+import com.PSVM.dopamin.domain.ItemDto;
+import com.PSVM.dopamin.domain.SearchCondition;
+import com.PSVM.dopamin.repository.ItemDaoImpl;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class ItemService {
+    private ItemDaoImpl itemDaoImpl;
+    public ItemService(ItemDaoImpl itemDaoImpl) {
+        this.itemDaoImpl = itemDaoImpl;
+    }
+
+    public List<ItemDto> getPage(Map map) throws Exception{
+        return itemDaoImpl.selectPage(map);
+    }
+//    public int remove(Integer item_id) throws Exception{
+//        return itemDaoImpl.remove(item_id);
+//    }
+//    public int getSearchResultPage(SearchCondition sc) {
+//        return 0;
+//    }
+
+    public int getCount() throws Exception{
+        return itemDaoImpl.getCount();
+    }
+
+    public String getUser_nic(String writer_id) throws Exception{
+        return itemDaoImpl.getUser_nic(writer_id);
+    }
+
+    public int register(Map map) throws Exception {
+        return itemDaoImpl.register(map);
+    }
+
+//    public ItemDto read(Integer item_id) {
+//    }
+
+
+//    public ItemDto read(Integer item_id){
+//        //ItemDto itemDto=ItemDaoImpl.select(item_id);
+//        return itemDto;
+//    }
+}
