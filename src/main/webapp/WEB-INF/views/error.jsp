@@ -24,9 +24,8 @@
   </ul>
 </div>
 <div style="text-align:center">
-  <h1>This is HOME</h1>
-  <h1>This is HOME</h1>
-  <h1>This is HOME</h1>
+  <h1>Error</h1>
+  <h1>Error</h1>
 </div>
 </body>
 </html>
