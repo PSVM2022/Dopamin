@@ -9,33 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/MyPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/MyPageDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/MyPageDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/RevwDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/MyPageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/MyPageServiceImple.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/controller/MyPageControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/MyPageDaoImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/domain/RevwDtoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/MyPageServiceImpleTest.java" afterDir="false" />
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 평가된 한줄평 모아보기 Dao">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MyPageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Mapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/RevwDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/RevwDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/MyPageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MyPageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/MyPageDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/MyPageDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +104,7 @@
       <recent name="com.PSVM.dopamin.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.64">
+  <component name="RunManager" selected="JUnit.MyPageDaoImplTest.selectRevw">
     <configuration name="MyPageControllerTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
@@ -284,8 +262,37 @@
       <workItem from="1660179384443" duration="224000" />
       <workItem from="1660195088893" duration="966000" />
       <workItem from="1660196088693" duration="13678000" />
-      <workItem from="1660212819501" duration="24800000" />
+      <workItem from="1660212819501" duration="43923000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: 한줄평 모아보기 구현 1차 및 초기 설정 &#10;&#10;user_id 받아서 관련 user가 쓴 한줄평 모아보는 기능 구현.">
+      <created>1660289847820</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1660289847820</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: 평가된 한줄평 모아보기 controller">
+      <created>1660301531915</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660301531915</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: 평가된 한줄평 모아보기 service">
+      <created>1660310530480</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660310530480</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: 평가된 한줄평 모아보기 Dao">
+      <created>1660310676654</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660310676654</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +320,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: 한줄평 모아보기 구현 1차 및 초기 설정 &#10;&#10;user_id 받아서 관련 user가 쓴 한줄평 모아보는 기능 구현." />
+    <MESSAGE value="feat: 평가된 한줄평 모아보기 controller" />
+    <MESSAGE value="feat: 평가된 한줄평 모아보기 service" />
+    <MESSAGE value="feat: 평가된 한줄평 모아보기 Dao" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 평가된 한줄평 모아보기 Dao" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
