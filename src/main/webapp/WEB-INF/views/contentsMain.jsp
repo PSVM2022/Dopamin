@@ -1,28 +1,48 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 2022-08-11
-  Time: 오후 5:11
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 <!DOCTYPE>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>contents main page</title>
+    <title>dopamin contents main page</title>
     <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <style>
+        div {
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
 <div>
-<h2>컨텐츠 메인 페이지</h2>
-<form action="" id = form>
-    <input type="text" name="cnts_title" value="${contentsDto.cnts_title}">
-    <input type="text" name="cnts_subttl" value="${contentsDto.cnts_subttl}">
-    <input type="text" name="cnts_rning_t" value="${contentsDto.cnts_rning_t}">
-</form>
+    <div id="menu">
+        <ul>
+            <li id="logo">PSVM</li>
+        </ul>
+    </div>
+    <div>
+        <h2>도파민 메인 페이지</h2>
+    </div>
+    <div style="text-align:center">
+            <c:forEach var="cnts" items="${cntsDtoList}">
+                    <tr>
+                        <div>
+                    <td>${cnts.cnts_postr_img}</td><br>
+                    <td>${cnts.cnts_title}</td><br>
+                    <td>${cnts.cnts_subttl}</td><br>
+                    <td>${cnts.cnts_op_date}</td><br>
+                    <td>${cnts.cnts_cnty}</td><br>
+                        </div>
+                    </tr>
+            </c:forEach>
+        <br>
+
+    </div>
 </div>
+</body>
+</html>
 </body>
 </html>
