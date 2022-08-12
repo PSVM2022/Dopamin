@@ -15,13 +15,13 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class MyPageDaoImplTest {
     @Autowired
-    MyPageDaoImpl myPageDao;
+    MyPageDao myPageDao;
 
     @Test
     public void selectRevw() throws Exception{
-        List<RevwDto> list = myPageDao.selectRevw("eunbi77");
+        List<RevwDto> list = myPageDao.selectRevwEval("eunbi77");
 
         System.out.println("list = " + list);
-        assertTrue(list.size()==8);
+        assertTrue(list.size()==3);
     }
 }
