@@ -7,4 +7,5 @@ import java.util.List;
 public interface MyPageDao {
     List<RevwDto> selectRevw(String userId) throws Exception; // List<E> selectList(String statement)
 
+    List<RevwDto> selectRevwEval(String user_id);
 }
