@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.PSVM.dopamin.dao.ContentsMapper">
+
+    <!--컨텐츠 읽어오기-->
+    <select id="selectcnts" parameterType="int" resultType="map">
+<!-- parameterType="int" ; java.lang.Integer의 alias타입, mybatis내부적으로 적용됨-->
+        select cnts_id,
+            cnts_title,
+            cnts_subttl,
+            cnts_postr_img,
+            cnts_op_date,
+            cnts_genre1,
+            cnts_genre2,
+            cnts_genre3,
+            cnts_genre4,
+            cnts_genre5,
+            cnts_cnty,
+            cnts_director,
+            cnts_actor,
+            cnts_synop,
+            cnts_rning_t,
+            cnts_g_rated,
+            cnts_szn_cnt,
+            cnts_ep_cnt,
+            ott1_click_cnt,
+            ott2_click_cnt,
+            ott3_click_cnt,
+            cnts_grd,
+            cnts_lang,
+            cnts_dub
+        from CNTS
+        where cnts_visib_stat = 1
+    </select>
+</mapper>
