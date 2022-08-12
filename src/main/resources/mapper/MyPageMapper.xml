@@ -11,6 +11,15 @@
                  join CNTS c on c.cnts_id = r.cnts_id
         where r.user_id = #{userId}
     </select>
+
+    <select id="selectrevwEval" parameterType="String" resultType="map">
+        select re.revw_id, re.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat
+        from REVW_EVAL re
+                 join REVW r on r.revw_id = re.revw_id
+                 join CNTS c on c.cnts_id = r.cnts_id
+        where re.user_id = #{user_id}
+          AND r.revw_visib_stat = 1;
+    </select>
 </mapper>
 
 
