@@ -1,7 +1,6 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.MyPageDao;
-import com.PSVM.dopamin.dao.MyPageDaoImpl;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +17,10 @@ public class MyPageServiceImple implements MyPageService {
         return myPageDao.selectRevw(userId);
     }
 
+    @Override
+    public List<RevwDto> revwEvalList(String user_id) {
+        return myPageDao.selectRevwEval(user_id);
+    }
 
 
 }
