@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,8 @@ public class MyPageDaoImpl implements MyPageDao {
         return session.selectList(namespace + "selectCntsView", user_id);
     }
 
+    @Override
+    public List<MyPagePostDto> selectPost(String user_id) {
+        return session.selectList(namespace = "selectPost", user_id);
+    }
 }

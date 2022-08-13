@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface MyPageDao {
     List<MyPageCntsDto> selectCntsWish(String user_id);
 
     List<MyPageCntsDto> selectCntsView(String user_id);
+
+    List<MyPagePostDto> selectPost(String user_id);
 }
