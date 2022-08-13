@@ -9,6 +9,7 @@ public class RevwDto {
     private Integer revw_eval;  // 한줄평 평가
     private Integer revw_visib_stat; //한줄평 상태
 
+    public RevwDto(){}
     public RevwDto(Integer revw_id, String user_id, Integer cnts_id, String cnts_title, String revw_body, Integer revw_eval, Integer revw_visib_stat) {
         this.revw_id = revw_id;
         this.user_id = user_id;

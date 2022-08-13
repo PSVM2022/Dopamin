@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.MyPageDao;
+import com.PSVM.dopamin.domain.MyPageCntsDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class MyPageServiceImple implements MyPageService {
     MyPageDao myPageDao;
 
     @Override
-    public List<RevwDto> revwList(String userId) throws Exception{
+    public List<RevwDto> revwList(String userId) throws Exception {
         return myPageDao.selectRevw(userId);
     }
 
@@ -22,5 +23,9 @@ public class MyPageServiceImple implements MyPageService {
         return myPageDao.selectRevwEval(user_id);
     }
 
+    @Override
+    public List<MyPageCntsDto> cntsWishList(String user_id){
+        return myPageDao.selectCntsWish(user_id);
+    }
 
 }
