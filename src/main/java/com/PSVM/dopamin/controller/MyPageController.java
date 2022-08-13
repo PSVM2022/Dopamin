@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import com.PSVM.dopamin.service.MyPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,11 @@ public class MyPageController {
         return "home";
     }
 
+    //게시글 목록 가져오기
+    @GetMapping("/post/{user_id}")
+    public String readPostList(@PathVariable String user_id, Model m) throws Exception {
+        List<MyPagePostDto> postDtoList = MyPageService.postList(user_id);
+        m.addAttribute("postDtoList", postDtoList);
+        return "home";
+    }
 }
