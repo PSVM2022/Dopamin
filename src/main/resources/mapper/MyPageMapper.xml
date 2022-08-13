@@ -5,14 +5,14 @@
 <!--&lt;!&ndash;namespace는 이름을 구별하기 위한 공간입니다. 쉽게 얘기하면 id는 구별되어야 하므로 별도의 그c룹으로 나눕니다.-->
 <!--그래야 id의 충돌하는 경우가 적어지니까. 다른 이유도 있는데 일단 이 정도만 알아두시기 바랍니다.&ndash;&gt;-->
 <mapper namespace="com.PSVM.dopamin.dao.MyPageMapper">
-    <select id="selectrevw" parameterType="String" resultType="map">
+    <select id="selectrevw" parameterType="String" resultType="RevwDto">
         select r.user_id, r.revw_id, r.cnts_id, r.revw_body, c.cnts_title
         from REVW r
                  join CNTS c on c.cnts_id = r.cnts_id
         where r.user_id = #{userId}
     </select>
 
-    <select id="selectrevwEval" parameterType="String" resultType="map">
+    <select id="selectrevwEval" parameterType="String" resultType="RevwDto">
         select re.revw_id, re.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat
         from REVW_EVAL re
                  join REVW r on r.revw_id = re.revw_id
