@@ -18,7 +18,7 @@ public class MyPageController {
 
     //한줄평 리스트 가져오기
     @GetMapping("/revw/{userId}")
-    public String readRevwList(@PathVariable String userId, Model m) throws Exception{
+    public String readRevwList(@PathVariable String userId, Model m) throws Exception {
         List<RevwDto> revwDtoList = MyPageService.revwList(userId);
         m.addAttribute("revwDtoList", revwDtoList);
         System.out.println("revwDtoList = " + revwDtoList);
@@ -27,7 +27,7 @@ public class MyPageController {
 
     // 평가된 한줄평 가져오기
     @GetMapping("/revweval/{user_id}")
-    public String readRevwEvalList(@PathVariable String user_id, Model m) throws Exception{
+    public String readRevwEvalList(@PathVariable String user_id, Model m) throws Exception {
         List<RevwDto> revwDtoList = MyPageService.revwEvalList(user_id);
         m.addAttribute("revwDtoList", revwDtoList);
         System.out.println("revwDtoList = " + revwDtoList);
@@ -36,10 +36,20 @@ public class MyPageController {
 
     //컨텐츠 찜 목록 가져오기
     @GetMapping("/cntswish/{user_id}")
-    public String readCntsWishList(@PathVariable String user_id, Model m) throws Exception{
+    public String readCntsWishList(@PathVariable String user_id, Model m) throws Exception {
         List<MyPageCntsDto> cntsDtoList = MyPageService.cntsWishList(user_id);
         m.addAttribute("cntsDtoList", cntsDtoList);
         System.out.println("cntsDtoList = " + cntsDtoList);
         return "home";
     }
+
+    //컨텐츠 조회 기록 목록 가져오기
+    @GetMapping("/cntsview/{user_id}")
+    public String readCntsViewList(@PathVariable String user_id, Model m) throws Exception {
+        List<MyPageCntsDto> cntsDtoList = MyPageService.cntsViewList(user_id);
+        m.addAttribute("cntsDtoList", cntsDtoList);
+        System.out.println("cntsDtoList = " + cntsDtoList);
+        return "home";
+    }
+
 }
