@@ -28,6 +28,15 @@
         where cw.user_id = #{user_id}
           and c.cnts_visib_stat = 1;
     </select>
+
+    <select id="selectCntsView" parameterType="String" resultType="MyPageCntsDto">
+        select cv.cnts_id, cv.user_id, cv.in_date, c.cnts_postr_img, c.cnts_visib_stat
+        from CNTS_VIEW cv
+                 join CNTS c on c.cnts_id = cv.cnts_id
+        where cv.user_id = #{user_id}
+          and c.cnts_visib_stat = 1;
+    </select>
+
 </mapper>
 
 
