@@ -33,7 +33,7 @@ public class MyPageDaoImplTest {
             String test = list.get(i).getCnts_postr_img();
             System.out.println("test = " + test);
         }
-        assertTrue(list.size() == 2);
+        assertTrue(list.size() == 1);
     }
 
 }
