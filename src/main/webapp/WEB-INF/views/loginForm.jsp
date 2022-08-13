@@ -4,12 +4,14 @@
 <%@ page session="false"%>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : loginId+'님 안녕하세요'}"/>
+
+<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'Logout'}"/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>fastcampus</title>
+
+    <title>DOPAMIN</title>
 <%--    <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <style>
@@ -69,8 +71,9 @@
         <li><a href="<c:url value='/'/>"><i class="fa fa-search"></i></a></li>
     </ul>
 </div>
-<form action="${pageContext.request.contextPath}/login/login" method="post" onsubmit="return formCheck(this);">
-    <p>${pageContext.request.contextPath}</p>
+
+<form action="<c:url value='/login/login'/>" method="post" onsubmit="return formCheck(this);">
+
     <h3 id="title">Login</h3>
 
     <input type="text" name="id" value="${cookie.id.value}" placeholder="아이디 입력" autofocus>
@@ -89,7 +92,7 @@
         <br>
         <a href="/">비밀번호 찾기</a> |
         <a href="/">아이디 찾기</a> |
-        <a href="/">회원가입</a>
+        <a href="<c:url value="/join/join"/>">회원가입</a>
     </div>
     <script>
         function formCheck(frm) {

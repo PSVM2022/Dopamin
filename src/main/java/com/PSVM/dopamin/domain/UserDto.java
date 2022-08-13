@@ -1,5 +1,7 @@
 package com.PSVM.dopamin.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class UserDto {
@@ -11,25 +13,27 @@ public class UserDto {
     private String cnty;
     private String email;
     private String nic;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date btdt;
     private byte sex;
     private String prf_img;
     private Integer dopa_exp;
     private Integer dopa_point;
     private Integer user_stat;
-    private Integer fav_genre1;
-    private Integer fav_genre2;
-    private Integer fav_genre3;
-    private Integer fav_genre4;
-    private Integer fav_genre5;
+    private String fav_genre1;
+    private String fav_genre2;
+    private String fav_genre3;
+    private String fav_genre4;
+    private String fav_genre5;
     private Integer rept_times;
     private Date in_date;
     private String in_user;
     private Date up_date;
     private String up_user;
 
-
-    public UserDto(String user_id, String f_nm, String l_nm, String phone_num, String mbti, String cnty, String email, String nic, Date btdt, byte sex, String prf_img, Integer fav_genre1, Integer fav_genre2, Integer fav_genre3, Integer fav_genre4, Integer fav_genre5) {
+    public UserDto(){}
+    public UserDto(String user_id, String f_nm, String l_nm, String phone_num, String mbti, String cnty, String email, String nic, Date btdt, byte sex,
+                   String prf_img, String fav_genre1, String fav_genre2, String fav_genre3, String fav_genre4, String fav_genre5) {
         this.user_id = user_id;
         this.f_nm = f_nm;
         this.l_nm = l_nm;
@@ -190,43 +194,43 @@ public class UserDto {
         this.user_stat = user_stat;
     }
 
-    public Integer getFav_genre1() {
+    public String getFav_genre1() {
         return fav_genre1;
     }
 
-    public void setFav_genre1(Integer fav_genre1) {
+    public void setFav_genre1(String fav_genre1) {
         this.fav_genre1 = fav_genre1;
     }
 
-    public Integer getFav_genre2() {
+    public String getFav_genre2() {
         return fav_genre2;
     }
 
-    public void setFav_genre2(Integer fav_genre2) {
+    public void setFav_genre2(String fav_genre2) {
         this.fav_genre2 = fav_genre2;
     }
 
-    public Integer getFav_genre3() {
+    public String getFav_genre3() {
         return fav_genre3;
     }
 
-    public void setFav_genre3(Integer fav_genre3) {
+    public void setFav_genre3(String fav_genre3) {
         this.fav_genre3 = fav_genre3;
     }
 
-    public Integer getFav_genre4() {
+    public String getFav_genre4() {
         return fav_genre4;
     }
 
-    public void setFav_genre4(Integer fav_genre4) {
+    public void setFav_genre4(String fav_genre4) {
         this.fav_genre4 = fav_genre4;
     }
 
-    public Integer getFav_genre5() {
+    public String getFav_genre5() {
         return fav_genre5;
     }
 
-    public void setFav_genre5(Integer fav_genre5) {
+    public void setFav_genre5(String fav_genre5) {
         this.fav_genre5 = fav_genre5;
     }
 

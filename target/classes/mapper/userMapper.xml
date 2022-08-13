@@ -8,4 +8,22 @@
     <select id="selectPwd" parameterType="String" resultType="UserPwdDto">
         SELECT user_id, user_pwd, in_date,in_user, up_date, up_user FROM USER_SECRET WHERE user_id=#{id};
     </select>
+
+    <select id="selectIdDuplCk" parameterType="String" resultType="int">
+        SELECT count(*) FROM USER WHERE user_id=#{id};
+    </select>
+    <insert id="insertUser" parameterType="UserDto">
+
+        INSERT INTO USER (user_id, f_nm, l_nm, phone_num, mbti, cnty, email ,nic ,btdt,sex, fav_genre1,fav_genre2,fav_genre3,fav_genre4,fav_genre5, in_date,in_user,up_user)
+            VALUE(#{user_id},#{f_nm},#{l_nm}, #{phone_num},#{mbti},#{cnty},#{email},#{nic},#{btdt},#{sex},#{fav_genre1},#{fav_genre2},#{fav_genre3},#{fav_genre4},#{fav_genre5},now(),#{user_id},#{user_id});
+
+
+    </insert>
+    <insert id="insertUserPwd" parameterType="UserPwdDto">
+        INSERT INTO USER_SECRET (user_id,user_pwd,in_date,in_user,up_date,up_user)VALUES (#{user_id},#{user_pwd},now(),#{user_id},now(),#{user_id});
+    </insert>
+
+
+
+
 </mapper>

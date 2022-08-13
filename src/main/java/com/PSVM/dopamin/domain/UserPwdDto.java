@@ -10,13 +10,14 @@ public class UserPwdDto {
     private Date up_date;
     private String up_user;
 
-    public UserPwdDto(String user_id, String user_pwd, Date in_date, String in_user, Date up_date, String up_user) {
+    public UserPwdDto(){}
+    public UserPwdDto(String user_id, String user_pwd, Date in_date,Date up_date) {
         this.user_id = user_id;
         this.user_pwd = user_pwd;
         this.in_date = in_date;
-        this.in_user = in_user;
+        this.in_user = user_id;
         this.up_date = up_date;
-        this.up_user = up_user;
+        this.up_user = user_id;
     }
 
     public String getUser_id() {
@@ -65,5 +66,17 @@ public class UserPwdDto {
 
     public void setUp_user(String up_user) {
         this.up_user = up_user;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPwdDto{" +
+                "user_id='" + user_id + '\'' +
+                ", user_pwd='" + user_pwd + '\'' +
+                ", in_date=" + in_date +
+                ", in_user='" + in_user + '\'' +
+                ", up_date=" + up_date +
+                ", up_user='" + up_user + '\'' +
+                '}';
     }
 }
