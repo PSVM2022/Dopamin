@@ -1,5 +1,6 @@
 package com.PSVM.dopamin.dao;
 
+import com.PSVM.dopamin.domain.MyPageCntsDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class MyPageDaoImpl implements MyPageDao {
     @Override
     public List<RevwDto> selectRevwEval(String user_id)  {
         return session.selectList(namespace + "selectrevwEval", user_id);
+    }
+
+    @Override
+    public List<MyPageCntsDto> selectCntsWish(String user_id){
+        return session.selectList(namespace + "selectCntsWish",user_id);
     }
 
 }
