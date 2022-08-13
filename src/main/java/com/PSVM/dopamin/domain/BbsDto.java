@@ -12,6 +12,10 @@ public class BbsDto {
     private Date up_date;
     private String up_user;
 
+    public BbsDto(String bbs_nm) {
+        this.bbs_nm = bbs_nm;
+    }
+
     public Integer getBbs_id() {
         return bbs_id;
     }
