@@ -58,11 +58,13 @@ public class JoinController {
 
     @PostMapping("/join/idduplck")
     @ResponseBody
-    public int idDuplicateCheck(String id){
-        System.out.println("중복체크id=:"+id);
-        int i = userService.idDuplicateCheck(id);
-        return ;
-    }
+    public int idDuplicateCheck(@RequestBody Map map){
 
+        String user_id = (String) map.get("user_id");
+        System.out.println("id="+user_id);
+        int count = userService.idDuplicateCheck(user_id);
+        System.out.println("count="+count);
+        return count;
+    }
 
 }

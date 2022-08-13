@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page import="java.net.URLDecoder" %>
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
     <style>
         * { box-sizing:border-box; }
 
@@ -76,7 +79,8 @@
 <form method="post" action="<c:url value="/join/join"/>">
     <label for="user_id">아이디</label>
     <input type="text" id="user_id" name="user_id"/>
-    <button type="button" onclick="idDupleCheck(${'${user_Id}'})">아이디 중복 체크</button>
+    <button type="button" id="idDuplCk">아이디 중복 체크</button>
+    <div id="id-dupl-msg" style="color: red"></div>
 
     <label for="user_pwd">비밀번호</label>
     <input type="password" id="user_pwd" name="user_pwd"/>
@@ -98,8 +102,8 @@
     <label for="phone_num">전화번호(ex)010-1234-1234)</label>
     <input type="text" id="phone_num" name="phone_num"/>
     <br>
-<%--    <label for="mbti">MBTI</label>--%>
-<%--    <input type="text" id="mbti" name="mbti"/>--%>
+    <label for="mbti">MBTI</label>
+    <input type="text" id="mbti" name="mbti"/>
     <br>
     <label for="cnty">나라</label>
     <input type="text" id="cnty" name="cnty"/>
@@ -132,25 +136,50 @@
 
 
 <script>
-        function idDupleCheck(userId) {
-            let form ={"userId" : userId};
-            $.ajax({
-                type:'POST',       // 요청 메서드
-                url: '/join/idduplck',  // 요청 URI
-                headers : { "content-type": "application/json"}, // 요청 헤더
-                dataType : 'text', // 전송받을 데이터의 타입
-                data : JSON.stringify(form),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-                success : function(response){
-                    console(response);
-                    console(response['id'])
-                    // person2 = JSON.parse(result);    // 서버로부터 응답이 도착하면 호출될 함수
-                    // alert("received="+result);       // result는 서버가 전송한 데이터
-                    // $("#data").html("name="+person2.name+", age="+person2.age);
-                },
-                error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-            });
+    // $(document).ready(function(){
+    //     let user_id = $("#user_id");
+    //     alert(user_id);
+    //     let idcheck = {"user_id":user_id};
+    //     $("#idDuplCk").click(function(){
+    //         $.ajax({
+    //             type:'POST',       // 요청 메서드
+    //             url: '/psvm/join/join/idduplck',  // 요청 URI
+    //             headers : { "content-type": "application/json"}, // 요청 헤더
+    //             dataType : 'text', // 전송받을 데이터의 타입
+    //             data : JSON.stringify(idcheck),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+    //             success : function(response){
+    //                 console(response);
+    //                 console(response["count"])
+    //                 msg = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
+    //                 alert(msg);       // result는 서버가 전송한 데이터
+    //             },
+    //             // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+    //         });
+    //
+    //     });
+    // });
 
-        }
+    $("#idDuplCk").click(function(){
+        let user_id = $('#user_id').val();
+        let id = {"user_id":user_id};
+        $.ajax({
+            type:'POST',       // 요청 메서드
+            url: '/psvm/join/join/idduplck',  // 요청 URI
+            headers : { "content-type": "application/json"}, // 요청 헤더
+            dataType : 'text', // 전송받을 데이터의 타입
+            data : JSON.stringify(id),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+            success : function(response){
+                let count = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
+                if(count==0){
+                    document.getElementById("id-dupl-msg").innerText="사용 가능한 아이디입니다.";
+                }else{
+                    document.getElementById("id-dupl-msg").innerText="사용 불가한 아이디입니다.";
+                }       // result는 서버가 전송한 데이터
+            },
+            // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+        });
+
+    });
 
 </script>
 </body>
