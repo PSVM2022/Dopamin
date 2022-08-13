@@ -1,5 +1,6 @@
 package com.PSVM.dopamin.controller;
 
+import com.PSVM.dopamin.domain.MyPageCntsDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import com.PSVM.dopamin.service.MyPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,12 @@ public class MyPageController {
         return "home";
     }
 
-
-
-
-
-
-
+    //컨텐츠 찜 목록 가져오기
+    @GetMapping("/cntswish/{user_id}")
+    public String readCntsWishList(@PathVariable String user_id, Model m) throws Exception{
+        List<MyPageCntsDto> cntsDtoList = MyPageService.cntsWishList(user_id);
+        m.addAttribute("cntsDtoList", cntsDtoList);
+        System.out.println("cntsDtoList = " + cntsDtoList);
+        return "home";
+    }
 }
