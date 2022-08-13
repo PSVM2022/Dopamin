@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,6 +45,17 @@ public class MyPageDaoImplTest {
             System.out.println("test = " + test);
         }
         assertTrue(list.size() == 1);
+    }
+
+    @Test
+    public void selectPost() throws Exception {
+        List<MyPagePostDto> list = myPageDao.selectPost("eunbi");
+        for (int i = 0; i < list.size(); i++) {
+            String test = list.get(i).getPost_title();
+            System.out.println("test = " + test);
+        }
+        System.out.println("list = " + list);
+        assertTrue(list.size() == 17);
     }
 
 }
