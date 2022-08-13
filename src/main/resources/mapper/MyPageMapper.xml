@@ -37,6 +37,19 @@
           and c.cnts_visib_stat = 1;
     </select>
 
+    <select id="selectPost" parameterType="String" resultType="MyPagePostDto">
+        select user_id,
+               bbs_id,
+               post_id,
+               post_title,
+               post_view_cnt,
+               post_reply_cnt,
+               in_date,
+               post_visib
+        from POST
+        order by in_date desc;
+    </select>
+
 </mapper>
 
 
