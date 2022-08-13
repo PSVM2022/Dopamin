@@ -11,4 +11,7 @@ public interface MyPageService {
     List<RevwDto> revwEvalList(String user_id);
 
     List<MyPageCntsDto> cntsWishList(String user_id);
+
+    List<MyPageCntsDto> cntsViewList(String user_id);
+
 }

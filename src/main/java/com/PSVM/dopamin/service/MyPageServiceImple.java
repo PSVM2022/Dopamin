@@ -24,8 +24,12 @@ public class MyPageServiceImple implements MyPageService {
     }
 
     @Override
-    public List<MyPageCntsDto> cntsWishList(String user_id){
+    public List<MyPageCntsDto> cntsWishList(String user_id) {
         return myPageDao.selectCntsWish(user_id);
     }
 
+    @Override
+    public List<MyPageCntsDto> cntsViewList(String user_id) {
+        return myPageDao.selectCntsView(user_id);
+    }
 }
