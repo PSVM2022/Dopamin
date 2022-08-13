@@ -11,4 +11,6 @@ public interface MyPageDao {
     List<RevwDto> selectRevwEval(String user_id);
 
     List<MyPageCntsDto> selectCntsWish(String user_id);
+
+    List<MyPageCntsDto> selectCntsView(String user_id);
 }

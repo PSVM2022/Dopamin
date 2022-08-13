@@ -19,16 +19,21 @@ public class MyPageDaoImpl implements MyPageDao {
     @Override
     public List<RevwDto> selectRevw(String userId) throws Exception {
         return session.selectList(namespace + "selectrevw", userId);
-    } // List<E> selectList(String statement)
+    }
 
     @Override
-    public List<RevwDto> selectRevwEval(String user_id)  {
+    public List<RevwDto> selectRevwEval(String user_id) {
         return session.selectList(namespace + "selectrevwEval", user_id);
     }
 
     @Override
-    public List<MyPageCntsDto> selectCntsWish(String user_id){
-        return session.selectList(namespace + "selectCntsWish",user_id);
+    public List<MyPageCntsDto> selectCntsWish(String user_id) {
+        return session.selectList(namespace + "selectCntsWish", user_id);
+    }
+
+    @Override
+    public List<MyPageCntsDto> selectCntsView(String user_id) {
+        return session.selectList(namespace + "selectCntsView", user_id);
     }
 
 }
