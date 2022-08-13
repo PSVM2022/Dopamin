@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.ContentsDto;
+import com.PSVM.dopamin.domain.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,10 @@ public class ContentsDaoImpl implements ContentsDao {
 
     public ContentsDto selectCnts(Integer cnts_id) {
         return session.selectOne(namespace + "selectCnts", cnts_id);
+    }
+
+    @Override
+    public List<ContentsDto> searchSelectCnts(SearchCondition sc) {
+        return session.selectList(namespace+"searchSelectCnts", sc);
     }
 }

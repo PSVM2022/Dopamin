@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.ContentsDto;
+import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.ContentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,17 +20,17 @@ public class ContentsController {
     @Autowired
     ContentsService contentsService;
 
-    //컨텐츠 전체 보기(메인 페이지)
+    //메인 페이지
     @GetMapping("/")
     public String contents(Model model) throws Exception {
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
         model.addAttribute("cntsDtoList", cntsDtoList);
 
-        return "contentsMain";
+        return "contentsList";
     }
 
-    //컨텐츠 상세 조회 페이지
+    //컨텐츠 상세 조회
     @GetMapping("/contents/{cnts_id}")
     public String contentView(@PathVariable("cnts_id") Integer cnts_id, Model model) throws Exception{
 
@@ -41,6 +42,16 @@ public class ContentsController {
         }
 
         return "contentsView";
+    }
+
+    //컨텐츠 검색
+    @GetMapping("/contents/search/")
+    public String getSearchCntsPage(SearchCondition sc, Model model) {
+
+        List<ContentsDto> cntsDtoList = contentsService.getSearchCntsPage(sc);
+        model.addAttribute("cntsDtoList", cntsDtoList);
+
+        return "contentsList";
     }
 
 }

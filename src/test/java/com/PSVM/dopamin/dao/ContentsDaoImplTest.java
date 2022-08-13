@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.ContentsDto;
+import com.PSVM.dopamin.domain.SearchCondition;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,12 @@ public class ContentsDaoImplTest {
         //assertTrue(contentsDao != null);
         System.out.println("contentsDao = " + list);
     }
+
+    @Test
+    public void searchSelectCnts() throws Exception {
+        SearchCondition sc = new SearchCondition("cnts_title1");
+        List<ContentsDto> list = contentsDao.searchSelectCnts(sc);
+        System.out.println("list: " + list);
+    }
+
 }
