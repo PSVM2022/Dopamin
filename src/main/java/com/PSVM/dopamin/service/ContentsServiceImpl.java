@@ -14,15 +14,16 @@ public class ContentsServiceImpl implements ContentsService {
     @Autowired
     ContentsDao contentsDao;
 
+    //컨텐츠 전체 읽어오기
     @Override
     public List<ContentsDto> contentsList() {
-        return contentsDao.selectcnts();
+        return contentsDao.selectAllCnts();
     }
-}
 
-/*
-*  assertTrue(contentsDao != null);
-        System.out.println("contentsDap = " + contentsDao);
+    //컨텐츠 상세 페이지 읽어오기
+    public ContentsDto contentsView(Integer cnts_id) {
+        ContentsDto contentsDto = contentsDao.selectCnts(cnts_id);
+        return contentsDao.selectCnts(cnts_id);
     }
+
 }
-* */

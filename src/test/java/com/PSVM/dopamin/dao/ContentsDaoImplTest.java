@@ -22,7 +22,7 @@ public class ContentsDaoImplTest {
 
     @Test
     public void selectcnts() throws Exception {
-        List<ContentsDto> list = contentsDao.selectcnts();
+        List<ContentsDto> list = contentsDao.selectAllCnts();
         //assertTrue(contentsDao != null);
         System.out.println("contentsDao = " + list);
     }

@@ -7,4 +7,7 @@ import java.util.List;
 public interface ContentsService {
 
     List<ContentsDto> contentsList() ;
+
+    ContentsDto contentsView(Integer cnts_id);
+
 }

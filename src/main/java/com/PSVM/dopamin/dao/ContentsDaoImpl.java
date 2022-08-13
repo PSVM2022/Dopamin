@@ -15,11 +15,11 @@ public class ContentsDaoImpl implements ContentsDao {
 
 
     @Override
-    public List<ContentsDto> selectcnts() {
-        return session.selectList(namespace+"selectcnts");
+    public List<ContentsDto> selectAllCnts() {
+        return session.selectList(namespace+"selectAllCnts");
+    }
+
+    public ContentsDto selectCnts(Integer cnts_id) {
+        return session.selectOne(namespace + "selectCnts", cnts_id);
     }
 }
-
-/*public ContentsDto selectcnts(int cnts_id) throws Exception{
-    return session.selectList(namespace+"selectcnts", cnts_id);
-    }*/

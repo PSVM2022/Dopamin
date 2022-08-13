@@ -10,11 +10,7 @@
     <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <style>
-        div {
-            text-align: left;
-        }
-    </style>
+
 </head>
 <body>
 <div>
@@ -27,18 +23,21 @@
         <h2>도파민 메인 페이지</h2>
     </div>
     <div style="text-align:center">
+
             <c:forEach var="cnts" items="${cntsDtoList}">
+                <br>
                     <tr>
                         <div>
-                    <td>${cnts.cnts_postr_img}</td><br>
-                    <td>${cnts.cnts_title}</td><br>
-                    <td>${cnts.cnts_subttl}</td><br>
-                    <td>${cnts.cnts_op_date}</td><br>
-                    <td>${cnts.cnts_cnty}</td><br>
+                            <td><a href='/psvm/contents/${cnts.cnts_id}'/>${cnts.cnts_postr_img}</td><br>
+                            <td>${cnts.cnts_title}</td><br>
+                            <td>${cnts.cnts_subttl}</td><br>
+                            <td>${cnts.cnts_op_date}</td><br>
+                            <td>${cnts.cnts_cnty}</td><br>
                         </div>
                     </tr>
             </c:forEach>
         <br>
+
 
     </div>
 </div>

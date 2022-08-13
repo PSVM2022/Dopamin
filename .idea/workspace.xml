@@ -9,21 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ContentsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" afterDir="false" />
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 전체보기(메인페이지) 작성.&#10;메인페이지에 컨텐츠 삽입 작성함. JSP파일 수정해야함">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/Mapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsMain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsMain.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Mapper.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +33,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -74,25 +74,28 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LDH/IdeaProjects/Dopamin&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/LDH/IdeaProjects/Dopamin",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+    ],
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources\mapper" />
@@ -250,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660301301297</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: 컨텐츠 전체보기(메인페이지) 작성.&#10;메인페이지에 컨텐츠 삽입 작성함. JSP파일 수정해야함">
+      <created>1660317023437</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660317023437</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +279,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정" />
+    <MESSAGE value="feat: 컨텐츠 전체보기(메인페이지) 작성.&#10;메인페이지에 컨텐츠 삽입 작성함. JSP파일 수정해야함" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 전체보기(메인페이지) 작성.&#10;메인페이지에 컨텐츠 삽입 작성함. JSP파일 수정해야함" />
   </component>
 </project>
