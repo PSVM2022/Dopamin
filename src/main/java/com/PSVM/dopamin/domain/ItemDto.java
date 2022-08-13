@@ -2,7 +2,6 @@ package com.PSVM.dopamin.domain;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class ItemDto {
     private Integer item_id;
@@ -19,39 +18,10 @@ public class ItemDto {
     private String in_user;
     private Timestamp up_date;
     private String up_user;
-
     private String user_nic;
+    public ItemDto(){}
 
-    public Integer getItem_id() {
-        return item_id;
-    }
-
-    public String getUser_nic() {
-        return user_nic;
-    }
-
-    @Override
-    public String toString() {
-        return "ItemDto{" +
-                "item_id=" + item_id +
-                ", list_id=" + list_id +
-                ", grd_id=" + grd_id +
-                ", item_nm='" + item_nm + '\'' +
-                ", item_dsc='" + item_dsc + '\'' +
-                ", item_price=" + item_price +
-                ", item_img='" + item_img + '\'' +
-                ", stat=" + stat +
-                ", dc_rate=" + dc_rate +
-                ", dc_price=" + dc_price +
-                ", in_date=" + in_date +
-                ", in_user='" + in_user + '\'' +
-                ", up_date=" + up_date +
-                ", up_user='" + up_user + '\'' +
-                ", user_nic='" + user_nic + '\'' +
-                '}';
-    }
-
-    public ItemDto(Integer list_id, Integer grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date,String user_nic) {
+    public ItemDto(Integer list_id, Integer grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date, String user_nic) {
         this.list_id = list_id;
         this.grd_id = grd_id;
         this.item_nm = item_nm;
@@ -59,11 +29,11 @@ public class ItemDto {
         this.item_price = item_price;
         this.item_img = item_img;
         this.in_date = in_date;
-        this.user_nic=user_nic;
+        this.user_nic = user_nic;
     }
 
-    public void setUser_nic(String user_nic) {
-        this.user_nic = user_nic;
+    public Integer getItem_id() {
+        return item_id;
     }
 
     public void setItem_id(Integer item_id) {
@@ -172,5 +142,34 @@ public class ItemDto {
 
     public void setUp_user(String up_user) {
         this.up_user = up_user;
+    }
+
+    public String getUser_nic() {
+        return user_nic;
+    }
+
+    public void setUser_nic(String user_nic) {
+        this.user_nic = user_nic;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemDto{" +
+                "item_id=" + item_id +
+                ", list_id=" + list_id +
+                ", grd_id=" + grd_id +
+                ", item_nm='" + item_nm + '\'' +
+                ", item_dsc='" + item_dsc + '\'' +
+                ", item_price=" + item_price +
+                ", item_img='" + item_img + '\'' +
+                ", stat=" + stat +
+                ", dc_rate=" + dc_rate +
+                ", dc_price=" + dc_price +
+                ", in_date=" + in_date +
+                ", in_user='" + in_user + '\'' +
+                ", up_date=" + up_date +
+                ", up_user='" + up_user + '\'' +
+                ", user_nic='" + user_nic + '\'' +
+                '}';
     }
 }

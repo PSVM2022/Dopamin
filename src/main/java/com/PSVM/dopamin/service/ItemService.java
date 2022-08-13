@@ -16,7 +16,7 @@ public class ItemService {
     }
 
     public List<ItemDto> getPage(Map map) throws Exception{
-        return itemDaoImpl.selectPage(map);
+        return itemDaoImpl.getPage(map);
     }
 //    public int remove(Integer item_id) throws Exception{
 //        return itemDaoImpl.remove(item_id);
@@ -35,6 +35,14 @@ public class ItemService {
 
     public int register(Map map) throws Exception {
         return itemDaoImpl.register(map);
+    }
+
+    public int getStatus(int item_id) throws Exception{
+        return itemDaoImpl.getStatus(item_id);
+    }
+
+    public int getUser_stat(String user_id) throws Exception {
+        return itemDaoImpl.getUser_stat(user_id);
     }
 
 //    public ItemDto read(Integer item_id) {

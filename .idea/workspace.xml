@@ -9,7 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="" />
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/repository/ItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/repository/ItemDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/Mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/repository/ItemDaoImplTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +32,8 @@
       <list>
         <option value="Jsp File" />
         <option value="CSS File" />
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -60,31 +74,120 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LDH/IdeaProjects/Dopamin&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "create.test.in.the.same.root": "true",
+    "last_opened_file_path": "C:/Users/LDH/IdeaProjects/Dopamin",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources\mapper" />
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.PSVM.dopamin.repository" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ItemDaoImplTest.test_사용자닉네임반환">
+    <configuration name="ItemDaoImplTest.testRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="testRegister" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemDaoImplTest.test_등록실패" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="test_등록실패" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemDaoImplTest.test_등록성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="test_등록성공" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemDaoImplTest.test_사용자닉네임반환" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="test_사용자닉네임반환" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemDaoImplTest.test_getPage_스킨" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="test_getPage_스킨" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="dopamin" />
       <method v="2">
@@ -186,6 +289,15 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ItemDaoImplTest.test_사용자닉네임반환" />
+        <item itemvalue="JUnit.ItemDaoImplTest.test_등록실패" />
+        <item itemvalue="JUnit.ItemDaoImplTest.test_등록성공" />
+        <item itemvalue="JUnit.ItemDaoImplTest.testRegister" />
+        <item itemvalue="JUnit.ItemDaoImplTest.test_getPage_스킨" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

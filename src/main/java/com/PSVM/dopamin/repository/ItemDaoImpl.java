@@ -14,12 +14,12 @@ public class ItemDaoImpl {
     public ItemDaoImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
-    public List<ItemDto> selectPage(Map map) throws Exception{
-        return sqlSession.selectList(namespace+"item_selectPage",map);
+    public List<ItemDto> getPage(Map map) throws Exception{
+        return sqlSession.selectList(namespace+"item_getPage",map);
     }
 
     public int getCount() throws Exception{
-        return sqlSession.selectOne(namespace+"item_count");
+        return sqlSession.selectOne(namespace+"item_getCount");
     }
 
     public void remove(Integer item_id) {
@@ -29,11 +29,19 @@ public class ItemDaoImpl {
     }
 
     public String getUser_nic(String writer_id) throws Exception{
-        return sqlSession.selectOne(namespace+"item_user_nic");
-    }
+        return sqlSession.selectOne(namespace+"item_user_nic",writer_id);
+    }//해야함
 
     public int register(Map map) throws Exception {
         return sqlSession.insert(namespace+"item_register",map);
+    }
+
+    public int getStatus(int item_id) throws Exception{
+        return sqlSession.selectOne(namespace+"item_getStatus",item_id);
+    }
+
+    public int getUser_stat(String user_id) throws Exception {
+        return sqlSession.selectOne(namespace + "UserStatus", user_id);
     }
 //    public ItemDto select(Integer item_id) throws Exception{
 //        return sqlSession.selectOne(namespace+"select",item_id);
