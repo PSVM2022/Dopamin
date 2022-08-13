@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface MyPageService {
 
     List<MyPageCntsDto> cntsViewList(String user_id);
 
+    List<MyPagePostDto> postList(String user_id);
 }

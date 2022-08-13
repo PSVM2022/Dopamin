@@ -2,6 +2,7 @@ package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.MyPageDao;
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,4 +33,10 @@ public class MyPageServiceImple implements MyPageService {
     public List<MyPageCntsDto> cntsViewList(String user_id) {
         return myPageDao.selectCntsView(user_id);
     }
+
+    @Override
+    public List<MyPagePostDto> postList(String user_id) {
+        return myPageDao.selectPost(user_id);
+    }
+
 }
