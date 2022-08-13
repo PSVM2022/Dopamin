@@ -30,11 +30,13 @@ public class LoginController {
         return "loginForm";
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session,String toURL){
+        toURL = toURL==null || toURL.equals("") ? "/" : toURL;
+
         //세션 삭제
         session.invalidate();
-        return "redirect:/";
+        return "redirect:"+toURL;
     }
 
     @PostMapping("/login")
@@ -69,10 +71,11 @@ public class LoginController {
 
 
     private boolean idPwdCheck(String id, String pwd){
+        //존재하지 않는 아이디면
         if(userService.getUserPwd(id)==null){
             return false;
         }
-        return userService.getUserPwd(id).getUser_pwd().equals(pwd) && userService.getUserPwd(id).getUser_id().equals(id);
+        return userService.getUserPwd(id).getUser_pwd().equals(pwd);
     }
 
 
