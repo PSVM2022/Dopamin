@@ -36,4 +36,14 @@ public class MyPageDaoImplTest {
         assertTrue(list.size() == 1);
     }
 
+    @Test
+    public void cntsViewList() throws Exception {
+        List<MyPageCntsDto> list = myPageDao.selectCntsView("testid2");
+        for (int i = 0; i < list.size(); i++) {
+            String test = list.get(i).getCnts_postr_img();
+            System.out.println("test = " + test);
+        }
+        assertTrue(list.size() == 1);
+    }
+
 }
