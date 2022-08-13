@@ -10,13 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/main.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/common/default.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/common/normalize.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/image/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/image/logo_example.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/menu.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,12 +45,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/common-ui" />
-                    <option name="lastUsedInstant" value="1660356103" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1660359379" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1660356020" />
+                    <option name="branchName" value="feature/common-ui" />
+                    <option name="lastUsedInstant" value="1660356103" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
