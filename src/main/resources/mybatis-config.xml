@@ -4,9 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <!--        <typeAlias alias="map" type="com.PSVM.dopamin.domain.RevwDto"/>-->
-        <!--        <typeAlias alias="CommentDto" type="com.fastcampus.ch4.domain.CommentDto"/>-->
-        <!--        <typeAlias alias="SearchCondition" type="com.fastcampus.ch4.domain.SearchCondition"/>-->
+        <typeAlias alias="RevwDto" type="com.PSVM.dopamin.domain.RevwDto"/>
+        <typeAlias alias="MyPageCntsDto" type="com.PSVM.dopamin.domain.MyPageCntsDto"/>
+        <typeAlias alias="MyPagePostDto" type="com.PSVM.dopamin.domain.MyPagePostDto"/>
+        <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
     </typeAliases>
 
 </configuration>
