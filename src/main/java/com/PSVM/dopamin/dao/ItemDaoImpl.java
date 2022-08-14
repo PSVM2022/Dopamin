@@ -1,4 +1,4 @@
-package com.PSVM.dopamin.repository;
+package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.ItemDto.ItemDto;
 import org.apache.ibatis.session.SqlSession;

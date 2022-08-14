@@ -1,7 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.domain.ItemDto.ItemDto;
-import com.PSVM.dopamin.repository.ItemDaoImpl;
+import com.PSVM.dopamin.dao.ItemDaoImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
