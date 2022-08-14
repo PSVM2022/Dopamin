@@ -9,20 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 상세 페이지 작성.&#10;&#10;컨텐츠 상세 페이지 작성함. ui는 나중에 수정 예정">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/SearchCondition.java" afterDir="false" />
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsMain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsList.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660387548220</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것.">
+      <created>1660404919928</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660404919928</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,6 +305,7 @@
     <MESSAGE value="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정" />
     <MESSAGE value="feat: 컨텐츠 전체보기(메인페이지) 작성.&#10;메인페이지에 컨텐츠 삽입 작성함. JSP파일 수정해야함" />
     <MESSAGE value="feat: 컨텐츠 상세 페이지 작성.&#10;&#10;컨텐츠 상세 페이지 작성함. ui는 나중에 수정 예정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 상세 페이지 작성.&#10;&#10;컨텐츠 상세 페이지 작성함. ui는 나중에 수정 예정" />
+    <MESSAGE value="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것." />
   </component>
 </project>

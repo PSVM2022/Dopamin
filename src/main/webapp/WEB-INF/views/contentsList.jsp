@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE>
 <html>
@@ -20,7 +22,7 @@
         </ul>
     </div>
     <div>
-        <h2>도파민 메인 페이지</h2>
+        <h2>도파민 페이지</h2>
     </div>
     <div style="text-align:center">
         <div class="row">
@@ -31,6 +33,13 @@
                 </form>
             </div>
         </div>
+
+        <!-- 검색어 업데이트중 -->
+        <c:set var="search" value="${sc.keyword != null}"/>
+            <c:set var="search" value="${sc.keyword}"/>
+            <c:if test="${fn: contains(search, search)}">
+                <p><c:out value="${search}"/>검색 결과 입니다.</p>
+            </c:if>
 
             <c:forEach var="cnts" items="${cntsDtoList}">
                 <br>

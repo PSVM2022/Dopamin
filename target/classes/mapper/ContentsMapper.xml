@@ -24,7 +24,7 @@
         select *
         from CNTS
         where cnts_title LIKE concat('%', #{keyword}, '%')
-
+           or cnts_subttl LIKE concat('%', #{keyword}, '%')
     </select>
 
 </mapper>
