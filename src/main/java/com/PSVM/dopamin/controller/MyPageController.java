@@ -43,7 +43,7 @@ public class MyPageController {
         List<RevwDto> revwDtoList = MyPageService.revwEvalList(user_id);
         m.addAttribute("revwDtoList", revwDtoList);
         System.out.println("revwDtoList = " + revwDtoList);
-        return "test";
+        return "revweval";
     }
 
     //컨텐츠 찜 목록 가져오기
@@ -52,7 +52,7 @@ public class MyPageController {
         List<MyPageCntsDto> cntsDtoList = MyPageService.cntsWishList(user_id);
         m.addAttribute("cntsDtoList", cntsDtoList);
         System.out.println("cntsDtoList = " + cntsDtoList);
-        return "myPageMain";
+        return "cntswish";
     }
 
     //컨텐츠 조회 기록 목록 가져오기
@@ -61,7 +61,7 @@ public class MyPageController {
         List<MyPageCntsDto> cntsDtoList = MyPageService.cntsViewList(user_id);
         m.addAttribute("cntsDtoList", cntsDtoList);
         System.out.println("cntsDtoList = " + cntsDtoList);
-        return "myPageMain";
+        return "cntsview";
     }
 
     //게시글 목록 가져오기
@@ -69,7 +69,7 @@ public class MyPageController {
     public String readPostList(@PathVariable String user_id, Model m) throws Exception {
         List<MyPagePostDto> postDtoList = MyPageService.postList(user_id);
         m.addAttribute("postDtoList", postDtoList);
-        return "myPageMain";
+        return "post";
     }
 
 }
