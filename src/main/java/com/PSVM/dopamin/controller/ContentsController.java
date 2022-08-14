@@ -27,7 +27,7 @@ public class ContentsController {
 
         model.addAttribute("cntsDtoList", cntsDtoList);
 
-        return "contentsList";
+        return "main";
     }
 
     //컨텐츠 상세 조회
@@ -51,7 +51,7 @@ public class ContentsController {
         List<ContentsDto> cntsDtoList = contentsService.getSearchCntsPage(sc);
         model.addAttribute("cntsDtoList", cntsDtoList);
 
-        return "contentsList";
+        return "main";
     }
 
 }
