@@ -6,21 +6,23 @@ public class MyPageDto {
     private String user_id;
     private String prf_img; //프로필 이미지 url
     private String nic;     //닉네임
-    private Integer dopa_exp;   //도파 레벨
+    private Integer dopa_exp;   //도파 exp
     private Integer dopa_point; //도파 포인트
-    private String genre_nm;    // 선호 장르
+    private String fav_genre1;    // 선호 장르
+    private Date btdt;           //유저 생년월일
     private Integer age;        // 유저 나이
     private Integer sex;        // 유저 성별
     private Integer item_id;    // 착용중인 보유 스킨
 
-    public MyPageDto(){}
-    public MyPageDto(String user_id, String prf_img, String nic, Integer dopa_exp, Integer dopa_point, String genre_nm, Integer age, Integer sex, Integer item_id) {
+    public MyPageDto() {}
+    public MyPageDto(String user_id, String prf_img, String nic, Integer dopa_exp, Integer dopa_point, String fav_genre1, Date btdt, Integer age, Integer sex, Integer item_id) {
         this.user_id = user_id;
         this.prf_img = prf_img;
         this.nic = nic;
         this.dopa_exp = dopa_exp;
         this.dopa_point = dopa_point;
-        this.genre_nm = genre_nm;
+        this.fav_genre1 = fav_genre1;
+        this.btdt = btdt;
         this.age = age;
         this.sex = sex;
         this.item_id = item_id;
@@ -66,12 +68,20 @@ public class MyPageDto {
         this.dopa_point = dopa_point;
     }
 
-    public String getGenre_nm() {
-        return genre_nm;
+    public String getFav_genre1() {
+        return fav_genre1;
     }
 
-    public void setGenre_nm(String genre_nm) {
-        this.genre_nm = genre_nm;
+    public void setFav_genre1(String fav_genre1) {
+        this.fav_genre1 = fav_genre1;
+    }
+
+    public Date getBtdt() {
+        return btdt;
+    }
+
+    public void setBtdt(Date btdt) {
+        this.btdt = btdt;
     }
 
     public Integer getAge() {
