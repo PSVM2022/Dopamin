@@ -1,8 +1,10 @@
 package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.UserDtoValidator;
 import com.PSVM.dopamin.domain.UserPwdDto;
 //import com.PSVM.dopamin.domain.UserValidator;
+import com.PSVM.dopamin.domain.UserPwdDtoValidator;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
@@ -22,17 +25,18 @@ public class JoinController {
 
     @InitBinder
     public void userDtoValidator(WebDataBinder binder){
-
+        binder.addValidators(new UserDtoValidator());
+        binder.addValidators(new UserPwdDtoValidator());
     }
 
 
     @GetMapping("/join")
     public String joinForm(){
-        return "joinForm_before";
+        return "joinForm";
     }
 
     @PostMapping("join")
-    public String join(UserDto userDto, BindingResult result, UserPwdDto userPwdDto, String pwdCheck) throws UnsupportedEncodingException {
+    public String join(@Valid UserDto userDto, BindingResult result,@Valid UserPwdDto userPwdDto, String pwdCheck) throws UnsupportedEncodingException {
         System.out.println("result="+result);
         System.out.println("userDto="+userDto);
         System.out.println("userPwdDto="+userPwdDto);
@@ -53,10 +57,10 @@ public class JoinController {
     }
 
 
-    @PostMapping("/join/idduplck")
+    @PostMapping("/idduplck")
     @ResponseBody
-    public int idDuplicateCheck(@RequestBody Map map){
-
+    public int idDuplicateCheck(@RequestBody Map map,BindingResult result){
+        System.out.println("result="+result);
         String user_id = (String) map.get("user_id");
         System.out.println("id="+user_id);
         int count = userService.idDuplicateCheck(user_id);

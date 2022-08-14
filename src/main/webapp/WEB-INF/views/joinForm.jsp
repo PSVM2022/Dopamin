@@ -9,10 +9,11 @@
     <title>도파민!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="/image/favicon.png">
-    <link rel="stylesheet" type="text/css" href="css/common/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/common/default.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png' />">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css' />">
+    <link rel="stylesheet" type="text/css" href="<c:url value='css/common/default.css' />">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap');
     </style>
@@ -146,7 +147,7 @@
         let id = {"user_id":user_id};
         $.ajax({
             type:'POST',       // 요청 메서드
-            url: '/psvm/join/join/idduplck',  // 요청 URI
+            url: '/psvm/join/idduplck',  // 요청 URI
             headers : { "content-type": "application/json"}, // 요청 헤더
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(id),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.

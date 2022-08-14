@@ -23,12 +23,6 @@
 </head>
 
 <body>
-<% //만약 세션이 있다면, 그리고 세션의 유저의 DB의
-    if(request.getSession(false)!=null){
-    if()
-}
-
-%>
 
 <div class="topnav">
     <div class="responsive">

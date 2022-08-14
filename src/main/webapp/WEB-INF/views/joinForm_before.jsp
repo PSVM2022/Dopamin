@@ -80,7 +80,7 @@
     <label for="user_id">아이디</label>
     <input type="text" id="user_id" name="user_id"/>
     <button type="button" id="idDuplCk">아이디 중복 체크</button>
-    <div id="id-dupl-msg" style="color: redㅡ"></div>
+    <div id="id-dupl-msg" style="color: red"></div>
 
     <label for="user_pwd">비밀번호</label>
     <input type="password" id="user_pwd" name="user_pwd"/>
@@ -168,7 +168,7 @@
         let id = {"user_id":user_id};
         $.ajax({
             type:'POST',       // 요청 메서드
-            url: '/psvm/join/join/idduplck',  // 요청 URI
+            url: '/psvm/join/idduplck',  // 요청 URI
             headers : { "content-type": "application/json"}, // 요청 헤더
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(id),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.

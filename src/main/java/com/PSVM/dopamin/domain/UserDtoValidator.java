@@ -17,12 +17,19 @@ public class UserDtoValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UserDto userDto = (UserDto) target;
         String id = userDto.getUser_id();
-        String pwdCheck="^(?=.*\\\\d)(?=.*[~`!@#$%\\\\^&*()-])(?=.*[a-z])(?=.*[A-Z]).{9,12}$";
-
-        Matcher m = Pattern.compile(pwdCheck).matcher(id);
+        String email = userDto.getEmail();
+        String phone_num = userDto.getPhone_num();
 
         String idCheck = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$";
-        Matcher mId = Pattern.compile(idCheck).matcher(idCheck);
+        String emailCheck = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
+        String phone_numCheck="^\\\\d{3}-\\\\d{3,4}-\\\\d{4}$";
+
+        Matcher mId = Pattern.compile(idCheck).matcher(id);
+        Matcher mEmail = Pattern.compile(emailCheck).matcher(email);
+        Matcher mPhone = Pattern.compile(phone_numCheck).matcher(phone_num);
+
+        System.out.println("UserDtoValid="+mEmail.find()+","+mId.find()+","+mPhone.find());
+        if(!mEmail.find())
         if(!mId.find()){
             errors.rejectValue("id","id_invalid");
         }
