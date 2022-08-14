@@ -16,6 +16,7 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap');
     </style>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 
 <body>
@@ -25,15 +26,15 @@
         <div class="logo-wrapper">
             <img alt="" src="<c:url value='/image/logo_example.svg' />" width="50" height="30">
         </div>
-        <a class="topnav-menu" href="#" onclick='alert("홈으로 페이지 전환")'>홈</a>
+        <a class="topnav-menu" href="/psvm/" onclick='alert("홈으로 페이지 전환")'>홈</a>
         <a class="topnav-menu" href="#" onclick='alert("신규작 페이지로 이동")'>신규작</a>
         <a class="topnav-menu" href="#" onclick='alert("인기작 페이지로 이동")'>인기작</a>
         <a class="topnav-menu" href="#" onclick='alert("커뮤니티에서 게시판봐요")'>커뮤니티</a>
         <a class="topnav-menu" href="#" onclick='alert("룰렛 한판 돌려요")'>이벤트</a>
-        <div class="topnav-search" action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
+        <form class="topnav-search" action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
             <input class="topnav-search" type="text" name="keyword" class="search-input" type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요">
             <input class="topnav-search" type="submit" class="search-button" value="검색">
-        </div>
+        </form>
     </div>
 </div>
 
@@ -41,56 +42,37 @@
     <div class="responsive-content">
         <div class="content-movie">
             <h2>DOPAMIN</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <div class="content-preview" style="text-align:center">
+
+                <!-- 검색어 업데이트중 -->
+                <%-- <c:set var="search" value="${sc.keyword != null}"/>
+                <c:set var="search" value="${sc.keyword}"/>
+                <c:if test="${fn: contains(search, search)}">
+                    <p><c:out value="${search}"/>검색 결과 입니다.</p>
+                </c:if>
+                --%>
+
+                <c:forEach var="cnts" items="${cntsDtoList}">
+                    <br>
+                    <tr>
+                        <div>
+                            <td><a href='/psvm/contents/${cnts.cnts_id}'/>${cnts.cnts_postr_img}</td><br>
+                            <td>${cnts.cnts_title}</td><br>
+                            <td>${cnts.cnts_subttl}</td><br>
+                            <td>${cnts.cnts_op_date}</td><br>
+                            <td>${cnts.cnts_cnty}</td><br>
+                        </div>
+                    </tr>
+                </c:forEach>
+                <br>
+            </div>
         </div>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-youtube"></i>
-        <div class="content-preview">
-            class속성이 responsive-content인 div태크 하단부터 태그를 넣어 내용을 작성하시면 됩니다.
-        </div>
-        <div class="content-teenager-girl-movie"></div>
 
     </div>
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-facebook"></i>
+    <i class="fa-brands fa-youtube"></i>
+    <div class="content-teenager-girl-movie"></div>
 </div>
 
 

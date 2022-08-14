@@ -9,10 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="chore: 빌드 관련.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="style: main.jsp css 적용&#10;&#10;임시로 기존 main페이지는 삭제함. 수정 예정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660474590447</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="style: main.jsp css 적용&#10;&#10;임시로 기존 main페이지는 삭제함. 수정 예정">
+      <created>1660482325864</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660482325864</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,6 +349,7 @@
     <MESSAGE value="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것." />
     <MESSAGE value="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit" />
     <MESSAGE value="chore: 빌드 관련." />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: 빌드 관련." />
+    <MESSAGE value="style: main.jsp css 적용&#10;&#10;임시로 기존 main페이지는 삭제함. 수정 예정" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: main.jsp css 적용&#10;&#10;임시로 기존 main페이지는 삭제함. 수정 예정" />
   </component>
 </project>
