@@ -30,6 +30,10 @@
     <a class="topnav-menu" href="#" onclick='alert("인기작 페이지로 이동")'>인기작</a>
     <a class="topnav-menu" href="#" onclick='alert("커뮤니티에서 게시판봐요")'>커뮤니티</a>
     <a class="topnav-menu" href="#" onclick='alert("룰렛 한판 돌려요")'>이벤트</a>
+    <form class="topnav-search" action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
+      <input class="topnav-search" type="text" name="keyword" class="search-input" type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요">
+      <input class="topnav-search" type="submit" class="search-button" value="검색">
+    </form>
   </div>
 </div>
 
