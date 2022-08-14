@@ -276,11 +276,14 @@ target/
 /target/**
 /target/
 */target/**
+/build/
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
+
+MANIFEST.MF
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java,intellij+all
