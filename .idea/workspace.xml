@@ -9,8 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit">
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="chore: 빌드 관련.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +60,7 @@
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2DAFd1wCMeLTxc2Ets2QxxMWbfG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="flattenModules" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -76,10 +79,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "vcs.Git"
   },
   "keyToStringList": {
     "ChangesTree.GroupingKeys": [
@@ -93,6 +96,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources\mapper" />
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\psvm\Dopamin\src\main\webapp\WEB-INF\views" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.64">
@@ -237,8 +243,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
         <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
+        <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
       </list>
     </recent_temporary>
   </component>
@@ -292,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660469696601</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="chore: 빌드 관련.">
+      <created>1660474590447</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660474590447</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +316,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/contents" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -315,6 +340,7 @@
     <MESSAGE value="feat: 컨텐츠 상세 페이지 작성.&#10;&#10;컨텐츠 상세 페이지 작성함. ui는 나중에 수정 예정" />
     <MESSAGE value="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것." />
     <MESSAGE value="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit" />
+    <MESSAGE value="chore: 빌드 관련." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: 빌드 관련." />
   </component>
 </project>
