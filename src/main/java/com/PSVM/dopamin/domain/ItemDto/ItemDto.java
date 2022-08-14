@@ -1,4 +1,4 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.ItemDto;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

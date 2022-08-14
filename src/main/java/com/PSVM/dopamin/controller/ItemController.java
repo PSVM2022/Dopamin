@@ -1,9 +1,8 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.ItemDto;
+import com.PSVM.dopamin.domain.ItemDto.ItemDto;
 import com.PSVM.dopamin.domain.PageHandler;
 import com.PSVM.dopamin.domain.SearchCondition;
-import com.PSVM.dopamin.domain.UserDao;
 import com.PSVM.dopamin.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

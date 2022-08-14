@@ -1,7 +1,6 @@
 package com.PSVM.dopamin.service;
 
-import com.PSVM.dopamin.domain.ItemDto;
-import com.PSVM.dopamin.domain.SearchCondition;
+import com.PSVM.dopamin.domain.ItemDto.ItemDto;
 import com.PSVM.dopamin.repository.ItemDaoImpl;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import java.util.Map;
 
 @Service
 public class ItemService {
-    private ItemDaoImpl itemDaoImpl;
+    private final ItemDaoImpl itemDaoImpl;
     public ItemService(ItemDaoImpl itemDaoImpl) {
         this.itemDaoImpl = itemDaoImpl;
     }

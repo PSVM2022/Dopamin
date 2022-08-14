@@ -1,6 +1,6 @@
 package com.PSVM.dopamin.repository;
 
-import com.PSVM.dopamin.domain.ItemDto;
+import com.PSVM.dopamin.domain.ItemDto.ItemDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Repository
 public class ItemDaoImpl {
-    private SqlSession sqlSession;
+    private final SqlSession sqlSession;
     String namespace="com.PSVM.dopamin.dao.ItemMapper.";
     public ItemDaoImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
