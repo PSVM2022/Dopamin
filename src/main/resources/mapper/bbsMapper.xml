@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.PSVM.dopamin.dao.BbsMapper">
+  <delete id="deleteByManager" parameterType="BbsDto">
+    DELETE
+    FROM BBS
+    WHERE bbs_id = #{bbs_id};
+  </delete>
+
+  <delete id="deleteAllByManager">
+    DELETE
+    FROM BBS;
+  </delete>
+
+  <insert id="insert" parameterType="BbsDto">
+    INSERT INTO BBS
+      (bbs_nm, bbs_prior, in_date, in_user, up_user)
+    VALUES (#{bbs_nm}, #{bbs_prior}, now(), #{in_user}, #{up_user})
+  </insert>
+
+  <select id="count" resultType="int">
+    SELECT count(*)
+    FROM BBS;
+  </select>
+
+  <select id="BbsNameOrderList">
+    SELECT bbbs_id, bs_name
+    FROM BBS
+    ORDER BY bbs_prior;
+  </select>
+
+  <select id="select" parameterType="int" resultType="BbsDto">
+    SELECT *
+    FROM BBS
+    WHERE bbs_prior = #{bbs_prior}
+  </select>
+
+  <update id="update" parameterType="int">
+    Update BBS
+    SET bbs_name = #{bbs_name},
+        up_date  = now(),
+        up_user  = "유저이름 또는 관리자이름"
+    WHERE bbs_id = #{bbs_id}
+  </update>
+
+</mapper>
