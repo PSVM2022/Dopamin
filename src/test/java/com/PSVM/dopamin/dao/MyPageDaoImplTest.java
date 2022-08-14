@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPageDto;
 import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -56,6 +58,21 @@ public class MyPageDaoImplTest {
         }
         System.out.println("list = " + list);
         assertTrue(list.size() == 17);
+    }
+
+    @Test
+    public void selectMyInfo() throws Exception {
+        MyPageDto myPageDto = myPageDao.selectMyInfo("eunbi");
+        int birthYear = myPageDto.getBtdt().getYear() + 1900;
+        System.out.println("birthYear = " + birthYear);
+
+        int curYear =  LocalDate.now().getYear();
+        System.out.println("curYear = " + curYear);
+
+        int age = (int) (curYear - birthYear + 1) / 10 * 10;;
+        assertTrue(age == 20);
+
+        assertTrue(myPageDto.getSex()==0);
     }
 
 }
