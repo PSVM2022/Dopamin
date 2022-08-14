@@ -1,140 +1,122 @@
-<%@ page contentType="text/html;charset=utf-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page import="java.net.URLDecoder" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"%>
-<!DOCTYPE html>
-<html lang="en">
+<html>
+<html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-
+    <title>도파민!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/image/favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/common/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/common/default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        * { box-sizing:border-box; }
-
-        form {
-            width:400px;
-            height:600px;
-            display : flex;
-            flex-direction: column;
-            align-items:center;
-            position : absolute;
-            top:50%;
-            left:50%;
-            transform: translate(-50%, -50%) ;
-            border: 1px solid rgb(89,117,196);
-            border-radius: 10px;
-        }
-
-        .input-field {
-            width: 300px;
-            height: 40px;
-            border : 1px solid rgb(89,117,196);
-            border-radius:5px;
-            padding: 0 10px;
-            margin-bottom: 10px;
-        }
-
-        label {
-            width:300px;
-            height:30px;
-            margin-top :4px;
-        }
-
-        button {
-            background-color: rgb(89,117,196);
-            color : white;
-            width:300px;
-            height:50px;
-            font-size: 17px;
-            border : none;
-            border-radius: 5px;
-            margin : 20px 0 30px 0;
-        }
-
-        .title {
-            font-size : 50px;
-            margin: 40px 0 30px 0;
-        }
-
-        .msg {
-            height: 30px;
-            text-align:center;
-            font-size:16px;
-            color:red;
-            margin-bottom: 20px;
-        }
-
-        .sns-chk {
-            margin-top : 5px;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap');
     </style>
-    <title>DOPAMIN-회원가입</title>
 </head>
+
 <body>
-<form method="post" action="<c:url value="/join/join"/>">
-    <label for="user_id">아이디</label>
-    <input type="text" id="user_id" name="user_id"/>
-    <button type="button" id="idDuplCk">아이디 중복 체크</button>
-    <div id="id-dupl-msg" style="color: red"></div>
 
-    <label for="user_pwd">비밀번호</label>
-    <input type="password" id="user_pwd" name="user_pwd"/>
-    <br>
-    <label for="pwdCheck">비밀번호 재확인</label>
-    <input type="password" id="pwdCheck" name="pwdCheck"/>
-    <div id="msg">
-        <c:if test="${not empty param.msg}">
-            <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg,"utf-8")}</i>
-        </c:if>
+<div class="topnav">
+    <div class="responsive">
+        <div class="logo-wrapper">
+            <img src="image/logo_example.svg" width="50" height="30">
+        </div>
+        <a class="topnav-menu" href="#" onclick='alert("홈으로 페이지 전환")'>홈</a>
+        <a class="topnav-menu" href="#" onclick='alert("신규작 페이지로 이동")'>신규작</a>
+        <a class="topnav-menu" href="#" onclick='alert("인기작 페이지로 이동")'>인기작</a>
+        <a class="topnav-menu" href="#" onclick='alert("커뮤니티에서 게시판봐요")'>커뮤니티</a>
+        <a class="topnav-menu" href="#" onclick='alert("룰렛 한판 돌려요")'>이벤트</a>
+        <a class="topnav-menu" href="<c:url value="/login/login"/>" onclick='alert("로그인 페이지로 이동")'>로그인</a>
     </div>
-    <br>
-    <label for="f_nm">성</label>
-    <input type="text" id="f_nm" name="f_nm"/>
+</div>
 
-    <label for="l_nm">이름</label>
-    <input type="text" id="l_nm" name="l_nm"/>
-    <br>
-    <label for="phone_num">전화번호(ex)010-1234-1234)</label>
-    <input type="text" id="phone_num" name="phone_num"/>
-    <br>
-    <label for="mbti">MBTI</label>
-    <input type="text" id="mbti" name="mbti"/>
-    <br>
-    <label for="cnty">나라</label>
-    <input type="text" id="cnty" name="cnty"/>
-    <br>
-    <label for="email">email</label>
-    <input type="email" id="email" name="email"/>
-    <br>
-    <label for="nic">닉네임</label>
-    <input type="text" id="nic" name="nic"/>
-    <br>
-    <label for="btdt">생년월일</label>
-    <input type="text" id="btdt" name="btdt"/>
-    <br>
-<%--    <label for="sex">성별</label>--%>
-<%--    <select autofocus id="sex" name="sex">--%>
-<%--        <option>남자</option>--%>
-<%--        <option>여자</option>--%>
-<%--    </select>--%>
-    <br>
+<div class="content">
+    <div class="responsive-content">
+        <div class="content-movie">
+            <form method="post" action="<c:url value="/join/join"/>">
+                <label for="user_id">아이디</label>
+                <input type="text" id="user_id" name="user_id"/>
+                <button type="button" id="idDuplCk">아이디 중복 체크</button>
+                <div id="id-dupl-msg" style="color: red"></div>
 
-<%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
-<%--    <input type="radio" value="1" name="fav_genre1">액션--%>
-<%--    <input type="radio" value="2" name="fav_genre2">로맨스--%>
-<%--    <input type="radio" value="3" name="fav_genre3">코미디--%>
-<%--    <input type="radio" value="4" name="fav_genre4">공포--%>
-<%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
+                <label for="user_pwd">비밀번호</label>
+                <input type="password" id="user_pwd" name="user_pwd"/>
+                <br>
+                <label for="pwdCheck">비밀번호 재확인</label>
+                <input type="password" id="pwdCheck" name="pwdCheck"/>
+                <div id="msg">
+                    <c:if test="${not empty param.msg}">
+                        <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg,"utf-8")}</i>
+                    </c:if>
+                </div>
 
-    <button type="submit">회원가입</button>
-</form>
+                <br>
+                <label for="f_nm">성</label>
+                <input type="text" id="f_nm" name="f_nm"/>
+
+                <label for="l_nm">이름</label>
+                <input type="text" id="l_nm" name="l_nm"/>
+                <br>
+                <label for="phone_num">전화번호(ex)010-1234-1234)</label>
+                <input type="text" id="phone_num" name="phone_num"/>
+                <br>
+
+                <label for="cnty">나라</label>
+                <input type="text" id="cnty" name="cnty"/>
+                <br>
+
+                <label for="email">email</label>
+                <input type="email" id="email" name="email"/>
+                <button type="button">이메일 인증</button>
+                <br>
+
+                <label for="nic">닉네임</label>
+                <input type="text" id="nic" name="nic"/>
+                <br>
+
+                <label for="btdt">생년월일</label>
+                <input type="text" id="btdt" name="btdt"/>
+                <br>
+
+                <label for="sex">성별</label>
+                <select autofocus id="sex" name="sex">
+                    <option>남자</option>
+                    <option>여자</option>
+                </select>
+                <br>
+
+                <%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
+                <%--    <input type="radio" value="1" name="fav_genre1">액션--%>
+                <%--    <input type="radio" value="2" name="fav_genre2">로맨스--%>
+                <%--    <input type="radio" value="3" name="fav_genre3">코미디--%>
+                <%--    <input type="radio" value="4" name="fav_genre4">공포--%>
+                <%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
+
+                <button type="submit">회원가입</button>
+            </form>
+
+        </div>
+
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-youtube"></i>
+        <div class="content-preview">
+            class속성이 responsive-content인 div태크 하단부터 태그를 넣어 내용을 작성하시면 됩니다.
+        </div>
+        <div class="content-teenager-girl-movie"></div>
+
+    </div>
+</div>
 
 
+<div class="footer">
+    <div>about</div>
+    <div>2022 PSVM팀</div>
+</div>
 <script>
     // $(document).ready(function(){
     //     let user_id = $("#user_id");
@@ -183,4 +165,5 @@
 
 </script>
 </body>
+
 </html>

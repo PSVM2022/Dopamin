@@ -13,7 +13,7 @@ public class UserDto {
     private String cnty;
     private String email;
     private String nic;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date btdt;
     private byte sex;
     private String prf_img;

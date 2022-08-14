@@ -6,7 +6,7 @@ import org.springframework.validation.Validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserValidator implements Validator {
+public class UserDtoValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
         //clazz가 UserDto 또는 그 자손인지 검증
@@ -26,6 +26,5 @@ public class UserValidator implements Validator {
         if(!mId.find()){
             errors.rejectValue("id","id_invalid");
         }
-
     }
 }

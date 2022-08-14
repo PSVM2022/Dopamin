@@ -80,7 +80,7 @@
     <label for="user_id">아이디</label>
     <input type="text" id="user_id" name="user_id"/>
     <button type="button" id="idDuplCk">아이디 중복 체크</button>
-    <div id="id-dupl-msg" style="color: red"></div>
+    <div id="id-dupl-msg" style="color: redㅡ"></div>
 
     <label for="user_pwd">비밀번호</label>
     <input type="password" id="user_pwd" name="user_pwd"/>
@@ -92,6 +92,7 @@
             <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg,"utf-8")}</i>
         </c:if>
     </div>
+
     <br>
     <label for="f_nm">성</label>
     <input type="text" id="f_nm" name="f_nm"/>
@@ -102,34 +103,37 @@
     <label for="phone_num">전화번호(ex)010-1234-1234)</label>
     <input type="text" id="phone_num" name="phone_num"/>
     <br>
-    <label for="mbti">MBTI</label>
-    <input type="text" id="mbti" name="mbti"/>
-    <br>
+
     <label for="cnty">나라</label>
     <input type="text" id="cnty" name="cnty"/>
     <br>
+
     <label for="email">email</label>
     <input type="email" id="email" name="email"/>
+    <button type="button">이메일 인증</button>
     <br>
+
     <label for="nic">닉네임</label>
     <input type="text" id="nic" name="nic"/>
     <br>
+
     <label for="btdt">생년월일</label>
     <input type="text" id="btdt" name="btdt"/>
     <br>
-<%--    <label for="sex">성별</label>--%>
-<%--    <select autofocus id="sex" name="sex">--%>
-<%--        <option>남자</option>--%>
-<%--        <option>여자</option>--%>
-<%--    </select>--%>
+
+    <label for="sex">성별</label>
+    <select autofocus id="sex" name="sex">
+        <option value="0">남자</option>
+        <option value="1">여자</option>
+    </select>
     <br>
 
-<%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
-<%--    <input type="radio" value="1" name="fav_genre1">액션--%>
-<%--    <input type="radio" value="2" name="fav_genre2">로맨스--%>
-<%--    <input type="radio" value="3" name="fav_genre3">코미디--%>
-<%--    <input type="radio" value="4" name="fav_genre4">공포--%>
-<%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
+    <%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
+    <%--    <input type="radio" value="1" name="fav_genre1">액션--%>
+    <%--    <input type="radio" value="2" name="fav_genre2">로맨스--%>
+    <%--    <input type="radio" value="3" name="fav_genre3">코미디--%>
+    <%--    <input type="radio" value="4" name="fav_genre4">공포--%>
+    <%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
 
     <button type="submit">회원가입</button>
 </form>

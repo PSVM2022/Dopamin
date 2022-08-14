@@ -10,34 +10,33 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/join")
 public class JoinController {
     @Autowired
     UserService userService;
-//
-//    @InitBinder
-//    public void userDtoValidator(WebDataBinder binder){
-//        binder.setValidator(new UserValidator());
-//    }
+
+    @InitBinder
+    public void userDtoValidator(WebDataBinder binder){
+
+    }
 
 
     @GetMapping("/join")
     public String joinForm(){
-        return "joinForm";
+        return "joinForm_before";
     }
 
     @PostMapping("join")
     public String join(UserDto userDto, BindingResult result, UserPwdDto userPwdDto, String pwdCheck) throws UnsupportedEncodingException {
+        System.out.println("result="+result);
+        System.out.println("userDto="+userDto);
+        System.out.println("userPwdDto="+userPwdDto);
+        System.out.println("");
         //아이디 중복 체크
         //비밀번호 암호화 필요
         //비밀번호 확인
@@ -49,9 +48,7 @@ public class JoinController {
         //회원가입 성공
         userService.userJoin(userDto,userPwdDto);
 
-
-
-        return "redirect:/login/login";
+        return "success_join";
 
     }
 

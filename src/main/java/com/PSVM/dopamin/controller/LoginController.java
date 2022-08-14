@@ -1,6 +1,5 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.UserPwdDto;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 @Controller
@@ -33,8 +31,9 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session,String toURL){
+        //Httpsession을 매개변수로 받아올 때,
+        //기존에 세션이 존재했다면 그 세션을 가져오지만!! 기존에 세션이 없으면 세션을 새로 생성함.
         toURL = toURL==null || toURL.equals("") ? "/" : toURL;
-
         //세션 삭제
         session.invalidate();
         return "redirect:"+toURL;
