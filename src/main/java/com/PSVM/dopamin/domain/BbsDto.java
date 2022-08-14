@@ -7,16 +7,25 @@ public class BbsDto {
 
     private Integer bbs_id;
     private String bbs_nm;
+    private Integer bbs_prior;
     private Date in_date;
     private String in_user;
     private Date up_date;
     private String up_user;
 
-    public BbsDto(String bbs_nm) {
+    public BbsDto(String bbs_nm, Integer bbs_prior, Date in_date, String in_user, String up_user) {
         this.bbs_nm = bbs_nm;
+        this.bbs_prior = bbs_prior;
+        this.in_date = in_date;
+        this.in_user = in_user;
+        this.up_user = up_user;
     }
 
-    public Integer getBbs_id() {
+    public BbsDto(String bbs_nm, Date in_date, String in_user, String up_user) {
+        this(bbs_nm, 0, in_date, in_user, up_user);
+    }
+
+    public Integer getBbs_id(String bbs_nm) {
         return bbs_id;
     }
 
