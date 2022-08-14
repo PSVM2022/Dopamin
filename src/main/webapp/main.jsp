@@ -22,7 +22,7 @@
 <div class="topnav">
     <div class="responsive">
         <div class="logo-wrapper">
-            <img alt="" src="<c:url value='/image/logo_example.svg' />"> width="50" height="30">
+            <img alt="" src="<c:url value='/image/logo_example.svg' />" width="50" height="30">
         </div>
         <a class="topnav-menu" href="#" onclick='alert("홈으로 페이지 전환")'>홈</a>
         <a class="topnav-menu" href="#" onclick='alert("신규작 페이지로 이동")'>신규작</a>
