@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것.">
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +75,11 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   },
   "keyToStringList": {
     "ChangesTree.GroupingKeys": [
@@ -284,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660404919928</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit">
+      <created>1660469696601</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660469696601</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,6 +314,7 @@
     <MESSAGE value="feat: 컨텐츠 전체보기(메인페이지) 작성.&#10;메인페이지에 컨텐츠 삽입 작성함. JSP파일 수정해야함" />
     <MESSAGE value="feat: 컨텐츠 상세 페이지 작성.&#10;&#10;컨텐츠 상세 페이지 작성함. ui는 나중에 수정 예정" />
     <MESSAGE value="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 검색 기능 작성.&#10;&#10;기능 작성 도중 contentsMain -&gt; contentsList로 이름 변경함. ui 추후 수정할것." />
+    <MESSAGE value="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: git merge conflicts 해결&#10;&#10;conflicts 해결하고자 commit" />
   </component>
 </project>
