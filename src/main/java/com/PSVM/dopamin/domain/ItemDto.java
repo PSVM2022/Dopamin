@@ -1,9 +1,9 @@
-package com.PSVM.dopamin.domain.ItemDto;
+package com.PSVM.dopamin.domain;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class ItemDto {
+public class  ItemDto {
     private Integer item_id;
     private Integer list_id;
     private Integer grd_id;
@@ -18,8 +18,26 @@ public class ItemDto {
     private String in_user;
     private Timestamp up_date;
     private String up_user;
-    private String user_nic;
+    //private String user_nic;
     public ItemDto(){}
+
+    public ItemDto(Integer item_id, Integer list_id, Integer grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Integer stat, Integer dc_rate, Integer dc_price, Timestamp in_date, String in_user, Timestamp up_date, String up_user, String user_nic) {
+        this.item_id = item_id;
+        this.list_id = list_id;
+        this.grd_id = grd_id;
+        this.item_nm = item_nm;
+        this.item_dsc = item_dsc;
+        this.item_price = item_price;
+        this.item_img = item_img;
+        this.stat = stat;
+        this.dc_rate = dc_rate;
+        this.dc_price = dc_price;
+        this.in_date = in_date;
+        this.in_user = in_user;
+        this.up_date = up_date;
+        this.up_user = up_user;
+        //this.user_nic = user_nic;
+    }
 
     public ItemDto(Integer list_id, Integer grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date, String user_nic) {
         this.list_id = list_id;
@@ -29,7 +47,7 @@ public class ItemDto {
         this.item_price = item_price;
         this.item_img = item_img;
         this.in_date = in_date;
-        this.user_nic = user_nic;
+        //this.user_nic = user_nic;
     }
 
     public Integer getItem_id() {
@@ -144,32 +162,13 @@ public class ItemDto {
         this.up_user = up_user;
     }
 
-    public String getUser_nic() {
-        return user_nic;
-    }
+//    public String getUser_nic() {
+//        return user_nic;
+//    }
 
-    public void setUser_nic(String user_nic) {
-        this.user_nic = user_nic;
-    }
+//    public void setUser_nic(String user_nic) {
+//        this.user_nic = user_nic;
+//    }
 
-    @Override
-    public String toString() {
-        return "ItemDto{" +
-                "item_id=" + item_id +
-                ", list_id=" + list_id +
-                ", grd_id=" + grd_id +
-                ", item_nm='" + item_nm + '\'' +
-                ", item_dsc='" + item_dsc + '\'' +
-                ", item_price=" + item_price +
-                ", item_img='" + item_img + '\'' +
-                ", stat=" + stat +
-                ", dc_rate=" + dc_rate +
-                ", dc_price=" + dc_price +
-                ", in_date=" + in_date +
-                ", in_user='" + in_user + '\'' +
-                ", up_date=" + up_date +
-                ", up_user='" + up_user + '\'' +
-                ", user_nic='" + user_nic + '\'' +
-                '}';
-    }
+
 }

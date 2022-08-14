@@ -1,8 +1,7 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.ItemDto.ItemDto;
+import com.PSVM.dopamin.domain.ItemDto;
 import com.PSVM.dopamin.domain.PageHandler;
-import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +26,7 @@ public class ItemController {
     }//생성자 주입
     @GetMapping("/")//상정 메인 페이지
     public String item_main(){//각 아이템 항목별 TOP5를 보여주기
-        return "item";
+        return "main";
     }
     @PostMapping("/change/{item_id}/{order}")//아이템 수정(order=0) 삭제(order=1)
     public String change(@PathVariable(name="item_id") int item_id, @PathVariable(name="order") int order,ItemDto itemDto,Model m, HttpSession session, RedirectAttributes redirectAttributes){
@@ -57,34 +55,34 @@ public class ItemController {
         return "item"; //읽기와 쓰기에 사용. 쓰기 사용 시 mode=register;
 
     }
-    @PostMapping("/register/{user_id}")
-    public String write(@PathVariable String user_id, ItemDto itemDto, Model m, HttpSession session, RedirectAttributes redirectAttributes){
-        try {
-            if(!check_Admin(user_id)){//관리자가 아니라면
-                String msg = URLEncoder.encode("너 관리자 아니자나!!!", "utf-8");
-                return "redirect:/?msg="+msg;
-            }
-            Map map=new HashMap<>();
-            String writer_id=(String) session.getAttribute("id");//session에서 작성자 id 가져온다.
-            //가져온 id로 유저 테이블에서 닉네임 찾아 반환.
-            String user_nic=itemService.getUser_nic(writer_id);
-            //아이템 등록을 진행하자
-            itemDto.setUser_nic(user_nic);
-            map.put("writer_id",writer_id);
-            map.put("itemDto",itemDto);
-            int row_cnt = itemService.register(map);
-            if(row_cnt!=1){
-                throw new Exception("Register Failed");
-            }
-            redirectAttributes.addFlashAttribute("msg","Register Successed");
-            return "redirect:/item/list";
-        } catch (Exception e) {
-            e.printStackTrace();
-            m.addAttribute(itemDto);
-            redirectAttributes.addAttribute("msg","Register Failed");
-            return "item";
-        }
-    }
+//    @PostMapping("/register/{user_id}")
+//    public String write(@PathVariable String user_id, ItemDto itemDto, Model m, HttpSession session, RedirectAttributes redirectAttributes){
+//        try {
+//            if(!check_Admin(user_id)){//관리자가 아니라면
+//                String msg = URLEncoder.encode("너 관리자 아니자나!!!", "utf-8");
+//                return "redirect:/?msg="+msg;
+//            }
+//            Map map=new HashMap<>();
+//            String writer_id=(String) session.getAttribute("id");//session에서 작성자 id 가져온다.
+//            //가져온 id로 유저 테이블에서 닉네임 찾아 반환.
+//            String user_nic=itemService.getUser_nic(writer_id);
+//            //아이템 등록을 진행하자
+//            //itemDto.setUser_nic(user_nic);
+//            map.put("writer_id",writer_id);
+//            map.put("itemDto",itemDto);
+//            int row_cnt = itemService.register(map);
+//            if(row_cnt!=1){
+//                throw new Exception("Register Failed");
+//            }
+//            redirectAttributes.addFlashAttribute("msg","Register Successed");
+//            return "redirect:/item/list";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            m.addAttribute(itemDto);
+//            redirectAttributes.addAttribute("msg","Register Failed");
+//            return "item";
+//        }
+//    }
     private boolean check_Admin(String user_id) {
         try{
             int check_admin=itemService.getUser_stat(user_id);
@@ -100,7 +98,7 @@ public class ItemController {
     }
 
     @GetMapping("/list/{order}")
-    public String list(@PathVariable int order, Model m, Integer page, Integer pageSize, SearchCondition sc, HttpServletRequest request){
+    public String list(@PathVariable int order, Model m, Integer page, Integer pageSize, HttpServletRequest request){
         //로그인 여부와 상관없이
         //메인에서 <스킨> 누르면 스킨에 해당하는 아이템 목록
         //메인에서 <꾸미기> 누르면 꾸미이게 해당하는 아이템 목록 보여주기

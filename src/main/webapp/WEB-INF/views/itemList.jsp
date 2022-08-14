@@ -6,7 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>fastcampus</title>
-    <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
+    <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png' />">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css' />">
+    <link rel="stylesheet" type="text/css" href="<c:url value='css/common/default.css' />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <style>
