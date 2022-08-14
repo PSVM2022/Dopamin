@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.MyPageCntsDto;
+import com.PSVM.dopamin.domain.MyPageDto;
 import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.apache.ibatis.session.SqlSession;
@@ -18,8 +19,8 @@ public class MyPageDaoImpl implements MyPageDao {
     private static String namespace = "com.PSVM.dopamin.dao.MyPageMapper.";
 
     @Override
-    public List<RevwDto> selectRevw(String userId) throws Exception {
-        return session.selectList(namespace + "selectrevw", userId);
+    public List<RevwDto> selectRevw(String user_id) throws Exception {
+        return session.selectList(namespace + "selectrevw", user_id);
     }
 
     @Override
@@ -41,4 +42,10 @@ public class MyPageDaoImpl implements MyPageDao {
     public List<MyPagePostDto> selectPost(String user_id) {
         return session.selectList(namespace = "selectPost", user_id);
     }
+
+    @Override
+    public MyPageDto selectMyInfo(String user_id) {
+        return session.selectOne(namespace = "selectUserInfo", user_id);
+    }
+
 }
