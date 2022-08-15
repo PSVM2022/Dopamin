@@ -11,6 +11,7 @@ public class  ItemDto {
     private String item_dsc;
     private BigDecimal item_price;
     private String item_img;
+    private String user_nic;
     private Integer stat;
     private Integer dc_rate;
     private Integer dc_price;
@@ -18,8 +19,6 @@ public class  ItemDto {
     private String in_user;
     private Timestamp up_date;
     private String up_user;
-
-    private String user_nic;
     public ItemDto(){}
 
     public ItemDto(Integer item_id, Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Integer stat, Integer dc_rate, Integer dc_price, Timestamp in_date, String in_user, Timestamp up_date, String up_user, String user_nic) {
@@ -40,7 +39,7 @@ public class  ItemDto {
         //this.user_nic = user_nic;
     }
 
-    public ItemDto(Integer list_id, String grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date, String user_nic) {
+    public ItemDto(Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date, String user_nic) {
         this.list_id = list_id;
         this.grd_nm = grd_nm;
         this.item_nm = item_nm;

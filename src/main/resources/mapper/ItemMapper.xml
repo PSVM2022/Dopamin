@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.PSVM.dopamin.dao.ItemMapper">
+    <select id="item_getCount" resultType="int">
+        SELECT count(*)
+        FROM ITEM
+    </select>
+    <select id="UserStatus" parameterType="String" resultType="int">
+        SELECT user_stat
+        FROM USER
+        WHERE user_id=#{user_id}
+    </select>
+    <select id="item_getPage" parameterType="map" resultType="ItemDto">
+        SELECT item_nm,grd_nm,item_dsc,item_price,item_img
+        FROM ITEM
+    </select>
+    <select id="item_getStat_0" parameterType="map" resultType="ItemDto">
+        SELECT item_nm,grd_nm,item_dsc,item_price,item_img
+        FROM ITEM
+        WHERE stat=0
+    </select>
+    <select id="item_getStat_1" parameterType="map" resultType="ItemDto">
+        SELECT item_nm,grd_nm,item_dsc,item_price,item_img
+        FROM ITEM
+        WHERE stat=1
+    </select>
+    <select id="item_getStatus" parameterType="int">
+        SELECT stat
+        FROM ITEM
+        WHERE item_id=#{item_id}
+    </select>
+    <select id="item_register" parameterType="map">
+        INSERT INTO ITEM
+        (list_id,grd_nm,item_nm,item_dsc,item_price,item_img,in_date,in_user,up_user,user_nic)
+        VALUES
+            (#{itemDto.list_id},#{itemDto.grd_nm},#{itemDto.item_nm},#{itemDto.item_dsc},#{itemDto.item_price},#{itemDto.item_img},now(),#{writer_id},#{writer_id},#{itemDto.user_nic});
+    </select>
+    <select id="item_user_nic" parameterType="String" resultType="String">
+        select nic
+        FROM USER
+        WHERE user_id=#{writer_id}
+    </select>
+</mapper>

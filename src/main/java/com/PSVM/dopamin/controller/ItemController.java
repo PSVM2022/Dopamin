@@ -103,17 +103,13 @@ public class ItemController {
 //    }
 
     @GetMapping("/list/{index}")
-    public String list(@PathVariable String index, Model m, Integer page, Integer pageSize, HttpServletRequest request){
+    public String list(@PathVariable String index, Model m, HttpServletRequest request){
         //로그인 여부와 상관없이
         //메인에서 <스킨> 누르면 스킨에 해당하는 아이템 목록
         //메인에서 <꾸미기> 누르면 꾸미이게 해당하는 아이템 목록 보여주기
-        if(page==null) page=1;
-        if(pageSize==null) pageSize=10;
-
         try {
             int order;
-            int totalCnt=itemService.getCount();
-            PageHandler pageHandler=new PageHandler(totalCnt,page,page);
+//            int totalCnt=itemService.getCount();
             if(index.equals("스킨")){
                 order=1;
             }
@@ -123,14 +119,11 @@ public class ItemController {
             System.out.println(index);
             System.out.println(order);
             Map map = new HashMap();
-            map.put("offset",(page-1)*pageSize);
-            map.put("pageSize",pageSize);
             map.put("order",order);
             //페이지 관련 정보 받아오고
 
             List<ItemDto> list=itemService.getPage(map);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
             m.addAttribute("list",list);
-            m.addAttribute("ph",pageHandler);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
