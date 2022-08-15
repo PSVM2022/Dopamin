@@ -22,7 +22,7 @@ public class ContentsController {
 
     //메인 페이지
     @GetMapping("/")
-    public String contents(Model model) throws Exception {
+    public String contentsList(Model model) {
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
         model.addAttribute("cntsDtoList", cntsDtoList);
@@ -32,7 +32,7 @@ public class ContentsController {
 
     //컨텐츠 상세 조회
     @GetMapping("/contents/{cnts_id}")
-    public String contentView(@PathVariable("cnts_id") Integer cnts_id, Model model) throws Exception{
+    public String contentView(@PathVariable("cnts_id") Integer cnts_id, Model model) {
 
         try {
             ContentsDto contentsDto = contentsService.contentsView(cnts_id);

@@ -9,24 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="style: main, contentsView css 적용&#10;&#10;css 파일 적용함">
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ReviewDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ReviewMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/ContentsMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/Mapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mybatis-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/contentsMain.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/css/common/default.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/css/common/normalize.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/css/menu.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/image/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/image/logo_example.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +31,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="JUnit4 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -86,6 +82,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "last_opened_file_path": "C:/Users/LDH/IdeaProjects/Dopamin",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -107,6 +105,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.PSVM.dopamin.domain" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources\mapper" />
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources" />
@@ -114,8 +115,33 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\psvm\Dopamin\src\main\webapp\WEB-INF\views" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.PSVM.dopamin.service" />
+      <recent name="com.PSVM.dopamin.dao" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.PSVM.dopamin.dao" />
+    </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.64">
+    <configuration name="ContentsDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ContentsDaoImplTest.searchSelectCnts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
@@ -143,6 +169,22 @@
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
       <option name="METHOD_NAME" value="selectcnts" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewDaoImplTest.selectAllRevw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ReviewDaoImplTest" />
+      <option name="METHOD_NAME" value="selectAllRevw" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -251,12 +293,16 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ContentsDaoImplTest" />
+      <item itemvalue="JUnit.ReviewDaoImplTest.selectAllRevw" />
       <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
       <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.64" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReviewDaoImplTest.selectAllRevw" />
+        <item itemvalue="JUnit.ContentsDaoImplTest" />
         <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
         <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
       </list>
@@ -333,7 +379,28 @@
       <option name="project" value="LOCAL" />
       <updated>1660483565413</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="style: contentsView 검색창 추가&#10;&#10;contentsView에 메인 화면과 같이 검색 창 추가함.">
+      <created>1660484015388</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660484015388</updated>
+    </task>
+    <task id="LOCAL-00010" summary="style: main, 검색, 상세 페이지에 css 적용.&#10;&#10;main, contentsView에 css 적용함.">
+      <created>1660523165267</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1660523165267</updated>
+    </task>
+    <task id="LOCAL-00011" summary="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경">
+      <created>1660523307040</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1660523307040</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,6 +438,9 @@
     <MESSAGE value="chore: 빌드 관련." />
     <MESSAGE value="style: main.jsp css 적용&#10;&#10;임시로 기존 main페이지는 삭제함. 수정 예정" />
     <MESSAGE value="style: main, contentsView css 적용&#10;&#10;css 파일 적용함" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: main, contentsView css 적용&#10;&#10;css 파일 적용함" />
+    <MESSAGE value="style: contentsView 검색창 추가&#10;&#10;contentsView에 메인 화면과 같이 검색 창 추가함." />
+    <MESSAGE value="style: main, 검색, 상세 페이지에 css 적용.&#10;&#10;main, contentsView에 css 적용함." />
+    <MESSAGE value="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경" />
   </component>
 </project>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.PSVM.dopamin.dao.ReviewMapper">
+
+    <!--한줄평 전체 읽어오기-->
+    <select id="selectAllRevw" parameterType="int" resultType="com.PSVM.dopamin.domain.ReviewDto">
+        SELECT r.user_id, r.cnts_id, r.revw_id, r.revw_body, r.revw_visib_stat, r.in_date, c.cnts_id
+        FROM REVW r
+                 join CNTS c on c.cnts_id = r.cnts_id
+        WHERE r.cnts_id = #{cnts_id} and r.revw_visib_stat = 1
+        order by r.in_date desc
+    </select>
+
+    <!--상세조회를 사용할거면 페이징도 추가할 것-->
+    <!--한줄평 상세 조회 읽어오기-->
+    <!--<select id="selectRevw" parameterType="int" resultType="com.PSVM.dopamin.domain.ReviewDto">
+        SELECT *
+        FROM revw
+        WHERE revw_id = #{revw_id}
+    </select>-->
+
+    <!--한줄평 검색-->
+    <!--<select id="searchSelectCnts" parameterType="SearchCondition" resultType="com.PSVM.dopamin.domain.ContentsDto">
+        select *
+        from CNTS
+        where cnts_title LIKE concat('%', #{keyword}, '%')
+           or cnts_subttl LIKE concat('%', #{keyword}, '%')
+    </select>-->
+
+    <!--한줄평 총 개수-->
+    <!--<select id="countRevw" parameterType="int" resultType="int">
+        SELECT count(*) FROM comment
+        WHERE  bno = #{bno}
+    </select>-->
+
+    <!--한줄평 작성-->
+    <!--<insert id="insertRevw" parameterType="CommentDto">
+        INSERT INTO comment
+            (bno, pcno, comment, commenter, reg_date, up_date)
+        VALUES
+            (#{bno}, #{pcno}, #{comment}, #{commenter}, now(), now())
+    </insert>->
+
+    <!-한줄평 수정-->
+    <!--<update id="updateRevw" parameterType="CommentDto">
+        UPDATE comment
+        SET comment = #{comment}
+          , up_date = now()
+        WHERE cno = #{cno} and commenter = #{commenter}
+    </update>-->
+
+    <!--한줄평 삭제-->
+    <!--<delete id="deleteRevw" parameterType="map">
+        DELETE FROM comment WHERE cno = #{cno} AND commenter = #{commenter}
+    </delete>-->
+
+</mapper>

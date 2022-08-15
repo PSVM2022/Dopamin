@@ -13,7 +13,7 @@
     </select>
 
     <!--컨텐츠 상세 조회 읽어오기-->
-    <select id="selectCnts" resultType="com.PSVM.dopamin.domain.ContentsDto">
+    <select id="selectCnts" parameterType="int" resultType="com.PSVM.dopamin.domain.ContentsDto">
         select *
         from CNTS
         where cnts_id = #{cnts_id} and cnts_visib_stat = 1
