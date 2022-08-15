@@ -23,8 +23,8 @@
     <select id="searchSelectCnts" parameterType="SearchCondition" resultType="com.PSVM.dopamin.domain.ContentsDto">
         select *
         from CNTS
-        where cnts_title LIKE concat('%', #{keyword}, '%')
-           or cnts_subttl LIKE concat('%', #{keyword}, '%')
+        where (cnts_title LIKE concat('%', #{keyword}, '%')
+           or cnts_subttl LIKE concat('%', #{keyword}, '%')) and cnts_visib_stat = 1
     </select>
 
 </mapper>

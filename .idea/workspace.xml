@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ReviewDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ReviewMapper.xml" afterDir="false" />
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="refactor: controller exception 변경.&#10;&#10;controller exception 제거함.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" afterDir="false" />
     </list>
@@ -400,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660523307040</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="refactor: controller exception 변경.&#10;&#10;controller exception 제거함.">
+      <created>1660527220454</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1660527220454</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,6 +440,7 @@
     <MESSAGE value="style: contentsView 검색창 추가&#10;&#10;contentsView에 메인 화면과 같이 검색 창 추가함." />
     <MESSAGE value="style: main, 검색, 상세 페이지에 css 적용.&#10;&#10;main, contentsView에 css 적용함." />
     <MESSAGE value="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경" />
+    <MESSAGE value="refactor: controller exception 변경.&#10;&#10;controller exception 제거함." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: controller exception 변경.&#10;&#10;controller exception 제거함." />
   </component>
 </project>
