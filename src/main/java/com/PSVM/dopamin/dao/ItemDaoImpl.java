@@ -43,6 +43,13 @@ public class ItemDaoImpl {
     public int getUser_stat(String user_id) throws Exception {
         return sqlSession.selectOne(namespace + "UserStatus", user_id);
     }
+
+    public List<ItemDto> getStat_0() {
+        return sqlSession.selectList(namespace+"item_getStat_0");
+    }
+    public List<ItemDto> getStat_1() {
+        return sqlSession.selectList(namespace+"item_getStat_1");
+    }
 //    public ItemDto select(Integer item_id) throws Exception{
 //        return sqlSession.selectOne(namespace+"select",item_id);
 //    }

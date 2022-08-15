@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,8 @@ public class ItemController {
     }//생성자 주입
     @GetMapping("/")//상정 메인 페이지
     public String item_main(){//각 아이템 항목별 TOP5를 보여주기
-        return "main";
+        //통계 각 항목별 TOP4 가져와 보여주면 됨.
+        return "item";
     }
     @PostMapping("/change/{item_id}/{order}")//아이템 수정(order=0) 삭제(order=1)
     public String change(@PathVariable(name="item_id") int item_id, @PathVariable(name="order") int order,ItemDto itemDto,Model m, HttpSession session, RedirectAttributes redirectAttributes){
@@ -49,11 +51,14 @@ public class ItemController {
         }
         return "";
     }
-    @GetMapping("/register")//아이템 등록
-    public String wirte(Model m){
-        m.addAttribute("mode","register");
-        return "item"; //읽기와 쓰기에 사용. 쓰기 사용 시 mode=register;
-
+    @GetMapping("/item_admin")//
+    public String item_admin(ItemDto itemDto,Model m){
+        List<ItemDto> list_0=itemService.geStat_0();//상태 0이 비공개
+        List<ItemDto> list_1=itemService.geStat_1();//상태 1이 공개
+        m.addAttribute("list_0",list_0);
+        m.addAttribute("list_1",list_1);
+        //m.addAttribute("mode","register");
+        return "item_admin"; //읽기와 쓰기에 사용. 쓰기 사용 시 mode=register;
     }
 //    @PostMapping("/register/{user_id}")
 //    public String write(@PathVariable String user_id, ItemDto itemDto, Model m, HttpSession session, RedirectAttributes redirectAttributes){
@@ -83,22 +88,22 @@ public class ItemController {
 //            return "item";
 //        }
 //    }
-    private boolean check_Admin(String user_id) {
-        try{
-            int check_admin=itemService.getUser_stat(user_id);
-            if(check_admin!=0){
-                throw new Exception("Access Failed");
-            }
-            return true;
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-    }
+//    private boolean check_Admin(String user_id) {
+//        try{
+//            int check_admin=itemService.getUser_stat(user_id);
+//            if(check_admin!=0){
+//                throw new Exception("Access Failed");
+//            }
+//            return true;
+//        }catch(Exception e)
+//        {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
 
-    @GetMapping("/list/{order}")
-    public String list(@PathVariable int order, Model m, Integer page, Integer pageSize, HttpServletRequest request){
+    @GetMapping("/list/{index}")
+    public String list(@PathVariable String index, Model m, Integer page, Integer pageSize, HttpServletRequest request){
         //로그인 여부와 상관없이
         //메인에서 <스킨> 누르면 스킨에 해당하는 아이템 목록
         //메인에서 <꾸미기> 누르면 꾸미이게 해당하는 아이템 목록 보여주기
@@ -106,9 +111,17 @@ public class ItemController {
         if(pageSize==null) pageSize=10;
 
         try {
+            int order;
             int totalCnt=itemService.getCount();
             PageHandler pageHandler=new PageHandler(totalCnt,page,page);
-
+            if(index.equals("스킨")){
+                order=1;
+            }
+            else{
+                order=2;
+            }
+            System.out.println(index);
+            System.out.println(order);
             Map map = new HashMap();
             map.put("offset",(page-1)*pageSize);
             map.put("pageSize",pageSize);
@@ -121,6 +134,6 @@ public class ItemController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "itemList";
+        return "ilist";
     }
 }

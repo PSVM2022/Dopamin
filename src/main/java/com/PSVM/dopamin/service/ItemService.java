@@ -44,6 +44,13 @@ public class ItemService {
         return itemDaoImpl.getUser_stat(user_id);
     }
 
+    public List<ItemDto> geStat_0() {
+        return itemDaoImpl.getStat_0();
+    }
+    public List<ItemDto> geStat_1() {
+        return itemDaoImpl.getStat_1();
+    }
+
 //    public ItemDto read(Integer item_id) {
 //    }
 

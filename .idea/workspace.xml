@@ -9,27 +9,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="merge: layout ignore 관련 설정 추가">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="fix: Mapper관련 설정 오류 해결">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/SearchCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/itemList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/itemList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/css/menu.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Mapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/Mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/css/common/default.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/css/common/normalize.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/image/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/resources/image/logo_example.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +43,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="CSS File" />
         <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -91,7 +96,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "C:/Users/LDH/IdeaProjects/Dopamin/src/main/webapp/WEB-INF/views",
+    "last_opened_file_path": "C:/Users/LDH/IdeaProjects/Dopamin/src/main/webapp/resources/css/common",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -113,6 +118,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LDH\IdeaProjects\Dopamin\src\main\webapp\resources\css\common" />
       <recent name="C:\Users\LDH\IdeaProjects\Dopamin\src\main\webapp\WEB-INF\views" />
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources\mapper" />
       <recent name="C:\Users\ombuj\Desktop\dopamin\src\main\resources" />
@@ -383,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660473509333</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix: Mapper관련 설정 오류 해결">
+      <created>1660483333390</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660483333390</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +423,8 @@
     <MESSAGE value="아이템 항목별 리스트&#10;신규아이템 등록까지 완료&#10;현재 수정/삭제 진행중" />
     <MESSAGE value="test: getCount 테스트 코드 작성" />
     <MESSAGE value="merge: layout ignore 관련 설정 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge: layout ignore 관련 설정 추가" />
+    <MESSAGE value="fix: Mapper관련 설정 오류 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Mapper관련 설정 오류 해결" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

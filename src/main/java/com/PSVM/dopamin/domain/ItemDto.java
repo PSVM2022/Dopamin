@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class  ItemDto {
     private Integer item_id;
     private Integer list_id;
-    private Integer grd_id;
+    private String grd_nm;
     private String item_nm;
     private String item_dsc;
     private BigDecimal item_price;
@@ -18,13 +18,14 @@ public class  ItemDto {
     private String in_user;
     private Timestamp up_date;
     private String up_user;
-    //private String user_nic;
+
+    private String user_nic;
     public ItemDto(){}
 
-    public ItemDto(Integer item_id, Integer list_id, Integer grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Integer stat, Integer dc_rate, Integer dc_price, Timestamp in_date, String in_user, Timestamp up_date, String up_user, String user_nic) {
+    public ItemDto(Integer item_id, Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Integer stat, Integer dc_rate, Integer dc_price, Timestamp in_date, String in_user, Timestamp up_date, String up_user, String user_nic) {
         this.item_id = item_id;
         this.list_id = list_id;
-        this.grd_id = grd_id;
+        this.grd_nm = grd_nm;
         this.item_nm = item_nm;
         this.item_dsc = item_dsc;
         this.item_price = item_price;
@@ -39,9 +40,9 @@ public class  ItemDto {
         //this.user_nic = user_nic;
     }
 
-    public ItemDto(Integer list_id, Integer grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date, String user_nic) {
+    public ItemDto(Integer list_id, String grd_id, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date, String user_nic) {
         this.list_id = list_id;
-        this.grd_id = grd_id;
+        this.grd_nm = grd_nm;
         this.item_nm = item_nm;
         this.item_dsc = item_dsc;
         this.item_price = item_price;
@@ -66,12 +67,12 @@ public class  ItemDto {
         this.list_id = list_id;
     }
 
-    public Integer getGrd_id() {
-        return grd_id;
+    public String getGrd_nm() {
+        return grd_nm;
     }
 
-    public void setGrd_id(Integer grd_id) {
-        this.grd_id = grd_id;
+    public void setGrd_nm(String grd_nm) {
+        this.grd_nm = grd_nm;
     }
 
     public String getItem_nm() {
@@ -162,13 +163,11 @@ public class  ItemDto {
         this.up_user = up_user;
     }
 
-//    public String getUser_nic() {
-//        return user_nic;
-//    }
+    public String getUser_nic() {
+        return user_nic;
+    }
 
-//    public void setUser_nic(String user_nic) {
-//        this.user_nic = user_nic;
-//    }
-
-
+    public void setUser_nic(String user_nic) {
+        this.user_nic = user_nic;
+    }
 }
