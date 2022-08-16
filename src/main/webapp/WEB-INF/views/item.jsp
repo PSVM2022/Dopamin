@@ -29,7 +29,7 @@
             $('#inventory').click(function(){
                 $(location).attr("href","/psvm/inven");
             });
-            $('#addItem').click(function(){
+            $('#Admin_page').click(function(){
                 $(location).attr("href","/psvm/item/item_admin");
             })
         });
@@ -50,7 +50,12 @@
         <a class="topnav-menu" href="/psvm/item/" onclick='alert("충동 구매는 당신의 지갑을 얇게 만들수 있습니다.")'>상점</a>
     </div>
 </div>
-<input type="button" id="addItem" value="관리자페이지"/>
+<script>
+    let msg = "${msg}";
+    if(msg!="") alert(msg);
+
+</script>
+<button id="Admin_page">관리자페이지</button>
 <div class="css-hnjlk0" style="--container-width:1200px;">
     <div style="display: flex; align-items: center;">
         <h1 class="css-1uk7quv" style="flex: 1 0 0px;">포인트</h1>

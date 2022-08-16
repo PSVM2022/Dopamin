@@ -32,6 +32,9 @@
       $('#modify_item').click(function(){
         $(location).attr("href","");
       });
+      $('#registerButton').click(function(){
+        $(location).attr("href","/psvm/item/register");
+      });
     });
   </script>
 
@@ -50,6 +53,7 @@
     <a class="topnav-menu" href="/psvm/item/" onclick='alert("충동 구매는 당신의 지갑을 얇게 만들수 있습니다.")'>상점</a>
   </div>
 </div>
+<button id="registerButton">등록</button>
 <h1 class="css-1uk7quv" style="display: flex; align-items: center;">관리자 페이지</h1>
 <div class="container">
   <ul class="tabs">
