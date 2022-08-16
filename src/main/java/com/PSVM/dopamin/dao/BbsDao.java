@@ -10,7 +10,7 @@ public interface BbsDao {
 
     int update(BbsDto dto) throws Exception;
 
-    int deleteByManager(BbsDto dto) throws Exception;
+    int deleteByManager(int bbs_id) throws Exception;
 
     int deleteAllByManager() throws Exception;
 

@@ -29,8 +29,8 @@ public class BbsDaoImpl implements BbsDao {
 
 
     @Override
-    public int deleteByManager(BbsDto dto) throws Exception {
-        return session.delete(namespace + "deleteByManager", dto);
+    public int deleteByManager(int bbs_id) throws Exception {
+        return session.delete(namespace + "deleteByManager", bbs_id);
     }
 
     @Override
