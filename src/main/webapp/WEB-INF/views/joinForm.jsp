@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false"%>
 <html>
 <html lang="ko">
@@ -11,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png' />">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css' />">
-    <link rel="stylesheet" type="text/css" href="<c:url value='css/common/default.css' />">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css' />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
           integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
@@ -38,15 +39,20 @@
 <div class="content">
     <div class="responsive-content">
         <div class="content-movie">
-            <form method="post" action="<c:url value="/join/join"/>">
+<%--            <form method="post" action="<c:url value="/join/join"/>">--%>
+            <form:form modelAttribute="userDto">
                 <label for="user_id">아이디</label>
                 <input type="text" id="user_id" name="user_id"/>
+                <div id="msg" class="msg"><form:errors path="user_id"/></div>
+
                 <button type="button" id="idDuplCk">아이디 중복 체크</button>
                 <div id="id-dupl-msg" style="color: red"></div>
 
                 <label for="user_pwd">비밀번호</label>
                 <input type="password" id="user_pwd" name="user_pwd"/>
                 <br>
+                <div id="msg" class="msg"><form:errors path="user_pwd"/></div>
+
                 <label for="pwdCheck">비밀번호 재확인</label>
                 <input type="password" id="pwdCheck" name="pwdCheck"/>
                 <div id="msg">
@@ -64,6 +70,8 @@
                 <br>
                 <label for="phone_num">전화번호(ex)010-1234-1234)</label>
                 <input type="text" id="phone_num" name="phone_num"/>
+                <div id="msg" class="msg"><form:errors path="phone_num"/></div>
+
                 <br>
 
                 <label for="cnty">나라</label>
@@ -77,9 +85,10 @@
 
                 <label for="nic">닉네임</label>
                 <input type="text" id="nic" name="nic"/>
+
                 <br>
 
-                <label for="btdt">생년월일</label>
+                <label for="btdt">생년월일(ex)2000/01/01)</label>
                 <input type="text" id="btdt" name="btdt"/>
                 <br>
 
@@ -98,7 +107,8 @@
                 <%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
 
                 <button type="submit">회원가입</button>
-            </form>
+<%--            </form>--%>
+            </form:form>
 
         </div>
 

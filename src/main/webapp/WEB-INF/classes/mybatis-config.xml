@@ -5,7 +5,6 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
-        <typeAlias alias="UserPwdDto" type="com.PSVM.dopamin.domain.UserPwdDto"/>
 
     </typeAliases>
 </configuration>

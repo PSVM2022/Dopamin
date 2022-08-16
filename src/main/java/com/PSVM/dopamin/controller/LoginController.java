@@ -43,10 +43,10 @@ public class LoginController {
     public String login(String id, String pwd, String toURL, HttpServletRequest request) throws Exception {
 
         //id, pwd 불일치, 로그인 실패
-        if(!idPwdCheck(id,pwd)){
-            String msg = URLEncoder.encode("아이디 또는 비밀번호를 잘못 입력했습니다.","utf-8");
-            return "redirect:/login/login?msg="+msg;
-        }
+//        if(!idPwdCheck(id,pwd)){
+//            String msg = URLEncoder.encode("아이디 또는 비밀번호를 잘못 입력했습니다.","utf-8");
+//            return "redirect:/login/login?msg="+msg;
+//        }
         //id, pwd 일치하면 로그인 성공
         //세션 생성
         HttpSession session = request.getSession();
@@ -69,11 +69,11 @@ public class LoginController {
     }
 
 
-    private boolean idPwdCheck(String id, String pwd){
-        //존재하지 않는 아이디면
-        if(userService.getUserPwd(id)==null){
-            return false;
-        }
-        return userService.getUserPwd(id).getUser_pwd().equals(pwd);
-    }
+//    private boolean idPwdCheck(String id, String pwd){
+//        //존재하지 않는 아이디면
+//        if(userService.getUserPwd(id)==null){
+//            return false;
+//        }
+//        return userService.getUserPwd(id).getUser_pwd().equals(pwd);
+//    }
 }
