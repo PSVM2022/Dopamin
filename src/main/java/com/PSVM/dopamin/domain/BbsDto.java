@@ -52,29 +52,23 @@ public class BbsDto {
         this.upUser = editorNm;
     }
 
-    public Integer getBbsPrior() {
+    public int getBbsPrior() {
         return bbsPrior;
     }
 
-    public void setBbsPrior(Integer bbsPrior) {
+    public void setBbsPrior(Integer bbsPrior, String editorNm) {
         this.bbsPrior = bbsPrior;
+        this.upUser = editorNm;
     }
 
     public Timestamp getInDate() {
         return inDate;
     }
 
-    public void setInDate(Timestamp inDate) {
-        this.inDate = inDate;
-    }
-
     public String getInUser() {
         return inUser;
     }
 
-    public void setInUser(String inUser) {
-        this.inUser = inUser;
-    }
 
     public String getUpUser() {
         return upUser;
