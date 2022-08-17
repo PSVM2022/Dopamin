@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ page session="false"%>
 <html>
 <html lang="ko">
@@ -13,10 +14,19 @@
     <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png' />">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css' />">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css' />">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
           integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap');
+
+        .msg {
+            height: 30px;
+            text-align:center;
+            font-size:16px;
+            color:red;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -39,19 +49,22 @@
 <div class="content">
     <div class="responsive-content">
         <div class="content-movie">
-<%--            <form method="post" action="<c:url value="/join/join"/>">--%>
-            <form:form modelAttribute="userDto">
+
+
+<%--                    <form method="post" action="<c:url value="/join/join"/>">--%>
+<%--            <form:form modelAttribute="userDto">--%>
+
                 <label for="user_id">아이디</label>
                 <input type="text" id="user_id" name="user_id"/>
-                <div id="msg" class="msg"><form:errors path="user_id"/></div>
+                <div id="user_id_msg" class="msg"></div>
 
-                <button type="button" id="idDuplCk">아이디 중복 체크</button>
-                <div id="id-dupl-msg" style="color: red"></div>
+<%--                <button type="button" id="idDuplCk">아이디 중복 체크</button>--%>
+<%--                <div id="id-dupl-msg" style="color: red"></div>--%>
 
                 <label for="user_pwd">비밀번호</label>
                 <input type="password" id="user_pwd" name="user_pwd"/>
+                <div id="user_pwd_msg" class="msg"></div>
                 <br>
-                <div id="msg" class="msg"><form:errors path="user_pwd"/></div>
 
                 <label for="pwdCheck">비밀번호 재확인</label>
                 <input type="password" id="pwdCheck" name="pwdCheck"/>
@@ -64,39 +77,46 @@
                 <br>
                 <label for="f_nm">성</label>
                 <input type="text" id="f_nm" name="f_nm"/>
+                <div id="f_nm_msg" class="msg"></div>
 
                 <label for="l_nm">이름</label>
                 <input type="text" id="l_nm" name="l_nm"/>
+                <div id="l_nm_msg" class="msg"></div>
+
                 <br>
                 <label for="phone_num">전화번호(ex)010-1234-1234)</label>
                 <input type="text" id="phone_num" name="phone_num"/>
-                <div id="msg" class="msg"><form:errors path="phone_num"/></div>
-
+                <div id="phone_num_msg" class="msg"></div>
                 <br>
 
                 <label for="cnty">나라</label>
                 <input type="text" id="cnty" name="cnty"/>
+                <div id="cnty_msg" class="msg"></div>
                 <br>
 
                 <label for="email">email</label>
                 <input type="email" id="email" name="email"/>
                 <button type="button">이메일 인증</button>
+                <div id="email_msg" class="msg"></div>
                 <br>
 
                 <label for="nic">닉네임</label>
                 <input type="text" id="nic" name="nic"/>
-
+                <div id="nic_msg" class="msg"></div>
                 <br>
 
                 <label for="btdt">생년월일(ex)2000/01/01)</label>
                 <input type="text" id="btdt" name="btdt"/>
+                <div id="btdt_msg" class="msg"></div>
                 <br>
 
                 <label for="sex">성별</label>
                 <select autofocus id="sex" name="sex">
-                    <option>남자</option>
-                    <option>여자</option>
+                    <option value="0">남자</option>
+                    <option value="1">여자</option>
                 </select>
+                <div id="sex_msg" class="msg"></div>
+
                 <br>
 
                 <%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
@@ -106,9 +126,9 @@
                 <%--    <input type="radio" value="4" name="fav_genre4">공포--%>
                 <%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
 
-                <button type="submit">회원가입</button>
+                <button type="submit" id="joinBtn">회원가입</button>
 <%--            </form>--%>
-            </form:form>
+<%--            </form:form>--%>
 
         </div>
 
@@ -129,6 +149,42 @@
     <div>2022 PSVM팀</div>
 </div>
 <script>
+    $("#joinBtn").click(function(){
+        let user_id = $('#user_id').val();
+        let user_pwd = $('#user_pwd').val();
+        let f_nm = $('#f_nm').val();
+        let l_nm = $('#l_nm').val();
+        let phone_num = $('#phone_num').val();
+        let cnty = $('#cnty').val();
+        let email = $('#email').val();
+        let nic = $('#nic').val();
+        let btdt = $('#btdt').val();
+        let sex = $('#sex').val();
+        let userDto = {"user_id":user_id, "user_pwd":user_pwd, "f_nm": f_nm, "l_nm":l_nm, "phone_num" :phone_num,
+            "cnty":cnty, "email":email, "nic" : nic, "btdt":btdt, "sex":sex};
+        $.ajax({
+            type:'POST',       // 요청 메서드
+            url: '/psvm/join/join',  // 요청 URI
+            headers : { "content-type": "application/json"}, // 요청 헤더
+            dataType : 'text', // 전송받을 데이터의 타입
+            data : JSON.stringify(userDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+            success : function(response){
+                let error_msg = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
+                $("#user_id_msg").html(error_msg.user_id);
+                $("#user_pwd_msg").html(error_msg.user_pwd);
+                $("#f_nm_msg").html(error_msg.f_nm);
+                $("#l_nm_msg").html(error_msg.l_nm);
+                $("#phone_num_msg").html(error_msg.phone_num);
+                $("#cnty_msg").html(error_msg.cnty);
+                $("#email_msg").html(error_msg.email);
+                $("#nic_msg").html(error_msg.nic);
+                $("#btdt_msg").html(error_msg.btdt);
+                $("#sex_msg").html(error_msg.sex);
+            },
+            // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+        });
+
+    });
     // $(document).ready(function(){
     //     let user_id = $("#user_id");
     //     alert(user_id);
@@ -151,7 +207,7 @@
     //
     //     });
     // });
-
+//아이디 중복 체크 비동기 처리(아직 사용 안함. 나중에 할것)
     $("#idDuplCk").click(function(){
         let user_id = $('#user_id').val();
         let id = {"user_id":user_id};

@@ -3,9 +3,11 @@ package com.PSVM.dopamin.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class UserDto {
+
     private String user_id;
     private String user_pwd;
     private String f_nm;
@@ -13,11 +15,14 @@ public class UserDto {
     private String phone_num;
     private String mbti;
     private String cnty;
+
     @Email
     private String email;
+
     private String nic;
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date btdt;
+    @NotNull
     private byte sex;
     private String prf_img;
     private Integer dopa_exp;
@@ -253,6 +258,37 @@ public class UserDto {
 
     public void setUp_user(String up_user) {
         this.up_user = up_user;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "user_id='" + user_id + '\'' +
+                ", user_pwd='" + user_pwd + '\'' +
+                ", f_nm='" + f_nm + '\'' +
+                ", l_nm='" + l_nm + '\'' +
+                ", phone_num='" + phone_num + '\'' +
+                ", mbti='" + mbti + '\'' +
+                ", cnty='" + cnty + '\'' +
+                ", email='" + email + '\'' +
+                ", nic='" + nic + '\'' +
+                ", btdt=" + btdt +
+                ", sex=" + sex +
+                ", prf_img='" + prf_img + '\'' +
+                ", dopa_exp=" + dopa_exp +
+                ", dopa_point=" + dopa_point +
+                ", user_stat=" + user_stat +
+                ", fav_genre1='" + fav_genre1 + '\'' +
+                ", fav_genre2='" + fav_genre2 + '\'' +
+                ", fav_genre3='" + fav_genre3 + '\'' +
+                ", fav_genre4='" + fav_genre4 + '\'' +
+                ", fav_genre5='" + fav_genre5 + '\'' +
+                ", rept_times=" + rept_times +
+                ", in_date=" + in_date +
+                ", in_user='" + in_user + '\'' +
+                ", up_date=" + up_date +
+                ", up_user='" + up_user + '\'' +
+                '}';
     }
 }
 
