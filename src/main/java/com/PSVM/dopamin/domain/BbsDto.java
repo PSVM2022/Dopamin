@@ -1,76 +1,87 @@
 package com.PSVM.dopamin.domain;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Random;
 
 public class BbsDto {
 
-    private Integer bbs_id;
-    private String bbs_nm;
-    private Integer bbs_prior;
-    private Date in_date;
-    private String in_user;
-    private Date up_date;
-    private String up_user;
+    private int bbsId;
+    private String bbsNm;
+    private int bbsPrior;
+    private Timestamp inDate;
+    private String inUser;
+    private String upUser;
 
-    public BbsDto(String bbs_nm, Integer bbs_prior, Date in_date, String in_user, String up_user) {
-        this.bbs_nm = bbs_nm;
-        this.bbs_prior = bbs_prior;
-        this.in_date = in_date;
-        this.in_user = in_user;
-        this.up_user = up_user;
+    BbsDto(String bbsNm, Integer bbsPrior, String editorNm) {
+        this.bbsNm = bbsNm;
+        this.bbsPrior = bbsPrior;
+        this.inDate = new Timestamp(System.currentTimeMillis());
+        this.inUser = this.upUser = editorNm;
     }
 
-    public BbsDto(String bbs_nm, Date in_date, String in_user, String up_user) {
-        this(bbs_nm, 0, in_date, in_user, up_user);
+    BbsDto(String bbsNm, String editorNm) {
+        this(bbsNm, 0, editorNm);
     }
 
-    public Integer getBbs_id(String bbs_nm) {
-        return bbs_id;
+    BbsDto() {
+        this("임시 판" + getRandomHexStr(), "관리자");
     }
 
-    public void setBbs_id(Integer bbs_id) {
-        this.bbs_id = bbs_id;
+    private static String getRandomHexStr() {
+        StringBuilder ret = new StringBuilder();
+
+        byte[] arr = new byte[4];
+        new Random().nextBytes(arr);
+        for (byte b : arr) {
+            ret.append(String.format("%02x", b));
+        }
+        return ret.toString();
     }
 
-    public String getBbs_nm() {
-        return bbs_nm;
+    public int getBbsId() {
+        return bbsId;
     }
 
-    public void setBbs_nm(String bbs_nm) {
-        this.bbs_nm = bbs_nm;
+    public String getBbsNm() {
+        return bbsNm;
     }
 
-    public Date getIn_date() {
-        return in_date;
+    public void setBbsNm(String bbsNm, String editorNm) {
+        this.bbsNm = bbsNm;
+        this.upUser = editorNm;
     }
 
-    public void setIn_date(Date in_date) {
-        this.in_date = in_date;
+    public Integer getBbsPrior() {
+        return bbsPrior;
     }
 
-    public String getIn_user() {
-        return in_user;
+    public void setBbsPrior(Integer bbsPrior) {
+        this.bbsPrior = bbsPrior;
     }
 
-    public void setIn_user(String in_user) {
-        this.in_user = in_user;
+    public Timestamp getInDate() {
+        return inDate;
     }
 
-    public Date getUp_date() {
-        return up_date;
+    public void setInDate(Timestamp inDate) {
+        this.inDate = inDate;
     }
 
-    public void setUp_date(Date up_date) {
-        this.up_date = up_date;
+    public String getInUser() {
+        return inUser;
     }
 
-    public String getUp_user() {
-        return up_user;
+    public void setInUser(String inUser) {
+        this.inUser = inUser;
     }
 
-    public void setUp_user(String up_user) {
-        this.up_user = up_user;
+    public String getUpUser() {
+        return upUser;
+    }
+
+    public void setUpUser(String upUser) {
+        this.upUser = upUser;
     }
 
     @Override
@@ -82,11 +93,23 @@ public class BbsDto {
             return false;
         }
         BbsDto bbsDto = (BbsDto) o;
-        return bbs_id.equals(bbsDto.bbs_id) && bbs_nm.equals(bbsDto.bbs_nm);
+        return bbsNm.equals(bbsDto.bbsNm);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bbs_id, bbs_nm);
+        return Objects.hash(bbsNm);
+    }
+
+    @Override
+    public String toString() {
+        return "BbsDto{" +
+            "bbsId=" + bbsId +
+            ", bbsNm='" + bbsNm + '\'' +
+            ", bbsPrior=" + bbsPrior +
+            ", inDate=" + inDate +
+            ", inUser='" + inUser + '\'' +
+            ", upUser='" + upUser + '\'' +
+            '}';
     }
 }
