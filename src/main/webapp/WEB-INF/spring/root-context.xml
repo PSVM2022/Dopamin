@@ -14,12 +14,12 @@
 		<!--property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property-->
 
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://10.35.120.140:3306/testDB?useUnicode=true&amp;characterEncoding=utf8"></property>
-		<property name="username" value="PSVM"></property>
-		<property name="password" value="Psvm12!@"></property>
-<!--		<property name="url" value="jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property>-->
-<!--		<property name="username" value="eun"></property>-->
-<!--		<property name="password" value="rlagydms0101"></property>-->
+<!--		<property name="url" value="jdbc:mysql://10.35.120.140:3306/testDB?useUnicode=true&amp;characterEncoding=utf8"></property>-->
+<!--		<property name="username" value="PSVM"></property>-->
+<!--		<property name="password" value="Psvm12!@"></property>-->
+		<property name="url" value="jdbc:mysql://localhost:3306/dopadbtest?useUnicode=true&amp;characterEncoding=utf8"></property>
+		<property name="username" value="eun"></property>
+		<property name="password" value="1234"></property>
 
 	</bean>
 	<!-- MyBatis 설정 !-->

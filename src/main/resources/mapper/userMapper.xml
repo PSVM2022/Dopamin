@@ -20,9 +20,13 @@
 
     </insert>
     <insert id="insertUserPwd" parameterType="UserDto">
-        INSERT INTO USER_SECRET (user_id,user_pwd,in_date,in_user,up_date,up_user)VALUES (#{user_id},#{user_pwd},now(),#{user_id},now(),#{user_id});
+        INSERT INTO USER_SECRET VALUE (#{user_id},${user_pwd},now(),
+            ${user_id},now(),${user_id});
     </insert>
 
+    <delete id="deleteAll">
+        DELETE FROM USER;
+    </delete>
 
 
 

@@ -67,11 +67,7 @@ public class UserDtoValidator implements Validator {
 
             }
 
-
-
         }
-
-
 
         if(!userDto.getUser_pwd().equals("")){
             boolean pwdResult = Pattern.matches(pwdPattern,userDto.getUser_pwd());
@@ -80,16 +76,22 @@ public class UserDtoValidator implements Validator {
                 System.out.println("pwd 정규식 불일치");
                 errors.rejectValue("user_pwd", "pwd_invalid","8~15자 영문,숫자,특수문자를 사용하세요.");
             }
-
-
         }
 
-        if(!userDto.getPhone_num().equals("")){
+        if(!userDto.getEmail().equals("")){
             boolean emailResult = Pattern.matches(emailPattern,userDto.getEmail());
             System.out.println("emailReuslt="+emailResult);
             if (!emailResult) {
                 System.out.println("email 정규식 불일치");
                 errors.rejectValue("email","email_invalid","이메일 양식을 확인해주세요.");
+            }
+        }
+        if(!userDto.getPhone_num().equals("")){
+            boolean phone_numResult = Pattern.matches(phone_numPattern,userDto.getPhone_num());
+            System.out.println("phone_numReuslt="+phone_numResult);
+            if (!phone_numResult) {
+                System.out.println("phone_num 정규식 불일치");
+                errors.rejectValue("phone_num","phone_num_invalid","예시대로 입력해주세요");
             }
         }
     }

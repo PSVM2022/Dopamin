@@ -29,7 +29,7 @@ public class UserDaoImplTest {
         int count = userDao.selectIdDuplCk(id);
         assertEquals(0,count);
 
-        UserDto userDto = new UserDto("tqtq","kim","hyoeun","8201012345678","ISFP", "KOREA","test@gmail.com", "testnick",new Date(),(byte) 1,"","1","2","3","4","5");
+        UserDto userDto = new UserDto("tqtq","kim","hyoeun","8201012345678","ISFP", "KOREA","test@gmail.com", "testnick","20000101",(byte) 1,"","1","2","3","4","5");
         int rowCnt = userDao.insertUser(userDto);
         assertEquals(1,rowCnt);
         int count2 = userDao.selectIdDuplCk("tqtq");
@@ -37,7 +37,7 @@ public class UserDaoImplTest {
     }
     @Test
     public void insertUserTest(){
-        UserDto userDto = new UserDto("testid3","kim","hyoeun","8201012345678","ISFP", "KOREA","test@gmail.com", "testnick",new Date(),(byte) 1,"","1","2","3","4","5");
+        UserDto userDto = new UserDto("testid3","kim","hyoeun","8201012345678","ISFP", "KOREA","test@gmail.com", "testnick","20000101",(byte) 1,"","1","2","3","4","5");
         int rowCnt = userDao.insertUser(userDto);
 
         assertEquals(1,rowCnt);
@@ -45,7 +45,7 @@ public class UserDaoImplTest {
     }
     @Test
     public void insertUserPwdTest(){
-        UserDto userDto = new UserDto("nnnn","kim","hyoeun","8201012345678","ISFP", "KOREA","test@gmail.com", "testnick",new Date(),(byte) 1,"","1","2","3","4","5");
+        UserDto userDto = new UserDto("nnnn","kim","hyoeun","8201012345678","ISFP", "KOREA","test@gmail.com", "testnick","20000101",(byte) 1,"","1","2","3","4","5");
 //        UserPwdDto userPwdDto = new UserPwdDto("nnnn","testpwd0",new Date(),new Date());
 
         int rowCnt1 = userDao.insertUser(userDto);
