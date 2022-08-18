@@ -2,6 +2,7 @@ package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.UserDto;
 import com.PSVM.dopamin.domain.UserDtoValidator;
+import com.PSVM.dopamin.domain.ValidatorException;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,11 +50,10 @@ public class JoinController {
         //아이디 중복 체크
         //비밀번호 암호화 필요
         //비밀번호 확인
-        //검증 결과에 에러있으면 joinForm에 UserDto객체 보내줌.
+        //검증 실패면
         if(result.hasErrors()){
             throw new ValidatorException(result,"검증 실패");
         }
-
 
         if(!pwdCheck.equals(userDto.getUser_pwd())){
             String msg = URLEncoder.encode("비밀번호를 잘못 입력했습니다.","utf-8");
@@ -71,7 +71,6 @@ public class JoinController {
     @PostMapping("/idduplck")
     @ResponseBody
     public int idDuplicateCheck(@RequestBody Map map,BindingResult result){
-        System.out.println("result="+result);
         String user_id = (String) map.get("user_id");
         System.out.println("id="+user_id);
         int count = userService.idDuplicateCheck(user_id);
@@ -79,20 +78,4 @@ public class JoinController {
         return count;
     }
 
-}
-
-class ValidatorException extends Exception{
-    private Map error_msg = new HashMap();
-
-    ValidatorException(BindingResult result, String msg){
-        super(msg);
-        for (FieldError fieldError : result.getFieldErrors()) {
-            error_msg.put(fieldError.getField(),fieldError.getDefaultMessage());
-        }
-
-
-    }
-    public Map getError_msg() {
-        return error_msg;
-    }
 }

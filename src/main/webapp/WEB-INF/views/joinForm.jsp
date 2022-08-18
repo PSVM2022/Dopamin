@@ -59,7 +59,7 @@
                 <div id="user_id_msg" class="msg"></div>
 
 <%--                <button type="button" id="idDuplCk">아이디 중복 체크</button>--%>
-<%--                <div id="id-dupl-msg" style="color: red"></div>--%>
+
 
                 <label for="user_pwd">비밀번호</label>
                 <input type="password" id="user_pwd" name="user_pwd"/>
@@ -68,10 +68,8 @@
 
                 <label for="pwdCheck">비밀번호 재확인</label>
                 <input type="password" id="pwdCheck" name="pwdCheck"/>
-                <div id="msg">
-                    <c:if test="${not empty param.msg}">
-                        <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg,"utf-8")}</i>
-                    </c:if>
+                <div id="pwd_check_msg">
+
                 </div>
 
                 <br>
@@ -105,9 +103,11 @@
                 <div id="nic_msg" class="msg"></div>
                 <br>
 
-                <label for="btdt">생년월일(ex)2000/01/01)</label>
-                <input type="text" id="btdt" name="btdt"/>
-                <div id="btdt_msg" class="msg"></div>
+                <label for="year">생년월일</label>
+                <input type="text" id="year" name="year"/>년<input type="text" id="month" name="month"/>월<input type="text" id="day" name="day"/>일
+
+
+    <div id="btdt_msg" class="msg"></div>
                 <br>
 
                 <label for="sex">성별</label>
@@ -149,6 +149,10 @@
     <div>2022 PSVM팀</div>
 </div>
 <script>
+    if($('#pwdCheck').val() !== $('#user_pwd')){
+        $('#pwd_check_msg').html("비밀번호를 확인해주세요.")
+    }
+
     $("#joinBtn").click(function(){
         let user_id = $('#user_id').val();
         let user_pwd = $('#user_pwd').val();
@@ -158,7 +162,7 @@
         let cnty = $('#cnty').val();
         let email = $('#email').val();
         let nic = $('#nic').val();
-        let btdt = $('#btdt').val();
+        let btdt = $('#year').val() + $('#month').val() + $('#day').val();
         let sex = $('#sex').val();
         let userDto = {"user_id":user_id, "user_pwd":user_pwd, "f_nm": f_nm, "l_nm":l_nm, "phone_num" :phone_num,
             "cnty":cnty, "email":email, "nic" : nic, "btdt":btdt, "sex":sex};
@@ -170,65 +174,61 @@
             data : JSON.stringify(userDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(response){
                 let error_msg = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
-                $("#user_id_msg").html(error_msg.user_id);
-                $("#user_pwd_msg").html(error_msg.user_pwd);
-                $("#f_nm_msg").html(error_msg.f_nm);
-                $("#l_nm_msg").html(error_msg.l_nm);
-                $("#phone_num_msg").html(error_msg.phone_num);
-                $("#cnty_msg").html(error_msg.cnty);
-                $("#email_msg").html(error_msg.email);
-                $("#nic_msg").html(error_msg.nic);
-                $("#btdt_msg").html(error_msg.btdt);
-                $("#sex_msg").html(error_msg.sex);
+                console.log(error_msg.user_id)
+                console.log(error_msg.user_pwd)
+                console.log(error_msg.f_nm)
+                console.log(error_msg.l_nm)
+                console.log(error_msg.phone_num)
+                console.log(error_msg.cnty)
+                console.log(error_msg.email)
+                console.log(error_msg.nic)
+                console.log(error_msg.btdt)
+                console.log(error_msg.sex)
+                // if(error_msg.user_id!=undefined){
+                //     $("#user_id_msg").html(error_msg.user_id=(error_msg.user_id!=undefined ? error_msg.user_id : ""));
+                //
+                // }else{
+                //     $("#user_id_msg").html("");
+                //
+                // }
+                $("#user_id_msg").html(error_msg.user_id=(error_msg.user_id!==undefined ? error_msg.user_id : ""));
+                $("#user_pwd_msg").html(error_msg.user_pwd=(error_msg.user_pwd!==undefined ? error_msg.user_pwd : ""));
+                $("#f_nm_msg").html(error_msg.f_nm=(error_msg.f_nm!==undefined ? error_msg.f_nm : ""));
+                $("#l_nm_msg").html(error_msg.l_nm=(error_msg.l_nm!==undefined ? error_msg.l_nm : ""));
+                $("#phone_num_msg").html(error_msg.phone_num=(error_msg.phone_num!==undefined ? error_msg.phone_num : ""));
+                $("#cnty_msg").html(error_msg.cnty=(error_msg.cnty!==undefined ? error_msg.cnty : ""));
+                $("#email_msg").html(error_msg.email=(error_msg.email!==undefined ? error_msg.email : ""));
+                $("#nic_msg").html(error_msg.nic=(error_msg.nic!==undefined ? error_msg.nic : ""));
+                $("#btdt_msg").html(error_msg.btdt=(error_msg.btdt!==undefined ? error_msg.btdt : ""));
+                $("#sex_msg").html(error_msg.sex=(error_msg.sex!==undefined ? error_msg.sex : ""));
             },
             // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
         });
 
     });
-    // $(document).ready(function(){
-    //     let user_id = $("#user_id");
-    //     alert(user_id);
-    //     let idcheck = {"user_id":user_id};
-    //     $("#idDuplCk").click(function(){
-    //         $.ajax({
-    //             type:'POST',       // 요청 메서드
-    //             url: '/psvm/join/join/idduplck',  // 요청 URI
-    //             headers : { "content-type": "application/json"}, // 요청 헤더
-    //             dataType : 'text', // 전송받을 데이터의 타입
-    //             data : JSON.stringify(idcheck),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-    //             success : function(response){
-    //                 console(response);
-    //                 console(response["count"])
-    //                 msg = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
-    //                 alert(msg);       // result는 서버가 전송한 데이터
-    //             },
-    //             // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-    //         });
-    //
-    //     });
-    // });
+
 //아이디 중복 체크 비동기 처리(아직 사용 안함. 나중에 할것)
-    $("#idDuplCk").click(function(){
-        let user_id = $('#user_id').val();
-        let id = {"user_id":user_id};
-        $.ajax({
-            type:'POST',       // 요청 메서드
-            url: '/psvm/join/idduplck',  // 요청 URI
-            headers : { "content-type": "application/json"}, // 요청 헤더
-            dataType : 'text', // 전송받을 데이터의 타입
-            data : JSON.stringify(id),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-            success : function(response){
-                let count = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
-                if(count==0){
-                    document.getElementById("id-dupl-msg").innerText="사용 가능한 아이디입니다.";
-                }else{
-                    document.getElementById("id-dupl-msg").innerText="사용 불가한 아이디입니다.";
-                }       // result는 서버가 전송한 데이터
-            },
-            // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-        });
-
-    });
+//     $("#idDuplCk").click(function(){
+//         let user_id = $('#user_id').val();
+//         let id = {"user_id":user_id};
+//         $.ajax({
+//             type:'POST',       // 요청 메서드
+//             url: '/psvm/join/idduplck',  // 요청 URI
+//             headers : { "content-type": "application/json"}, // 요청 헤더
+//             dataType : 'text', // 전송받을 데이터의 타입
+//             data : JSON.stringify(id),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+//             success : function(response){
+//                 let count = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
+//                 if(count==0){
+//                     $("#user_id_msg").html("사용 가능한 아이디입니다.");
+//                 }else{
+//                     $("#user_id_msg").html("사용 불가한 아이디입니다.");
+//                 }       // result는 서버가 전송한 데이터
+//             },
+//             // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+//         });
+//
+//     });
 
 </script>
 </body>

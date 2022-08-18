@@ -20,10 +20,11 @@ public class UserDto {
     private String email;
 
     private String nic;
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
-    private Date btdt;
+
+    private String btdt;
     @NotNull
     private byte sex;
+
     private String prf_img;
     private Integer dopa_exp;
     private Integer dopa_point;
@@ -40,7 +41,7 @@ public class UserDto {
     private String up_user;
 
     public UserDto(){}
-    public UserDto(String user_id, String f_nm, String l_nm, String phone_num, String mbti, String cnty, String email, String nic, Date btdt, byte sex,
+    public UserDto(String user_id, String f_nm, String l_nm, String phone_num, String mbti, String cnty, String email, String nic, String btdt, byte sex,
                    String prf_img, String fav_genre1, String fav_genre2, String fav_genre3, String fav_genre4, String fav_genre5) {
         this.user_id = user_id;
         this.f_nm = f_nm;
@@ -132,11 +133,11 @@ public class UserDto {
         this.nic = nic;
     }
 
-    public Date getBtdt() {
+    public String getBtdt() {
         return btdt;
     }
 
-    public void setBtdt(Date btdt) {
+    public void setBtdt(String btdt) {
         this.btdt = btdt;
     }
 
