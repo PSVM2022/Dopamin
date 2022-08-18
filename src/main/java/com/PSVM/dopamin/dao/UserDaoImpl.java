@@ -28,12 +28,10 @@ public class UserDaoImpl implements UserDao {
         return session.insert(namespace+"insertUserPwd",userDto);
     }
 
-//    @Override
-//    public int insertUserPwd(UserPwdDto userPwdDto) {
-//        return session.insert(namespace+"insertUserPwd",userPwdDto);
-//    }
-
-
+    @Override
+    public int deleteAll() {
+        return session.delete(namespace+"deleteAll");
+    }
 
 
 }

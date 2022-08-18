@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -20,11 +21,14 @@ public class UserDaoImplTest {
     UserDao userDao;
 
     @Test
+    @Transactional(rollbackFor = Exception.class)
     public void selectPwdTest() {
 
     }
     @Test
-    public void selectIdDuplCkTest(){
+    @Transactional(rollbackFor = Exception.class)
+    public void selectIdDuplCkTest() throws Exception {
+        userDao.deleteAll();
         String id = "tq";
         int count = userDao.selectIdDuplCk(id);
         assertEquals(0,count);
@@ -34,6 +38,8 @@ public class UserDaoImplTest {
         assertEquals(1,rowCnt);
         int count2 = userDao.selectIdDuplCk("tqtq");
         assertEquals(1,count2);
+        throw new Exception("테스트 예외 발생");
+
     }
     @Test
     public void insertUserTest(){
@@ -53,6 +59,12 @@ public class UserDaoImplTest {
 
         assertEquals(1,rowCnt1);
 //        assertEquals(1,rowCnt2);
+    }
+
+    @Test
+    public void deleteAllTest(){
+
+
     }
 
 

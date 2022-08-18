@@ -8,8 +8,7 @@ public interface UserDao {
     int insertUser(UserDto userDto);
 
     int insertUserPwd(UserDto userDto);
-//    int insertUserPwd(UserPwdDto userPwdDto);
 
-
+    int deleteAll();
 
 }
