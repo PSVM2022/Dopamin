@@ -63,8 +63,6 @@ public class JoinController {
         //회원가입 성공
         userService.userJoin(userDto);
         return "success_join";
-
-
     }
 
 
