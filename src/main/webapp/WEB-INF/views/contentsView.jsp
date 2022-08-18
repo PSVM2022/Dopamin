@@ -7,9 +7,9 @@
   <title>도파민!</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png' />">
-  <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css' />">
-  <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css' />">
+  <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png'/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <style>
@@ -56,6 +56,20 @@
         <td>${contentsDto.cnts_actor}</td><br>
         <td>${contentsDto.cnts_synop}</td><br>
         <td>${contentsDto.cnts_cnty}</td><br>
+      </div>
+      <br>
+
+      <div>
+        <c:forEach var="revw" items="${revwDtoList}">
+        <td>${revw.user_id}</td><br>
+          <td>${revw.revw_body}</td>
+          <td>${revw.in_date}</td>
+        </c:forEach>
+      </div>
+      <!-- 한줄평 -->
+      <div>
+        <div><textarea class="form-control" row = "1"> </textarea></div>
+        <div><button class = "btn">등록</button></div>
       </div>
     </tr>
 
