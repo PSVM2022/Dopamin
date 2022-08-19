@@ -6,11 +6,12 @@ import java.util.Random;
 
 public class BbsDto {
 
-    private int bbsId;
+    private Integer bbsId;
     private String bbsNm;
-    private int bbsPrior;
+    private Integer bbsPrior;
     private Timestamp inDate;
     private String inUser;
+    private Timestamp upDate;
     private String upUser;
 
     BbsDto(String bbsNm, Integer bbsPrior, String editorNm) {
@@ -19,13 +20,13 @@ public class BbsDto {
         this.inDate = new Timestamp(System.currentTimeMillis());
         this.inUser = this.upUser = editorNm;
     }
-
     BbsDto(String bbsNm, String editorNm) {
         this(bbsNm, 0, editorNm);
     }
 
+    /*  테스트용으로만 쓰이는 생성자 */
     BbsDto() {
-        this("임시 판" + getRandomHexStr(), "관리자");
+        this("임시 판 #" + getRandomHexStr(), "관리자");
     }
 
     private static String getRandomHexStr() {
@@ -103,6 +104,7 @@ public class BbsDto {
             ", bbsPrior=" + bbsPrior +
             ", inDate=" + inDate +
             ", inUser='" + inUser + '\'' +
+            ", upDate='" + upDate +
             ", upUser='" + upUser + '\'' +
             '}';
     }
