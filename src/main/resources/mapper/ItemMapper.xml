@@ -22,6 +22,31 @@
         FROM ITEM
         WHERE stat=1
     </select>
+    <select id="item_getUser_stat" parameterType="String" resultType="int">
+        SELECT user_stat
+        FROM USER
+        WHERE user_id=#{user_id};
+    </select>
+    <select id="item_user_nic" parameterType="String" resultType="String">
+        SELECT nic
+        FROM USER
+        WHERE user_id=#{user_id}
+    </select>
+    <select id="item_register" parameterType="ItemDto">
+        INSERT INTO ITEM
+        (list_id,grd_nm,item_nm,item_dsc,item_price,item_img,in_date,in_user,up_user,user_nic)
+        VALUES
+            (#{list_id},#{grd_nm},#{item_nm},#{item_dsc},#{item_price},#{item_img},now(),#{in_user},#{up_user},#{user_nic});
+    </select>
+    <select id="test_select" parameterType="String" resultType="String">
+        SELECT item_nm
+        FROM ITEM
+        WHERE item_nm=#{item_name}
+    </select>
+    <select id="test_delete_item" parameterType="String">
+        DELETE FROM ITEM
+        WHERE item_nm=#{item_name}
+    </select>
 </mapper>
 <!--    <select id="UserStatus" parameterType="String" resultType="int">-->
 <!--        SELECT user_stat-->
@@ -35,14 +60,5 @@
 <!--        FROM ITEM-->
 <!--        WHERE item_id=#{item_id}-->
 <!--    </select>-->
-<!--    <select id="item_register" parameterType="map">-->
-<!--        INSERT INTO ITEM-->
-<!--        (list_id,grd_nm,item_nm,item_dsc,item_price,item_img,in_date,in_user,up_user,user_nic)-->
-<!--        VALUES-->
-<!--            (#{itemDto.list_id},#{itemDto.grd_nm},#{itemDto.item_nm},#{itemDto.item_dsc},#{itemDto.item_price},#{itemDto.item_img},now(),#{writer_id},#{writer_id},#{itemDto.user_nic});-->
-<!--    </select>-->
-<!--    <select id="item_user_nic" parameterType="String" resultType="String">-->
-<!--        select nic-->
-<!--        FROM USER-->
-<!--        WHERE user_id=#{writer_id}-->
-<!--    </select>-->
+
+

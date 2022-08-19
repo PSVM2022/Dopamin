@@ -17,7 +17,7 @@ public class ItemDaoImpl {
     }
     public int getCount() throws Exception{
         return sqlSession.selectOne(namespace+"item_getCount");
-    }
+    }//테스트 완료
     public List<ItemDto> getPage(int index) throws Exception{
         return sqlSession.selectList(namespace+"item_getPage",index);
     }
@@ -27,6 +27,27 @@ public class ItemDaoImpl {
     public List<ItemDto> getStat_1() {
         return sqlSession.selectList(namespace+"item_getStat_1");
     }
+    public int getUser_stat(String user_id) {//테스트 완료.
+        return sqlSession.selectOne(namespace+"item_getUser_stat",user_id);
+    }
+    //테스트 완료
+    public String getUser_nic(String user_id) throws Exception{
+        return sqlSession.selectOne(namespace+"item_user_nic",user_id);
+    }//테스트 완료
+    public int registerItem(ItemDto itemDto) throws Exception{
+        return sqlSession.insert(namespace+"item_register",itemDto);
+    }//테스트 완료 정상작동함.
+
+
+
+
+    public String test_select(String item_name)throws Exception{
+        return sqlSession.selectOne(namespace+"test_select",item_name);
+
+    }
+    public int test_delete_item(String item_name) throws Exception{
+        return sqlSession.delete(namespace+"test_delete_item",item_name);
+    }
 
 //
 //    public void remove(Integer item_id) {
@@ -35,13 +56,9 @@ public class ItemDaoImpl {
 //        //상태값 0 아이템 non-display
 //    }
 //
-//    public String getUser_nic(String writer_id) throws Exception{
-//        return sqlSession.selectOne(namespace+"item_user_nic",writer_id);
-//    }//해야함
+
 //
-//    public int register(Map map) throws Exception {
-//        return sqlSession.insert(namespace+"item_register",map);
-//    }
+
 //
 //    public int getStatus(int item_id) throws Exception{
 //        return sqlSession.selectOne(namespace+"item_getStatus",item_id);

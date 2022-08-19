@@ -11,7 +11,54 @@
     <title>fastcampus</title>
     <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#registerBtn').on("click",function(){
+                var data={
+                    list_nm:$('#list_nm').val(),
+                    item_grd:$('#item_grd').val(),
+                    item_nm:$('#item_nm').val(),
+                    item_dsc:$('#item_dsc').val(),
+                    item_price:$('#item_price').val()
+                }
+                var change_data={
+                    list_nm:'분류',
+                    item_grd:'등급',
+                    item_nm:'이름',
+                    item_dsc:'설명',
+                    item_price:'포인트'
+                }
+                for(let key in data){
+                    if(data[key]===''){
+                        alert(change_data[key]+' 입력해주세요.');
+                        return false;
+                    }
+                }
+                console.log(data);
+                var formData=new FormData();
+                formData.append('key',new Blob([JSON.stringify(data)],{type:"application/json"}));
+                formData.append("item_img",$("#item_img")[0].files[0]);
+
+                $.ajax({
+                    url:"/psvm/item/registerItem",
+                    type:'POST',
+                    data:formData,
+                    success: function(data){
+                        alert("성공");
+                    },
+                    error:function(data){
+                        alert("실패");
+                    },
+                    cache:false,
+                    contentType:false,
+                    processData:false,
+                    enctype:"multipart/form-data"
+                })
+            })
+        })
+
+    </script>
     <style>
         * {
             box-sizing: border-box;
@@ -65,85 +112,30 @@
     </style>
 </head>
 <body>
-<script>
-    let msg = "${msg}";
-    if(msg=="WRT_ERR") alert("게시물 등록에 실패하였습니다. 다시 시도해 주세요.");
-</script>
 <div class="container">
-    <h2 class="writing-header">아이템 등록</h2>
-    <form id="form" class="frm" action="" method="post">
-        <input type="text" name="item_list" value="${itemDto.list_id}"
-        <input type="hidden" name="bno" value="${boardDto.bno}">
-        <input name="title" type="text" value="${boardDto.title}" placeholder="  제목을 입력해 주세요." ${mode=="new" ? "" : "readonly='readonly'"}><br>
-        <textarea name="content" rows="20" placeholder=" 내용을 입력해 주세요." ${mode=="new" ? "" : "readonly='readonly'"}>${boardDto.content}</textarea><br>
-
-        <c:if test="${mode eq 'new'}">
-            <button type="button" id="writeBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 등록</button>
-        </c:if>
-        <c:if test="${mode ne 'new'}">
-            <button type="button" id="writeNewBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 글쓰기</button>
-        </c:if>
-        <c:if test="${boardDto.writer eq loginId}">
-            <button type="button" id="modifyBtn" class="btn btn-modify"><i class="fa fa-edit"></i> 수정</button>
-            <button type="button" id="removeBtn" class="btn btn-remove"><i class="fa fa-trash"></i> 삭제</button>
-        </c:if>
-        <button type="button" id="listBtn" class="btn btn-list"><i class="fa fa-bars"></i> 목록</button>
-    </form>
+    <label id="category">아이템 분류</label>
+    <select id="list_nm" name="list_nm">
+        <option value="" selected disabled hidden>선택</option>
+        <option value="skin">스킨</option>
+        <option value="deco">꾸미기</option>
+    </select>
+    <br>
+    <label id="grade">아이템 등급</label>
+    <select id="item_grd" name="item_grd">
+        <option value="" selected disabled hidden>선택</option>
+        <option value="에픽">에픽</option>
+        <option value="전설">전설</option>
+    </select>
+    <br>
+    <label id="name">아이템 이름</label><br>
+    <input id="item_nm" name="item_nm" type="text" placeholder="아이템 이름 입력하세요"><br>
+    <label id="description">아이템 설명</label><br>
+    <textarea id="item_dsc" name="item_dsc" cols="50" rows="10"></textarea><br>
+    <label id="image">아이템 이미지</label><br>
+    <input id="item_img" type="file"><br>
+    <label id="price">아이템 포인트</label><br>
+    <input id="item_price" name="item_price" type="text" placeholder="아이템 가격 입력하세요"><br>
+    <button type="button" id="registerBtn" class="btn btn-write">등록</button>
 </div>
-<script>
-    $(document).ready(function(){
-        let formCheck = function() {
-            let form = document.getElementById("form");
-            if(form.title.value=="") {
-                alert("제목을 입력해 주세요.");
-                form.title.focus();
-                return false;
-            }
-            if(form.content.value=="") {
-                alert("내용을 입력해 주세요.");
-                form.content.focus();
-                return false;
-            }
-            return true;
-        }
-        $("#writeNewBtn").on("click", function(){
-            location.href="<c:url value='/board/write'/>";
-        });
-        $("#writeBtn").on("click", function(){
-            let form = $("#form");
-            form.attr("action", "<c:url value='/board/write'/>");
-            form.attr("method", "post");
-            if(formCheck())
-                form.submit();
-        });
-        $("#modifyBtn").on("click", function(){
-            let form = $("#form");
-            let isReadonly = $("input[name=title]").attr('readonly');
-            // 1. 읽기 상태이면, 수정 상태로 변경
-            if(isReadonly=='readonly') {
-                $(".writing-header").html("게시판 수정");
-                $("input[name=title]").attr('readonly', false);
-                $("textarea").attr('readonly', false);
-                $("#modifyBtn").html("<i class='fa fa-pencil'></i> 등록");
-                return;
-            }
-            // 2. 수정 상태이면, 수정된 내용을 서버로 전송
-            form.attr("action", "<c:url value='/board/modify${searchCondition.queryString}'/>");
-            form.attr("method", "post");
-            if(formCheck())
-                form.submit();
-        });
-        $("#removeBtn").on("click", function(){
-            if(!confirm("정말로 삭제하시겠습니까?")) return;
-            let form = $("#form");
-            form.attr("action", "<c:url value='/board/remove${searchCondition.queryString}'/>");
-            form.attr("method", "post");
-            form.submit();
-        });
-        $("#listBtn").on("click", function(){
-            location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
-        });
-    });
-</script>
 </body>
 </html>

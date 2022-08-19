@@ -36,6 +36,8 @@
         $(location).attr("href","/psvm/item/register");
       });
     });
+    let msg = "${msg}";
+    if(msg!="") alert(msg);
   </script>
 
 </head>

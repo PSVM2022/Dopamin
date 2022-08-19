@@ -39,15 +39,17 @@ public class  ItemDto {
         //this.user_nic = user_nic;
     }
 
-    public ItemDto(Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Timestamp in_date, String user_nic) {
+    public ItemDto(Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, String user_nic, Timestamp in_date, String in_user, String up_user) {
         this.list_id = list_id;
         this.grd_nm = grd_nm;
         this.item_nm = item_nm;
         this.item_dsc = item_dsc;
         this.item_price = item_price;
         this.item_img = item_img;
+        this.user_nic = user_nic;
         this.in_date = in_date;
-        //this.user_nic = user_nic;
+        this.in_user = in_user;
+        this.up_user = up_user;
     }
 
     public Integer getItem_id() {
@@ -106,6 +108,14 @@ public class  ItemDto {
         this.item_img = item_img;
     }
 
+    public String getUser_nic() {
+        return user_nic;
+    }
+
+    public void setUser_nic(String user_nic) {
+        this.user_nic = user_nic;
+    }
+
     public Integer getStat() {
         return stat;
     }
@@ -162,11 +172,24 @@ public class  ItemDto {
         this.up_user = up_user;
     }
 
-    public String getUser_nic() {
-        return user_nic;
-    }
-
-    public void setUser_nic(String user_nic) {
-        this.user_nic = user_nic;
+    @Override
+    public String toString() {
+        return "ItemDto{" +
+                "item_id=" + item_id +
+                ", list_id=" + list_id +
+                ", grd_nm='" + grd_nm + '\'' +
+                ", item_nm='" + item_nm + '\'' +
+                ", item_dsc='" + item_dsc + '\'' +
+                ", item_price=" + item_price +
+                ", item_img='" + item_img + '\'' +
+                ", user_nic='" + user_nic + '\'' +
+                ", stat=" + stat +
+                ", dc_rate=" + dc_rate +
+                ", dc_price=" + dc_price +
+                ", in_date=" + in_date +
+                ", in_user='" + in_user + '\'' +
+                ", up_date=" + up_date +
+                ", up_user='" + up_user + '\'' +
+                '}';
     }
 }

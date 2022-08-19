@@ -9,16 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="Test: unversioned file commit">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 유저 아이템 조회, 관리자 아이템 메인 완료 - 1&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidatorException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/PageHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +35,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
-        <option value="JUnit4 Test Class" />
         <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -82,7 +89,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "C:/Users/LDH/IdeaProjects/MyPortfolio",
+    "last_opened_file_path": "C:/Users/LDH/IdeaProjects/validation",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -92,7 +99,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.5367816",
-    "settings.editor.selected.configurable": "file.status.colors"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
     "ChangesTree.GroupingKeys": [
@@ -120,6 +127,7 @@
       <recent name="C:\Users\LDH\IdeaProjects\Dopamin\src\main\webapp\WEB-INF\views" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.PSVM.dopamin.controller" />
       <recent name="com.PSVM.dopamin.dao" />
       <recent name="com.PSVM.dopamin.repository" />
     </key>
@@ -138,7 +146,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemDaoImplTest.getCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -148,13 +156,12 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemDaoImplTest" />
-      <option name="METHOD_NAME" value="getCount" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemDaoImplTest.testRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemDaoImplTest.신규아이템_등록" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -162,15 +169,15 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
-      <option name="METHOD_NAME" value="testRegister" />
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="신규아이템_등록" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemDaoImplTest.test_등록실패" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemDaoImplTest.getUser_nic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -178,9 +185,25 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
-      <option name="METHOD_NAME" value="test_등록실패" />
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="getUser_nic" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemDaoImplTest.getUser_stat_X" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemDaoImplTest" />
+      <option name="METHOD_NAME" value="getUser_stat_X" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -218,25 +241,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemDaoImplTest.test_getUserStatus_진짜_관리자" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.repository.ItemDaoImplTest" />
-      <option name="METHOD_NAME" value="test_getUserStatus_진짜_관리자" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11">
-      <option name="COMMON_VM_ARGUMENTS" value="-Duser.language=en -Duser.region=us" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+    <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="dopamin:war exploded">
           <settings>
@@ -245,7 +251,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="79b2b311-4e32-4a58-b234-c70804b21da4" />
+        <option name="BASE_DIRECTORY_NAME" value="eb1bb9b4-f9e2-42e6-bbe3-1330d611ab6f" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -253,7 +259,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="64978" />
+        <option name="DEBUG_PORT" value="50254" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -319,25 +325,24 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="dopamin:war exploded" />
-          <artifact name="Dopamin:war exploded" />
         </option>
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.ItemDaoImplTest.getCount" />
-      <item itemvalue="JUnit.ItemDaoImplTest.test_getUserStatus_진짜_관리자" />
-      <item itemvalue="JUnit.ItemDaoImplTest.test_등록실패" />
-      <item itemvalue="JUnit.ItemDaoImplTest.testRegister" />
+      <item itemvalue="JUnit.ItemDaoImplTest" />
+      <item itemvalue="JUnit.ItemDaoImplTest.getUser_nic" />
+      <item itemvalue="JUnit.ItemDaoImplTest.신규아이템_등록" />
+      <item itemvalue="JUnit.ItemDaoImplTest.getUser_stat_X" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.64" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ItemDaoImplTest" />
+        <item itemvalue="JUnit.ItemDaoImplTest.신규아이템_등록" />
+        <item itemvalue="JUnit.ItemDaoImplTest.getUser_nic" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.ItemDaoImplTest.getCount" />
-        <item itemvalue="JUnit.ItemDaoImplTest.test_getUserStatus_진짜_관리자" />
-        <item itemvalue="JUnit.ItemDaoImplTest.test_등록실패" />
-        <item itemvalue="JUnit.ItemDaoImplTest.testRegister" />
+        <item itemvalue="JUnit.ItemDaoImplTest.getUser_stat_X" />
       </list>
     </recent_temporary>
   </component>
@@ -357,7 +362,9 @@
       <workItem from="1660141310470" duration="559000" />
       <workItem from="1660147896528" duration="3387000" />
       <workItem from="1660151890086" duration="19000" />
-      <workItem from="1660527980764" duration="38869000" />
+      <workItem from="1660527980764" duration="44586000" />
+      <workItem from="1660652111922" duration="137000" />
+      <workItem from="1660652418291" duration="91138000" />
     </task>
     <task id="LOCAL-00001" summary="아이템 항목별 리스트&#10;신규아이템 등록까지 완료&#10;현재 수정/삭제 진행중">
       <created>1660377240645</created>
@@ -401,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660533837202</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: 유저 아이템 조회, 관리자 아이템 메인 완료 - 1&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것">
+      <created>1660642774370</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660642774370</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,7 +445,9 @@
     <MESSAGE value="fix: Mapper관련 설정 오류 해결" />
     <MESSAGE value="feat: 관리자 기능(공개/비공개 리스트) 추가" />
     <MESSAGE value="Test: unversioned file commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test: unversioned file commit" />
+    <MESSAGE value="feat: 유저 아이템 조회, 관리자 아이템 메인 완료&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것" />
+    <MESSAGE value="feat: 유저 아이템 조회, 관리자 아이템 메인 완료 - 1&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 유저 아이템 조회, 관리자 아이템 메인 완료 - 1&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -440,11 +456,6 @@
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemDaoImplTest.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
