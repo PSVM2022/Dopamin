@@ -2,47 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.PSVM.dopamin.dao.BbsMapper">
-  <delete id="deleteByManager" parameterType="BbsDto">
+<mapper namespace="com.PSVM.dopamin.dao.bbsDao">
+  <delete id="deleteBbsUsingId">
     DELETE
     FROM BBS
-    WHERE bbs_id = #{bbs_id};
+    WHERE bbs_id = 1;
   </delete>
 
-  <delete id="deleteAllByManager">
-    DELETE
-    FROM BBS;
-  </delete>
-
-  <insert id="insert" parameterType="BbsDto">
+  <insert id="insertInitBbs">
     INSERT INTO BBS
-      (bbs_nm, bbs_prior, in_date, in_user, up_user)
-    VALUES (#{bbs_nm}, #{bbs_prior}, now(), #{in_user}, #{up_user})
+      (bbs_nm, bbs_prior, bbs_visib, in_date, in_user, up_user)
+    VALUES (#{bbsName}, 0, #{isVisible}, #{createTime}, #{managerName}, #{managerName});
   </insert>
 
-  <select id="count" resultType="int">
-    SELECT count(*)
-    FROM BBS;
-  </select>
-
-  <select id="BbsNameOrderList">
-    SELECT bbbs_id, bs_name
-    FROM BBS
-    ORDER BY bbs_prior;
-  </select>
-
-  <select id="select" parameterType="int" resultType="BbsDto">
+  <select id="listAllAvailBbs">
     SELECT *
     FROM BBS
-    WHERE bbs_prior = #{bbs_prior}
+    WHERE bbs_visib = true;
   </select>
 
-  <update id="update" parameterType="int">
+  <update id="updateSortPriorUsingName">
     Update BBS
-    SET bbs_name = #{bbs_name},
-        up_date  = now(),
-        up_user  = "유저이름 또는 관리자이름"
-    WHERE bbs_id = #{bbs_id}
+    SET bbs_prior = #{bbsPrior}
+    WHERE bbs_nm like CONCAT(#{targetNamePrefix}, "%");
+  </update>
+
+  <update id="updateAvailUsingId">
+    UPdate BBS
+    SET bbs_visib = #{isAvail}
+    WHERE bbs_id = #{targetId};
+  </update>
+
+  <update id="updateAvailUsingName">
+    UPDATE BBS
+    SET bbs_visib = #{isAvail}
+    WHERE bbs_nm like CONCAT(#{targetNamePrefix}, "%")
+  </update>
+
+  <update id="updateBbsNameUsingName">
+    UPDATE BBS
+    SET bbs_nm = ${newBbsName}
+    WHERE bbs_nm like CONCAT(#{targetNamePrefix}, "%")
+  </update>
+
+  <update id="updateSortPriorUsingId">
+    UPDATE BBS
+    SET bbs_prior = #{bbsPrior}
+    where bbs_id = #{targetId}
   </update>
 
 </mapper>
