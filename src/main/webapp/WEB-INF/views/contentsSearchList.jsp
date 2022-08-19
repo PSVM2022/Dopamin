@@ -63,9 +63,13 @@
 
 <div class="content">
   <div class="responsive-content">
+    <c:if test="${totalCnt!=null && totalCnt!=0}">
+    <br>
+    <div>"${ph.sc.keyword}" 에 대한 검색 결과입니다. </div>
+    <br>
+    </c:if>
     <div class="content-preview" style="text-align:center">
 
-      <br>
       <c:forEach var="cnts" items="${cntsDtoList}">
         <br>
         <tr>

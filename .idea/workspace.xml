@@ -9,22 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="test: 한줄평 테스트 작성중.&#10;&#10;한줄평 조회 테스트.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/PageHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsSearchList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/SearchCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/SearchCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/main2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ContentsMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" />
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 검색 페이징 추가 및 검색 수정.&#10;&#10;컨텐츠 검색에서 페이징 추가함. 메인 페이지와 검색 리스트 페이지를 나눔. 검색결과가 없는 경우의 뷰 추가.">
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsSearchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsSearchList.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660527220454</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: 컨텐츠 검색 페이징 추가 및 검색 수정.&#10;&#10;컨텐츠 검색에서 페이징 추가함. 메인 페이지와 검색 리스트 페이지를 나눔. 검색결과가 없는 경우의 뷰 추가.">
+      <created>1660878110736</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1660878110736</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,6 +476,7 @@
     <MESSAGE value="style: main, 검색, 상세 페이지에 css 적용.&#10;&#10;main, contentsView에 css 적용함." />
     <MESSAGE value="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경" />
     <MESSAGE value="refactor: controller exception 변경.&#10;&#10;controller exception 제거함." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: controller exception 변경.&#10;&#10;controller exception 제거함." />
+    <MESSAGE value="feat: 컨텐츠 검색 페이징 추가 및 검색 수정.&#10;&#10;컨텐츠 검색에서 페이징 추가함. 메인 페이지와 검색 리스트 페이지를 나눔. 검색결과가 없는 경우의 뷰 추가." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 검색 페이징 추가 및 검색 수정.&#10;&#10;컨텐츠 검색에서 페이징 추가함. 메인 페이지와 검색 리스트 페이지를 나눔. 검색결과가 없는 경우의 뷰 추가." />
   </component>
 </project>
