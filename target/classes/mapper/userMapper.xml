@@ -9,21 +9,30 @@
 <!--        SELECT user_id, user_pwd, in_date,in_user, up_date, up_user FROM USER_SECRET WHERE user_id=#{id};-->
 <!--    </select>-->
 
-    <select id="selectIdDuplCk" parameterType="String" resultType="int">
-        SELECT count(*) FROM USER WHERE user_id=#{id};
-    </select>
     <insert id="insertUser" parameterType="UserDto">
 
-        INSERT INTO USER (user_id, f_nm, l_nm, phone_num, mbti, cnty, email ,nic ,btdt,sex, fav_genre1,fav_genre2,fav_genre3,fav_genre4,fav_genre5, in_date,in_user,up_user)
-            VALUE(#{user_id},#{f_nm},#{l_nm}, #{phone_num},#{mbti},#{cnty},#{email},#{nic},#{btdt},#{sex},#{fav_genre1},#{fav_genre2},#{fav_genre3},#{fav_genre4},#{fav_genre5},now(),#{user_id},#{user_id});
-
-
+        INSERT INTO USER (user_id, f_nm, l_nm, phone_num, cnty, email, nic, btdt, sex, in_date, in_user, up_date, up_user )
+        VALUES (#{user_id}, #{f_nm}, #{l_nm}, #{phone_num},#{cnty},#{email},#{nic},#{btdt},#{sex},now(),#{user_id},now(), #{user_id});
     </insert>
     <insert id="insertUserPwd" parameterType="UserDto">
-        INSERT INTO USER_SECRET (user_id,user_pwd,in_date,in_user,up_date,up_user)VALUES (#{user_id},#{user_pwd},now(),#{user_id},now(),#{user_id});
+        INSERT INTO USER_SECRET VALUE (#{user_id},#{user_pwd},now(),
+            #{user_id},now(),#{user_id});
     </insert>
 
+    <select id="selectUser" resultType="UserDto">
+        SELECT * FROM USER WHERE user_id=#{user_id}
+    </select>
+    <delete id="deleteAll">
+        DELETE FROM USER;
+    </delete>
 
+    <delete id="deleteUser" parameterType="String">
+        DELETE FROM USER WHERE user_id=#{user_id}
+    </delete>
+
+    <select id="selectIdDuplCnt" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM USER WHERE user_id = #{user_id};
+    </select>
 
 
 </mapper>

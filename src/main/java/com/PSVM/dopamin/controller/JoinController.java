@@ -5,6 +5,7 @@ import com.PSVM.dopamin.domain.UserDtoValidator;
 import com.PSVM.dopamin.domain.ValidatorException;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,54 +27,56 @@ public class JoinController {
 
     @ExceptionHandler(ValidatorException.class)
     @ResponseBody
-    public Map catcher1(ValidatorException ve){
+    public Map catcher1(ValidatorException ve) {
         System.out.println(ve.getMessage());
         return ve.getError_msg();
 
     }
+
+
     @InitBinder
-    public void userDtoValidator(WebDataBinder binder){
+    public void userDtoValidator(WebDataBinder binder) {
         binder.setValidator(new UserDtoValidator());
     }
 
 
     @GetMapping("/join")
-    public String joinForm(){
+    public String joinForm() {
         return "joinForm";
     }
 
     @PostMapping("/join")
-    public String join(@Valid @RequestBody UserDto userDto, BindingResult result, String pwdCheck) throws UnsupportedEncodingException, ValidatorException {
-        System.out.println("userDto="+userDto);
-        System.out.println("result="+result);
+    public String join(@Valid @RequestBody UserDto userDto, BindingResult result) throws UnsupportedEncodingException, ValidatorException {
+        System.out.println("userDto=" + userDto);
+        System.out.println("result=" + result);
         System.out.println("");
-        //아이디 중복 체크
-        //비밀번호 암호화 필요
-        //비밀번호 확인
-        //검증 실패면
-        if(result.hasErrors()){
-            throw new ValidatorException(result,"검증 실패");
-        }
+        try {
 
-        if(!pwdCheck.equals(userDto.getUser_pwd())){
-            String msg = URLEncoder.encode("비밀번호를 잘못 입력했습니다.","utf-8");
-            //에러 메세지 응답
-        }
+            //비밀번호 확인
+            //검증 실패면
+            if (result.hasErrors()) {
+                throw new ValidatorException(result, "검증 실패");
+            }
 
-        //회원가입 성공
-        userService.userJoin(userDto);
+            System.out.println("heehehehehe");
+            //회원가입 성공
+            int i = userService.joinUser(userDto);
+            System.out.println("회원가입:"+i);
+            return "success_join";
+        } catch (DuplicateKeyException de) {
+            de.printStackTrace();
+        }
         return "success_join";
-    }
 
+    }
 
     @PostMapping("/idduplck")
     @ResponseBody
-    public int idDuplicateCheck(@RequestBody Map map,BindingResult result){
+    public int idDuplCheck(@RequestBody Map map){
         String user_id = (String) map.get("user_id");
-        System.out.println("id="+user_id);
-        int count = userService.idDuplicateCheck(user_id);
-        System.out.println("count="+count);
-        return count;
-    }
+        System.out.println("userId="+user_id);
 
+        int cnt = userService.idDuplCk(user_id);
+        return cnt;
+    }
 }

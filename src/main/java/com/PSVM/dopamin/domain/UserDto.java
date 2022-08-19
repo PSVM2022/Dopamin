@@ -24,7 +24,6 @@ public class UserDto {
     private String btdt;
     @NotNull
     private byte sex;
-
     private String prf_img;
     private Integer dopa_exp;
     private Integer dopa_point;
@@ -41,24 +40,18 @@ public class UserDto {
     private String up_user;
 
     public UserDto(){}
-    public UserDto(String user_id, String f_nm, String l_nm, String phone_num, String mbti, String cnty, String email, String nic, String btdt, byte sex,
-                   String prf_img, String fav_genre1, String fav_genre2, String fav_genre3, String fav_genre4, String fav_genre5) {
+
+    public UserDto(String user_id, String user_pwd, String f_nm, String l_nm, String phone_num, String cnty, String email, String nic, String btdt, byte sex) {
         this.user_id = user_id;
+        this.user_pwd = user_pwd;
         this.f_nm = f_nm;
         this.l_nm = l_nm;
         this.phone_num = phone_num;
-        this.mbti = mbti;
         this.cnty = cnty;
         this.email = email;
         this.nic = nic;
         this.btdt = btdt;
         this.sex = sex;
-        this.prf_img = prf_img;
-        this.fav_genre1 = fav_genre1;
-        this.fav_genre2 = fav_genre2;
-        this.fav_genre3 = fav_genre3;
-        this.fav_genre4 = fav_genre4;
-        this.fav_genre5 = fav_genre5;
     }
 
     public String getUser_id() {
