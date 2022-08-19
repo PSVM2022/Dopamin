@@ -12,4 +12,6 @@ public interface ContentsDao {
 
     List<ContentsDto> searchSelectCnts(SearchCondition sc);
 
+    int searchResultCnt(SearchCondition sc);
+
 }

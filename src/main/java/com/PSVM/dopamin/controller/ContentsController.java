@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.ContentsDto;
+import com.PSVM.dopamin.domain.PageHandler;
 import com.PSVM.dopamin.domain.ReviewDto;
 import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.ContentsService;
@@ -68,12 +69,18 @@ public class ContentsController {
     @GetMapping("/contents/search/")
     public String getSearchCntsPage(SearchCondition sc, Model model) {
 
+        int totalCnt = contentsService.getSearchResultCnt(sc);
+        model.addAttribute("totalCnt", totalCnt);
+
+        PageHandler pageHandler = new PageHandler(totalCnt, sc);
+
         List<ContentsDto> cntsDtoList = contentsService.getSearchCntsPage(sc);
         model.addAttribute("cntsDtoList", cntsDtoList);
+        model.addAttribute("ph", pageHandler);
 
         System.out.println("검색어: "+ sc);
 
-        return "main";
+        return "contentsSearchList";
     }
 
 }

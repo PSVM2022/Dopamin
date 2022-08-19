@@ -1,27 +1,36 @@
 package com.PSVM.dopamin.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class SearchCondition {
 
-    //검색조건
-/*    private Integer page = 1;
-    private Integer pageSize = 10;
-    private Integer offset = 0;
+    private Integer page = 1;
+    private Integer pageSize = 3;   //한 페이지에 보여줄 컨텐츠 개수
+    private String  keyword = "";
+    //private Integer  offset = 0;
 
- */
-    private String keyword = "";
 
     public SearchCondition() {
-
     }
-    public SearchCondition(String keyword) {
-        /*this.page = page;
-        this.pageSize = pageSize;
 
-         */
+    public SearchCondition(Integer page, Integer pageSize, String keyword) {
+        this.page = page;
+        this.pageSize = pageSize;
         this.keyword = keyword;
     }
 
-    /*
+    public String getQueryString(Integer page) {
+        return UriComponentsBuilder.newInstance()
+                .queryParam("page", page)       //페이지 지정해준 경우
+                .queryParam("pageSize", pageSize)
+                .queryParam("keyword", keyword)
+                .build().toString();
+    }
+
+    public String getQueryString() {
+        return getQueryString(page);
+    }
+
     //getter setter
     public Integer getPage() {
         return page;
@@ -39,14 +48,6 @@ public class SearchCondition {
         this.pageSize = pageSize;
     }
 
-    public Integer getOffset() {
-        return offset;
-    }
-
-    public void setOffset(Integer offset) {
-        this.offset = offset;
-    }
-*/
     public String getKeyword() {
         return keyword;
     }
@@ -55,12 +56,22 @@ public class SearchCondition {
         this.keyword = keyword;
     }
 
+    public Integer getOffset() {
+        return (page-1) * pageSize;
+    }
+
+    /*public void setOffset(Integer offset) {
+        this.offset = offset;
+    }*/
+
+
     @Override
     public String toString() {
         return "SearchCondition{" +
-                "keyword='" + keyword + '\'' +
+                "page=" + page +
+                ", pageSize=" + pageSize +
+                ", keyword='" + keyword + '\'' +
+                ", offset=" + getOffset() +
                 '}';
     }
-
-
 }

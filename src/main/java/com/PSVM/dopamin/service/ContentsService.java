@@ -10,6 +10,9 @@ public interface ContentsService {
     List<ContentsDto> contentsList() ;
 
     ContentsDto contentsView(Integer cnts_id);
+
     List<ContentsDto> getSearchCntsPage(SearchCondition sc);
+
+    int getSearchResultCnt(SearchCondition sc);
 
 }

@@ -20,13 +20,21 @@
     </select>
 
     <!--컨텐츠 검색-->
-    <select id="searchSelectCnts" parameterType="String" resultType="com.PSVM.dopamin.domain.ContentsDto">
-        SELECT
-            REPLACE(#{KEYWORD},' ','')
-        FROM CNTS
-        WHERE(CNTS_TITLE   LIKE CONCAT('%', #{KEYWORD}, '%')
-                  OR   CNTS_SUBTTL   LIKE CONCAT('%', #{KEYWORD}, '%')
-            )AND    CNTS_VISIB_STAT = 1
+    <select id="searchSelectCnts" parameterType="SearchCondition" resultType="com.PSVM.dopamin.domain.ContentsDto">
+        select *,
+               replace(#{keyword},' ','')
+        from CNTS
+        where (cnts_title LIKE concat('%', #{keyword}, '%')
+            or cnts_subttl LIKE concat('%', #{keyword}, '%')) and cnts_visib_stat = 1
+        order by in_date desc
+            LIMIT #{offset}, #{pageSize}
     </select>
 
+    <!--컨텐츠 검색 카운트-->
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        select count(*)
+        from CNTS
+        where (cnts_title LIKE concat('%', #{keyword}, '%')
+            or cnts_subttl LIKE concat('%', #{keyword}, '%')) and cnts_visib_stat = 1
+    </select>
 </mapper>

@@ -45,13 +45,6 @@
             <h2>DOPAMIN</h2>
             <div class="content-preview" style="text-align:center">
 
-                <!-- 검색어 업데이트중 -->
-                <%-- <c:set var="search" value="${sc.keyword != null}"/>
-                <c:set var="search" value="${sc.keyword}"/>
-                <c:if test="${fn: contains(search, search)}">
-                    <p><c:out value="${search}"/>검색 결과 입니다.</p>
-                </c:if>
-                --%>
 
                 <c:forEach var="cnts" items="${cntsDtoList}">
                     <br>

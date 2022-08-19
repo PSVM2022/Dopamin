@@ -27,10 +27,15 @@ public class ContentsServiceImpl implements ContentsService {
         return contentsDao.selectCnts(cnts_id);
     }
 
-    //컨텐츠 검색(제목, 부제목 기준)
+    //컨텐츠 검색 및 페이징(제목, 부제목 기준)
     @Override
     public List<ContentsDto> getSearchCntsPage(SearchCondition sc) {
         return contentsDao.searchSelectCnts(sc);
     }
 
+    //컨텐츠 검색 갯수 카운트
+    @Override
+    public int getSearchResultCnt(SearchCondition sc) {
+        return contentsDao.searchResultCnt(sc);
+    }
 }

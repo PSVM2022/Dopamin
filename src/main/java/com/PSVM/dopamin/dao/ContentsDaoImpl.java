@@ -28,4 +28,10 @@ public class ContentsDaoImpl implements ContentsDao {
     public List<ContentsDto> searchSelectCnts(SearchCondition sc) {
         return session.selectList(namespace+"searchSelectCnts", sc);
     }
+
+    @Override
+    public int searchResultCnt(SearchCondition sc) {
+        return session.selectOne(namespace+"searchResultCnt", sc);
+    }
+
 }
