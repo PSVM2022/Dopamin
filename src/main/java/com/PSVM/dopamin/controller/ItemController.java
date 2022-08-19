@@ -5,6 +5,7 @@ import com.PSVM.dopamin.domain.ItemForm;
 import com.PSVM.dopamin.domain.ItemValidator;
 import com.PSVM.dopamin.domain.ItemValidatorException;
 import com.PSVM.dopamin.service.ItemService;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,21 +31,16 @@ import java.util.Objects;
 public class ItemController {
     @Autowired
     private ItemService itemService;
-    //private ItemValidator itemValidator;
-//    public ItemController(ItemService itemService,ItemValidator itemValidator) {
-//        this.itemService = itemService;
-//        this.itemValidator=itemValidator;
-//    }
-//    @ExceptionHandler(ItemValidatorException.class)
-//    @ResponseBody
-//    public Map catcher1(ItemValidatorException ve){
-//        System.out.println(ve.getMessage());
-//        return ve.getError_msg();
-//    }
-//    @InitBinder
-//    public void ItemValidator(WebDataBinder binder){
-//        binder.addValidators(itemValidator);
-//    }//webdatabinder에 validator 추가
+    @ExceptionHandler(ItemValidatorException.class)
+    @ResponseBody
+    public Map catcher1(ItemValidatorException ve){
+        System.out.println(ve.getMessage());
+        return ve.getError_msg();
+    }
+    @InitBinder
+    public void ItemValidator(WebDataBinder binder){
+        binder.setValidator(new ItemValidator ());
+    }//webdatabinder에 validator 추가
 
     @GetMapping("/")//상정 메인 페이지
     public String item_main(){//각 아이템 항목별 TOP5를 보여주기
@@ -64,6 +60,7 @@ public class ItemController {
                     throw new Exception("보여질 아이템이 없습니다.");
                 }
                 List<ItemDto> list=itemService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
+                System.out.println(list);
                 m.addAttribute("list",list);
                 return "ilist";
             }
@@ -78,7 +75,7 @@ public class ItemController {
         }
     }
     @GetMapping("/item_admin")
-    public String item_admin(ItemDto itemDto, Model m, HttpServletRequest request) throws Exception{
+    public String item_admin(Model m, HttpServletRequest request) throws Exception{
         //관리자가에게만 버튼 보이는데
         //관리자가 아닌 사람이 url로 접근하려려고 할때, 권한 확인해서 "접근할 수 없는 페이지"입니다. 출력
         //여기서 고민해봐야 할 것들이. "접근할 수 없는 페이지"입니다. 라는 메시지를 띄우는게 좋을까?
@@ -109,37 +106,50 @@ public class ItemController {
         return "item_register";
     }
     @PostMapping("/registerItem")
-    public String write(@RequestPart(value="key") ItemForm itemForm, @RequestPart(value="item_img") MultipartFile file, HttpServletRequest request, HttpServletResponse response, Model model,RedirectAttributes redirectAttributes) throws Exception {
-//        if(bindingResult.hasErrors()){
-//            System.out.println("errors={}"+bindingResult);
-//            return "item_register";
-//        }
-        try {
-            //HttpSession session=request.getSession();
-            //String user_id=(String) session.getAttribute("id");
-            //String user_nic=itemService.getUser_nic(user_id);
-            //아직은 세션없으니깐 임시로 만들자
-            String user_id="ldhoon0813";
-            String user_nic="후후른훈";
-            Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
-            map.put("user_id",user_id);
-            map.put("user_nic",user_nic);
-            int result=itemService.registerItem(itemForm,file,map);
-            if(result==1){
-                return "item_admin";
-            }
-            else{
-                throw new Exception("아이템 등록에 실패했습니다.");
-            }
-            //추가로 해야할 것.
-            //1. 이름이 같은 아이템은 세상에 없다. 이름이 같은 아이템을 들어가지 못하게 하기
-            //2. 이미지 미리보기 + 화면에 이미지 띄우기.
-
-        } catch (Exception e) {
-            String msg=e.getMessage();
-            redirectAttributes.addFlashAttribute("msg",msg);
-            return "redirect:/item/registerItem";
+    public String write(@RequestPart(value="item_img",required = false) MultipartFile file, @Valid @RequestPart(value="key") ItemForm itemForm, BindingResult bindingResult) throws Exception{
+        System.out.println(bindingResult);
+        if(bindingResult.hasErrors()){
+            throw new ItemValidatorException(bindingResult,"검증실패11");
         }
+
+        String user_id="ldhoon0813";
+        String user_nic="후후른훈";
+        Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
+        map.put("user_id",user_id);
+        map.put("user_nic",user_nic);
+        int result=itemService.registerItem(itemForm,file,map);
+        if(result==1){
+            return "item_admin";
+        }
+        else{
+            return "item_admin"; //수정 필요
+        }
+//        try {
+//            //HttpSession session=request.getSession();
+//            //String user_id=(String) session.getAttribute("id");
+//            //String user_nic=itemService.getUser_nic(user_id);
+//            //아직은 세션없으니깐 임시로 만들자
+//            String user_id="ldhoon0813";
+//            String user_nic="후후른훈";
+//            Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
+//            map.put("user_id",user_id);
+//            map.put("user_nic",user_nic);
+//            int result=itemService.registerItem(itemForm,file,map);
+//            if(result==1){
+//                return "item_admin";
+//            }
+//            else{
+//                throw new Exception("아이템 등록에 실패했습니다.");
+//            }
+//            //추가로 해야할 것.
+//            //1. 이름이 같은 아이템은 세상에 없다. 이름이 같은 아이템을 들어가지 못하게 하기
+//            //2. 이미지 미리보기 + 화면에 이미지 띄우기.
+//
+//        } catch (Exception e) {
+//            String msg=e.getMessage();
+//            redirectAttributes.addFlashAttribute("msg",msg);
+//            return "redirect:/item/registerItem";
+//        }
     }
     //관리자 인증 구현을 했지만, 아직 세션이 없어 NullpointException Error 터짐
     private boolean check_Admin(HttpServletRequest request) {

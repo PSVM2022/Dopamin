@@ -1,6 +1,5 @@
 package com.PSVM.dopamin.domain;
 
-import com.PSVM.dopamin.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -28,33 +27,28 @@ public class ItemValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "item_nm", "vali_message", vali_message);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "item_dsc", "vali_message", vali_message);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "item_price", "vali_message", vali_message);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "item_img", "vali_message", vali_message);
-
+//
         //이름, 설명, 가격 정규표현식 처리
         //이름: 한글,영어,숫자,띄어쓰기
-        final String item_nm_pattern = "^[가-힣a-sA-Z0-9\\s]*$";
-        //설명: 한글, 영문, 숫자, 특수문자, 띄어쓰기만 가능
-        final String item_dsc_pattern = "^[가-힣a-sA-Z0-9\\s]*$";
+        final String item_nm_pattern = "^[가-힣a-sA-Z0-9\\s]+";
         //가격: 숫자만 가능:
-        final String item_price_pattern = "^[0-9]*$";
-
+        final String item_price_pattern = "^[0-9]+";
+//
         //item_nm의 유효성 검사
         if (!itemForm.getItem_nm().equals("")) {
             boolean nameResult = Pattern.matches(item_nm_pattern, itemForm.getItem_nm());
-            System.out.println("nameResult=" + nameResult);
-            errors.rejectValue("item_nm", "invalid", "한글,영어,숫자만 입력 가능합니다.");
+            if(!nameResult){
+                errors.rejectValue("item_nm", "invalid", "한글,영어,숫자만 입력 가능합니다.");
+            }
         }
-        //item_dsc의 유효성 검사
-        if (!itemForm.getItem_dsc().equals("")) {
-            boolean dscResult = Pattern.matches(item_dsc_pattern, itemForm.getItem_dsc());
-            System.out.println("dscResult=" + dscResult);
-            errors.rejectValue("item_dsc", "invalid", "한글,영어,숫자만 입력 가능합니다.");
-        }
+        //아이템이름 중복검사.
+
         //item_price의 값 검사
-//        if (!itemForm.getItem_price().equals("")) {
-//            boolean priceResult = Pattern.matches(item_price_pattern, itemForm.getItem_price());
-//            System.out.println("priceResult=" + priceResult);
-//            errors.rejectValue("item_price", "invalid", "숫자만 가능합니다.");
-//        }
+        if (!itemForm.getItem_price().equals("")) {
+            boolean priceResult = Pattern.matches(item_price_pattern, itemForm.getItem_price());
+            if(!priceResult){
+                errors.rejectValue("item_price", "invalid", "숫자만 가능합니다.");
+            }
+        }
     }
 }

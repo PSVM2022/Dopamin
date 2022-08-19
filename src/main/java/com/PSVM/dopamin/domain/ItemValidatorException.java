@@ -11,6 +11,7 @@ public class ItemValidatorException extends Exception{
 
     public ItemValidatorException(BindingResult result, String msg){
         super(msg);
+        System.out.println(msg+"1");
         for (FieldError fieldError : result.getFieldErrors()) {
             error_msg.put(fieldError.getField(),fieldError.getDefaultMessage());
         }

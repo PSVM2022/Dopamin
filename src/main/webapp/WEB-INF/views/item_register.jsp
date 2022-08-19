@@ -9,7 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <title>fastcampus</title>
-    <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/menu.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/common/item.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript">
@@ -22,20 +23,19 @@
                     item_dsc:$('#item_dsc').val(),
                     item_price:$('#item_price').val()
                 }
-                var change_data={
-                    list_nm:'분류',
-                    item_grd:'등급',
-                    item_nm:'이름',
-                    item_dsc:'설명',
-                    item_price:'포인트'
-                }
-                for(let key in data){
-                    if(data[key]===''){
-                        alert(change_data[key]+' 입력해주세요.');
-                        return false;
-                    }
-                }
-                console.log(data);
+                // var change_data={
+                //     list_nm:'분류',
+                //     item_grd:'등급',
+                //     item_nm:'이름',
+                //     item_dsc:'설명',
+                //     item_price:'포인트'
+                // }
+                // for(let key in data){
+                //     if(data[key]===''){
+                //         alert(change_data[key]+' 입력해주세요.');
+                //         return false;
+                //     }
+                // }
                 var formData=new FormData();
                 formData.append('key',new Blob([JSON.stringify(data)],{type:"application/json"}));
                 formData.append("item_img",$("#item_img")[0].files[0]);
@@ -44,11 +44,26 @@
                     url:"/psvm/item/registerItem",
                     type:'POST',
                     data:formData,
-                    success: function(data){
+                    success: function(response){
                         alert("성공");
+                        console.log(response);
+                        console.log(response.list_nm);
+                        console.log(response.item_grd);
+                        console.log(response.item_nm);
+                        console.log(response.item_dsc);
+                        console.log(response.item_price);
+                        //console.log(response.item_img);
+
+                         $("#list_nm_msg").html(response.list_nm=(response.list_nm!==undefined ? response.list_nm : ""));
+                        $("#item_grd_msg").html(response.item_grd=(response.item_grd!==undefined ? response.item_grd : ""));
+                        $("#item_nm_msg").html(response.item_nm=(response.item_nm!==undefined ? response.item_nm : ""));
+                        $("#item_dsc_msg").html(response.item_dsc=(response.item_dsc!==undefined ? response.item_dsc : ""));
+                        $("#item_price_msg").html(response.item_price=(response.item_price!==undefined ? response.item_price : ""));
                     },
-                    error:function(data){
-                        alert("실패");
+                    error:function(request,status,error){
+                        console.log("code: " + request.status)
+                        console.log("message: " + request.responseText)
+                        console.log("error: " + error);
                     },
                     cache:false,
                     contentType:false,
@@ -57,6 +72,27 @@
                 })
             })
         })
+        //이미지 미리보기
+        $(document).ready(function(){
+            $("#item_img").on("change",handleImgFileSelect);
+        });
+        function handleImgFileSelect(e){
+            var files=e.target.files;
+            var filesArr=Array.prototype.slice.call(files);
+            var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
+            filesArr.forEach(function(f){
+                if(!f.type.match(reg)){
+                    alert("확장자는 이미지만 가능합니다.");
+                    return;
+                }
+                sel_file=f;
+                var reader=new FileReader();
+                reader.onload=function(e){
+                    $("#img").attr("src",e.target.result);
+                }
+                reader.readAsDataURL(f);
+            })
+        }
 
     </script>
     <style>
@@ -119,6 +155,7 @@
         <option value="skin">스킨</option>
         <option value="deco">꾸미기</option>
     </select>
+    <div id="list_nm_msg" class="msg"></div>
     <br>
     <label id="grade">아이템 등급</label>
     <select id="item_grd" name="item_grd">
@@ -126,15 +163,22 @@
         <option value="에픽">에픽</option>
         <option value="전설">전설</option>
     </select>
+    <div id="item_grd_msg" class="msg"></div>
     <br>
     <label id="name">아이템 이름</label><br>
     <input id="item_nm" name="item_nm" type="text" placeholder="아이템 이름 입력하세요"><br>
+    <div id="item_nm_msg" class="msg"></div>
     <label id="description">아이템 설명</label><br>
     <textarea id="item_dsc" name="item_dsc" cols="50" rows="10"></textarea><br>
+    <div id="item_dsc_msg" class="msg"></div>
     <label id="image">아이템 이미지</label><br>
     <input id="item_img" type="file"><br>
+    <div class="img_wrap">
+        <img id="img" height=300/>
+    </div>
     <label id="price">아이템 포인트</label><br>
     <input id="item_price" name="item_price" type="text" placeholder="아이템 가격 입력하세요"><br>
+    <div id="item_price_msg" class="msg"></div>
     <button type="button" id="registerBtn" class="btn btn-write">등록</button>
 </div>
 </body>

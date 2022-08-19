@@ -1,8 +1,11 @@
 package com.PSVM.dopamin.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+@Component
 public class  ItemDto {
     private Integer item_id;
     private Integer list_id;

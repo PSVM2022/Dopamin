@@ -9,22 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 유저 아이템 조회, 관리자 아이템 메인 완료 - 1&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidatorException.java" afterDir="false" />
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 아이템 등록 완료.&#10;     + 추가구현 사항: 에러처리, 아이템 이름 중복검사,&#10;                  이미지 첨부 시 이미지 미리보기, 아이템 전체보기에서 이미지 띄우기">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/PageHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidatorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidatorException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_admin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/common/item.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/common/item.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,6 +236,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="COMMON_VM_ARGUMENTS" value="-Duser.language=en -Duser.region=us" />
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="dopamin:war exploded">
@@ -364,7 +359,7 @@
       <workItem from="1660151890086" duration="19000" />
       <workItem from="1660527980764" duration="44586000" />
       <workItem from="1660652111922" duration="137000" />
-      <workItem from="1660652418291" duration="91138000" />
+      <workItem from="1660652418291" duration="107772000" />
     </task>
     <task id="LOCAL-00001" summary="아이템 항목별 리스트&#10;신규아이템 등록까지 완료&#10;현재 수정/삭제 진행중">
       <created>1660377240645</created>
@@ -415,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660642774370</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat: 아이템 등록 완료.&#10;     + 추가구현 사항: 에러처리, 아이템 이름 중복검사,&#10;                  이미지 첨부 시 이미지 미리보기, 아이템 전체보기에서 이미지 띄우기">
+      <created>1660901293141</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660901293141</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +449,8 @@
     <MESSAGE value="Test: unversioned file commit" />
     <MESSAGE value="feat: 유저 아이템 조회, 관리자 아이템 메인 완료&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것" />
     <MESSAGE value="feat: 유저 아이템 조회, 관리자 아이템 메인 완료 - 1&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 유저 아이템 조회, 관리자 아이템 메인 완료 - 1&#10;  - 추가 구현해야 할 것: 관리자 권한 확인해서 관리자에게만 버튼 보여지는 것" />
+    <MESSAGE value="feat: 아이템 등록 완료.&#10;     + 추가구현 사항: 에러처리, 아이템 이름 중복검사,&#10;                  이미지 첨부 시 이미지 미리보기, 아이템 전체보기에서 이미지 띄우기" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 아이템 등록 완료.&#10;     + 추가구현 사항: 에러처리, 아이템 이름 중복검사,&#10;                  이미지 첨부 시 이미지 미리보기, 아이템 전체보기에서 이미지 띄우기" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
