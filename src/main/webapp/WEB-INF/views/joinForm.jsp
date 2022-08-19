@@ -58,7 +58,7 @@
                 <input type="text" id="user_id" name="user_id"/>
                 <div id="user_id_msg" class="msg"></div>
 
-<%--                <button type="button" id="idDuplCk">아이디 중복 체크</button>--%>
+                <button type="button" onclick="idDuplCheck()">아이디 중복 체크</button>
 
 
                 <label for="user_pwd">비밀번호</label>
@@ -149,8 +149,36 @@
     <div>2022 PSVM팀</div>
 </div>
 <script>
-    if($('#pwdCheck').val() !== $('#user_pwd')){
-        $('#pwd_check_msg').html("비밀번호를 확인해주세요.")
+    function pwdCheck(){
+        let pwd = document.getElementById('user_pwd');
+        let pwdCheck = document.getElementById('pwdCheck');
+        let pwd_check_msg = document.getElementById('pwd_check_msg');
+        if(pwd.value == pwdCheck.value){
+            pwd_check_msg.innerHTML="비밀번호 일치";
+        }else{
+            pwd_check_msg.style.color = "#ff0000"
+            pwd_check_msg.innerHTML = "비밀번호 불일치";
+        }
+    }
+
+    function idDuplCheck(){
+        $.ajax({
+            type:'POST',       // 요청 메서드
+            url: '/psvm/join/idduplck',  // 요청 URI
+            headers : { "content-type": "application/json"}, // 요청 헤더
+            dataType : 'text', // 전송받을 데이터의 타입
+            data : JSON.stringify({"user_id":$("#user_id")}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+            success : function(response){
+                let cnt = JSON.parse(response);
+                if(cnt=="1"){
+                    alert("이미 사용된 아이디입니다.")
+                }else{
+                    alert("사용 가능한 아이디입니다.")
+                }
+
+            },
+            error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+        });
     }
 
     $("#joinBtn").click(function(){
@@ -184,6 +212,7 @@
                 console.log(error_msg.nic)
                 console.log(error_msg.btdt)
                 console.log(error_msg.sex)
+                console.log(error_msg.id_dupl_msg);
                 // if(error_msg.user_id!=undefined){
                 //     $("#user_id_msg").html(error_msg.user_id=(error_msg.user_id!=undefined ? error_msg.user_id : ""));
                 //

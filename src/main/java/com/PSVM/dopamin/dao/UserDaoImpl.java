@@ -3,6 +3,7 @@ package com.PSVM.dopamin.dao;
 import com.PSVM.dopamin.domain.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -12,20 +13,27 @@ public class UserDaoImpl implements UserDao {
     private SqlSession session;
     private static String namespace = "com.PSVM.dopamin.dao.UserMapper.";
 
-
     @Override
-    public int selectIdDuplCk(String id) {
-        return session.selectOne(namespace+"selectIdDuplCk",id);
-    }
-
-    @Override
-    public int insertUser(UserDto userDto) {
+    public int insertUser(UserDto userDto) throws DuplicateKeyException {
+        System.out.println("in UserDaoImpl insertUser");
         return session.insert(namespace+"insertUser",userDto);
     }
 
     @Override
-    public int insertUserPwd(UserDto userDto) {
+    public int insertUserPwd(UserDto userDto) throws DuplicateKeyException {
+        System.out.println("in UserDaoImpl insertUser");
+
         return session.insert(namespace+"insertUserPwd",userDto);
+    }
+
+    @Override
+    public UserDto selectUser(String user_id) {
+        return session.selectOne(namespace+"selectUser",user_id);
+    }
+
+    @Override
+    public int updateUser(UserDto userDto) {
+        return 0;
     }
 
     @Override
@@ -33,5 +41,14 @@ public class UserDaoImpl implements UserDao {
         return session.delete(namespace+"deleteAll");
     }
 
+    @Override
+    public int deleteUser(String user_id) {
+        return session.delete(namespace+"deleteUser",user_id);
+    }
+
+    @Override
+    public int selectIdDuplCnt(String user_id) {
+        return session.selectOne(namespace+"selectIdDuplCnt",user_id);
+    }
 
 }
