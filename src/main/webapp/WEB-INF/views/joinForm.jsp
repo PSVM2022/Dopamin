@@ -182,6 +182,19 @@
     }
 
     $("#joinBtn").click(function(){
+        //비밀번호 확인
+        let pwd = document.getElementById('user_pwd');
+        let pwdCheck = document.getElementById('pwdCheck');
+        let pwd_check_msg = document.getElementById('pwd_check_msg');
+        if(pwd.value != pwdCheck.value){
+            pwd_check_msg.style.color = "#ff0000"
+            pwd_check_msg.innerHTML = "비밀번호 불일치";
+            return;
+        }else{
+            pwd_check_msg.innerHTML = "";
+        }
+
+
         let user_id = $('#user_id').val();
         let user_pwd = $('#user_pwd').val();
         let f_nm = $('#f_nm').val();
@@ -201,63 +214,36 @@
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(userDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(response){
-                let error_msg = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
-                console.log(error_msg.user_id)
-                console.log(error_msg.user_pwd)
-                console.log(error_msg.f_nm)
-                console.log(error_msg.l_nm)
-                console.log(error_msg.phone_num)
-                console.log(error_msg.cnty)
-                console.log(error_msg.email)
-                console.log(error_msg.nic)
-                console.log(error_msg.btdt)
-                console.log(error_msg.sex)
-                console.log(error_msg.id_dupl_msg);
-                // if(error_msg.user_id!=undefined){
-                //     $("#user_id_msg").html(error_msg.user_id=(error_msg.user_id!=undefined ? error_msg.user_id : ""));
-                //
-                // }else{
-                //     $("#user_id_msg").html("");
-                //
-                // }
-                $("#user_id_msg").html(error_msg.user_id=(error_msg.user_id!==undefined ? error_msg.user_id : ""));
-                $("#user_pwd_msg").html(error_msg.user_pwd=(error_msg.user_pwd!==undefined ? error_msg.user_pwd : ""));
-                $("#f_nm_msg").html(error_msg.f_nm=(error_msg.f_nm!==undefined ? error_msg.f_nm : ""));
-                $("#l_nm_msg").html(error_msg.l_nm=(error_msg.l_nm!==undefined ? error_msg.l_nm : ""));
-                $("#phone_num_msg").html(error_msg.phone_num=(error_msg.phone_num!==undefined ? error_msg.phone_num : ""));
-                $("#cnty_msg").html(error_msg.cnty=(error_msg.cnty!==undefined ? error_msg.cnty : ""));
-                $("#email_msg").html(error_msg.email=(error_msg.email!==undefined ? error_msg.email : ""));
-                $("#nic_msg").html(error_msg.nic=(error_msg.nic!==undefined ? error_msg.nic : ""));
-                $("#btdt_msg").html(error_msg.btdt=(error_msg.btdt!==undefined ? error_msg.btdt : ""));
-                $("#sex_msg").html(error_msg.sex=(error_msg.sex!==undefined ? error_msg.sex : ""));
+                // let error_msg = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
+                console.log(response)
+                console.log(response.user_id)
+                console.log(response.user_pwd)
+                console.log(response.f_nm)
+                console.log(response.l_nm)
+                console.log(response.phone_num)
+                console.log(response.cnty)
+                console.log(response.email)
+                console.log(response.nic)
+                console.log(response.btdt)
+                console.log(response.sex)
+                console.log(response.id_dupl_err);
+
+                $("#user_id_msg").html(response.user_id=(response.user_id!==undefined ? response.user_id : ""));
+                $("#user_id_msg").html(response.user_id=(response.id_dupl_err!==undefined ? response.id_dupl_err : ""));
+                $("#user_pwd_msg").html(response.user_pwd=(response.user_pwd!==undefined ? response.user_pwd : ""));
+                $("#f_nm_msg").html(response.f_nm=(response.f_nm!==undefined ? response.f_nm : ""));
+                $("#l_nm_msg").html(response.l_nm=(response.l_nm!==undefined ? response.l_nm : ""));
+                $("#phone_num_msg").html(response.phone_num=(response.phone_num!==undefined ? response.phone_num : ""));
+                $("#cnty_msg").html(response.cnty=(response.cnty!==undefined ? response.cnty : ""));
+                $("#email_msg").html(response.email=(response.email!==undefined ? response.email : ""));
+                $("#nic_msg").html(response.nic=(response.nic!==undefined ? response.nic : ""));
+                $("#btdt_msg").html(response.btdt=(response.btdt!==undefined ? response.btdt : ""));
+                $("#sex_msg").html(response.sex=(response.sex!==undefined ? response.sex : ""));
             },
             // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
         });
 
     });
-
-//아이디 중복 체크 비동기 처리(아직 사용 안함. 나중에 할것)
-//     $("#idDuplCk").click(function(){
-//         let user_id = $('#user_id').val();
-//         let id = {"user_id":user_id};
-//         $.ajax({
-//             type:'POST',       // 요청 메서드
-//             url: '/psvm/join/idduplck',  // 요청 URI
-//             headers : { "content-type": "application/json"}, // 요청 헤더
-//             dataType : 'text', // 전송받을 데이터의 타입
-//             data : JSON.stringify(id),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-//             success : function(response){
-//                 let count = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
-//                 if(count==0){
-//                     $("#user_id_msg").html("사용 가능한 아이디입니다.");
-//                 }else{
-//                     $("#user_id_msg").html("사용 불가한 아이디입니다.");
-//                 }       // result는 서버가 전송한 데이터
-//             },
-//             // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-//         });
-//
-//     });
 
 </script>
 </body>
