@@ -30,7 +30,7 @@ public class UserServiceImplTest {
     }
     @Test
     @Transactional
-    public void testUserJoin() {
+    public void testJoinUser() {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         //when
@@ -51,7 +51,6 @@ public class UserServiceImplTest {
         //then
         assertEquals(2, rowCnt);
         assertEquals(userDto.getUser_id(),userDto1.getUser_id());
-
     }
     @Test(expected = DuplicateKeyException.class)
     @Transactional
@@ -76,14 +75,33 @@ public class UserServiceImplTest {
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         int rowCnt = userService.joinUser(userDto);
 
-
         //when
         int cnt = userService.idDuplCk(userDto.getUser_id());
 
         //then
-        assertEquals(1, rowCnt);
+        assertEquals(2, rowCnt);
         assertEquals(1, cnt);
     }
 
+    @Test
+    @Transactional
+    public void testIdPwdCheck(){
+
+    }
+
+
+    @Test(expected = NullPointerException.class)
+    public void shouldNullPointerExceptionWhenUserIdDoesntExist(){
+        //given
+        String user_id = "invalid_userId";
+        String user_pwd = "invalid_userPwd";
+
+        //when
+        boolean result = userService.idPwdCheck(user_id, user_pwd);
+
+        //then
+        assertTrue(!result);
+
+    }
 
 }

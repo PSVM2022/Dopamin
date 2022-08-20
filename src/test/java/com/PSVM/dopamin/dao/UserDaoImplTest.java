@@ -36,7 +36,7 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void testInsertUser() {
+    public void insertUser() {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
 
@@ -48,7 +48,7 @@ public class UserDaoImplTest {
 
     @Test(expected = DuplicateKeyException.class)
     @Transactional
-    public void testInsertUserWhenDuplicateUserId() {
+    public void shouldDuplicateKeyExceptionWhenInsertDulicationUserId() {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         //when
@@ -63,7 +63,7 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void testInsertUserPwd() throws Exception {
+    public void insertUserPwd() throws Exception {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         //when
@@ -76,7 +76,8 @@ public class UserDaoImplTest {
 
     @Test(expected = DuplicateKeyException.class)
     @Transactional
-    public void testInsertUserPwdWhenDuplicateUserId(){
+    public void shouldDuplicateKeyExceptionWhenDulicationUserId()
+    {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         //when
@@ -93,7 +94,7 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void testSelectUser(){
+    public void selectUser(){
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
 
@@ -110,7 +111,7 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void testSelectIdDuplCnt(){
+    public void selectIdDuplCnt(){
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
 
@@ -121,6 +122,34 @@ public class UserDaoImplTest {
         //then
         assertEquals(1, cnt);
         assertEquals(0,cnt2);
+    }
+
+    @Test
+    @Transactional
+    public void selectUserPwd(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+
+        //when
+        String actualPwd = userDao.selectUserPwd(userDto.getUser_id());
+        //then
+        assertEquals(1,rowCnt);
+        assertEquals(1,rowCnt2);
+        assertEquals(userDto.getUser_pwd(),actualPwd);
+    }
+
+    @Test
+    @Transactional
+    public void isNullWhenDoesntExistUserId(){
+        //given
+        String invalid_userId = "invalid_userId";
+        //when
+
+        String pwd = userDao.selectUserPwd(invalid_userId);
+        //then
+        assertEquals(null,pwd);
     }
 
 }
