@@ -17,6 +17,8 @@ public interface UserDao {
 
     int selectIdDuplCnt(String user_id);
 
+    String selectUserPwd(String user_id);
+
 
 
 }

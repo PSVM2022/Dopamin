@@ -51,4 +51,9 @@ public class UserDaoImpl implements UserDao {
         return session.selectOne(namespace+"selectIdDuplCnt",user_id);
     }
 
+    @Override
+    public String selectUserPwd(String user_id) {
+        return session.selectOne(namespace+"selectUserPwd",user_id);
+    }
+
 }
