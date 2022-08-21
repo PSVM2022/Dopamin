@@ -31,7 +31,7 @@ public class LoginController {
         if(loginCheck(request)){
             return "redirect:"+toURL;
         }
-        return "loginForm";
+        return "Login/loginForm";
     }
 
 

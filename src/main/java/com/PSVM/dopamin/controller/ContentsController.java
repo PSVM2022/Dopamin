@@ -2,10 +2,8 @@ package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.ContentsDto;
 import com.PSVM.dopamin.domain.PageHandler;
-import com.PSVM.dopamin.domain.ReviewDto;
 import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.ContentsService;
-import com.PSVM.dopamin.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.awt.*;
 import java.util.List;
 
 
@@ -67,7 +64,7 @@ public class ContentsController {
 
         //로그인 되지 않은 경우, 로그인 화면으로 리다이렉트(임시페이지)
         if(session==null) {
-            return "loginAction";
+            return "Contents/loginAction";
         }
 
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
@@ -79,7 +76,7 @@ public class ContentsController {
             throw new RuntimeException(e);
         }
 
-        return "contentsView";
+        return "Contents/contentsView";
     }
 
     //컨텐츠 검색
@@ -97,7 +94,7 @@ public class ContentsController {
 
         System.out.println("검색어: "+ sc);
 
-        return "contentsSearchList";
+        return "Contents/contentsSearchList";
     }
 
 }
