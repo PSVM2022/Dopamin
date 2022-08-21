@@ -6,8 +6,7 @@
     <typeAliases>
         <typeAlias alias="ItemDto" type="com.PSVM.dopamin.domain.ItemDto"/>
         <typeAlias alias="Cart_ItemDto" type="com.PSVM.dopamin.domain.Cart_ItemDto"/>
-<!--        <typeAlias alias="BoardDto" type="com.fastcampus.ch4.domain.BoardDto"/>-->
-<!--        <typeAlias alias="CommentDto" type="com.fastcampus.ch4.domain.CommentDto"/>-->
-<!--        <typeAlias alias="SearchCondition" type="com.fastcampus.ch4.domain.SearchCondition"/>-->
+        <typeAlias alias="BbsDto" type="com.PSVM.dopamin.domain.BbsDto"/>
+        <typeAlias alias="PostDto" type="com.PSVM.dopamin.domain.PostDto"/>
     </typeAliases>
 </configuration>
