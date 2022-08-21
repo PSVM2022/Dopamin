@@ -39,6 +39,11 @@
         <a class="topnav-menu" href="#" onclick='alert("룰렛 한판 돌려요")'>이벤트</a>
         <a class="topnav-menu" href="/psvm/item/" onclick='alert("충동 구매는 당신의 지갑을 얇게 만들수 있습니다.")'>상점</a>
         <form class="topnav-search" action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
+            <select class="search-option" name="option">
+                <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>제목/부제목</option>
+                <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
+                <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
+            </select>
             <input class="topnav-search" type="text" name="keyword" class="search-input" type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요">
             <input class="topnav-search" type="submit" class="search-button" value="검색">
         </form>
