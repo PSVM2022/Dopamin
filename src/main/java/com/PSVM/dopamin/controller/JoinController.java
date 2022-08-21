@@ -45,7 +45,7 @@ public class JoinController {
 
     @GetMapping("/join")
     public String joinForm() {
-        return "joinForm";
+        return "Login/joinForm";
     }
 
     @PostMapping("/idduplck")

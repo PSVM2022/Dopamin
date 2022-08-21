@@ -24,7 +24,7 @@ public class MyPageController {
     public String test(@PathVariable Integer cnts_id, Model m, HttpServletRequest request){
         login(request);
         m.addAttribute("cnts_id","cnts_id");
-        return "testcnts";
+        return "Mypage/testcnts";
     }
 
     public void login(HttpServletRequest request) {
@@ -32,7 +32,7 @@ public class MyPageController {
         //  세션 객체를 얻어오기
         HttpSession session = request.getSession();
         //  세션 객체에 id를 저장
-        session.setAttribute("id", "aaaa");
+        session.setAttribute("id", "eunbi77");
     }
 
     // MyPage 메인 화면
@@ -42,7 +42,7 @@ public class MyPageController {
         String user_id = (String) session.getAttribute("id");
         MyPageDto myPageDto = myPageService.selectMyInfo(user_id);
         m.addAttribute("myPageDto", myPageDto);
-        return "myPageMain";
+        return "Mypage/myPageMain";
     }
 
     //한줄평 리스트 가져오기
@@ -53,7 +53,7 @@ public class MyPageController {
         List<RevwDto> revwDtoList = myPageService.revwList(user_id);
         m.addAttribute("revwDtoList", revwDtoList);
         System.out.println("revwDtoList = " + revwDtoList);
-        return "revw";
+        return "Mypage/revw";
     }
 
     // 평가된 한줄평 가져오기
@@ -64,7 +64,7 @@ public class MyPageController {
         List<RevwDto> revwDtoList = myPageService.revwRtList(user_id);
         m.addAttribute("revwDtoList", revwDtoList);
         System.out.println("revwDtoList = " + revwDtoList);
-        return "revwrt";
+        return "Mypage/revwrt";
     }
 
     //컨텐츠 찜 목록 가져오기
@@ -75,7 +75,7 @@ public class MyPageController {
         List<MyPageCntsDto> cntsDtoList = myPageService.cntsWishList(user_id);
         m.addAttribute("cntsDtoList", cntsDtoList);
         System.out.println("cntsDtoList = " + cntsDtoList);
-        return "cntswish";
+        return "Mypage/cntswish";
     }
 
     //컨텐츠 조회 기록 목록 가져오기
@@ -86,7 +86,7 @@ public class MyPageController {
         List<MyPageCntsDto> cntsDtoList = myPageService.cntsViewList(user_id);
         m.addAttribute("cntsDtoList", cntsDtoList);
         System.out.println("cntsDtoList = " + cntsDtoList);
-        return "cntsview";
+        return "Mypage/cntsview";
     }
 
     //게시글 목록 가져오기
@@ -96,7 +96,7 @@ public class MyPageController {
         String user_id = (String) session.getAttribute("id");
         List<MyPagePostDto> postDtoList = myPageService.postList(user_id);
         m.addAttribute("postDtoList", postDtoList);
-        return "post";
+        return "Mypage/post";
     }
 
 }
