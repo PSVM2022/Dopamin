@@ -1,6 +1,5 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.ContentsDto;
 import com.PSVM.dopamin.domain.ReviewDto;
 import com.PSVM.dopamin.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,6 @@ public class ReviewController {
         model.addAttribute("reviewDtoList", reviewDtoList);
 
 
-        return "contentsView";
+        return "Contents/contentsView";
     }
 }

@@ -43,7 +43,7 @@ public class ItemAdminController {
     @GetMapping("/")//상정 메인 페이지
     public String item_main(){//각 아이템 항목별 TOP5를 보여주기
         //통계 각 항목별 TOP4 가져와 보여주면 됨.
-        return "item";
+        return "Item/item";
     }
     @GetMapping("/list/{order}")
     public String list(@PathVariable String order, Model m, RedirectAttributes redirectAttributes){
@@ -60,7 +60,7 @@ public class ItemAdminController {
                 List<ItemDto> list= itemAdminService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
                 System.out.println(list);
                 m.addAttribute("list",list);
-                return "ilist";
+                return "Item/ilist";
             }
             else{
                 throw new Exception("잘못된 요청입니다");
@@ -89,7 +89,7 @@ public class ItemAdminController {
             m.addAttribute("list_0",list_0);
             m.addAttribute("list_1",list_1);
             m.addAttribute("mode","list");
-            return "item_admin"; //조회와 수정에 사용.
+            return "Item/item_admin"; //조회와 수정에 사용.
             // 조회에 사용시-> mode:list;
             // 수정에 사용시-> mode:change,
         }
@@ -103,7 +103,7 @@ public class ItemAdminController {
             return "redirect:/item/";
         }//관리자가 아니라면 비관리자들한테 이페이지의 존재 유무를 알릴 필요가 없기 때문에
         //item 메인화면으로 돌아간다.
-        return "item_register";
+        return "Item/item_register";
     }
     @PostMapping("/registerItem")
     public String write(@RequestPart(value="item_img",required = false) MultipartFile file, @Valid @RequestPart(value="key") ItemForm itemForm, BindingResult bindingResult) throws Exception{
@@ -119,10 +119,10 @@ public class ItemAdminController {
         map.put("user_nic",user_nic);
         int result= itemAdminService.registerItem(itemForm,file,map);
         if(result==1){
-            return "item_admin";
+            return "Item/item_admin";
         }
         else{
-            return "item_admin"; //수정 필요
+            return "Item/item_admin"; //수정 필요
         }
 //        try {
 //            //HttpSession session=request.getSession();
