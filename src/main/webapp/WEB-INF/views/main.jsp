@@ -15,8 +15,7 @@
     <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png' />">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css' />">
     <link rel="stylesheet" type="text/css" href="<c:url value='css/common/default.css' />">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap');
     </style>
@@ -90,16 +89,11 @@
             class속성이 responsive-content인 div태크 하단부터 태그를 넣어 내용을 작성하시면 됩니다.
         </div>
         <div class="content-teenager-girl-movie"></div>
-
     </div>
 </div>
-
-
 <div class="footer">
     <div>about</div>
     <div>2022 PSVM팀</div>
 </div>
-
 </body>
-
 </html>
