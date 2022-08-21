@@ -33,7 +33,7 @@ public class ContentsServiceImpl implements ContentsService {
         return contentsDao.searchSelectCnts(sc);
     }
 
-    //컨텐츠 검색 갯수 카운트
+    //컨텐츠 검색 갯수 카운트(페이징)
     @Override
     public int getSearchResultCnt(SearchCondition sc) {
         return contentsDao.searchResultCnt(sc);

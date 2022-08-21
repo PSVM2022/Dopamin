@@ -9,8 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 검색 페이징 추가 및 검색 수정.&#10;&#10;컨텐츠 검색에서 페이징 추가함. 메인 페이지와 검색 리스트 페이지를 나눔. 검색결과가 없는 경우의 뷰 추가.">
+    <list default="true" id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="feat: 컨텐츠 평가 mapper, dao 작성&#10;&#10;컨텐츠 평가(좋아요/싫어요) mapper, dao 작성함.">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginAction.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/PageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/PageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ContentsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsSearchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsSearchList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ContentsDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +32,8 @@
         <option value="CSS File" />
         <option value="JUnit4 Test Class" />
         <option value="Interface" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -132,6 +141,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ContentsDaoImplTest.evalCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
+      <option name="METHOD_NAME" value="evalCheck" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ContentsDaoImplTest.searchSelectCnts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
@@ -143,22 +168,6 @@
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
       <option name="METHOD_NAME" value="searchSelectCnts" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ContentsDaoImplTest.selectSearchPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="selectSearchPage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -311,7 +320,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ContentsDaoImplTest.selectSearchPage" />
+      <item itemvalue="JUnit.ContentsDaoImplTest.evalCheck" />
       <item itemvalue="JUnit.ContentsDaoImplTest.selectSearchPageTest" />
       <item itemvalue="JUnit.ContentsDaoImplTest" />
       <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
@@ -320,11 +329,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ContentsDaoImplTest.selectSearchPageTest" />
-        <item itemvalue="JUnit.ContentsDaoImplTest.selectSearchPage" />
         <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
+        <item itemvalue="JUnit.ContentsDaoImplTest.evalCheck" />
         <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
         <item itemvalue="JUnit.ContentsDaoImplTest" />
+        <item itemvalue="JUnit.ContentsDaoImplTest.selectSearchPageTest" />
       </list>
     </recent_temporary>
   </component>
@@ -434,7 +443,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660878110736</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix: 컨텐츠 검색 결과 안내 텍스트 수정.&#10;&#10;컨텐츠 검색결과에 대한 안내 텍스트 수정함. 검색 결과 없는 경우와 있는 경우로 변경.">
+      <created>1660878655447</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1660878655447</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: 컨텐츠 평가 mapper, dao 작성&#10;&#10;컨텐츠 평가(좋아요/싫어요) mapper, dao 작성함.">
+      <created>1661060718747</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1661060718747</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,6 +500,8 @@
     <MESSAGE value="chore: db 경로 변경&#10;&#10;localhost -&gt; psvm 변경" />
     <MESSAGE value="refactor: controller exception 변경.&#10;&#10;controller exception 제거함." />
     <MESSAGE value="feat: 컨텐츠 검색 페이징 추가 및 검색 수정.&#10;&#10;컨텐츠 검색에서 페이징 추가함. 메인 페이지와 검색 리스트 페이지를 나눔. 검색결과가 없는 경우의 뷰 추가." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 검색 페이징 추가 및 검색 수정.&#10;&#10;컨텐츠 검색에서 페이징 추가함. 메인 페이지와 검색 리스트 페이지를 나눔. 검색결과가 없는 경우의 뷰 추가." />
+    <MESSAGE value="fix: 컨텐츠 검색 결과 안내 텍스트 수정.&#10;&#10;컨텐츠 검색결과에 대한 안내 텍스트 수정함. 검색 결과 없는 경우와 있는 경우로 변경." />
+    <MESSAGE value="feat: 컨텐츠 평가 mapper, dao 작성&#10;&#10;컨텐츠 평가(좋아요/싫어요) mapper, dao 작성함." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 평가 mapper, dao 작성&#10;&#10;컨텐츠 평가(좋아요/싫어요) mapper, dao 작성함." />
   </component>
 </project>

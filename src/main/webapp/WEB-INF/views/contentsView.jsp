@@ -38,6 +38,7 @@
 </div>
 
 <div class="content">
+  <br>
   <div style="text-align:center">
 
     <tr>
@@ -66,7 +67,8 @@
           <td>${revw.in_date}</td>
         </c:forEach>
       </div>
-      <!-- 한줄평 -->
+
+      <!-- 한줄평 top 3-->
       <div>
         <div><textarea class="form-control" row = "1"> </textarea></div>
         <div><button class = "btn">등록</button></div>

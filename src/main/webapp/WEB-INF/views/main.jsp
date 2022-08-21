@@ -41,33 +41,34 @@
 
 <div class="content">
     <div class="responsive-content">
-        <div class="content-movie">
-            <h2>DOPAMIN</h2>
-            <div class="content-preview" style="text-align:center">
+        <h2>DOPAMIN</h2>
+        <div class="content-preview" style="text-align:center">
 
 
-                <c:forEach var="cnts" items="${cntsDtoList}">
-                    <br>
-                    <tr>
-                        <div>
-                            <td><a href='/psvm/contents/${cnts.cnts_id}'/>${cnts.cnts_postr_img}</td><br>
-                            <td>${cnts.cnts_title}</td><br>
-                            <td>${cnts.cnts_subttl}</td><br>
-                            <td>${cnts.cnts_op_date}</td><br>
-                            <td>${cnts.cnts_cnty}</td><br>
-                        </div>
-                    </tr>
-                </c:forEach>
-            </div>
+            <c:forEach var="cnts" items="${cntsDtoList}">
+                <br>
+                <tr>
+                    <div>
+                        <td><a href='/psvm/contents/${cnts.cnts_id}'/>${cnts.cnts_postr_img}</td><br>
+                        <td>${cnts.cnts_title}</td><br>
+                        <td>${cnts.cnts_subttl}</td><br>
+                        <td>${cnts.cnts_op_date}</td><br>
+                        <!-- <td>${cnts.cnts_cnty}</td><br>-->
+                    </div>
+                </tr>
+            </c:forEach>
         </div>
+        <br>
     </div>
-</div>
+
+
 
     <i class="fa-brands fa-instagram"></i>
     <i class="fa-brands fa-facebook"></i>
     <i class="fa-brands fa-youtube"></i>
+    <div class="content-preview"></div>
     <div class="content-teenager-girl-movie"></div>
-
+</div>
 
 <div class="footer">
     <div>about</div>

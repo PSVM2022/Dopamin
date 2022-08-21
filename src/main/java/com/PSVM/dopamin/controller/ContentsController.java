@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.util.List;
 
@@ -27,7 +29,16 @@ public class ContentsController {
     //@Autowired
     //ReviewService reviewService;
 
-    //예외처리(최상위)
+    //임시 로그인 세션
+    public void login(HttpServletRequest request) {
+        //임시로 session에 id넣기
+        //  세션 객체를 얻어오기
+        HttpSession session = request.getSession();
+        //  세션 객체에 id를 저장
+        session.setAttribute("id", "sohyeon9253");
+    }
+
+    //예외처리
     @ExceptionHandler(Exception.class)
         public String catcher(Exception e) {
         e.printStackTrace();
@@ -36,7 +47,7 @@ public class ContentsController {
 
     //메인 페이지
     @GetMapping("/")
-    public String contentsList(Model model) {
+    public String contentsList(HttpServletRequest request, Model model) {
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
         model.addAttribute("cntsDtoList", cntsDtoList);
@@ -47,17 +58,23 @@ public class ContentsController {
 
     //컨텐츠 상세 조회
     @GetMapping("/contents/{cnts_id}")
-    public String contentsView(@PathVariable(required = false) Integer cnts_id, Model model) {
-        //if (cnts_id == null)
-          //  return "error";
-        List<ContentsDto> cntsDtoList = contentsService.contentsList();
-        //List<ReviewDto> reviewDtoList = reviewService.getRevwList(cnts_id);
+    public String contentsView(@PathVariable(required = false) Integer cnts_id, HttpServletRequest request, HttpSession session, Model model) {
 
-        //if (cnts_id >= this.cntsDtoList.size() || cnts_id < 0) {
+        //로그인 세션 얻어옴
+        login(request);
+        String user_id = (String) session.getAttribute("id");
+        System.out.println("id = "+ user_id);
+
+        //로그인 되지 않은 경우, 로그인 화면으로 리다이렉트(임시페이지)
+        if(session==null) {
+            return "loginAction";
+        }
+
+        List<ContentsDto> cntsDtoList = contentsService.contentsList();
+
         try {
             ContentsDto contentsDto = contentsService.contentsView(cnts_id);
             model.addAttribute("contentsDto", contentsDto);
-          //  model.addAttribute("reviewDtoList", reviewDtoList);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

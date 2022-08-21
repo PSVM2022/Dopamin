@@ -78,7 +78,7 @@
             <td>${cnts.cnts_title}</td><br>
             <td>${cnts.cnts_subttl}</td><br>
             <td>${cnts.cnts_op_date}</td><br>
-            <td>${cnts.cnts_cnty}</td><br>
+            <!-- <td>${cnts.cnts_cnty}</td><br>-->
           </div>
         </tr>
       </c:forEach>

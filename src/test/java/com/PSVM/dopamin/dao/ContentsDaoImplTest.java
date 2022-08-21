@@ -1,5 +1,6 @@
 package com.PSVM.dopamin.dao;
 
+import com.PSVM.dopamin.domain.CntsEvalDto;
 import com.PSVM.dopamin.domain.ContentsDto;
 import com.PSVM.dopamin.domain.SearchCondition;
 import org.junit.Test;
@@ -11,7 +12,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.ui.Model;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -30,28 +33,5 @@ public class ContentsDaoImplTest {
         assertTrue(contentsDao != null);
         System.out.println("contentsDao = " + list);
     }
-
-    /*
-    //검색 테스트(존재하지 않는 검색어를 입력한 경우)
-    @Test
-    public void searchSelectCnts() throws Exception {
-
-        //검색 페이징 추가하고나서 string 타입으로 바꿔줬음. 오류나면 확인할 것
-        SearchCondition sc = new SearchCondition("1111");
-        List<ContentsDto> list = contentsDao.searchSelectCnts(sc);
-        System.out.println("list: " + list);
-
-        if(list.isEmpty()){
-            System.out.println("입력하신 검색어에 대한 페이지를 찾을 수 없습니다.");
-        }
-    }
-
-    @Test
-    public void selectSearchPageTest() throws Exception {
-
-        SearchCondition sc = new SearchCondition(1, 10, "1");
-        List<ContentsDto> list = contentsDao.selectSearchPage(sc);
-        System.out.println("list: " + list);
-    }*/
 
 }
