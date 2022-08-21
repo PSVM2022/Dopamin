@@ -1,7 +1,8 @@
-package com.PSVM.service;
+package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.BbsDao;
 import com.PSVM.dopamin.domain.BbsDto;
+import com.PSVM.dopamin.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
