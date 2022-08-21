@@ -4,21 +4,19 @@ import com.PSVM.dopamin.domain.ItemDto;
 import com.PSVM.dopamin.domain.ItemForm;
 import com.PSVM.dopamin.domain.ItemValidator;
 import com.PSVM.dopamin.domain.ItemValidatorException;
-import com.PSVM.dopamin.service.ItemService;
-import org.checkerframework.checker.units.qual.A;
+import com.PSVM.dopamin.service.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -28,9 +26,9 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(value="/item")
-public class ItemController {
+public class ItemAdminController {
     @Autowired
-    private ItemService itemService;
+    private ItemAdminService itemAdminService;
     @ExceptionHandler(ItemValidatorException.class)
     @ResponseBody
     public Map catcher1(ItemValidatorException ve){
@@ -55,11 +53,11 @@ public class ItemController {
         //그외 나머지는 예외처리해야함.
         try{
             if(Objects.equals(order,"스킨")||Objects.equals(order,"꾸미기")){
-                int totalCnt=itemService.getCount();
+                int totalCnt= itemAdminService.getCount();
                 if(totalCnt==0){
                     throw new Exception("보여질 아이템이 없습니다.");
                 }
-                List<ItemDto> list=itemService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
+                List<ItemDto> list= itemAdminService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
                 System.out.println(list);
                 m.addAttribute("list",list);
                 return "ilist";
@@ -86,12 +84,14 @@ public class ItemController {
             return "redirect:/item/";
         }
         try{
-            List<ItemDto> list_0=itemService.getStat_0();//상태 0이 비공개
-            List<ItemDto> list_1=itemService.getStat_1();//상태 1이 공개
+            List<ItemDto> list_0= itemAdminService.getStat_0();//상태 0이 비공개
+            List<ItemDto> list_1= itemAdminService.getStat_1();//상태 1이 공개
             m.addAttribute("list_0",list_0);
             m.addAttribute("list_1",list_1);
-            //m.addAttribute("mode","register");
-            return "item_admin"; //읽기와 쓰기에 사용. 쓰기 사용 시 mode=register;
+            m.addAttribute("mode","list");
+            return "item_admin"; //조회와 수정에 사용.
+            // 조회에 사용시-> mode:list;
+            // 수정에 사용시-> mode:change,
         }
         catch(Exception e){
             throw new Exception("잘못된 요청입니다.");
@@ -117,7 +117,7 @@ public class ItemController {
         Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
         map.put("user_id",user_id);
         map.put("user_nic",user_nic);
-        int result=itemService.registerItem(itemForm,file,map);
+        int result= itemAdminService.registerItem(itemForm,file,map);
         if(result==1){
             return "item_admin";
         }
@@ -150,6 +150,63 @@ public class ItemController {
 //            redirectAttributes.addFlashAttribute("msg",msg);
 //            return "redirect:/item/registerItem";
 //        }
+    }
+    @DeleteMapping("/remove/{item_id}")//삭제니깐 delete매핑
+    @ResponseBody
+    public ResponseEntity<String> remove(@PathVariable Integer item_id){
+        try {
+            int row_cnt= itemAdminService.remove(item_id);//삭제 성공 시 1반환
+            if(row_cnt!=1){
+                throw new Exception("Delete Failed");
+            }
+            return new ResponseEntity<>("DEL_OK", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
+        }
+    }
+    @PatchMapping("/noshowtoshow/{item_id}")//비공개를 공개로
+    @ResponseBody
+    public ResponseEntity<String> show(@PathVariable Integer item_id){
+        try {
+            int result= itemAdminService.show(item_id);
+            if(result!=1){
+                throw new Exception("Show Failed");
+            }
+            return new ResponseEntity<>("Show Success",HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Show Failed",HttpStatus.BAD_REQUEST);
+        }
+    }
+    @PatchMapping("/showtonoshow/{item_id}")//공개를 비공개로
+    @ResponseBody
+    public ResponseEntity<String> noShow(@PathVariable Integer item_id){
+        try {
+            int result= itemAdminService.noShow(item_id);
+            if(result!=1){
+                throw new Exception("NoShow Failed");
+            }
+            return new ResponseEntity<>("noshow_success",HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("noshow_fail",HttpStatus.BAD_REQUEST);
+        }
+    }
+    @PatchMapping("/modify/{item_id}")
+    @ResponseBody
+    public ResponseEntity<String> modify(@PathVariable Integer item_id, @RequestBody ItemForm itemForm){
+        itemForm.setItem_id(item_id);
+        try {
+            int result= itemAdminService.modify(itemForm);
+            if(result!=1){
+                throw new Exception("MODIFY FAILED");
+            }
+            return new ResponseEntity<>("MODIFY_OK",HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
+        }
     }
     //관리자 인증 구현을 했지만, 아직 세션이 없어 NullpointException Error 터짐
     private boolean check_Admin(HttpServletRequest request) {

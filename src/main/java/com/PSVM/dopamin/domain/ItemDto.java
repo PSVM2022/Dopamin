@@ -55,6 +55,13 @@ public class  ItemDto {
         this.up_user = up_user;
     }
 
+    public ItemDto(Integer item_id, String item_nm, String item_dsc, BigDecimal item_price) {
+        this.item_id = item_id;
+        this.item_nm = item_nm;
+        this.item_dsc = item_dsc;
+        this.item_price = item_price;
+    }
+
     public Integer getItem_id() {
         return item_id;
     }

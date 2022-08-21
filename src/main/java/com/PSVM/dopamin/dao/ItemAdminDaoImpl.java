@@ -5,16 +5,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 @Repository
-public class ItemDaoImpl {
+public class ItemAdminDaoImpl {
     private final SqlSession sqlSession;
-    String namespace="com.PSVM.dopamin.dao.ItemMapper.";
-
-    public ItemDaoImpl(SqlSession sqlSession) {
+    public ItemAdminDaoImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
+    String namespace="com.PSVM.dopamin.dao.ItemAdminMapper.";
     public int getCount() throws Exception{
         return sqlSession.selectOne(namespace+"item_getCount");
     }//테스트 완료
@@ -38,8 +36,12 @@ public class ItemDaoImpl {
         return sqlSession.insert(namespace+"item_register",itemDto);
     }//테스트 완료 정상작동함.
 
-
-
+    public int remove(Integer item_id) throws Exception {
+        return sqlSession.delete(namespace+"remove_item",item_id);
+    }//테스트 완료 정상작동.
+    public int modify(ItemDto itemDto) {
+        return sqlSession.update(namespace+"modify_item",itemDto);
+    }
 
     public String test_select(String item_name)throws Exception{
         return sqlSession.selectOne(namespace+"test_select",item_name);
@@ -49,27 +51,11 @@ public class ItemDaoImpl {
         return sqlSession.delete(namespace+"test_delete_item",item_name);
     }
 
-//
-//    public void remove(Integer item_id) {
-//        //아이템을 삭제하는게 아니라 상태값을 바꿔주는 것
-//        //상태값 1 아이템 display
-//        //상태값 0 아이템 non-display
-//    }
-//
+    public int ShowToNoShow(Integer item_id) throws Exception{
+        return sqlSession.update(namespace+"ShowToNoShow",item_id);
+    }
 
-//
-
-//
-//    public int getStatus(int item_id) throws Exception{
-//        return sqlSession.selectOne(namespace+"item_getStatus",item_id);
-//    }
-//
-//    public int getUser_stat(String user_id) throws Exception {
-//        return sqlSession.selectOne(namespace + "UserStatus", user_id);
-//    }
-//
-
-//    public ItemDto select(Integer item_id) throws Exception{
-//        return sqlSession.selectOne(namespace+"select",item_id);
-//    }
+    public int NoShowToShow(Integer item_id) throws Exception{
+        return sqlSession.update(namespace+"NoShowToShow",item_id);
+    }
 }

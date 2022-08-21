@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 
 public class ItemForm {
+    private int item_id;
     private String list_nm;
     private String item_grd;
     private String item_nm;
@@ -12,15 +13,25 @@ public class ItemForm {
     private String item_price;
 
     public ItemForm(){}
+
     @Override
     public String toString() {
         return "ItemForm{" +
-                "list_nm='" + list_nm + '\'' +
+                "item_id=" + item_id +
+                ", list_nm='" + list_nm + '\'' +
                 ", item_grd='" + item_grd + '\'' +
                 ", item_nm='" + item_nm + '\'' +
                 ", item_dsc='" + item_dsc + '\'' +
                 ", item_price='" + item_price + '\'' +
                 '}';
+    }
+
+    public int getItem_id() {
+        return item_id;
+    }
+
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
     }
 
     public String getList_nm() {

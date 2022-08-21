@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title>fastcampus</title>
     <link rel="stylesheet" href="<c:url value='/resources/css/menu.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/css/common/item.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/common/item.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript">
@@ -23,23 +23,26 @@
                     item_dsc:$('#item_dsc').val(),
                     item_price:$('#item_price').val()
                 }
-                // var change_data={
-                //     list_nm:'분류',
-                //     item_grd:'등급',
-                //     item_nm:'이름',
-                //     item_dsc:'설명',
-                //     item_price:'포인트'
-                // }
-                // for(let key in data){
-                //     if(data[key]===''){
-                //         alert(change_data[key]+' 입력해주세요.');
-                //         return false;
-                //     }
-                // }
+                var change_data={
+                    list_nm:'분류',
+                    item_grd:'등급',
+                    item_nm:'이름',
+                    item_dsc:'설명',
+                    item_price:'포인트'
+                }
+                console.log(data);
+                for(let key in data){
+                    if(data[key]===''){
+                        alert(change_data[key]+' 입력해주세요.');
+                        return false;
+                    }
+                }
                 var formData=new FormData();
                 formData.append('key',new Blob([JSON.stringify(data)],{type:"application/json"}));
                 formData.append("item_img",$("#item_img")[0].files[0]);
-
+                if(formData.get("item_img")==null){
+                    alert("이미지는 필수 값입니다.");
+                }
                 $.ajax({
                     url:"/psvm/item/registerItem",
                     type:'POST',
@@ -54,7 +57,7 @@
                         console.log(response.item_price);
                         //console.log(response.item_img);
 
-                         $("#list_nm_msg").html(response.list_nm=(response.list_nm!==undefined ? response.list_nm : ""));
+                        $("#list_nm_msg").html(response.list_nm=(response.list_nm!==undefined ? response.list_nm : ""));
                         $("#item_grd_msg").html(response.item_grd=(response.item_grd!==undefined ? response.item_grd : ""));
                         $("#item_nm_msg").html(response.item_nm=(response.item_nm!==undefined ? response.item_nm : ""));
                         $("#item_dsc_msg").html(response.item_dsc=(response.item_dsc!==undefined ? response.item_dsc : ""));

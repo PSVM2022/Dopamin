@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import static org.junit.Assert.*;
 
-public class ItemControllerTest {
+public class ItemAdminControllerTest {
     @Test
     public void write(HttpServletRequest request) throws Exception{
 

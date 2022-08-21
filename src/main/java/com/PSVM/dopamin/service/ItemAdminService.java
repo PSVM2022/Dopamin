@@ -1,7 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.domain.ItemDto;
-import com.PSVM.dopamin.dao.ItemDaoImpl;
+import com.PSVM.dopamin.dao.ItemAdminDaoImpl;
 import com.PSVM.dopamin.domain.ItemForm;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,13 +16,13 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class ItemService {
-    private final ItemDaoImpl itemDaoImpl;
-    public ItemService(ItemDaoImpl itemDaoImpl) {
-        this.itemDaoImpl = itemDaoImpl;
+public class ItemAdminService {
+    private final ItemAdminDaoImpl itemAdminDaoImpl;
+    public ItemAdminService(ItemAdminDaoImpl itemAdminDaoImpl) {
+        this.itemAdminDaoImpl = itemAdminDaoImpl;
     }
     public int getCount() throws Exception{
-        return itemDaoImpl.getCount();
+        return itemAdminDaoImpl.getCount();
     }
 
     public List<ItemDto> getPage(String order) throws Exception{
@@ -33,13 +33,13 @@ public class ItemService {
         else{
             index=2;
         }
-        return itemDaoImpl.getPage(index);
+        return itemAdminDaoImpl.getPage(index);
     }
     public List<ItemDto> getStat_0() throws Exception {
-        return itemDaoImpl.getStat_0();
+        return itemAdminDaoImpl.getStat_0();
     }
     public List<ItemDto> getStat_1() throws Exception {
-        return itemDaoImpl.getStat_1();
+        return itemAdminDaoImpl.getStat_1();
     }
     public int registerItem(ItemForm itemForm, MultipartFile multipartFile, Map map) throws Exception{
         //Controller에서 이미 검증된 정보들이 service로 넘어왔다.
@@ -48,15 +48,23 @@ public class ItemService {
         //전제: 이미지 무조건 있다 -> Controller에서 검사하고 들어왔으니
         System.out.println(multipartFile.getOriginalFilename());
         String save_url=save_File(multipartFile);//파일 저장 //이미지 경로 반환
-        map.put("save_url",save_url);
-        sprint(itemForm);
-        System.out.println(map.get("save_url"));
-        ItemDto itemDto=save_into_ItemDto(itemForm,map);
-        System.out.println(itemDto);
-        int result= itemDaoImpl.registerItem(itemDto);
-        return result;
+        ItemDto itemDto=save_into_ItemDto(itemForm);
+        itemDto.setItem_img((String) map.get("save_url"));
+        itemDto.setIn_user((String)map.get("user_id"));
+        itemDto.setUp_user((String)map.get("user_id"));
+        itemDto.setUser_nic((String)map.get("user_nic"));
+        return itemAdminDaoImpl.registerItem(itemDto);
     }
-    private ItemDto save_into_ItemDto(ItemForm itemForm,Map map) {
+    public int remove(Integer item_id) throws Exception{
+        return itemAdminDaoImpl.remove(item_id);
+    }
+
+    public int modify(ItemForm itemForm) throws Exception{
+        ItemDto itemDto=save_into_ItemDto(itemForm);
+        itemDto.setItem_id(itemForm.getItem_id());
+        return itemAdminDaoImpl.modify(itemDto);
+    }
+    private ItemDto save_into_ItemDto(ItemForm itemForm) {
         ItemDto itemDto = new ItemDto();
         if(itemForm.getList_nm().equals("스킨")){
             itemDto.setList_id(1);
@@ -67,12 +75,7 @@ public class ItemService {
         itemDto.setGrd_nm(itemForm.getItem_grd());
         itemDto.setItem_nm(itemForm.getItem_nm());
         itemDto.setItem_dsc(itemForm.getItem_dsc());
-        itemDto.setItem_img((String) map.get("save_url"));
         itemDto.setItem_price(new BigDecimal(itemForm.getItem_price()));
-        itemDto.setIn_user((String)map.get("user_id"));
-        itemDto.setUp_user((String)map.get("user_id"));
-        itemDto.setUser_nic((String)map.get("user_nic"));
-
         return itemDto;
     }
     private String save_File(MultipartFile multipartFile) {
@@ -103,11 +106,15 @@ public class ItemService {
         String save_url=uploadFolder+'\\'+datePath+'\\'+uploadFileName;
         return save_url;
     }
-
     public String getUser_nic(String user_id) throws Exception {
-        return itemDaoImpl.getUser_nic(user_id);
+        return itemAdminDaoImpl.getUser_nic(user_id);
     }
-    private void sprint(ItemForm itemForm) {
-        System.out.println(itemForm.toString());
+
+    public int noShow(Integer item_id) throws Exception{
+        return itemAdminDaoImpl.ShowToNoShow(item_id);
+    }
+
+    public int show(Integer item_id) throws Exception{
+        return itemAdminDaoImpl.NoShowToShow(item_id);
     }
 }
