@@ -35,7 +35,7 @@
 <div class="content">
   <div class="responsive-content">
     <div class="content-movie">
-      <h2>Lorem Ipsum</h2>
+      <h2>${"cnts_id"}</h2>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
         industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
         and

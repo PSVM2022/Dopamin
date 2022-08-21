@@ -22,8 +22,8 @@ public class MyPageServiceImple implements MyPageService {
     }
 
     @Override
-    public List<RevwDto> revwEvalList(String user_id) {
-        return myPageDao.selectRevwEval(user_id);
+    public List<RevwDto> revwRtList(String user_id) {
+        return myPageDao.selectRevwRt(user_id);
     }
 
     @Override
@@ -43,15 +43,26 @@ public class MyPageServiceImple implements MyPageService {
 
     @Override
     public MyPageDto selectMyInfo(String user_id) {
+        System.out.println("service 도착");
         MyPageDto myPageDto = myPageDao.selectMyInfo(user_id);
+        System.out.println("selectMyInfo dao 성공");
+        myPageDto = myPageDao.selectSkin(user_id);
+        System.out.println("myPageDto = " + myPageDto);
+        System.out.println("myPageDto.gets = " + myPageDto.getItem_img());
 
+        System.out.println("myPageDto.getBtdt() = " + myPageDto.getBtdt());
         //유저의 생년월일 정보를 받아서 나이값 구하고 myPageDto에 넣어주기
-        int birthYear = myPageDto.getBtdt().getYear() + 1900;
+        calAge(myPageDto);
+        //myPageDto에 착용 스킨
+        return myPageDto;
+    }
+
+    public void calAge(MyPageDto myPageDto) {
+        int birthYear = Integer.parseInt(myPageDto.getBtdt().substring(0, 4));
         int curYear = LocalDate.now().getYear();
         int age = (int) (curYear - birthYear + 1) / 10 * 10;
         myPageDto.setAge(age);
-
-        return myPageDto;
     }
+
 
 }

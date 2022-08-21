@@ -22,10 +22,12 @@ public class MyPageDaoImplTest {
     MyPageDao myPageDao;
 
     @Test
-    public void selectRevwEval() throws Exception {
-        List<RevwDto> list = myPageDao.selectRevwEval("eunbi77");
+    public void selectRevwRt() throws Exception {
+        List<RevwDto> list = myPageDao.selectRevwRt("eunbi");
         String title = list.get(0).getCnts_title();
         System.out.println("title = " + title);
+        for (int i = 0; i < list.size(); i++)
+            System.out.println(list.get(i).getUser_id());
         assertTrue(list.size() == 3);
     }
 
@@ -63,16 +65,17 @@ public class MyPageDaoImplTest {
     @Test
     public void selectMyInfo() throws Exception {
         MyPageDto myPageDto = myPageDao.selectMyInfo("eunbi");
-        int birthYear = myPageDto.getBtdt().getYear() + 1900;
+        int birthYear = Integer.parseInt(myPageDto.getBtdt().substring(0, 4));
         System.out.println("birthYear = " + birthYear);
 
-        int curYear =  LocalDate.now().getYear();
+        int curYear = LocalDate.now().getYear();
         System.out.println("curYear = " + curYear);
 
-        int age = (int) (curYear - birthYear + 1) / 10 * 10;;
+        int age = (int) (curYear - birthYear + 1) / 10 * 10;
+        ;
         assertTrue(age == 20);
 
-        assertTrue(myPageDto.getSex()==0);
+        assertTrue(myPageDto.getSex() == 0);
     }
 
 }

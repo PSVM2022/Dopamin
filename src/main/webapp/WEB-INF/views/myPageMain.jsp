@@ -34,8 +34,12 @@
 
 <div class="content">
 	<div class="responsive-content">
+		<div class="skin">
+			<img src="${myPageDto.skinUrl == null ? 'https://dummyimage.com/1200X200/ff00fb/053bff&text=default-skin' : myPageDto.skinUrl}" >
+		</div>
 		<div class="myInfo">
-			<h1>${myPageDto.nic}님은 ${myPageDto.age}대 ${myPageDto.sex == 0 ? '여성' : '남성'}입니다. </h1>
+			<img src="${myPageDto.prf_img}">
+			<h1>${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를 좋아하는 ${myPageDto.age}대 ${myPageDto.sex == 0 ? '여성' : '남성'}입니다. </h1>
 			<h4>dopa_exp = ${myPageDto.dopa_exp}</h4>
 			<h4>dopa_point = ${myPageDto.dopa_point}</h4>
 			<button href="#" onclick='alert("회원 정보 변경")'>회원 정보 변경</button>
@@ -43,25 +47,16 @@
 		</div>
 		<div class="box">
 			<h2>활동기록</h2>
-			<button onclick="location.href='/psvm/mypage/revw/${user_id}'">컨텐츠 한줄평</button>
-			<button onclick="location.href='/dopamin/mypage/revweval/${user_id}'">좋아요 누른 컨텐츠 한줄평</button>
-			<button onclick="location.href='/dopamin/mypage/cntswish/${user_id}'">컨텐츠 찜</button>
-			<button onclick="location.href='/dopamin/mypage/cntsview/${user_id}'">컨텐츠 조회기록</button>
-			<button onclick="location.href='/dopamin/mypage/post/${user_id}'">작성한 게시글 목록</button>
+			<button onclick="location.href='/psvm/mypage/revw'">컨텐츠 한줄평</button>
+			<button onclick="location.href='/psvm/mypage/revwrt'">좋아요 누른 컨텐츠 한줄평</button>
+			<button onclick="location.href='/psvm/mypage/cntswish'">컨텐츠 찜</button>
+			<button onclick="location.href='/psvm/mypage/cntsview'">컨텐츠 조회기록</button>
+			<button onclick="location.href='/psvm/mypage/post'">작성한 게시글 목록</button>
 		</div>
 		<div class="box">
 			<h2>도파민 아이템</h2>
 			<button href="#" onclick='alert("결제 내역 추가")'>결제 내역</button>
 			<button href="#" onclick='alert("보유 아이템 추가")'>내 아이템</button>
-		</div>
-
-		<div>
-			<h3>스킨 프로필 이미지 구현</h3>
-			<h3>스킨 프로필 클릭하면 변경할 수 있도록 내 아이템으로 이동</h3>
-			<h3>회원정보 변경 , 결제 내역, 내 아이템 구현</h3>
-			<h3>한줄 유저 소개에 영화 장르 넣기</h3>
-			<h3></h3>
-			<h3></h3>
 		</div>
 
 		<i class="fa-brands fa-instagram"></i>

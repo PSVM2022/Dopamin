@@ -1,7 +1,5 @@
 package com.PSVM.dopamin.domain;
 
-import java.util.Date;
-
 public class MyPageDto {
     private String user_id;
     private String prf_img; //프로필 이미지 url
@@ -9,13 +7,13 @@ public class MyPageDto {
     private Integer dopa_exp;   //도파 exp
     private Integer dopa_point; //도파 포인트
     private String fav_genre1;    // 선호 장르
-    private Date btdt;           //유저 생년월일
+    private String btdt;           //유저 생년월일
     private Integer age;        // 유저 나이
     private Integer sex;        // 유저 성별
-    private Integer item_id;    // 착용중인 보유 스킨
+    private String item_img;    // 착용중인 보유 스킨
 
-    public MyPageDto() {}
-    public MyPageDto(String user_id, String prf_img, String nic, Integer dopa_exp, Integer dopa_point, String fav_genre1, Date btdt, Integer age, Integer sex, Integer item_id) {
+    public MyPageDto(){}
+    public MyPageDto(String user_id, String prf_img, String nic, Integer dopa_exp, Integer dopa_point, String fav_genre1, String btdt, Integer age, Integer sex, String item_img) {
         this.user_id = user_id;
         this.prf_img = prf_img;
         this.nic = nic;
@@ -25,7 +23,7 @@ public class MyPageDto {
         this.btdt = btdt;
         this.age = age;
         this.sex = sex;
-        this.item_id = item_id;
+        this.item_img = item_img;
     }
 
     public String getUser_id() {
@@ -76,11 +74,11 @@ public class MyPageDto {
         this.fav_genre1 = fav_genre1;
     }
 
-    public Date getBtdt() {
+    public String getBtdt() {
         return btdt;
     }
 
-    public void setBtdt(Date btdt) {
+    public void setBtdt(String btdt) {
         this.btdt = btdt;
     }
 
@@ -100,11 +98,11 @@ public class MyPageDto {
         this.sex = sex;
     }
 
-    public Integer getItem_id() {
-        return item_id;
+    public String getItem_img() {
+        return item_img;
     }
 
-    public void setItem_id(Integer item_id) {
-        this.item_id = item_id;
+    public void setItem_img(String item_img) {
+        this.item_img = item_img;
     }
 }

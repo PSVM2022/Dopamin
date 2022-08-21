@@ -10,7 +10,7 @@ import java.util.List;
 public interface MyPageService {
     List<RevwDto> revwList(String user_id) throws Exception;
 
-    List<RevwDto> revwEvalList(String user_id);
+    List<RevwDto> revwRtList(String user_id);
 
     List<MyPageCntsDto> cntsWishList(String user_id);
 

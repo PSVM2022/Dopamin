@@ -41,7 +41,7 @@
         <div>
             <h1> 내가 좋아요 누른 한줄평 모아보기 </h1>
         </div>
-        <div class="revweval">
+        <div class="revwrt">
             <c:forEach var="revw" items="${revwDtoList}">
                 <br>
                 <c:choose>
