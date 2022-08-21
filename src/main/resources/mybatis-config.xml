@@ -13,5 +13,9 @@
         <typeAlias alias="MyPagePostDto" type="com.PSVM.dopamin.domain.MyPagePostDto"/>
         <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
         <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
+<!--        <typeAlias alias="BoardDto" type="com.fastcampus.ch4.domain.BoardDto"/>-->
+<!--        <typeAlias alias="CommentDto" type="com.fastcampus.ch4.domain.CommentDto"/>-->
+
+        <typeAlias alias="SearchCondition" type="com.PSVM.dopamin.domain.SearchCondition"/>
     </typeAliases>
 </configuration>

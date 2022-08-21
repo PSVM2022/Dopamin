@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.PSVM.dopamin.dao.ContentsMapper">
+    <!-- parameterType="int" ; java.lang.Integer의 alias타입, mybatis내부적으로 적용됨 전체보기에서 resultType="map" 아님, parameterType=int없어도 됨 -->
+
+    <!--컨텐츠 전체 읽어오기-->
+    <select id="selectAllCnts"  resultType="com.PSVM.dopamin.domain.ContentsDto">
+        select *
+        from CNTS
+        where cnts_visib_stat = 1
+    </select>
+
+    <!--컨텐츠 상세 조회 읽어오기-->
+    <select id="selectCnts" parameterType="int" resultType="com.PSVM.dopamin.domain.ContentsDto">
+        select *
+        from CNTS
+        where cnts_id = #{cnts_id} and cnts_visib_stat = 1
+    </select>
+
+    <!--컨텐츠 검색-->
+    <select id="searchSelectCnts" parameterType="SearchCondition" resultType="com.PSVM.dopamin.domain.ContentsDto">
+        select *,
+               replace(#{keyword},' ','')
+        from CNTS
+        where (cnts_title LIKE concat('%', #{keyword}, '%')
+            or cnts_subttl LIKE concat('%', #{keyword}, '%')) and cnts_visib_stat = 1
+        order by in_date desc
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!--컨텐츠 검색 개수 카운트-->
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        select count(*)
+        from CNTS
+        where (cnts_title LIKE concat('%', #{keyword}, '%')
+            or cnts_subttl LIKE concat('%', #{keyword}, '%')) and cnts_visib_stat = 1
+    </select>
+
+
+    <!--평가 기록 있는지 확인-->
+    <select id="evalCheck" parameterType="map" resultType="CntsEvalDto">
+        select *
+        from CNTS_RT
+        where cnts_id = #{cnts_id}
+          and user_id = #{user_id}
+    </select>
+
+    <!--총좋아요 개수-->
+    <select id="selectLikeCnt"  resultType="int">
+        select count(*)
+        from CNTS_RT
+        where cnts_id = #{cnts_id} and cnts_eval=1
+    </select>
+
+    <!--총싫어요 개수-->
+    <select id="selectDislikeCnt" resultType="int">
+        select count(*)
+        from CNTS_RT
+        where cnts_id = #{cnts_id} and cnts_eval=0
+    </select>
+
+    <!--좋아요 insert-->
+    <insert id="insertLike" parameterType="CntsEvalDto">
+        insert INTO cnts_rt
+        (cnts_id, user_id, cnts_eval, in_date, in_user, up_user)
+        values (#{cnts_id},#{user_id}, 1, now(), #{user_id}, #{user_id})
+    </insert>
+
+    <!--싫어요 insert-->
+    <insert id="insertDislike" parameterType="CntsEvalDto">
+        insert INTO cnts_rt
+            (cnts_id, user_id, cnts_eval, in_date, in_user, up_user)
+        values (#{cnts_id},#{user_id}, 0, now(), #{user_id}, #{user_id})
+    </insert>
+
+    <!--컨텐츠 평가 delete-->
+    <delete id="deleteCntsEval">
+        delete from cnts_rt where cnts_id = #{cnts_id} and user_id=#{user_id} and cnts_eval
+    </delete>
+
+</mapper>
