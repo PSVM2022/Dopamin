@@ -8,5 +8,9 @@
         <typeAlias alias="Cart_ItemDto" type="com.PSVM.dopamin.domain.Cart_ItemDto"/>
         <typeAlias alias="BbsDto" type="com.PSVM.dopamin.domain.BbsDto"/>
         <typeAlias alias="PostDto" type="com.PSVM.dopamin.domain.PostDto"/>
+        <typeAlias alias="RevwDto" type="com.PSVM.dopamin.domain.RevwDto"/>
+        <typeAlias alias="MyPageCntsDto" type="com.PSVM.dopamin.domain.MyPageCntsDto"/>
+        <typeAlias alias="MyPagePostDto" type="com.PSVM.dopamin.domain.MyPagePostDto"/>
+        <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
     </typeAliases>
 </configuration>

@@ -29,4 +29,6 @@
 
 	<context:component-scan base-package="com.PSVM.dopamin"/>
 
+	<view-controller path="/" view-name="error"/>
+
 </beans:beans>
