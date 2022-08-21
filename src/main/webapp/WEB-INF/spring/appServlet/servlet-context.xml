@@ -21,8 +21,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.PSVM.dopamin"/>
+	<beans:bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10000000"></beans:property>
+		<beans:property name="maxInMemorySize" value="100000"></beans:property>
+		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
+	</beans:bean>
 
-	<view-controller path="/" view-name="index"/>
+	<context:component-scan base-package="com.PSVM.dopamin"/>
 
 </beans:beans>
