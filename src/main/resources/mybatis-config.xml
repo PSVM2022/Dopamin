@@ -12,5 +12,6 @@
         <typeAlias alias="MyPageCntsDto" type="com.PSVM.dopamin.domain.MyPageCntsDto"/>
         <typeAlias alias="MyPagePostDto" type="com.PSVM.dopamin.domain.MyPagePostDto"/>
         <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
+        <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
     </typeAliases>
 </configuration>
