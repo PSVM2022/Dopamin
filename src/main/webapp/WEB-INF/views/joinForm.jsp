@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page session="false"%>
 <html>
 <html lang="ko">
@@ -208,39 +207,43 @@
         let userDto = {"user_id":user_id, "user_pwd":user_pwd, "f_nm": f_nm, "l_nm":l_nm, "phone_num" :phone_num,
             "cnty":cnty, "email":email, "nic" : nic, "btdt":btdt, "sex":sex};
         $.ajax({
-            type:'POST',       // 요청 메서드
-            url: '/psvm/join/join',  // 요청 URI
-            headers : { "content-type": "application/json"}, // 요청 헤더
-            dataType : 'text', // 전송받을 데이터의 타입
-            data : JSON.stringify(userDto),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+            type:'POST',
+            url: '/psvm/join/join',
+            headers : { "content-type": "application/json"},
+            dataType : 'text',
+            data : JSON.stringify(userDto),
             success : function(response){
-                // let error_msg = JSON.parse(response);    // 서버로부터 응답이 도착하면 호출될 함수
-                console.log(response)
-                console.log(response.user_id)
-                console.log(response.user_pwd)
-                console.log(response.f_nm)
-                console.log(response.l_nm)
-                console.log(response.phone_num)
-                console.log(response.cnty)
-                console.log(response.email)
-                console.log(response.nic)
-                console.log(response.btdt)
-                console.log(response.sex)
-                console.log(response.id_dupl_err);
+                let result = JSON.parse(response);
+                if(result.successJoin!==undefined){
+                    alert(result.successJoin);
+                    location.href="/psvm/login/login";
+                }
+                console.log(result)
+                console.log(result.user_id)
+                console.log(result.user_pwd)
+                console.log(result.f_nm)
+                console.log(result.l_nm)
+                console.log(result.phone_num)
+                console.log(result.cnty)
+                console.log(result.email)
+                console.log(result.nic)
+                console.log(result.btdt)
+                console.log(result.sex)
+                console.log(result.id_dupl_err);
 
-                $("#user_id_msg").html(response.user_id=(response.user_id!==undefined ? response.user_id : ""));
-                $("#user_id_msg").html(response.user_id=(response.id_dupl_err!==undefined ? response.id_dupl_err : ""));
-                $("#user_pwd_msg").html(response.user_pwd=(response.user_pwd!==undefined ? response.user_pwd : ""));
-                $("#f_nm_msg").html(response.f_nm=(response.f_nm!==undefined ? response.f_nm : ""));
-                $("#l_nm_msg").html(response.l_nm=(response.l_nm!==undefined ? response.l_nm : ""));
-                $("#phone_num_msg").html(response.phone_num=(response.phone_num!==undefined ? response.phone_num : ""));
-                $("#cnty_msg").html(response.cnty=(response.cnty!==undefined ? response.cnty : ""));
-                $("#email_msg").html(response.email=(response.email!==undefined ? response.email : ""));
-                $("#nic_msg").html(response.nic=(response.nic!==undefined ? response.nic : ""));
-                $("#btdt_msg").html(response.btdt=(response.btdt!==undefined ? response.btdt : ""));
-                $("#sex_msg").html(response.sex=(response.sex!==undefined ? response.sex : ""));
+                $("#user_id_msg").html(result.user_id=(result.user_id!==undefined ? result.user_id : ""));
+                $("#user_id_msg").html(result.user_id=(result.id_dupl_err!==undefined ? result.id_dupl_err : ""));
+                $("#user_pwd_msg").html(result.user_pwd=(result.user_pwd!==undefined ? result.user_pwd : ""));
+                $("#f_nm_msg").html(result.f_nm=(result.f_nm!==undefined ? result.f_nm : ""));
+                $("#l_nm_msg").html(result.l_nm=(result.l_nm!==undefined ? result.l_nm : ""));
+                $("#phone_num_msg").html(result.phone_num=(result.phone_num!==undefined ? result.phone_num : ""));
+                $("#cnty_msg").html(result.cnty=(result.cnty!==undefined ? result.cnty : ""));
+                $("#email_msg").html(result.email=(result.email!==undefined ? result.email : ""));
+                $("#nic_msg").html(result.nic=(result.nic!==undefined ? result.nic : ""));
+                $("#btdt_msg").html(result.btdt=(result.btdt!==undefined ? result.btdt : ""));
+                $("#sex_msg").html(result.sex=(result.sex!==undefined ? result.sex : ""));
             },
-            // error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+            error   : function(){ alert("error") }
         });
 
     });
