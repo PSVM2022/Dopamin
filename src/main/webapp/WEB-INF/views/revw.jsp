@@ -42,6 +42,9 @@
             <h1> 내가 작성한 한줄평 모아보기 </h1>
         </div>
         <div class="revw">
+            <tr>
+                <th></th>
+            </tr>
             <c:forEach var="revw" items="${revwDtoList}">
                 <br>
                 <c:choose>

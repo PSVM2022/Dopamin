@@ -42,30 +42,43 @@
             <h1> 찜 누른 컨텐츠 모아보기 </h1>
         </div>
         <div class="cnts">
-            <c:forEach var="cnts" items="${cntsDtoList}">
-                <br>
-                <c:choose>
-                    <c:when test="${cnts.cnts_visib_stat eq 0}">
-                        <tr>
-                            <td> 가려진 컨텐츠 입니다.</td>
-                        </tr>
-                        <br>
-                    </c:when>
-                    <c:otherwise>
-                        <tr>
-                            <td>${cnts.cnts_postr_img}</td>
-                        </tr>
-                        <br>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
+            <c:choose>
+                <c:when test="${empty cntsDtoList}">
+                    <div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6w87nBO1Els6CpW4xtA5TgpqvYMU3CB_F5g&usqp=CAU">
+                        <h3>아직 평가하신 작품이 없어요!</h3>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="cnts" items="${cntsDtoList}">
+                        <c:choose>
+                            <c:when test="${cnts.cnts_visib_stat eq 0}">
+                                <ul>
+                                    <li>
+                                        <a href="#" onclick='alert("비공개 처리된 컨텐츠 입니다.")'>
+                                            <div><img src="https://dummyimage.com/138x202/000/fff&text=hidden-contents">
+                                            </div>
+                                            <div>비공개 컨텐츠</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <ul>
+                                    <li>
+                                        <a href='contents/${cnts.cnts_id}'>
+                                            <div><img src="${cnts.cnts_postr_img}"></div>
+                                            <div>${cnts.cnts_title}</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
         </div>
 
-        <div>
-            <h3>cnts poster 누르면 cnts 상세 페이지로 이동 추가</h3>
-            <h3> </h3>
-
-        </div>
         <div>
             <i class="fa-brands fa-instagram"></i>
             <i class="fa-brands fa-facebook"></i>

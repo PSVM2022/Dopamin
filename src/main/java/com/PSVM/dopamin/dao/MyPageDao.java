@@ -10,7 +10,7 @@ import java.util.List;
 public interface MyPageDao {
     List<RevwDto> selectRevw(String user_id) throws Exception;
 
-    List<RevwDto> selectRevwEval(String user_id);
+    List<RevwDto> selectRevwRt(String user_id);
 
     List<MyPageCntsDto> selectCntsWish(String user_id);
 

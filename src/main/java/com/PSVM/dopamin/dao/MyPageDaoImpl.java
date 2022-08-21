@@ -24,8 +24,8 @@ public class MyPageDaoImpl implements MyPageDao {
     }
 
     @Override
-    public List<RevwDto> selectRevwEval(String user_id) {
-        return session.selectList(namespace + "selectrevwEval", user_id);
+    public List<RevwDto> selectRevwRt(String user_id) {
+        return session.selectList(namespace + "selectrevwRt", user_id);
     }
 
     @Override
@@ -40,12 +40,13 @@ public class MyPageDaoImpl implements MyPageDao {
 
     @Override
     public List<MyPagePostDto> selectPost(String user_id) {
-        return session.selectList(namespace = "selectPost", user_id);
+        return session.selectList(namespace + "selectPost", user_id);
     }
 
     @Override
     public MyPageDto selectMyInfo(String user_id) {
-        return session.selectOne(namespace = "selectUserInfo", user_id);
+        return session.selectOne(namespace + "selectUserInfo", user_id);
     }
+
 
 }
