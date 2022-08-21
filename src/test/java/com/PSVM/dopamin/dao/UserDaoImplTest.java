@@ -63,7 +63,7 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void insertUserPwd() throws Exception {
+    public void testInsertUserPwd() throws Exception {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         //when
@@ -111,9 +111,11 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void selectIdDuplCnt(){
+    public void selectIdDuplicateCount(){
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        userDao.insertUser(userDto);
+        userDao.insertUserPwd(userDto);
 
         //when
         int cnt = userDao.selectIdDuplCnt(userDto.getUser_id());
@@ -126,7 +128,7 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void selectUserPwd(){
+    public void testSelectUserPwd(){
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         int rowCnt = userDao.insertUser(userDto);

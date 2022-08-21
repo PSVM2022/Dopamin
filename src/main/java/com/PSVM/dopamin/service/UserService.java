@@ -11,4 +11,6 @@ public interface UserService {
     UserDto getUser(String user_id);
 
     int idDuplCk(String user_id);
+
+    int withdrawUser(String user_id);
 }

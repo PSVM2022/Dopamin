@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.net.URLDecoder" %>
 <%@ page session="false"%>
 
 <html>
@@ -32,7 +33,7 @@
         <a class="topnav-menu" href="#" onclick='alert("인기작 페이지로 이동")'>인기작</a>
         <a class="topnav-menu" href="#" onclick='alert("커뮤니티에서 게시판봐요")'>커뮤니티</a>
         <a class="topnav-menu" href="#" onclick='alert("룰렛 한판 돌려요")'>이벤트</a>
-        <a class="topnav-menu" href="<c:url value="/login/login"/>" onclick='alert("로그인 페이지로 이동")'>로그인</a>
+        <a class="topnav-menu" href="<c:url value="/login/login"/>">로그인</a>
     </div>
 </div>
 
@@ -48,9 +49,8 @@
             <c:if test="${empty param.id}">
                 <input type="text" name="id" placeholder="아이디 입력" autofocus>
             </c:if>
-
             <input type="password" name="pwd" placeholder="비밀번호">
-            <input name="toURL" value="${param.toURL}">
+            <input name="toURL" value="${param.toURL}" placeholder="그전 url정보 담기">
             <div id="msg">
                 <c:if test="${not empty param.msg}">
                     <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg,"utf-8")}</i>

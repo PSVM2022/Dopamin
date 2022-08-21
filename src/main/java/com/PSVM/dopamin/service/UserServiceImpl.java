@@ -14,12 +14,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean idPwdCheck(String id, String pwd) throws NullPointerException{
+        System.out.println("call idPwdCheck method in UserServiceImpl ");
         String user_pwd = userDao.selectUserPwd(id);
         //비밀번호 pwd 를 암호화해서 user_pwd와 체크
         //비밀번호 암호화 메서드 호출. pwd는 암호화된 pwd로 바꿔줘야함.
         if(user_pwd==null) {
-            throw new NullPointerException("user doesn't exist");
+            System.out.println("user_pwd is null");
+            throw new NullPointerException("User doesn't exist");
         }
+        System.out.println("id, pwd 일치?? "+pwd.equals(user_pwd));
         return pwd.equals(user_pwd);
     }
 
@@ -27,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = DuplicateKeyException.class)
     public int joinUser(UserDto userDto) throws DuplicateKeyException{
-        System.out.println("in ServiceImpl");
+        System.out.println("call joinUser method in ServiceImpl");
         //비밀번호 암호화 메서드 호출 필요
         int rowCnt1 = userDao.insertUser(userDto);
         int rowCnt2 = userDao.insertUserPwd(userDto);
@@ -42,6 +45,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int idDuplCk(String user_id) {
         return userDao.selectIdDuplCnt(user_id);
+    }
+
+    @Override
+    public int withdrawUser(String user_id) {
+        return userDao.deleteUser(user_id);
     }
 
 }

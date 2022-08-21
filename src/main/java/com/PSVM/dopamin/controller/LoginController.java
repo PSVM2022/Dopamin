@@ -3,7 +3,7 @@ package com.PSVM.dopamin.controller;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,17 +46,25 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(String id, String pwd, String toURL, HttpServletRequest request) throws Exception {
-//        id, pwd 불일치, 로그인 실패
-        if(!userService.idPwdCheck(id,pwd)){
-            String msg = URLEncoder.encode("아이디 또는 비밀번호를 잘못 입력했습니다.","utf-8");
-//            return "redirect:/login/login?msg="+msg;
-            return "forward:/login/login?msg="+msg+"&id="+id;
+    public String login(String id, String pwd, String toURL, HttpServletRequest request, Model model) throws Exception {
+        try{
+            //아이디, 비밀번호 일치 확인
+            boolean result = userService.idPwdCheck(id,pwd);
+            if(!result){
+                throw new NullPointerException("존재하지 않는 유저입니다.");
+            }
+        }catch (NullPointerException ne){
+            System.out.println("에러메세지="+ne.getMessage());
+            String msg = URLEncoder.encode(" 아이디 또는 비밀번호를 잘못 입력했습니다.\n" +
+                    "입력하신 내용을 다시 확인해주세요.","utf-8");
+            model.addAttribute("id",id);
+            return "redirect:/login/login?msg="+msg;
+
         }
 //        id, pwd 일치하면 로그인 성공
 //        세션 생성
         HttpSession session = request.getSession();
-        //  세션 객체에 id를 저장
+        //  세션 객체에 저장할 정보 - user_id, 장바구니_id, 유저 상태(관리자인지 일반유저인지), 설문조사 했는지 안했는지 여부
         session.setAttribute("id", id);
 
         toURL = toURL==null || toURL.equals("") ? "/" : toURL;
@@ -65,6 +73,9 @@ public class LoginController {
 
     }
     private boolean loginCheck(HttpServletRequest request){
+
+
+
         HttpSession session = request.getSession(false);
         //로그인 안돼있음
         if(session==null)

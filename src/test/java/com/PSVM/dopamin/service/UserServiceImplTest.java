@@ -23,10 +23,13 @@ public class UserServiceImplTest {
     @Before
     @Transactional
     public void setUp(){
+        userService.withdrawUser("testid");
     }
     @After
     @Transactional
     public void reset(){
+        userService.withdrawUser("testid");
+
     }
     @Test
     @Transactional
@@ -85,23 +88,63 @@ public class UserServiceImplTest {
 
     @Test
     @Transactional
-    public void testIdPwdCheck(){
+    public void isTrueIdPwdCheck(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        userService.joinUser(userDto);
+        String id = "testid";
+        String pwd = "testpwd";
 
+        //when
+        boolean result = userService.idPwdCheck(id, pwd);
+        //then
+        assertTrue(result);
+    }
+
+    @Test
+    @Transactional
+    public void isFalseIdPwdCheck(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        userService.joinUser(userDto);
+        String id = "testid";
+        String pwd = "invalid_pwd";
+        //when
+        boolean result = userService.idPwdCheck(id, pwd);
+        //then
+        assertTrue(!result);
     }
 
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void shouldNullPointerExceptionWhenUserIdDoesntExist(){
+        try {
+            //given
+            String user_id = "invalid_userId";
+            String user_pwd = "invalid_userPwd";
+
+            //when
+            userService.idPwdCheck(user_id, user_pwd);
+        }catch (NullPointerException ne){
+            String msg =ne.getMessage();
+
+            //then
+            assertEquals("User doesn't exist",msg);
+        }
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testIdPwdCheck(){
         //given
         String user_id = "invalid_userId";
         String user_pwd = "invalid_userPwd";
 
         //when
-        boolean result = userService.idPwdCheck(user_id, user_pwd);
+        userService.idPwdCheck(user_id, user_pwd);
 
         //then
-        assertTrue(!result);
 
     }
+
 
 }

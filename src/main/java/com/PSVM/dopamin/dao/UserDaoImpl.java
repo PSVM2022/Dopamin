@@ -15,13 +15,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int insertUser(UserDto userDto) throws DuplicateKeyException {
-        System.out.println("in UserDaoImpl insertUser");
+        System.out.println("call insertUser in UserDaoImpl");
         return session.insert(namespace+"insertUser",userDto);
     }
 
     @Override
     public int insertUserPwd(UserDto userDto) throws DuplicateKeyException {
-        System.out.println("in UserDaoImpl insertUser");
+        System.out.println("call insertUserPwdin UserDaoImpl");
 
         return session.insert(namespace+"insertUserPwd",userDto);
     }
