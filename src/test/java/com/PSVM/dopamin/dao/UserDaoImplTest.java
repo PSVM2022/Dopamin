@@ -154,4 +154,38 @@ public class UserDaoImplTest {
         assertEquals(null,pwd);
     }
 
+    @Test
+    @Transactional
+    public void testInsertCart(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt1 = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+
+        //when
+        int rowCnt3 = userDao.insertCart(userDto.getUser_id());
+
+        //then
+        assertEquals(1,rowCnt1);
+        assertEquals(1,rowCnt2);
+        assertEquals(1,rowCnt3);
+    }
+
+    //테스트 작성 중
+//    @Test
+//    @Transactional
+//    public void testSelectCartId(){
+//        //given
+//        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+//        int rowCnt1 = userDao.insertUser(userDto);
+//        int rowCnt2 = userDao.insertUserPwd(userDto);
+//        int rowCnt3 = userDao.insertCart(userDto.getUser_id());
+//
+//        //when
+//        String cart_id = userDao.selectCartId(userDto.getUser_id());
+//
+//        System.out.println("cart_id = " + cart_id);
+//
+//    }
+
 }

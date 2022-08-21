@@ -34,7 +34,8 @@ public class UserServiceImpl implements UserService {
         //비밀번호 암호화 메서드 호출 필요
         int rowCnt1 = userDao.insertUser(userDto);
         int rowCnt2 = userDao.insertUserPwd(userDto);
-        return rowCnt1 + rowCnt2;
+        int rowCnt3 = userDao.insertCart(userDto.getUser_id());
+        return rowCnt1 + rowCnt2 + rowCnt3;
     }
 
     @Override
@@ -51,5 +52,11 @@ public class UserServiceImpl implements UserService {
     public int withdrawUser(String user_id) {
         return userDao.deleteUser(user_id);
     }
+
+    @Override
+    public String getCartId(String user_id) {
+        return userDao.selectCartId(user_id);
+    }
+
 
 }

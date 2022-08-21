@@ -13,4 +13,7 @@ public interface UserService {
     int idDuplCk(String user_id);
 
     int withdrawUser(String user_id);
+
+    String getCartId(String user_id);
+
 }

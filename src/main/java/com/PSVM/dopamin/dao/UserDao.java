@@ -19,6 +19,10 @@ public interface UserDao {
 
     String selectUserPwd(String user_id);
 
+    int insertCart(String user_id);
+
+    String selectCartId(String user_id);
+
 
 
 }

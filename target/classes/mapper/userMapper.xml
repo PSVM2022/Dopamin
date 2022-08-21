@@ -38,5 +38,13 @@
         SELECT user_pwd FROM USER_SECRET WHERE user_id=#{user_id}
     </select>
 
+    <insert id="insertCart" parameterType="String">
+        INSERT INTO CART (user_id,in_date,in_user,up_date,up_user) VALUES (#{user_id},now(),#{user_id},now(),#{user_id});
+    </insert>
+
+    <select id="selectCartId" parameterType="String" resultType="String">
+        SELECT cart_id FROM CART WHERE user_id= #{user_id};
+    </select>
+
 
 </mapper>

@@ -40,7 +40,7 @@ public class UserServiceImplTest {
         int rowCnt = userService.joinUser(userDto);
         UserDto userDto1 = userService.getUser(userDto.getUser_id());
         //then
-        assertEquals(2, rowCnt);
+        assertEquals(3, rowCnt);
         assertEquals(userDto.getUser_id(),userDto1.getUser_id());
     }
     @Test
@@ -52,7 +52,7 @@ public class UserServiceImplTest {
         int rowCnt = userService.joinUser(userDto);
         UserDto userDto1 = userService.getUser(userDto.getUser_id());
         //then
-        assertEquals(2, rowCnt);
+        assertEquals(3, rowCnt);
         assertEquals(userDto.getUser_id(),userDto1.getUser_id());
     }
     @Test(expected = DuplicateKeyException.class)
@@ -82,7 +82,7 @@ public class UserServiceImplTest {
         int cnt = userService.idDuplCk(userDto.getUser_id());
 
         //then
-        assertEquals(2, rowCnt);
+        assertEquals(3, rowCnt);
         assertEquals(1, cnt);
     }
 
@@ -141,9 +141,6 @@ public class UserServiceImplTest {
 
         //when
         userService.idPwdCheck(user_id, user_pwd);
-
-        //then
-
     }
 
 

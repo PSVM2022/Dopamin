@@ -56,4 +56,14 @@ public class UserDaoImpl implements UserDao {
         return session.selectOne(namespace+"selectUserPwd",user_id);
     }
 
+    @Override
+    public int insertCart(String user_id) {
+        return session.insert(namespace+"insertCart",user_id);
+    }
+
+    @Override
+    public String selectCartId(String user_id) {
+        return session.selectOne(namespace+"selectCartId",user_id);
+    }
+
 }
