@@ -1,12 +1,15 @@
 package com.PSVM.dopamin.dao;
 
+import com.PSVM.dopamin.domain.CntsEvalDto;
 import com.PSVM.dopamin.domain.ContentsDto;
 import com.PSVM.dopamin.domain.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ContentsDaoImpl implements ContentsDao {
@@ -33,5 +36,15 @@ public class ContentsDaoImpl implements ContentsDao {
     public int searchResultCnt(SearchCondition sc) {
         return session.selectOne(namespace+"searchResultCnt", sc);
     }
+
+    /*
+    //컨텐츠 평가
+    @Override
+    public CntsEvalDto evalCheck(Integer cnts_id, String user_id) {
+        Map map = new HashMap();
+        map.put("cnts_id", cnts_id);
+        map.put("user_id", user_id);
+        return session.selectOne(namespace+"evalCheck", map);
+    }*/
 
 }

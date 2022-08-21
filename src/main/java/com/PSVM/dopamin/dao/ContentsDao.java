@@ -1,5 +1,6 @@
 package com.PSVM.dopamin.dao;
 
+import com.PSVM.dopamin.domain.CntsEvalDto;
 import com.PSVM.dopamin.domain.ContentsDto;
 import com.PSVM.dopamin.domain.SearchCondition;
 
@@ -14,4 +15,7 @@ public interface ContentsDao {
 
     int searchResultCnt(SearchCondition sc);
 
+    /*
+    //컨텐츠 평가
+    CntsEvalDto evalCheck(Integer cnts_id, String user_id);*/
 }
