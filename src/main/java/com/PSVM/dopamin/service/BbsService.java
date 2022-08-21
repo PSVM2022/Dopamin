@@ -1,4 +1,4 @@
-package com.PSVM.service;
+package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.domain.BbsDto;
 
