@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<%@ page session="false" %>
+<%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <html lang="ko">
 
 <head>
@@ -36,6 +41,7 @@
             <input class="topnav-search" type="text" name="keyword" class="search-input" type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요">
             <input class="topnav-search" type="submit" class="search-button" value="검색">
         </form>
+        <a class="topnav-menu" href="<c:url value='${loginOutLink}'/>" onclick='alert("${loginOut}")'>${loginOut}</a>
     </div>
 </div>
 
@@ -74,7 +80,5 @@
     <div>about</div>
     <div>2022 PSVM팀</div>
 </div>
-
 </body>
-
 </html>
