@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--&lt;!&ndash;namespace는 이름을 구별하기 위한 공간입니다. 쉽게 얘기하면 id는 구별되어야 하므로 별도의 그c룹으로 나눕니다.-->
+<!--그래야 id의 충돌하는 경우가 적어지니까. 다른 이유도 있는데 일단 이 정도만 알아두시기 바랍니다.&ndash;&gt;-->
+<mapper namespace="com.PSVM.dopamin.dao.MyPageMapper">
+    <select id="selectrevw" parameterType="String" resultType="RevwDto">
+        select r.user_id, r.revw_id, r.cnts_id, r.revw_body, c.cnts_title, r.revw_visib_stat
+        from REVW r
+                 join CNTS c on c.cnts_id = r.cnts_id
+        where r.user_id = #{user_id}
+    </select>
+
+    <select id="selectrevwRt" parameterType="String" resultType="RevwDto">
+        select re.revw_id, r.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat
+        from REVW_RT re
+                 join REVW r on r.revw_id = re.revw_id
+                 join CNTS c on c.cnts_id = r.cnts_id
+        where re.user_id = #{user_id}
+          AND r.revw_visib_stat = 1;
+    </select>
+
+    <select id="selectCntsWish" parameterType="String" resultType="MyPageCntsDto">
+        select cw.cnts_id, cw.user_id, cw.in_date, c.cnts_postr_img, c.cnts_visib_stat, c.cnts_title
+        from CNTS_WISH cw
+                 join CNTS c on c.cnts_id = cw.cnts_id
+        where cw.user_id = #{user_id}
+    </select>
+
+    <select id="selectCntsView" parameterType="String" resultType="MyPageCntsDto">
+        select cv.cnts_id, cv.user_id, cv.in_date, c.cnts_postr_img, c.cnts_visib_stat
+        from CNTS_VIEW cv
+                 join CNTS c on c.cnts_id = cv.cnts_id
+        where cv.user_id = #{user_id}
+          and c.cnts_visib_stat = 1;
+    </select>
+
+    <select id="selectPost" parameterType="String" resultType="MyPagePostDto">
+        select user_id,
+               bbs_id,
+               post_id,
+               post_title,
+               post_view_cnt,
+               post_reply_cnt,
+               in_date,
+               post_visib
+        from POST
+        order by in_date desc;
+    </select>
+
+<!--    <select id="selectUserInfo" parameterType="String" resultType="MyPageDto">-->
+<!--        select u.user_id,-->
+<!--               u.prf_img,-->
+<!--               u.nic,-->
+<!--               u.dopa_exp,-->
+<!--               u.dopa_point,-->
+<!--               u.fav_genre1,-->
+<!--               u.sex,-->
+<!--               u.btdt,-->
+<!--               i.item_img-->
+<!--        from USER u-->
+<!--                 join POSSESION p on p.user_id = u.user_id-->
+<!--                 join ITEM i on i.item_id = p.item_id-->
+<!--        where u.user_id = #{user_id}-->
+<!--          and p.equip_stat = 1;-->
+<!--    </select>-->
+
+    <select id="selectUserInfo" parameterType="String" resultType="MyPageDto">
+            select u.user_id,
+                   u.prf_img,
+                   u.nic,
+                   u.dopa_exp,
+                   u.dopa_point,
+                   u.fav_genre1,
+                   u.sex,
+                   u.btdt
+            from USER u
+            where u.user_id = #{user_id}
+        </select>
+
+    <select id="selectSkin" parameterType="String" resultType="MyPageDto">
+        select i.item_img
+        from ITEM i
+                 join POSSESION p on i.item_id = p.item_id
+        WHERE p.user_id = #{user_id}
+    </select>
+</mapper>
