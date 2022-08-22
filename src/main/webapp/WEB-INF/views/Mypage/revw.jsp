@@ -46,20 +46,17 @@
                 <th></th>
             </tr>
             <c:forEach var="revw" items="${revwDtoList}">
-                <br>
                 <c:choose>
                     <c:when test="${revw.revw_visib_stat eq 0}">
                         <tr>
                             <td> 가려진 한줄평 입니다.</td>
-                            <td>${revw.revw_visib_stat}</td>
                         </tr>
                         <br>
                     </c:when>
                     <c:otherwise>
                         <tr>
-                            <td>${revw.cnts_title}</td>
+                            <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
                             <td>${revw.revw_body}</td>
-                            <td>${revw.revw_visib_stat}</td>
                         </tr>
                         <br>
                     </c:otherwise>

@@ -54,9 +54,8 @@
                     <c:otherwise>
                         <tr>
                             <td>${post.post_id}</td>
-                            <td>${post.bbs_id == 1 ? '[후기]' : '[자게]'}</td>
-                            <td>${post.post_title}</td>
-                            <td>${post.post_reply_cnt}</td>
+                            <td>${post.bbs_nm}</td>
+                            <td>${post.post_title}[${post.post_reply_cnt}]</td>
                             <td><fmt:formatDate value="${post.in_date}" pattern="yyyy.mm.dd"/></td>
                             <td>${post.post_view_cnt}</td>
                         </tr>

@@ -66,7 +66,7 @@
                             <c:otherwise>
                                 <ul>
                                     <li>
-                                        <a href='contents/${cnts.cnts_id}'>
+                                        <a href='<c:url value="/contents/${cnts.cnts_id}"/>'>
                                             <div><img src="${cnts.cnts_postr_img}"></div>
                                             <div>${cnts.cnts_title}</div>
                                         </a>
