@@ -1,5 +1,6 @@
 package com.PSVM.dopamin.controller;
 
+import com.PSVM.dopamin.domain.UserDto;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 
@@ -18,22 +21,15 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-//    @ExceptionHandler(NullPointerException.class)
-//    public String catcher(){
-//
-//    }
-
     @GetMapping("/login")
     public String loginForm(HttpServletRequest request,String toURL){
         toURL = toURL==null || toURL.equals("") ? "/" : toURL;
-
         //로그인 되어있다면
-        if(loginCheck(request)){
+        if(userService.loginCheck(request)){
             return "redirect:"+toURL;
         }
         return "Login/loginForm";
     }
-
 
     @GetMapping("/logout")
     public String logout(HttpSession session,String toURL){
@@ -46,7 +42,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(String id, String pwd, String toURL, HttpServletRequest request, Model model) throws Exception {
+    public String login(String id, String pwd, String toURL, HttpServletRequest request, Model model, boolean rememberId, boolean rememberLogin, HttpServletResponse response) throws Exception {
         try{
             //아이디, 비밀번호 일치 확인
             boolean result = userService.idPwdCheck(id,pwd);
@@ -58,35 +54,38 @@ public class LoginController {
             String msg = URLEncoder.encode(" 아이디 또는 비밀번호를 잘못 입력했습니다.\n" +
                     "입력하신 내용을 다시 확인해주세요.","utf-8");
             model.addAttribute("id",id);
-            return "redirect:/login/login?msg="+msg;
-
+            model.addAttribute("msg",msg);
+            return "redirect:/login/login";
         }
-//        id, pwd 일치하면 로그인 성공
-//        세션 생성
+//        id, pwd 일치하면 로그인 성공 ,세션 생성
         HttpSession session = request.getSession();
         //  세션 객체에 저장할 정보 - user_id, 장바구니_id, 유저 상태(관리자인지 일반유저인지), 설문조사 했는지 안했는지 여부
-        session.setAttribute("user_id", id);
+        UserDto user = userService.getUser(id);
+        session.setAttribute("USERID", id);
         String cartId = userService.getCartId(id);
-        session.setAttribute("cart_id",cartId);
+        session.setAttribute("CARTID",cartId);
+        session.setAttribute("USERSTAT",user.getUser_stat());
+        //설문조사 안했으면 세션에 SURVEY 생성
+        if(user.getFav_genre1()==null){
+            session.setAttribute("SURVEY",false);
+        }
 
-
+        if(rememberId){
+            //아이디 쿠키 생성
+            Cookie cookie = new Cookie("id",id);
+            response.addCookie(cookie);
+        }else{
+            //쿠키 삭제
+            Cookie cookie = new Cookie("id","");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+        if(rememberLogin){
+            session.setMaxInactiveInterval(60);
+            System.out.println("세션 종료시간:"+session.getMaxInactiveInterval());
+        }
         toURL = toURL==null || toURL.equals("") ? "/" : toURL;
         System.out.println("toURL="+toURL);
         return "redirect:"+toURL;
     }
-    private boolean loginCheck(HttpServletRequest request){
-
-
-
-        HttpSession session = request.getSession(false);
-        //로그인 안돼있음
-        if(session==null)
-            return false;
-        else
-            System.out.println("sessionId="+session.getAttribute("id"));
-        return true;
-    }
-
-
-
 }
