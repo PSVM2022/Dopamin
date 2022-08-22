@@ -43,63 +43,26 @@
 <div class="content">
     <br>
     <div style="text-align:center">
-
-        <tr>
+        <div><!--한줄평 작성-->
+            <div><textarea class="form-control" row="1"> </textarea></div>
             <div>
-                <td>${contentsDto.cnts_postr_img}</td>
-                <br>
-                <td>${contentsDto.cnts_title}</td>
-                <br>
-                <td>${contentsDto.cnts_subttl}</td>
-                <br>
-                <td>${contentsDto.cnts_genre1}</td>
-                <br>
-                <td>${contentsDto.cnts_genre2}</td>
-                <br>
-                <td>${contentsDto.cnts_genre3}</td>
-                <br>
-                <td>${contentsDto.cnts_genre4}</td>
-                <br>
-                <td>${contentsDto.cnts_genre5}</td>
-                <br>
-                <td>${contentsDto.cnts_op_date}</td>
-                <br>
-                <td>${contentsDto.cnts_cnty}</td>
-                <br>
-                <td>${contentsDto.cnts_director}</td>
-                <br>
-                <td>${contentsDto.cnts_actor}</td>
-                <br>
-                <td>${contentsDto.cnts_synop}</td>
-                <br>
-
+                <button class="btn">등록</button>
             </div>
+        </div>
+        <div><!--컨텐츠 한줄평 조회-->
+            <td>${reviewDto.revw_id}</td>
             <br>
+            <td>${reviewDto.user_id}</td>
+            <br>
+            <td>${reviewDto.revw_body}</td>
+            <td>${reviewDto.in_date}</td>
+        </div>
 
-            <div>
-                <c:forEach var="revw" items="${revwDtoList}">
-                    <td>${revw.user_id}</td>
-                    <br>
-                    <td>${revw.revw_body}</td>
-                    <td>${revw.in_date}</td>
-                </c:forEach>
-            </div>
-
-            <!-- 한줄평 top 3-->
-            <div></div>
-
-            <div>
-                <div><textarea class="form-control" row="1"> </textarea></div>
-                <div>
-                    <button class="btn">등록</button>
-                </div>
-            </div>
+        <!-- 한줄평 top 3-->
+        <div></div>
 
         </tr>
-        <form class="topnav-search" action="<c:url value="/contents/${cnts_id}/reviews/${reviewDto}"/>"
-              class="search-form" method="get">
-            <button class="btn">한줄평 전체보기</button>
-        </form>
+
     </div>
     <i class="fa-brands fa-instagram"></i>
     <i class="fa-brands fa-facebook"></i>
