@@ -9,9 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="feat: 컨텐츠 평가, 조회 mapper.xml 추가, Dto 수정&#10;&#10;컨텐츠 평가와 조회(count) mapper.xml 코드 추가함.">
+    <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="feat: 컨텐츠 한줄평 mapper 작성&#10;&#10;컨텐츠 한줄평 CRUD mapper 작성함.">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/review.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/reviewView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/ReviewServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ReviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ReviewDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ReviewMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ReviewMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsSearchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsSearchList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ReviewDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ReviewDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +38,7 @@
         <option value="JUnit4 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit3 Test Class" />
         <option value="Jsp File" />
       </list>
     </option>
@@ -76,6 +90,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "spring.configuration.checksum": "1e765f8ae1bb8e5badc9fe01a7fa7b82"
   },
   "keyToStringList": {
@@ -100,6 +117,7 @@
       <recent name="C:\Users\ombuj\IdeaProjects\Dopamin\src\main\webapp\WEB-INF\views\Item" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
       <recent name="" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -110,11 +128,13 @@
       <recent name="com.PSVM.dopamin.service" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.PSVM.dopamin.controller" />
+      <recent name="com.PSVM.dopamin.service" />
       <recent name="com.PSVM.dopamin.dao" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.65">
-    <configuration name="ContentsDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReviewDaoImplTest.selectAllRevw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
         <pattern>
@@ -123,71 +143,71 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ReviewDaoImplTest" />
+      <option name="METHOD_NAME" value="selectAllRevw" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.ReviewServiceImplTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContentsDaoImplTest.evalCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReviewServiceImplTest.testDeleteRevw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="PATTERN" value="com.PSVM.dopamin.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="evalCheck" />
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.ReviewServiceImplTest" />
+      <option name="METHOD_NAME" value="testDeleteRevw" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContentsDaoImplTest.searchSelectCnts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReviewServiceImplTest.testInsertRevw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="PATTERN" value="com.PSVM.dopamin.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="searchSelectCnts" />
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.ReviewServiceImplTest" />
+      <option name="METHOD_NAME" value="testInsertRevw" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContentsDaoImplTest.selectcnts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReviewServiceImplTest.testUpdateRevw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="PATTERN" value="com.PSVM.dopamin.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="selectcnts" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ItemUserDaoImplTest.find_item_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
-      <option name="METHOD_NAME" value="find_item_성공" />
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.ReviewServiceImplTest" />
+      <option name="METHOD_NAME" value="testUpdateRevw" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -295,20 +315,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ItemUserDaoImplTest.find_item_성공" />
-      <item itemvalue="JUnit.ContentsDaoImplTest.evalCheck" />
-      <item itemvalue="JUnit.ContentsDaoImplTest" />
-      <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
-      <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
+      <item itemvalue="JUnit.ReviewDaoImplTest.selectAllRevw" />
+      <item itemvalue="JUnit.ReviewServiceImplTest" />
+      <item itemvalue="JUnit.ReviewServiceImplTest.testDeleteRevw" />
+      <item itemvalue="JUnit.ReviewServiceImplTest.testInsertRevw" />
+      <item itemvalue="JUnit.ReviewServiceImplTest.testUpdateRevw" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.65" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
-        <item itemvalue="JUnit.ItemUserDaoImplTest.find_item_성공" />
-        <item itemvalue="JUnit.ContentsDaoImplTest.evalCheck" />
-        <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
-        <item itemvalue="JUnit.ContentsDaoImplTest" />
+        <item itemvalue="JUnit.ReviewServiceImplTest.testUpdateRevw" />
+        <item itemvalue="JUnit.ReviewServiceImplTest.testDeleteRevw" />
+        <item itemvalue="JUnit.ReviewServiceImplTest.testInsertRevw" />
+        <item itemvalue="JUnit.ReviewServiceImplTest" />
+        <item itemvalue="JUnit.ReviewDaoImplTest.selectAllRevw" />
       </list>
     </recent_temporary>
   </component>
@@ -326,7 +346,7 @@
       <workItem from="1660147896528" duration="3387000" />
       <workItem from="1660151890086" duration="19000" />
       <workItem from="1660179384443" duration="224000" />
-      <workItem from="1661121277357" duration="11544000" />
+      <workItem from="1661121277357" duration="44843000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정">
       <created>1660301301297</created>
@@ -454,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661138623161</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat: 컨텐츠 한줄평 mapper 작성&#10;&#10;컨텐츠 한줄평 CRUD mapper 작성함.">
+      <created>1661138878404</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1661138878404</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,6 +529,17 @@
     <MESSAGE value="refactor: BbsService.java" />
     <MESSAGE value="feat: 컨텐츠 검색 옵션 추가&#10;&#10;컨텐츠 검색 옵션 3가지(ttl, cast, genre) 추가함. 이후에 수정/변동될 수 있음." />
     <MESSAGE value="feat: 컨텐츠 평가, 조회 mapper.xml 추가, Dto 수정&#10;&#10;컨텐츠 평가와 조회(count) mapper.xml 코드 추가함." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 평가, 조회 mapper.xml 추가, Dto 수정&#10;&#10;컨텐츠 평가와 조회(count) mapper.xml 코드 추가함." />
+    <MESSAGE value="feat: 컨텐츠 한줄평 mapper 작성&#10;&#10;컨텐츠 한줄평 CRUD mapper 작성함." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 한줄평 mapper 작성&#10;&#10;컨텐츠 한줄평 CRUD mapper 작성함." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.Exception" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

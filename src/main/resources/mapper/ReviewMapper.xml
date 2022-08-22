@@ -39,12 +39,12 @@
         UPDATE REVW
         SET revw_body = #{revw_body}
           , up_date = now()
-        WHERE cnts_id = #{cnts_id} and user_id = #{user_id}
+        WHERE revw_id = #{revw_id} and user_id = #{user_id}
     </update>
 
     <!--한줄평 삭제-->
     <delete id="deleteRevw" parameterType="map">
-        DELETE FROM REVW WHERE cnts_id = #{cnts_id} AND user_id = #{user_id}
+        DELETE FROM REVW WHERE revw_id = #{revw_id} AND user_id = #{user_id}
     </delete>
 
 </mapper>

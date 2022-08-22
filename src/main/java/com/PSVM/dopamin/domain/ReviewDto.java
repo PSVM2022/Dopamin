@@ -1,24 +1,22 @@
 package com.PSVM.dopamin.domain;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class ReviewDto {
 
-    private Integer revw_id;
-    private String user_id;
-    private Integer cnts_id;
-    private String revw_body;
-    private Integer revw_visib_stat;
-    private Integer revw_rept_times;
-    private java.sql.Timestamp in_date;
+    private Integer revw_id;    //한줄평 번호
+    private String user_id;     //유저 아이디
+    private Integer cnts_id;    //컨텐츠 번호
+    private String revw_body;   //한줄평 내용
+    private Integer revw_visib_stat;    //한줄평 상태
+    private Integer revw_rept_times;     //한줄평 신고 시간
+    private java.sql.Timestamp in_date;     //한줄평 등록일자
     private String in_user;
-    private java.sql.Timestamp up_date;
+    private java.sql.Timestamp up_date;     //한줄평 수정 일자
     private String up_user;
 
-    public ReviewDto() {
-
-    }
-
+    public ReviewDto() {}
     public ReviewDto(Integer revw_id, String user_id, Integer cnts_id, String revw_body, Integer revw_visib_stat, Integer revw_rept_times, Timestamp in_date, String in_user, Timestamp up_date, String up_user) {
         this.revw_id = revw_id;
         this.user_id = user_id;
@@ -30,6 +28,13 @@ public class ReviewDto {
         this.in_user = in_user;
         this.up_date = up_date;
         this.up_user = up_user;
+    }
+
+    public ReviewDto(Integer revw_id, String user_id, String revw_body,Timestamp up_date) {
+        this.revw_id = revw_id;
+        this.user_id = user_id;
+        this.revw_body = revw_body;
+        this.up_date = up_date;
     }
 
     public Integer getRevw_id() {
@@ -126,5 +131,18 @@ public class ReviewDto {
                 ", up_date=" + up_date +
                 ", up_user='" + up_user + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReviewDto reviewDto = (ReviewDto) o;
+        return Objects.equals(revw_id, reviewDto.revw_id) && Objects.equals(user_id, reviewDto.user_id) && Objects.equals(cnts_id, reviewDto.cnts_id) && Objects.equals(revw_body, reviewDto.revw_body) && Objects.equals(revw_visib_stat, reviewDto.revw_visib_stat) && Objects.equals(revw_rept_times, reviewDto.revw_rept_times);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(revw_id, user_id, cnts_id, revw_body, revw_visib_stat, revw_rept_times);
     }
 }
