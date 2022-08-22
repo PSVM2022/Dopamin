@@ -7,7 +7,6 @@ import com.PSVM.dopamin.domain.MyPagePostDto;
 import com.PSVM.dopamin.domain.RevwDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -43,17 +42,22 @@ public class MyPageServiceImple implements MyPageService {
 
     @Override
     public MyPageDto selectMyInfo(String user_id) {
-        System.out.println("service 도착");
         MyPageDto myPageDto = myPageDao.selectMyInfo(user_id);
-        System.out.println("selectMyInfo dao 성공");
-        myPageDto = myPageDao.selectSkin(user_id);
-        System.out.println("myPageDto = " + myPageDto);
-        System.out.println("myPageDto.gets = " + myPageDto.getItem_img());
+        try {
+            String item_img = myPageDao.selectSkin(user_id);
+            myPageDto.setItem_img(item_img);
 
-        System.out.println("myPageDto.getBtdt() = " + myPageDto.getBtdt());
+            if (myPageDto.getGenre_nm() != null) {
+                int genre_id = myPageDto.getFav_genre1();
+                myPageDto.setGenre_nm(myPageDao.genreIdToNm(genre_id));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //유저의 생년월일 정보를 받아서 나이값 구하고 myPageDto에 넣어주기
         calAge(myPageDto);
-        //myPageDto에 착용 스킨
         return myPageDto;
     }
 
@@ -63,6 +67,5 @@ public class MyPageServiceImple implements MyPageService {
         int age = (int) (curYear - birthYear + 1) / 10 * 10;
         myPageDto.setAge(age);
     }
-
 
 }
