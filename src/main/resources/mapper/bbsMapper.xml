@@ -2,53 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.PSVM.dopamin.dao.bbsDao">
-  <delete id="deleteBbsUsingId">
+<mapper namespace="com.PSVM.dopamin.dao.BbsMapper">
+  <delete id="deleteById" parameterType="int">
     DELETE
     FROM BBS
-    WHERE bbs_id = 1;
+    WHERE bbs_id = #{id}
   </delete>
 
-  <insert id="insertInitBbs">
+  <insert id="insertAll" parameterType="list">
     INSERT INTO BBS
-      (bbs_nm, bbs_prior, bbs_visib, in_date, in_user, up_user)
-    VALUES (#{bbsName}, 0, #{isVisible}, #{createTime}, #{managerName}, #{managerName});
+    (bbs_nm, bbs_prior, bbs_visib, in_date, in_user, up_user)
+    VALUES
+    <foreach close=")" collection="list" item="item" open="(" separator="),(">
+      (#{item.bbs_Nm}, #{item.bbs_prior}, #{item.bbs_visib}, #{item.in_date}, #{item.in_user},
+      #{item.up_user})
+    </foreach>
   </insert>
 
-  <select id="listAllAvailBbs">
+  <insert id="insert" parameterType="bbs">
+    INSERT INTO BBS
+      (bbs_nm, bbs_prior, bbs_visib, in_date, in_user, up_user)
+    VALUES (#{bbs_nm}, #{bbs_prior}, #{bbs_visib}, #{in_date}, #{in_user}, #{up_user});
+  </insert>
+
+  <select id="selectByPrefixName" parameterType="string" resultType="bbs">
     SELECT *
     FROM BBS
-    WHERE bbs_visib = true;
+    WHERE bbs_nm like CONCAT(#{prefix}, '%');
   </select>
 
-  <update id="updateSortPriorUsingName">
-    Update BBS
-    SET bbs_prior = #{bbsPrior}
-    WHERE bbs_nm like CONCAT(#{targetNamePrefix}, "%");
-  </update>
+  <select id="selectAll" resultType="bbs">
+    SELECT *
+    FROM BBS
+    ORDER BY bbs_id ASC;
+  </select>
 
-  <update id="updateAvailUsingId">
-    UPdate BBS
-    SET bbs_visib = #{isAvail}
-    WHERE bbs_id = #{targetId};
-  </update>
+  <select id="selectAllVisib" resultType="bbs">
+    SELECT *
+    FROM BBS
+    WHERE bbs_visib = 1
+    ORDER BY bbs_prior ASC;
+  </select>
 
-  <update id="updateAvailUsingName">
+  <select id="count" resultType="_int">
+    SELECT count(*)
+    FROM BBS;
+  </select>
+
+  <select id="selectById" parameterType="int" resultType="bbs">
+    SELECT *
+    FROM BBS
+    WHERE bbs_id = #{id};
+  </select>
+
+  <update id="update" parameterType="bbs">
     UPDATE BBS
-    SET bbs_visib = #{isAvail}
-    WHERE bbs_nm like CONCAT(#{targetNamePrefix}, "%")
+    SET bbs_nm    = #{bbs_nm},
+        bbs_prior = #{bbs_prior},
+        bbs_visib = #{bbs_visib},
+        up_date   = #{up_date},
+        up_user   = #{up_user}
+    WHERE bbs_id = #{bbs_id}
   </update>
-
-  <update id="updateBbsNameUsingName">
-    UPDATE BBS
-    SET bbs_nm = ${newBbsName}
-    WHERE bbs_nm like CONCAT(#{targetNamePrefix}, "%")
-  </update>
-
-  <update id="updateSortPriorUsingId">
-    UPDATE BBS
-    SET bbs_prior = #{bbsPrior}
-    where bbs_id = #{targetId}
-  </update>
-
 </mapper>

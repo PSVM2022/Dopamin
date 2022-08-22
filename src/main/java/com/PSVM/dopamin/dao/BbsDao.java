@@ -1,18 +1,24 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.BbsDto;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 
-public interface BbsDao {
+// org.springframework.data.repository.CrudRepository 참고함
+public interface BbsDao<T, ID> {
 
-    int insert(BbsDto dto) throws Exception;
+    int save(BbsDto dto) throws SQLException;
 
-    BbsDto select(Integer bbs_prior) throws Exception;
+    Optional<T> findById(ID bbsId) throws SQLException;
 
-    int update(BbsDto dto) throws Exception;
+    List<T> findAll() throws SQLException;
 
-    int deleteByManager(int bbs_id) throws Exception;
+    List<T> findAllVisib() throws SQLException;
 
-    int deleteAllByManager() throws Exception;
+    BbsDto findByPrefixName(String nm) throws SQLException;
 
-    int count() throws Exception;
+    int count() throws SQLException;
+
+    int update(T bbs) throws SQLException;
 }
