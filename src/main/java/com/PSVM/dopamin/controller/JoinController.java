@@ -77,16 +77,10 @@ public class JoinController {
     }
 
     @PostMapping("/survey")
-    public String surveyGenre(UserDto userDto, RedirectAttributes redirectAttributes,HttpSession session){
-        System.out.println("user_id="+userDto.getUser_id());
-        System.out.println("UserDto.getFav_genre1="+userDto.getFav_genre1());
-        System.out.println("userDto.getFav_genre2()="+userDto.getFav_genre2());
-        System.out.println("userDto.getFav_genre3()="+userDto.getFav_genre3());
-        System.out.println("userDto.getFav_genre4()="+userDto.getFav_genre4());
-        System.out.println("userDto.getFav_genre5()="+userDto.getFav_genre5());
+    public String surveyGenre(UserDto userDto,BindingResult bindingResult, RedirectAttributes redirectAttributes,HttpSession session){
+
         try{
             int i = userService.surveyGenre(userDto);
-            System.out.println("i = " + i);
             session.removeAttribute("SURVEY");
             redirectAttributes.addFlashAttribute("SUR_SUCCESS","설문 조사에 응답해주셔서 감사합니다.");
 

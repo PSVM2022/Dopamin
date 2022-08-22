@@ -57,13 +57,13 @@
 <div class="content">
     <div class="responsive-content">
         <h2>DOPAMIN</h2>
-        <form action="<c:url value="/join/survey"/>" method="post">
+        <form action="<c:url value="/join/survey"/>" method="post" onsubmit="dupleCheck();">
             <div class="content-preview" style="text-align:center">
                 <h4>설문조사</h4>
-                <p>본 설문조사는 마이페이지와 영화 추천 기능에 필요한 기능입니다.</p>
+                <p>본 설문조사는 마이페이지와 영화 추천 기능에 필요한 기능입니다. 선호하는 장르를 중복없이 최소1개 최대 5개 선택해주세요.</p>
                 <input type="hidden" name="user_id" value="${USERID}"/>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre1">
-                    <option selected>--선택--</option>
+                <select required class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre1">
+                    <option selected value="">--선택--</option>
                     <option value="1">액션</option>
                     <option value="2">애니메이션</option>
                     <option value="3">범죄</option>
@@ -91,7 +91,7 @@
                     <option value="25">유러피안</option>
                 </select>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre2">
-                    <option selected>--선택--</option>
+                    <option selected value="">--선택--</option>
                     <option value="1">액션</option>
                     <option value="2">애니메이션</option>
                     <option value="3">범죄</option>
@@ -119,7 +119,7 @@
                     <option value="25">유러피안</option>
                 </select>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre3">
-                    <option selected>--선택--</option>
+                    <option selected value="">--선택--</option>
                     <option value="1">액션</option>
                     <option value="2">애니메이션</option>
                     <option value="3">범죄</option>
@@ -147,7 +147,7 @@
                     <option value="25">유러피안</option>
                 </select>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre4">
-                    <option selected>--선택--</option>
+                    <option selected value="">--선택--</option>
                     <option value="1">액션</option>
                     <option value="2">애니메이션</option>
                     <option value="3">범죄</option>
@@ -175,7 +175,7 @@
                     <option value="25">유러피안</option>
                 </select>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre5">
-                    <option selected>--선택--</option>
+                    <option selected value="">--선택--</option>
                     <option value="1">액션</option>
                     <option value="2">애니메이션</option>
                     <option value="3">범죄</option>
@@ -205,7 +205,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="">Save changes</button>
+                <button type="submit" class="btn btn-primary" id="" >Save changes</button>
             </div>
         </form>
     </div>
@@ -222,6 +222,20 @@
     <div>2022 PSVM팀</div>
 </div>
 <script>
+    function dupleCheck(){
+        var dd=$('[name="fav_genre1"]').val();
+        console.log(dd);
+        const arr=[$('[name="fav_genre1"]').val(),$('[name="fav_genre2"]').val(),$('[name="fav_genre3"]').val(),$('[name="fav_genre4"]').val(),$('[name="fav_genre5"]').val()];
+        const set = new Set(arr);
+        console.log("arr="+arr)
+        console.log("set="+set)
+        console.log(arr.length,set.size)
+        if(arr.length!=set.size){
+            alert("선호 장르를 모두 다르게 선택해주세요.")
+            event.preventDefault();
+        }
+    }
+
 
 </script>
 </body>
