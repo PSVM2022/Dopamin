@@ -56,7 +56,7 @@
         <td>${contentsDto.cnts_director}</td><br>
         <td>${contentsDto.cnts_actor}</td><br>
         <td>${contentsDto.cnts_synop}</td><br>
-        <td>${contentsDto.cnts_cnty}</td><br>
+
       </div>
       <br>
 

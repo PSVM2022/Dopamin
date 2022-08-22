@@ -34,4 +34,7 @@ public class ContentsDaoImplTest {
         System.out.println("contentsDao = " + list);
     }
 
+    //컨텐츠 평가 테스트
+
+
 }

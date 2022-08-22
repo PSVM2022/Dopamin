@@ -19,6 +19,12 @@
         where cnts_id = #{cnts_id} and cnts_visib_stat = 1
     </select>
 
+    <!--컨텐츠 ott 조회수-->
+    <update id="updateCntsCnt" parameterType="map">
+        update CNTS set ott1_click_cnt = ott1_click_cnt + #{ott1_click_cnt}
+                    where cnts_id = #{cnts_id}
+    </update>
+
     <!--컨텐츠 검색(옵션3개)-->
     <select id="searchSelectCnts" parameterType="SearchCondition" resultType="com.PSVM.dopamin.domain.ContentsDto">
         select *,

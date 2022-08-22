@@ -37,14 +37,4 @@ public class ContentsDaoImpl implements ContentsDao {
         return session.selectOne(namespace+"searchResultCnt", sc);
     }
 
-    /*
-    //컨텐츠 평가
-    @Override
-    public CntsEvalDto evalCheck(Integer cnts_id, String user_id) {
-        Map map = new HashMap();
-        map.put("cnts_id", cnts_id);
-        map.put("user_id", user_id);
-        return session.selectOne(namespace+"evalCheck", map);
-    }*/
-
 }
