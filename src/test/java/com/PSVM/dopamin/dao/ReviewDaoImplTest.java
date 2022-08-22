@@ -18,10 +18,13 @@ public class ReviewDaoImplTest {
     @Autowired
     ReviewDao reviewDao;
 
-    //데이터 접근 테스트
+    //데이터 추출 테스트
     @Test
-    public void selectAllRevw() {
-        List<ReviewDto> reviewDtoList = reviewDao.selectAllRevw(1);
+    public void selectAllRevw() throws Exception {
+        List<ReviewDto> reviewDtoList = reviewDao.selectAllRevw(44);
+        if (reviewDtoList==null) {
+            System.out.println("컨텐츠에 한줄평 데이터 없음");
+        }
         System.out.println("한줄평(컨텐츠 리뷰): " + reviewDtoList);
     }
 }
