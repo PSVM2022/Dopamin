@@ -1,10 +1,10 @@
-package com.PSVM.dopamin.controller;
+package com.PSVM.dopamin.controller.Item;
 
-import com.PSVM.dopamin.domain.ItemDto;
-import com.PSVM.dopamin.domain.ItemForm;
-import com.PSVM.dopamin.domain.ItemValidator;
-import com.PSVM.dopamin.domain.ItemValidatorException;
-import com.PSVM.dopamin.service.ItemAdminService;
+import com.PSVM.dopamin.domain.Item.ItemDto;
+import com.PSVM.dopamin.domain.Item.ItemForm;
+import com.PSVM.dopamin.domain.Item.ItemValidator;
+import com.PSVM.dopamin.domain.Item.ItemValidatorException;
+import com.PSVM.dopamin.service.Item.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -111,7 +111,6 @@ public class ItemAdminController {
         if(bindingResult.hasErrors()){
             throw new ItemValidatorException(bindingResult,"검증실패11");
         }
-
         String user_id="ldhoon0813";
         String user_nic="후후른훈";
         Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동

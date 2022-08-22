@@ -9,43 +9,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="refactor: BbsService.java">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 장바구니 담기 기능 구현-main추가1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/Item_ListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/OrderDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/error/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/controller/Item/ItemUserControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/Item/ItemUserServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/JoinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/JoinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/MyPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/MyPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/BbsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/BbsDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemAdminDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemAdminDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemUserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Cart_ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/Cart_ItemDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidatorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemValidatorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/bbsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/bbsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cntsview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/cntsview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/cntswish.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/cntswish.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsSearchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsSearchList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ilist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/ilist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Commuity/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/itemList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/itemList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/item_register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/joinForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Login/joinForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginAction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/loginAction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Login/loginForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/myPageMain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/myPageMain.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/new_item_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_item_admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/post.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/post.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/revw.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/revw.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/revwrt.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/revwrt.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/success_join.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Login/success_join.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testcnts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/testcnts.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/main2.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ch4-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/BbsDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/BbsDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +50,9 @@
         <option value="CSS File" />
         <option value="JUnit4 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
+        <option value="JUnit3 Test Class" />
       </list>
     </option>
   </component>
@@ -76,8 +68,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/MyPageDaoImplTest.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/MyPageController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/MyPageDaoImplTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -108,11 +100,16 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.PSVM.dopamin.domain" />
@@ -129,6 +126,7 @@
       <recent name="C:\Users\ombuj\IdeaProjects\Dopamin\src\main\webapp\WEB-INF\views\Login" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
       <recent name="" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -139,12 +137,14 @@
       <recent name="com.PSVM.dopamin.service" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.PSVM.dopamin.controller.Item" />
+      <recent name="com.PSVM.dopamin.service.Item" />
       <recent name="com.PSVM.dopamin.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.64">
-    <configuration name="ContentsDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
+  <component name="RunManager" selected="JUnit.ItemUserServiceTest.testBuy_item">
+    <configuration name="ItemUserDaoImplTest.유저_포인터_업데이트" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
@@ -152,30 +152,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ContentsDaoImplTest.evalCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="evalCheck" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
+      <option name="METHOD_NAME" value="유저_포인터_업데이트" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContentsDaoImplTest.searchSelectCnts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
+    <configuration name="ItemUserDaoImplTest.보유_insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
@@ -183,15 +168,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="searchSelectCnts" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
+      <option name="METHOD_NAME" value="보유_insert" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContentsDaoImplTest.selectSearchPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
+    <configuration name="ItemUserDaoImplTest.거래내역_insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
@@ -199,15 +184,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="selectSearchPageTest" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
+      <option name="METHOD_NAME" value="거래내역_insert" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContentsDaoImplTest.selectcnts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
+    <configuration name="ItemUserDaoImplTest.포인트사용내역_insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
@@ -215,8 +200,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ContentsDaoImplTest" />
-      <option name="METHOD_NAME" value="selectcnts" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
+      <option name="METHOD_NAME" value="포인트사용내역_insert" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemUserServiceTest.testBuy_item" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.service.Item.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service.Item" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.Item.ItemUserServiceTest" />
+      <option name="METHOD_NAME" value="testBuy_item" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -323,20 +324,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ContentsDaoImplTest.evalCheck" />
-      <item itemvalue="JUnit.ContentsDaoImplTest.selectSearchPageTest" />
-      <item itemvalue="JUnit.ContentsDaoImplTest" />
-      <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
-      <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.거래내역_insert" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.보유_insert" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.유저_포인터_업데이트" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.포인트사용내역_insert" />
+      <item itemvalue="JUnit.ItemUserServiceTest.testBuy_item" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.64" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ContentsDaoImplTest.selectcnts" />
-        <item itemvalue="JUnit.ContentsDaoImplTest.evalCheck" />
-        <item itemvalue="JUnit.ContentsDaoImplTest.searchSelectCnts" />
-        <item itemvalue="JUnit.ContentsDaoImplTest" />
-        <item itemvalue="JUnit.ContentsDaoImplTest.selectSearchPageTest" />
+        <item itemvalue="JUnit.ItemUserServiceTest.testBuy_item" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.포인트사용내역_insert" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.거래내역_insert" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.보유_insert" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.유저_포인터_업데이트" />
       </list>
     </recent_temporary>
   </component>
@@ -514,5 +515,15 @@
     <MESSAGE value="feat: 컨텐츠 평가 mapper, dao 작성&#10;&#10;컨텐츠 평가(좋아요/싫어요) mapper, dao 작성함." />
     <MESSAGE value="refactor: BbsService.java" />
     <option name="LAST_COMMIT_MESSAGE" value="refactor: BbsService.java" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.Item;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

@@ -1,8 +1,8 @@
-package com.PSVM.dopamin.service;
+package com.PSVM.dopamin.service.Item;
 
-import com.PSVM.dopamin.domain.ItemDto;
-import com.PSVM.dopamin.dao.ItemAdminDaoImpl;
-import com.PSVM.dopamin.domain.ItemForm;
+import com.PSVM.dopamin.domain.Item.ItemDto;
+import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
+import com.PSVM.dopamin.domain.Item.ItemForm;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

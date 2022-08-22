@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.ItemDto;
+import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
+import com.PSVM.dopamin.domain.Item.ItemDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

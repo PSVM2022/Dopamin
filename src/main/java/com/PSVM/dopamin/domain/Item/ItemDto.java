@@ -1,4 +1,4 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.Item;
 
 import org.springframework.stereotype.Component;
 
@@ -22,6 +22,16 @@ public class  ItemDto {
     private String in_user;
     private Timestamp up_date;
     private String up_user;
+    private Item_ListDto item_listDto;
+
+    public Item_ListDto getItem_listDto() {
+        return item_listDto;
+    }
+
+    public void setItem_listDto(Item_ListDto item_listDto) {
+        this.item_listDto = item_listDto;
+    }
+
     public ItemDto(){}
 
     public ItemDto(Integer item_id, Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Integer stat, Integer dc_rate, Integer dc_price, Timestamp in_date, String in_user, Timestamp up_date, String up_user, String user_nic) {
@@ -200,6 +210,7 @@ public class  ItemDto {
                 ", in_user='" + in_user + '\'' +
                 ", up_date=" + up_date +
                 ", up_user='" + up_user + '\'' +
+                ", item_listDto=" + item_listDto +
                 '}';
     }
 }
