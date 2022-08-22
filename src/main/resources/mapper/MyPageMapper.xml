@@ -29,7 +29,7 @@
     </select>
 
     <select id="selectCntsView" parameterType="String" resultType="MyPageCntsDto">
-        select cv.cnts_id, cv.user_id, cv.in_date, c.cnts_postr_img, c.cnts_visib_stat
+        select cv.cnts_id, c.cnts_title, cv.user_id, cv.in_date, c.cnts_postr_img, c.cnts_visib_stat
         from CNTS_VIEW cv
                  join CNTS c on c.cnts_id = cv.cnts_id
         where cv.user_id = #{user_id}
@@ -37,52 +37,45 @@
     </select>
 
     <select id="selectPost" parameterType="String" resultType="MyPagePostDto">
-        select user_id,
-               bbs_id,
-               post_id,
-               post_title,
-               post_view_cnt,
-               post_reply_cnt,
-               in_date,
-               post_visib
-        from POST
-        order by in_date desc;
+        select p.user_id,
+               p.bbs_id,
+               b.bbs_nm,
+               p.post_id,
+               p.post_title,
+               p.post_view_cnt,
+               p.post_reply_cnt,
+               p.up_date,
+               p.post_visib
+        from POST p
+                 join BBS b on p.bbs_id = b.bbs_id
+        where p.user_id = #{user_id}
+        order by up_date desc;
     </select>
 
-<!--    <select id="selectUserInfo" parameterType="String" resultType="MyPageDto">-->
-<!--        select u.user_id,-->
-<!--               u.prf_img,-->
-<!--               u.nic,-->
-<!--               u.dopa_exp,-->
-<!--               u.dopa_point,-->
-<!--               u.fav_genre1,-->
-<!--               u.sex,-->
-<!--               u.btdt,-->
-<!--               i.item_img-->
-<!--        from USER u-->
-<!--                 join POSSESION p on p.user_id = u.user_id-->
-<!--                 join ITEM i on i.item_id = p.item_id-->
-<!--        where u.user_id = #{user_id}-->
-<!--          and p.equip_stat = 1;-->
-<!--    </select>-->
-
     <select id="selectUserInfo" parameterType="String" resultType="MyPageDto">
-            select u.user_id,
-                   u.prf_img,
-                   u.nic,
-                   u.dopa_exp,
-                   u.dopa_point,
-                   u.fav_genre1,
-                   u.sex,
-                   u.btdt
-            from USER u
-            where u.user_id = #{user_id}
-        </select>
+        select u.user_id,
+               u.prf_img,
+               u.nic,
+               u.dopa_exp,
+               u.dopa_point,
+               u.fav_genre1,
+               u.sex,
+               u.btdt
+        from USER u
+        where u.user_id = #{user_id}
+    </select>
 
-    <select id="selectSkin" parameterType="String" resultType="MyPageDto">
+    <select id="selectSkin" parameterType="String" resultType="String">
         select i.item_img
         from ITEM i
                  join POSSESION p on i.item_id = p.item_id
         WHERE p.user_id = #{user_id}
+          and p.equip_stat = 1
+    </select>
+
+    <select id="genreIdToNm" parameterType="int" resultType="String">
+        select genre_nm
+        from GENRE
+        WHERE genre_id = #{genre_id}
     </select>
 </mapper>

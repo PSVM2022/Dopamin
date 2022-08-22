@@ -20,5 +20,7 @@ public interface MyPageDao {
 
     MyPageDto selectMyInfo(String user_id);
 
-    MyPageDto selectSkin(String user_id);
+    String selectSkin(String user_id);
+
+    String genreIdToNm(int genre_id);
 }

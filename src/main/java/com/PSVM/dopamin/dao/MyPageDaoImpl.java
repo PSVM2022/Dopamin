@@ -49,9 +49,13 @@ public class MyPageDaoImpl implements MyPageDao {
     }
 
     @Override
-    public MyPageDto selectSkin(String user_id) {
+    public String selectSkin(String user_id) {
         return session.selectOne(namespace + "selectSkin", user_id);
     }
 
+    @Override
+    public String genreIdToNm(int genre_id) {
+        return session.selectOne(namespace + "genreIdToNm", genre_id);
+    }
 
 }
