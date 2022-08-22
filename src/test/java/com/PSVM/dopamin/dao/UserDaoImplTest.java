@@ -88,8 +88,6 @@ public class UserDaoImplTest {
         assertEquals(1,rowCnt1);
         assertEquals(1,rowCnt2);
         assertEquals(1,rowCnt3);
-
-
     }
 
     @Test
@@ -188,4 +186,41 @@ public class UserDaoImplTest {
 //
 //    }
 
+    @Test
+    @Transactional
+    public void testUpdateUserGenre(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt1 = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+        UserDto survey = new UserDto(userDto.getUser_id(),8,2,3,4,5);
+        //when
+        int rowCnt3 = userDao.updateUserGenre(survey);
+        UserDto user = userDao.selectUser(userDto.getUser_id());
+        //then
+        assertEquals(1,rowCnt1);
+        assertEquals(1,rowCnt2);
+        assertEquals(1,rowCnt3);
+        assertEquals((Integer) 8,user.getFav_genre1());
+    }
+
+    @Test
+    @Transactional
+    public void IsNullWhenSurveyIfGenreIsNull(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt1 = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+        UserDto survey = new UserDto(userDto.getUser_id(),null,null,null,null,null);
+
+        //when
+        int rowCnt3 = userDao.updateUserGenre(survey);
+        UserDto user = userDao.selectUser(userDto.getUser_id());
+
+        //then
+        assertEquals(1,rowCnt1);
+        assertEquals(1,rowCnt2);
+        assertEquals(1,rowCnt3);
+        assertEquals(null,user.getFav_genre1());
+    }
 }

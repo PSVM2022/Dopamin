@@ -2,12 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ page session="false" %>
 <%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
-<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+<c:set var="USERID" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
+<c:set var="loginOutLink" value="${USERID=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${USERID=='' ? '로그인' : USERID}"/>
+<c:set var="SURVEY" value="${pageContext.request.getSession(false).getAttribute('SURVEY')}"/>
+
 <html lang="ko">
 
 <head>
@@ -45,13 +46,17 @@
         <a class="topnav-menu" href="<c:url value='${loginOutLink}'/>" onclick='alert("${loginOut}")'>${loginOut}</a>
     </div>
 </div>
+<script>
+    <%--let surveyMsg = "${SUR_SUCCESS}"--%>
+    if( "${SUR_SUCCESS}"!="") alert("${SUR_SUCCESS}")
+    if( "${SUR_ERR}"!="") alert("${SUR_ERR}")
+
+</script>
 
 <div class="content">
     <div class="responsive-content">
         <h2>DOPAMIN</h2>
         <div class="content-preview" style="text-align:center">
-
-
             <c:forEach var="cnts" items="${cntsDtoList}">
                 <br>
                 <tr>
@@ -67,9 +72,6 @@
         </div>
         <br>
     </div>
-
-
-
     <i class="fa-brands fa-instagram"></i>
     <i class="fa-brands fa-facebook"></i>
     <i class="fa-brands fa-youtube"></i>
@@ -81,5 +83,8 @@
     <div>about</div>
     <div>2022 PSVM팀</div>
 </div>
+<script>
+
+</script>
 </body>
 </html>

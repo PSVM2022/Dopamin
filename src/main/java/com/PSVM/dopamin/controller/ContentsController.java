@@ -45,6 +45,15 @@ public class ContentsController {
     //메인 페이지
     @GetMapping("/")
     public String contentsList(HttpServletRequest request, Model model) {
+        //설문조사 안했다면
+        HttpSession session = request.getSession(false);
+        if(session!=null) {
+            System.out.println("call contentsList method int ContentsController session = " + session);
+                //SURVEY가 존재한다면,
+                if(session.getAttribute("SURVEY")!=null){
+                    return "Login/survey";
+                }
+        }
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
         model.addAttribute("cntsDtoList", cntsDtoList);

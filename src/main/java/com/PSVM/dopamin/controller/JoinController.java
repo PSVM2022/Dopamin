@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import java.util.HashMap;
@@ -50,11 +53,7 @@ public class JoinController {
 
     @PostMapping("/idduplck")
     public int idDuplCheck(@RequestBody String user_id,BindingResult result){
-        System.out.println("result = " + result);
-        System.out.println("user_id = " + user_id);
-
-        int cnt = userService.idDuplCk(user_id);
-        System.out.println("cnt = " + cnt);
+        int cnt = userService.idDuplicateCheck(user_id);
         return cnt;
     }
 
@@ -75,5 +74,25 @@ public class JoinController {
         Map map = new HashMap();
         map.put("successJoin","축하드립니다! 도파민 회원가입을 완료했습니다!");
         return map;
+    }
+
+    @PostMapping("/survey")
+    public String surveyGenre(UserDto userDto, RedirectAttributes redirectAttributes,HttpSession session){
+        System.out.println("user_id="+userDto.getUser_id());
+        System.out.println("UserDto.getFav_genre1="+userDto.getFav_genre1());
+        System.out.println("userDto.getFav_genre2()="+userDto.getFav_genre2());
+        System.out.println("userDto.getFav_genre3()="+userDto.getFav_genre3());
+        System.out.println("userDto.getFav_genre4()="+userDto.getFav_genre4());
+        System.out.println("userDto.getFav_genre5()="+userDto.getFav_genre5());
+        try{
+            int i = userService.surveyGenre(userDto);
+            System.out.println("i = " + i);
+            session.removeAttribute("SURVEY");
+            redirectAttributes.addFlashAttribute("SUR_SUCCESS","설문 조사에 응답해주셔서 감사합니다.");
+
+        }catch (NullPointerException ne){
+            redirectAttributes.addFlashAttribute("SUR_ERR",ne.getMessage());
+        }
+        return "redirect:/";
     }
 }

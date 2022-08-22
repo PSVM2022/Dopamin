@@ -7,6 +7,9 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -44,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int idDuplCk(String user_id) {
+    public int idDuplicateCheck(String user_id) {
         return userDao.selectIdDuplCnt(user_id);
     }
 
@@ -58,5 +61,19 @@ public class UserServiceImpl implements UserService {
         return userDao.selectCartId(user_id);
     }
 
+    @Override
+    public boolean loginCheck(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        return session != null;
+    }
 
+    @Override
+    public int surveyGenre(UserDto userDto)  throws NullPointerException{
+        System.out.println("call serveyGenre method in UserSeviceImpl");
+        int result = userDao.updateUserGenre(userDto);
+        if(result==0){
+            throw new NullPointerException("재시도해주시길 바랍니다.");
+        }
+        return result;
+    }
 }

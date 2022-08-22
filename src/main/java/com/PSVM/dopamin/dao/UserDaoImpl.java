@@ -66,4 +66,9 @@ public class UserDaoImpl implements UserDao {
         return session.selectOne(namespace+"selectCartId",user_id);
     }
 
+    @Override
+    public int updateUserGenre(UserDto userDto) {
+        System.out.println("call updateUserGenre in UserDaoImpl");
+        return session.update(namespace+"updateUserGenre",userDto);
+    }
 }
