@@ -10,21 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="feat: 컨텐츠 한줄평 mapper 작성&#10;&#10;컨텐츠 한줄평 CRUD mapper 작성함.">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/review.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/reviewView.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/ReviewServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/page/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/image/main_logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/template/dopa_frontend_template.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/template_home.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ReviewDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ReviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ReviewDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ReviewServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ReviewMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ReviewMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsSearchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsSearchList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ReviewDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ReviewDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/common/default.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/common/default.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/image/logo_example.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,20 +79,20 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "spring.configuration.checksum": "1e765f8ae1bb8e5badc9fe01a7fa7b82"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;1e765f8ae1bb8e5badc9fe01a7fa7b82&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.PSVM.dopamin.domain" />
@@ -498,7 +490,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/develop" />
+                        <option value="feature/contents" />
                       </list>
                     </value>
                   </entry>
