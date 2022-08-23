@@ -3,8 +3,10 @@ package com.PSVM.dopamin.controller;
 import com.PSVM.dopamin.domain.UserDto;
 import com.PSVM.dopamin.domain.UserDtoValidator;
 import com.PSVM.dopamin.domain.UserValidatorException;
+import com.PSVM.dopamin.service.MailSendService;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 
@@ -13,7 +15,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -25,6 +26,8 @@ import java.util.Map;
 public class JoinController {
     @Autowired
     UserService userService;
+    @Autowired
+    MailSendService mailSendService;
 
     @ExceptionHandler(UserValidatorException.class)
     @ResponseBody
@@ -105,10 +108,10 @@ public class JoinController {
 
     @GetMapping("/mailCheck")
     @ResponseBody
-    public String mailCheck(String email){
+    public String mailCheck(@RequestParam(name = "email") String email){
         System.out.println("이메일 인증 요청");
-        System.out.println("email = " + email);
-        return null;
+        System.out.println("in method email = " + email);
+        return mailSendService.joinEmail(email);
     }
 
 }

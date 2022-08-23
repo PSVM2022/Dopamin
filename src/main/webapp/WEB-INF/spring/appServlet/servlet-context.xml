@@ -38,10 +38,4 @@
 
 	<tx:annotation-driven/>
 
-<!--	이메일 인증 관련 빈 등록-->
-	<context:property-placeholder location="classpath:/db-config/email.properties"/>
-
-	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<beans:property name="host" value
-	</beans:bean>
 </beans:beans>

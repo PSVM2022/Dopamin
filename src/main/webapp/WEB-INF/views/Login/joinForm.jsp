@@ -85,135 +85,118 @@
             <div id="cnty_msg" class="msg"></div>
             <br>
 
-            <%--            <label for="email">email</label>--%>
-            <%--            <input type="email" id="email" name="email"/>--%>
-            <%--            <button type="button">이메일 인증</button>--%>
-            <%--            <div id="email_msg" class="msg"></div>--%>
-            <%--            <br>--%>
-            <div class="form-group email-form">
-                <label for="email">이메일</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일">
-                    <select class="form-control" name="userEmail2" id="userEmail2">
-                        <option>@naver.com</option>
-                        <option>@daum.net</option>
-                        <option>@gmail.com</option>
-                        <option>@hanmail.com</option>
-                    </select>
-                </div>
+                <%--            <label for="email">email</label>--%>
+                <%--            <input type="email" id="email" name="email"/>--%>
+                <%--            <button type="button">이메일 인증</button>--%>
+                <%--            <div id="email_msg" class="msg"></div>--%>
+                <%--            <br>--%>
+                <div class="form-group email-form">
+                    <label for="userEmail1">이메일</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일">
+                        <select class="form-control" name="userEmail2" id="userEmail2">
+                            <option name="@naver.com">@naver.com</option>
+                            <option value="@daum.net">@daum.net</option>
+                            <option value="@gmail.com">@gmail.com</option>
+                            <option value="@hanmail.com">@hanmail.com</option>
+                        </select>
+                    </div>
 
-                <div class="input-group-addon">
-                    <button type="button" class="btn btn-primary" id="emailCheckBtn">본인인증</button>
+                    <div class="input-group-addon">
+                        <button type="button" class="btn btn-primary" id="emailCheckBtn">본인인증</button>
+                    </div>
+                    <div class="mail-check-box">
+                        <input class="form-control mail-check-input" placeholder="인증번호 입력" disabled="disabled"
+                               maxlength="6">
+                    </div>
                 </div>
-                <div class="mail-check-box">
-                    <input class="form-control mail-check-input" placeholder="인증번호 입력" disabled="disabled"
-                           maxlength="6">
-                </div>
+                <span id="mail-check-warn"></span>
             </div>
-            <span id="mail-check-warn"></span>
+
+            <label for="nic">닉네임</label>
+            <input type="text" id="nic" name="nic"/>
+            <div id="nic_msg" class="msg"></div>
+            <br>
+
+            <label for="year">생년월일</label>
+            <input type="text" id="year" name="year"/>년<input type="text" id="month" name="month"/>월<input type="text"
+                                                                                                           id="day" name="day"/>일
+            <div id="btdt_msg" class="msg"></div>
+            <br>
+            <label for="sex">성별</label>
+            <select autofocus id="sex" name="sex">
+                <option value="0">남자</option>
+                <option value="1">여자</option>
+            </select>
+            <div id="sex_msg" class="msg"></div>
+            <button type="submit" id="joinBtn">회원가입</button>
+
         </div>
 
-        <label for="nic">닉네임</label>
-        <input type="text" id="nic" name="nic"/>
-        <div id="nic_msg" class="msg"></div>
-        <br>
-
-        <label for="year">생년월일</label>
-        <input type="text" id="year" name="year"/>년<input type="text" id="month" name="month"/>월<input type="text"
-                                                                                                       id="day"
-                                                                                                       name="day"/>일
-        <div id="btdt_msg" class="msg"></div>
-        <br>
-        <label for="sex">성별</label>
-        <select autofocus id="sex" name="sex">
-            <option value="0">남자</option>
-            <option value="1">여자</option>
-        </select>
-        <div id="sex_msg" class="msg"></div>
-
-        <br>
-
-        <%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
-        <%--    <input type="radio" value="1" name="fav_genre1">액션--%>
-        <%--    <input type="radio" value="2" name="fav_genre2">로맨스--%>
-        <%--    <input type="radio" value="3" name="fav_genre3">코미디--%>
-        <%--    <input type="radio" value="4" name="fav_genre4">공포--%>
-        <%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
-
-        <button type="submit" id="joinBtn">회원가입</button>
-        <%--            </form>--%>
-        <%--            </form:form>--%>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-youtube"></i>
+        <div class="content-preview">
+            class속성이 responsive-content인 div태크 하단부터 태그를 넣어 내용을 작성하시면 됩니다.
+        </div>
+        <div class="content-teenager-girl-movie"></div>
 
     </div>
 
-    <i class="fa-brands fa-instagram"></i>
-    <i class="fa-brands fa-facebook"></i>
-    <i class="fa-brands fa-youtube"></i>
-    <div class="content-preview">
-        class속성이 responsive-content인 div태크 하단부터 태그를 넣어 내용을 작성하시면 됩니다.
+    <div class="footer">
+        <div>about</div>
+        <div>2022 PSVM팀</div>
     </div>
-    <div class="content-teenager-girl-movie"></div>
 
-</div>
-</div>
-
-
-<div class="footer">
-    <div>about</div>
-    <div>2022 PSVM팀</div>
-</div>
-<script>
-    function pwdCheck() {
-        let pwd = document.getElementById('user_pwd');
-        let pwdCheck = document.getElementById('pwdCheck');
-        let pwd_check_msg = document.getElementById('pwd_check_msg');
-        if (pwd.value == pwdCheck.value) {
-            pwd_check_msg.innerHTML = "비밀번호 일치";
-        } else {
-            pwd_check_msg.style.color = "#ff0000"
-            pwd_check_msg.innerHTML = "비밀번호 불일치";
-        }
-    }
-
-    //이메일 인증 버튼
-    $("#emailCheckBtn").click(function (){
-        const email = $("#userEmail1").val() + $("#userEmail2").val();//이메일
-        console.log("이메일="+email);
-        const checkInput = $(".mail-check-input") //인증번호
-
-        $.ajax({
-           type:'GET',
-            url:'<c:url value="/join/mailCheck?email="/>'+email,
-            success:function (result){
-               console.log("result="+result)
-                checkInput.attr('disabled',false);
-               code=result;
-               alert("인증번호가 전송되었습니다.")
+    <script>
+        function pwdCheck() {
+            let pwd = document.getElementById('user_pwd');
+            let pwdCheck = document.getElementById('pwdCheck');
+            let pwd_check_msg = document.getElementById('pwd_check_msg');
+            if (pwd.value == pwdCheck.value) {
+                pwd_check_msg.innerHTML = "비밀번호 일치";
+            } else {
+                pwd_check_msg.style.color = "#ff0000"
+                pwd_check_msg.innerHTML = "비밀번호 불일치";
             }
+        }
+
+        //이메일 인증 버튼
+        $("#emailCheckBtn").click(function () {
+            let useremail1 = $('[name="userEmail1"]').val();
+            let useremail2 = $('[name="userEmail2"]').val();
+            console.log(useremail1);
+            console.log(useremail2);
+            const email =$('#userEmail1').val() + $('#userEmail2').val();//이메일
+            // const email =useremail1 + useremail2;//이메일
+            console.log("client 이메일=" + email);
+
+            const checkInput = $(".mail-check-input") //인증번호 입력칸
+            $.ajax({
+                type: 'GET',
+                url: '/psvm/join/mailCheck?email='+email,
+                success: function (data) {
+                    console.log("data=" + data)
+                    //응답오면 인증번호 입력칸 활성화.
+                    checkInput.attr('disabled', false);
+                    let authCode = data;
+                    alert("인증번호가 전송되었습니다.")
+                }
+            });//end ajax
         });
-    });
-    // function idDuplCheck() {
-    //
-    //     $.ajax({
-    //         type:'POST',
-    //         url: '/psvm/join/idduplck',
-    //         headers : { "content-type": "application/json"}, // 요청 헤더
-    //         dataType : 'text', // 전송받을 데이터의 타입
-    //         data : JSON.stringify(person),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-    //         success : function(result){
-    //             person2 = JSON.parse(result);    // 서버로부터 응답이 도착하면 호출될 함수
-    //             alert("received="+result);       // result는 서버가 전송한 데이터
-    //             $("#data").html("name="+person2.name+", age="+person2.age);
-    //         },
-    //         error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-    //     }); // $.ajax()
-    //
-    //
-    //
-    // }
+        $(".mail-check-input").blur(function (){
+            const inputCode = $(this).val();
+            const $resultMsg = $('#mail-check-warn');
 
-
-    $(document).ready(function () {
+            if(inputCode === code){
+                $resultMsg.html("인증번호가 일치합니다.");
+                $resultMsg.css('color','green');
+                $('#mail-Check-Btn').attr('disabled',true);
+                $('#userEamil1').attr('readonly',true);
+                $('#userEamil2').attr('readonly',true);
+                $('#userEmail2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
+                $('#userEmail2').attr('onChange', 'this.selectedIndex = this.initialSelect');
+            }else{
 
         // let user_id = {"user_id":$("#user_id").val()};
 
@@ -243,83 +226,65 @@
                 }
             }); // $.ajax()
 
-            alert("the request is sent")
-        });
-    });
-
-    $("#joinBtn").click(function () {
-        //비밀번호 확인
-        let pwd = document.getElementById('user_pwd');
-        let pwdCheck = document.getElementById('pwdCheck');
-        let pwd_check_msg = document.getElementById('pwd_check_msg');
-        if (pwd.value != pwdCheck.value) {
-            pwd_check_msg.style.color = "#ff0000"
-            pwd_check_msg.innerHTML = "비밀번호 불일치";
-            return;
-        } else {
-            pwd_check_msg.innerHTML = "";
-        }
-
-
-        let user_id = $('#user_id').val();
-        let user_pwd = $('#user_pwd').val();
-        let f_nm = $('#f_nm').val();
-        let l_nm = $('#l_nm').val();
-        let phone_num = $('#phone_num').val();
-        let cnty = $('#cnty').val();
-        let email = $('#email').val();
-        let nic = $('#nic').val();
-        let btdt = $('#year').val() + $('#month').val() + $('#day').val();
-        let sex = $('#sex').val();
-        let userDto = {
-            "user_id": user_id, "user_pwd": user_pwd, "f_nm": f_nm, "l_nm": l_nm, "phone_num": phone_num,
-            "cnty": cnty, "email": email, "nic": nic, "btdt": btdt, "sex": sex
-        };
-        $.ajax({
-            type: 'POST',
-            url: '<c:url value="/join/join">',
-            headers: {"content-type": "application/json"},
-            dataType: 'text',
-            data: JSON.stringify(userDto),
-            success: function (response) {
-                let result = JSON.parse(response);
-                if (result.successJoin !== undefined) {
-                    alert(result.successJoin);
-                    location.href = "/psvm/login/login";
-                }
-                console.log(result)
-                console.log(result.user_id)
-                console.log(result.user_pwd)
-                console.log(result.f_nm)
-                console.log(result.l_nm)
-                console.log(result.phone_num)
-                console.log(result.cnty)
-                console.log(result.email)
-                console.log(result.nic)
-                console.log(result.btdt)
-                console.log(result.sex)
-                console.log(result.id_dupl_err);
-
-                $("#user_id_msg").html(result.user_id = (result.user_id !== undefined ? result.user_id : ""));
-                $("#user_id_msg2").html(result.id_dupl_err = (result.id_dupl_err !== undefined ? result.id_dupl_err : ""));
-                $("#user_pwd_msg").html(result.user_pwd = (result.user_pwd !== undefined ? result.user_pwd : ""));
-                $("#f_nm_msg").html(result.f_nm = (result.f_nm !== undefined ? result.f_nm : ""));
-                $("#l_nm_msg").html(result.l_nm = (result.l_nm !== undefined ? result.l_nm : ""));
-                $("#phone_num_msg").html(result.phone_num = (result.phone_num !== undefined ? result.phone_num : ""));
-                $("#cnty_msg").html(result.cnty = (result.cnty !== undefined ? result.cnty : ""));
-                $("#email_msg").html(result.email = (result.email !== undefined ? result.email : ""));
-                $("#nic_msg").html(result.nic = (result.nic !== undefined ? result.nic : ""));
-                $("#btdt_msg").html(result.btdt = (result.btdt !== undefined ? result.btdt : ""));
-                $("#sex_msg").html(result.sex = (result.sex !== undefined ? result.sex : ""));
-            },
-            error: function () {
-                alert("error")
+        //회원가입 버튼
+        $("#joinBtn").click(function(){
+            //비밀번호 확인
+            let pwd = document.getElementById('user_pwd');
+            let pwdCheck = document.getElementById('pwdCheck');
+            let pwd_check_msg = document.getElementById('pwd_check_msg');
+            if(pwd.value != pwdCheck.value){
+                pwd_check_msg.style.color = "#ff0000"
+                pwd_check_msg.innerHTML = "비밀번호 불일치";
+                return;
+            }else{
+                pwd_check_msg.innerHTML = "";
             }
+
+            let btdt = $('#year').val() + $('#month').val() + $('#day').val();
+            let userDto = {"user_id": $('#user_id').val(), "user_pwd": $('#user_pwd').val(), "f_nm": $('#f_nm').val(), "l_nm":$('#l_nm').val(), "phone_num" : $('#phone_num').val(),
+                "cnty":$('#cnty').val(), "email":$('#email').val(), "nic" : $('#nic').val(), "btdt":btdt, "sex": $('#sex').val()};
+            $.ajax({
+                type:'POST',
+                url: '<c:url value="/join/join"/>',
+                headers : { "content-type": "application/json"},
+                dataType : 'text',
+                data : JSON.stringify(userDto),
+                success : function(response){
+                    let result = JSON.parse(response);
+                    //회원가입 성공하면
+                    if(result.successJoin!==undefined){
+                        alert(result.successJoin);
+                        location.href="/psvm/login/login";
+                    }
+                    console.log(result)
+                    console.log(result.user_id)
+                    console.log(result.user_pwd)
+                    console.log(result.f_nm)
+                    console.log(result.l_nm)
+                    console.log(result.phone_num)
+                    console.log(result.cnty)
+                    console.log(result.email)
+                    console.log(result.nic)
+                    console.log(result.btdt)
+                    console.log(result.sex)
+                    console.log(result.id_dupl_err);
+                    $("#user_id_msg").html(result.user_id=(result.user_id!==undefined ? result.user_id : ""));
+                    $("#user_id_msg").html(result.user_id=(result.id_dupl_err!==undefined ? result.id_dupl_err : ""));
+                    $("#user_pwd_msg").html(result.user_pwd=(result.user_pwd!==undefined ? result.user_pwd : ""));
+                    $("#f_nm_msg").html(result.f_nm=(result.f_nm!==undefined ? result.f_nm : ""));
+                    $("#l_nm_msg").html(result.l_nm=(result.l_nm!==undefined ? result.l_nm : ""));
+                    $("#phone_num_msg").html(result.phone_num=(result.phone_num!==undefined ? result.phone_num : ""));
+                    $("#cnty_msg").html(result.cnty=(result.cnty!==undefined ? result.cnty : ""));
+                    $("#email_msg").html(result.email=(result.email!==undefined ? result.email : ""));
+                    $("#nic_msg").html(result.nic=(result.nic!==undefined ? result.nic : ""));
+                    $("#btdt_msg").html(result.btdt=(result.btdt!==undefined ? result.btdt : ""));
+                    $("#sex_msg").html(result.sex=(result.sex!==undefined ? result.sex : ""));
+                },
+                error   : function(){ alert("error") }
+            });
         });
+    </script>
 
-    });
-
-</script>
 </body>
 
 </html>
