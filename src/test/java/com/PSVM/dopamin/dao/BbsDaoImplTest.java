@@ -6,7 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import com.PSVM.dopamin.domain.BbsDto;
+import com.PSVM.dopamin.dao.community.BbsDao;
+import com.PSVM.dopamin.domain.community.BbsDto;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;

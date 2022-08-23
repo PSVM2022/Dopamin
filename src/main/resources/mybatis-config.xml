@@ -12,11 +12,11 @@
         <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
         <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
         <typeAlias alias="CntsEvalDto" type="com.PSVM.dopamin.domain.CntsEvalDto"/>
-        <!--        <typeAlias alias="BoardDto" type="com.fastcampus.ch4.domain.BoardDto"/>-->
-        <!--        <typeAlias alias="CommentDto" type="com.fastcampus.ch4.domain.CommentDto"/>-->
-
         <typeAlias alias="SearchCondition" type="com.PSVM.dopamin.domain.SearchCondition"/>
-        <typeAlias alias="bbs" type="com.PSVM.dopamin.domain.BbsDto"/>
-        <typeAlias alias="post" type="com.PSVM.dopamin.domain.PostDto"/>
+        <typeAlias alias="bbs" type="com.PSVM.dopamin.domain.community.BbsDto"/>
+        <typeAlias alias="post" type="com.PSVM.dopamin.domain.community.PostDto"/>
+        <typeAlias alias="comment" type="com.PSVM.dopamin.domain.community.CommentDto"/>
+        <typeAlias alias="postEmbedContent"
+          type="com.PSVM.dopamin.domain.community.PostEmbedContentDto"/>
     </typeAliases>
 </configuration>

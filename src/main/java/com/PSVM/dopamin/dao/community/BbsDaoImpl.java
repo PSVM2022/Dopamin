@@ -1,6 +1,6 @@
-package com.PSVM.dopamin.dao;
+package com.PSVM.dopamin.dao.community;
 
-import com.PSVM.dopamin.domain.BbsDto;
+import com.PSVM.dopamin.domain.community.BbsDto;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BbsDaoImpl<T, ID> implements BbsDao<T, ID> {
 
+    private static String namespace = "com.PSVM.dopamin.dao.community.BbsMapper.";
     @Autowired
     private SqlSession session;
-    private static String namespace = "com.PSVM.dopamin.dao.BbsMapper.";
 
     @Override
     public int save(BbsDto dto) throws SQLException {

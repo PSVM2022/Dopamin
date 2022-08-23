@@ -1,4 +1,4 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.community;
 
 import java.sql.Timestamp;
 import java.util.Objects;
