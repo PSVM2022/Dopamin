@@ -1,77 +1,33 @@
 * {
 	box-sizing: border-box;
-	font-family: 'NotoSans Korean', 'Noto Serif';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: auto;
+	text-rendering: optimizeLegibility;
 }
 
 :root {
-	--bg-black-color1: #6A2C70;
-	--black-color2: #333;
-	--color1: #F9ED69;
-	--color2: #F08A5D;
-	--color3: #B83B5E;
-	--white-color1: #F2F2F2;
-	--white-color2: #ddd;
-	--white-color3: #f1f1f1;
+	margin: 0;
+	font-family: 'NotoSans KR', 'Noto Serif';
+	background-color: var(--main-white);
+	/* 이런식으로 해서 사용하세요 */
+	/* 정의된 컬러 -  검정, 흰색(배경용), 회색(음영1, 음영2) 오렌지, 베이지, 옐로우 */
+	--main-black: #292A32;
+	--main-white: #F7F7F7;
+	--main-grey: #A5A5AA;
+	--main-grey2: rgba(0, 0, 0, 0.05);
+	--orange: #FF7800;
+	--beige: #FFBC97;
+	--yellow: #FFE300;
 }
 
 body {
-	margin: 0;
-	background-color: #ddd;
+	background-color: white !important;
 }
 
-/* Style the top navigation bar */
-.topnav {
-	overflow: hidden;
-	background-color: #333;
-	display: flex;
+object {
+	pointer-events: none;
 }
 
-.responsive {
-	display: flex;
-	margin: 0 auto;
-	padding-left: 10rem;
-	padding-right: 10rem;
-}
-
-.logo-wrapper {
-	display: flex;
-	justify-content: center;
-}
-
-/* Style the topnav links */
-.topnav-menu {
-	float: left;
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav a:hover {
-	background-color: #ddd;
-	color: black;
-}
-
-/* Style the content */
-.content {
-	background-color: #ddd;
-	/* Should be removed. Only for demonstration */
-}
-
-.responsive-content {
-	margin: auto;
-	padding-left: 10rem;
-	padding-right: 10rem;
-}
-
-/* Style the footer */
-.footer {
-	background-color: #f1f1f1;
-	padding: 10px;
-	display: flex;
-	justify-content: center;
-	padding-left: 10rem;
-	padding-right: 10rem;
+footer .copyright {
+	background-color: var(--main-grey2);
 }
