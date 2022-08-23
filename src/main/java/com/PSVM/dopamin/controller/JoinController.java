@@ -39,8 +39,6 @@ public class JoinController {
         error_msg.put("id_dupl_err", de.getMessage());
         return error_msg;
     }
-
-
     @InitBinder
     public void userDtoValidator(WebDataBinder binder) {
         binder.setValidator(new UserDtoValidator());
@@ -50,11 +48,26 @@ public class JoinController {
     public String joinForm() {
         return "Login/joinForm";
     }
-
     @PostMapping("/idduplck")
-    public int idDuplCheck(@RequestBody String user_id,BindingResult result){
-        int cnt = userService.idDuplicateCheck(user_id);
-        return cnt;
+    @ResponseBody
+    public Map idDupleCheck(@RequestParam String userId,BindingResult bindingResult){
+        System.out.println("user_id = " + userId);
+        System.out.println("bindingResult = " + bindingResult);
+        Map result = new HashMap();
+        try{
+            if(userId==null){
+                throw new NullPointerException("아이디를 입력해주세요.");
+            }
+            int cnt = userService.idDuplicateCheck(userId);
+            String msg = (cnt==1 ? "ID_DUPLE_ERR" : "ID_DUPLE_OK");
+            result.put("ID_CHECK",msg);
+            System.out.println("cnt = " + cnt);
+
+
+        }catch (NullPointerException ne){
+            result.put("ID_CHECK",ne.getMessage());
+        }
+        return result;
     }
 
     @PostMapping("/join")
@@ -89,4 +102,13 @@ public class JoinController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/mailCheck")
+    @ResponseBody
+    public String mailCheck(String email){
+        System.out.println("이메일 인증 요청");
+        System.out.println("email = " + email);
+        return null;
+    }
+
 }

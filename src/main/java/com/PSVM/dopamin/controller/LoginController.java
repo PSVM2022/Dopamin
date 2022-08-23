@@ -50,7 +50,6 @@ public class LoginController {
                 throw new NullPointerException("존재하지 않는 유저입니다.");
             }
         }catch (NullPointerException ne){
-            System.out.println("에러메세지="+ne.getMessage());
             String msg = URLEncoder.encode(" 아이디 또는 비밀번호를 잘못 입력했습니다.\n" +
                     "입력하신 내용을 다시 확인해주세요.","utf-8");
             model.addAttribute("id",id);
@@ -82,10 +81,8 @@ public class LoginController {
         }
         if(rememberLogin){
             session.setMaxInactiveInterval(60);
-            System.out.println("세션 종료시간:"+session.getMaxInactiveInterval());
         }
         toURL = toURL==null || toURL.equals("") ? "/" : toURL;
-        System.out.println("toURL="+toURL);
         return "redirect:"+toURL;
     }
 }

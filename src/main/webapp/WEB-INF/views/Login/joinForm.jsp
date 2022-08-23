@@ -49,24 +49,15 @@
 <div class="content">
     <div class="responsive-content">
         <div class="content-movie">
-
-
-            <%--                    <form method="post" action="<c:url value="/join/join"/>">--%>
-            <%--            <form:form modelAttribute="userDto">--%>
-
             <label for="user_id">아이디</label>
             <input type="text" id="user_id" name="user_id"/>
             <div id="user_id_msg" class="msg"></div>
             <div id="user_id_msg2" class="msg"></div>
-
-
-            <button type="button" onclick="idDuplCheck()">아이디 중복 체크</button>
-
-
+            <button type="button" id="idDuplCheck">아이디 중복 체크</button>
+            <div id="idDupleCheckMsg" class="msg"></div>
             <label for="user_pwd">비밀번호</label>
             <input type="password" id="user_pwd" name="user_pwd"/>
             <div id="user_pwd_msg" class="msg"></div>
-            <br>
 
             <label for="pwdCheck">비밀번호 재확인</label>
             <input type="password" id="pwdCheck" name="pwdCheck"/>
@@ -94,57 +85,76 @@
             <div id="cnty_msg" class="msg"></div>
             <br>
 
-            <label for="email">email</label>
-            <input type="email" id="email" name="email"/>
-            <button type="button">이메일 인증</button>
-            <div id="email_msg" class="msg"></div>
-            <br>
+            <%--            <label for="email">email</label>--%>
+            <%--            <input type="email" id="email" name="email"/>--%>
+            <%--            <button type="button">이메일 인증</button>--%>
+            <%--            <div id="email_msg" class="msg"></div>--%>
+            <%--            <br>--%>
+            <div class="form-group email-form">
+                <label for="email">이메일</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일">
+                    <select class="form-control" name="userEmail2" id="userEmail2">
+                        <option>@naver.com</option>
+                        <option>@daum.net</option>
+                        <option>@gmail.com</option>
+                        <option>@hanmail.com</option>
+                    </select>
+                </div>
 
-            <label for="nic">닉네임</label>
-            <input type="text" id="nic" name="nic"/>
-            <div id="nic_msg" class="msg"></div>
-            <br>
-
-            <label for="year">생년월일</label>
-            <input type="text" id="year" name="year"/>년<input type="text" id="month" name="month"/>월<input type="text"
-                                                                                                           id="day"
-                                                                                                           name="day"/>일
-
-
-            <div id="btdt_msg" class="msg"></div>
-            <br>
-
-            <label for="sex">성별</label>
-            <select autofocus id="sex" name="sex">
-                <option value="0">남자</option>
-                <option value="1">여자</option>
-            </select>
-            <div id="sex_msg" class="msg"></div>
-
-            <br>
-
-            <%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
-            <%--    <input type="radio" value="1" name="fav_genre1">액션--%>
-            <%--    <input type="radio" value="2" name="fav_genre2">로맨스--%>
-            <%--    <input type="radio" value="3" name="fav_genre3">코미디--%>
-            <%--    <input type="radio" value="4" name="fav_genre4">공포--%>
-            <%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
-
-            <button type="submit" id="joinBtn">회원가입</button>
-            <%--            </form>--%>
-            <%--            </form:form>--%>
-
+                <div class="input-group-addon">
+                    <button type="button" class="btn btn-primary" id="emailCheckBtn">본인인증</button>
+                </div>
+                <div class="mail-check-box">
+                    <input class="form-control mail-check-input" placeholder="인증번호 입력" disabled="disabled"
+                           maxlength="6">
+                </div>
+            </div>
+            <span id="mail-check-warn"></span>
         </div>
 
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-youtube"></i>
-        <div class="content-preview">
-            class속성이 responsive-content인 div태크 하단부터 태그를 넣어 내용을 작성하시면 됩니다.
-        </div>
-        <div class="content-teenager-girl-movie"></div>
+        <label for="nic">닉네임</label>
+        <input type="text" id="nic" name="nic"/>
+        <div id="nic_msg" class="msg"></div>
+        <br>
+
+        <label for="year">생년월일</label>
+        <input type="text" id="year" name="year"/>년<input type="text" id="month" name="month"/>월<input type="text"
+                                                                                                       id="day"
+                                                                                                       name="day"/>일
+        <div id="btdt_msg" class="msg"></div>
+        <br>
+        <label for="sex">성별</label>
+        <select autofocus id="sex" name="sex">
+            <option value="0">남자</option>
+            <option value="1">여자</option>
+        </select>
+        <div id="sex_msg" class="msg"></div>
+
+        <br>
+
+        <%--    <label>선호 장르를 선택해주세요(최소 1개, 최대 5개)</label>--%>
+        <%--    <input type="radio" value="1" name="fav_genre1">액션--%>
+        <%--    <input type="radio" value="2" name="fav_genre2">로맨스--%>
+        <%--    <input type="radio" value="3" name="fav_genre3">코미디--%>
+        <%--    <input type="radio" value="4" name="fav_genre4">공포--%>
+        <%--    <input type="radio" value="5" name="fa_genre5">스릴러--%>
+
+        <button type="submit" id="joinBtn">회원가입</button>
+        <%--            </form>--%>
+        <%--            </form:form>--%>
 
     </div>
+
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-facebook"></i>
+    <i class="fa-brands fa-youtube"></i>
+    <div class="content-preview">
+        class속성이 responsive-content인 div태크 하단부터 태그를 넣어 내용을 작성하시면 됩니다.
+    </div>
+    <div class="content-teenager-girl-movie"></div>
+
+</div>
 </div>
 
 
@@ -165,27 +175,77 @@
         }
     }
 
-    function idDuplCheck() {
-        $.ajax({
-            type: 'POST',       // 요청 메서드
-            url: '/psvm/join/idduplck',  // 요청 URI
-            headers: {"content-type": "application/json"}, // 요청 헤더
-            dataType: 'text', // 전송받을 데이터의 타입
-            data: JSON.stringify({"user_id": $("#user_id")}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-            success: function (response) {
-                let cnt = JSON.parse(response);
-                if (cnt == "1") {
-                    alert("이미 사용된 아이디입니다.")
-                } else {
-                    alert("사용 가능한 아이디입니다.")
-                }
+    //이메일 인증 버튼
+    $("#emailCheckBtn").click(function (){
+        const email = $("#userEmail1").val() + $("#userEmail2").val();//이메일
+        console.log("이메일="+email);
+        const checkInput = $(".mail-check-input") //인증번호
 
-            },
-            error: function () {
-                alert("error")
-            } // 에러가 발생했을 때, 호출될 함수
+        $.ajax({
+           type:'GET',
+            url:'<c:url value="/join/mailCheck?email="/>'+email,
+            success:function (result){
+               console.log("result="+result)
+                checkInput.attr('disabled',false);
+               code=result;
+               alert("인증번호가 전송되었습니다.")
+            }
         });
-    }
+    });
+    // function idDuplCheck() {
+    //
+    //     $.ajax({
+    //         type:'POST',
+    //         url: '/psvm/join/idduplck',
+    //         headers : { "content-type": "application/json"}, // 요청 헤더
+    //         dataType : 'text', // 전송받을 데이터의 타입
+    //         data : JSON.stringify(person),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+    //         success : function(result){
+    //             person2 = JSON.parse(result);    // 서버로부터 응답이 도착하면 호출될 함수
+    //             alert("received="+result);       // result는 서버가 전송한 데이터
+    //             $("#data").html("name="+person2.name+", age="+person2.age);
+    //         },
+    //         error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+    //     }); // $.ajax()
+    //
+    //
+    //
+    // }
+
+
+    $(document).ready(function () {
+
+        // let user_id = {"user_id":$("#user_id").val()};
+
+        $("#idDuplCheck").click(function () {
+            let userId = $("#user_id").val();
+            let json = {userId: $("#user_id").val()};
+            console.log(json);
+            $.ajax({
+                type: 'POST',
+                url: '/psvm/join/idduplck',
+                headers: {"content-type": "application/json"},
+                dataType: 'text',
+                data: json,
+                success: function (result) {
+                    msg = JSON.parse(result);
+                    console.log(result.ID_CHECK)
+                    console.log(msg.ID_CHECK);
+                    // if(msg.ID_CHECK == "ID_DUPLE_OK"){
+                    //     alert("사용가능한 아이디입니다.")
+                    //     $("#id_duple_check").html("사용 가능한 아이디입니다.")
+                    // }else{
+                    //     $("#id_duple_check").html("중복된 아이디입니다.")
+                    // }
+                },
+                error: function () {
+                    alert("error")
+                }
+            }); // $.ajax()
+
+            alert("the request is sent")
+        });
+    });
 
     $("#joinBtn").click(function () {
         //비밀번호 확인
@@ -217,7 +277,7 @@
         };
         $.ajax({
             type: 'POST',
-            url: '/psvm/join/join',
+            url: '<c:url value="/join/join">',
             headers: {"content-type": "application/json"},
             dataType: 'text',
             data: JSON.stringify(userDto),

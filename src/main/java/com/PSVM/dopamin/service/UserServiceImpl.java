@@ -47,8 +47,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int idDuplicateCheck(String user_id) {
-        return userDao.selectIdDuplCnt(user_id);
+    public int idDuplicateCheck(String user_id)throws NullPointerException {
+        int rowCnt = userDao.selectIdDuplCnt(user_id);
+
+
+        return rowCnt;
     }
 
     @Override

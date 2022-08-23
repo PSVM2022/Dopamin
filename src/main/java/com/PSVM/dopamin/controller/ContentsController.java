@@ -48,7 +48,6 @@ public class ContentsController {
         //설문조사 안했다면
         HttpSession session = request.getSession(false);
         if(session!=null) {
-            System.out.println("call contentsList method int ContentsController session = " + session);
                 //SURVEY가 존재한다면,
                 if(session.getAttribute("SURVEY")!=null){
                     return "Login/survey";

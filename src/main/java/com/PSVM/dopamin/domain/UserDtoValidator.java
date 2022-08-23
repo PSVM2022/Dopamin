@@ -13,12 +13,14 @@ public class UserDtoValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
+        System.out.println("supports");
         //clazz가 UserDto 또는 그 자손인지 검증
         return UserDto.class.isAssignableFrom(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
+        System.out.println("validate");
 
         UserDto userDto = (UserDto) target;
         final String rqrMsg= "필수 정보입니다.";
