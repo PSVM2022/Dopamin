@@ -8,6 +8,7 @@ import com.PSVM.dopamin.service.Item.ItemUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -15,7 +16,6 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 @RequestMapping(value="/item")
@@ -60,8 +60,12 @@ public class ItemUserController {
     //                                   2. 아이템 보유 목록과 거래내역에, 포인트 사용내역 추가되어야 함.
     @PostMapping("/buyCart")//장바구니에서 아이템 구매 시, 발생하는 사건들.
     @ResponseBody
-    public void buy_item_in_Cart(@RequestBody List<OrderDto> orderDtoList, HttpSession session){
+    public ResponseEntity<Object> buy_item_in_Cart(@RequestBody List<OrderDto> orderDtoList, HttpSession session){
         try{
+            for(OrderDto orderDto:orderDtoList)
+            {
+                System.out.println("orderDto = " + orderDto);
+            }
             int cart_id=2;
             String user_id="ldhoon0813";
             if(orderDtoList.size()==0 || orderDtoList==null){
@@ -70,11 +74,12 @@ public class ItemUserController {
             itemUserService.buy_item(orderDtoList,user_id,cart_id);
             //뭔가 컨트롤러에서 다 처리하기에는 부담되는데
             //데이터들 싹다 모아 서비스단에서 처리하고
+            return new ResponseEntity<>("BUY_OK", HttpStatus.OK);
         }catch(Exception e){
             Message message = Message.builder()
                     .message1(e.getMessage())
                     .build();
-            System.out.println("message = " + message);
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
     }
     @DeleteMapping("/deleteCart/{item_id}")//장바구니에서 유저가 아이템 삭제
@@ -83,10 +88,9 @@ public class ItemUserController {
         //cart_item은 (item_id,cart_id)가 PK
         //cart_id는 session으로부터 얻어올 수 있음
         //item_id는 장바구니에서 삭제 버튼 누를 때 넘어오게 하자.
-        int cart_id=3;//원래는 세션에서 가지고 와야함. 하드코딩임
-
+        int cart_id=2;//원래는 세션에서 가지고 와야함. 하드코딩임
         try {
-            if(!login_check()){
+            if(login_check()){
                 throw new NullPointerException("로그인해야합니다.");
             }
             Map map=new HashMap<>();
@@ -140,15 +144,12 @@ public class ItemUserController {
         }
     }
     @GetMapping("/cart")//장바구니 조회
-    @ResponseBody
-    public ResponseEntity<Object> cart_list(HttpSession session){
+    public String cart_list(Model m, HttpSession session){
         //1. 세션에 "유저"의 "장바구니번호"를 가져온다.
 //        int cart_id=session.getAttribute("ldhoon0813"); //
         int cart_id=2; //-> 지금은 하드코딩
-
+        String user_id="ldhoon0813";
         //url로 그냥 들어오는 경우는 어떻게 처리할 것인가? login_check 함수로 체크하자.
-
-
         //장바구니에 들어있는 아이템 정보들을 다 가져와야함.
         //장바구니_아이템 테이블과 아이템 테이블 아이템_아이디 로 조인해서 원하는 값만 뽑아내자.
         //가져와야하는 정보들: 아이템_아이디, 리스트_아이디, 등급_이름, 아이템_이름, 아이템_설명, 아이템_가격, 아이템_이미지
@@ -156,13 +157,24 @@ public class ItemUserController {
             if(login_check()){
                 throw new NullPointerException("로그인해야합니다.");
             }//지금은 로그인이 항상 되어있다는 가정하에 진행. 추후, 수정해야함.
+            int my_point= itemUserService.getUser_point(user_id);
+            int total_point=0;
             List<ItemDto> list=itemUserService.getCart_list(cart_id);
-            return new ResponseEntity<Object>(list, HttpStatus.OK);
+            System.out.println("list = " + list);
+            for(ItemDto itemDto:list){
+                total_point+=itemDto.getItem_price();
+            }
+            m.addAttribute("list",list);
+            m.addAttribute("my_point",my_point);
+            m.addAttribute("total_point",total_point);
+            m.addAttribute("after_point",my_point-total_point);
+            return "Item/cart";
         } catch (Exception e) {
             Message message = Message.builder()
                     .message1(e.getMessage())
                     .build();
-            return new ResponseEntity<Object>(message,HttpStatus.BAD_REQUEST);
+            System.out.println("message = " + message);
+            return "Item/cart";
         }
         //없으면 없는대로 보여주면 됨.
     }

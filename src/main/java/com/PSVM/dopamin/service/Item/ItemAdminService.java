@@ -75,7 +75,7 @@ public class ItemAdminService {
         itemDto.setGrd_nm(itemForm.getItem_grd());
         itemDto.setItem_nm(itemForm.getItem_nm());
         itemDto.setItem_dsc(itemForm.getItem_dsc());
-        itemDto.setItem_price(new BigDecimal(itemForm.getItem_price()));
+        itemDto.setItem_price(Integer.parseInt(itemForm.getItem_price()));
         return itemDto;
     }
     private String save_File(MultipartFile multipartFile) {

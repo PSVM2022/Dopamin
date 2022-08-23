@@ -12,7 +12,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.*;
@@ -25,6 +27,17 @@ public class ItemUserDaoImplTest {
     @Autowired
     ItemUserDaoImpl itemUserDaoImpl;
 
+    @Test
+    @Transactional
+    public void 장바구니_삭제() throws Exception{
+        int item_id=14;
+        int cart_id=2;
+        Map map=new HashMap<>();
+        map.put("item_id",item_id);
+        map.put("cart_id",cart_id);
+        int result=itemUserDaoImpl.delete_cart(map);
+        assertTrue(result==1);
+    }
     @Test
     public void find_item_실패() {
         int item_id=1;
@@ -62,7 +75,7 @@ public class ItemUserDaoImplTest {
     public void 장바구니_가져오기() throws Exception{
         int cart_id=2;
         List<ItemDto> cart_list=itemUserDaoImpl.getCart_list(cart_id);
-        System.out.println(cart_list.size());
+        System.out.println("cart_list = " + cart_list);
     }
 //    @Test
 //    @Transactional

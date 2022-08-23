@@ -39,19 +39,25 @@ public class ItemUserService {
     public int delete_cart(Map map) throws Exception {
         return itemUserDaoimpl.delete_cart(map);
     }
+    public int getUser_point(String user_id) throws Exception{
+        return itemUserDaoimpl.getUser_point(user_id);
+    }
 
     @Transactional(rollbackFor = Exception.class)//오류 발생 시 모든 변경을 이전상태로 롤백시킴
     public int buy_item(List<OrderDto> orderDtoList,String user_id,int cart_id) throws Exception{
+        System.out.println(" = ");
         //유저포인트 랑
         int total_point=0;
         List<Integer> id_list=new ArrayList<>();
         int user_point=itemUserDaoimpl.getUser_point(user_id);
+        System.out.println(" = ");
         //장바구니에서 구매하겠다고 선택한 목록의 포인트의 총합 비교
         for(OrderDto orderDto:orderDtoList){
             total_point+=orderDto.getItem_price();
             id_list.add(orderDto.getItem_id());
             orderDto.setUser_id(user_id);
         }
+        System.out.println(" = ");
         if(total_point>user_point){//구매하고자 하는 아이템의 총액이 유저가 가지고있는 포인트보다 적다면
             //구매 불가
             throw new Exception("포인트가 부족합니다. 충전하러 가시겠습니까?");
