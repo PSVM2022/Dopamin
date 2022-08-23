@@ -5,6 +5,12 @@
 
 <%@ page session="false" %>
 <%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+%>
+<%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
        value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
@@ -29,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
