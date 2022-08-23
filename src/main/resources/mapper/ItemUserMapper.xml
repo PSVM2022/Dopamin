@@ -72,6 +72,31 @@
                 (#{item.item_id},#{item.item_price},#{item.user_id},now(),#{item.user_id},#{item.user_id})
             </foreach>
     </select>
+    <select id="getStat_from_possesion" parameterType="OrderDto" resultType="int">
+        SELECT equip_stat
+        FROM POSSESION
+        WHERE item_id=#{item_id} and user_id=#{user_id}
+    </select>
+    <select id="increase_userPoint" parameterType="Map" resultType="int">
+        UPDATE USER
+        SET dopa_point=#{total_point}
+        WHERE user_id=#{user_id}
+    </select>
+    <select id="delete_in_possesion" parameterType="OrderDto" resultType="int">
+        DELETE
+        FROM POSSESION
+        WHERE user_id=#{user_id} and item_id=#{item_id}
+    </select>
+    <select id="exchange_insert_deal_detl" parameterType="OrderDto">
+        INSERT INTO
+            DEAL_DETL(item_id,user_id,pchs_stat,in_date,in_user,up_user)
+        VALUES(#{item_id},#{user_id},0,now(),#{user_id},#{user_id});
+    </select>
+    <select id="exchange_insert_pnt_detl" parameterType="OrderDto">
+        INSERT INTO
+            PNT_USE_DETL(pchs_item_id,use_stat,pnt,user_id,in_date,in_user,up_user)
+        VALUES(#{item_id},0,#{item_price},#{user_id},now(),#{user_id},#{user_id});
+    </select>
 </mapper>
 
 

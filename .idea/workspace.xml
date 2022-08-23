@@ -9,33 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 장바구니 담기 기능 구현-main추가1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/Item_ListDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/OrderDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/error/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/controller/Item/ItemUserControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/Item/ItemUserServiceTest.java" afterDir="false" />
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 장바구니 구매 기능 구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ItemUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/BbsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/BbsDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemAdminDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemAdminDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ItemUserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Cart_ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/Cart_ItemDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ItemValidatorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemValidatorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/ItemUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/OrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/OrderDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/bbsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/bbsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/BbsDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/BbsDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
     </list>
@@ -142,8 +123,8 @@
       <recent name="com.PSVM.dopamin.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ItemUserServiceTest.testBuy_item">
-    <configuration name="ItemUserDaoImplTest.유저_포인터_업데이트" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ItemUserDaoImplTest.포인트사용내역_환불정보_성공">
+    <configuration name="ItemUserDaoImplTest.보유_착용상태_여부" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -153,13 +134,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
-      <option name="METHOD_NAME" value="유저_포인터_업데이트" />
+      <option name="METHOD_NAME" value="보유_착용상태_여부" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemUserDaoImplTest.보유_insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemUserDaoImplTest.포인트사용내역_환불정보_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -169,13 +150,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
-      <option name="METHOD_NAME" value="보유_insert" />
+      <option name="METHOD_NAME" value="포인트사용내역_환불정보_성공" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemUserDaoImplTest.거래내역_insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemUserDaoImplTest.보유목록에서_삭제_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -185,13 +166,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
-      <option name="METHOD_NAME" value="거래내역_insert" />
+      <option name="METHOD_NAME" value="보유목록에서_삭제_성공" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemUserDaoImplTest.포인트사용내역_insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemUserDaoImplTest.거래내역_환불정보_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -201,23 +182,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
-      <option name="METHOD_NAME" value="포인트사용내역_insert" />
+      <option name="METHOD_NAME" value="거래내역_환불정보_성공" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemUserServiceTest.testBuy_item" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemUserDaoImplTest.환불_유저포인트_증가_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.service.Item.*" />
+          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service.Item" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.Item.ItemUserServiceTest" />
-      <option name="METHOD_NAME" value="testBuy_item" />
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
+      <option name="METHOD_NAME" value="환불_유저포인트_증가_성공" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -324,20 +305,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ItemUserDaoImplTest.거래내역_insert" />
-      <item itemvalue="JUnit.ItemUserDaoImplTest.보유_insert" />
-      <item itemvalue="JUnit.ItemUserDaoImplTest.유저_포인터_업데이트" />
-      <item itemvalue="JUnit.ItemUserDaoImplTest.포인트사용내역_insert" />
-      <item itemvalue="JUnit.ItemUserServiceTest.testBuy_item" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.거래내역_환불정보_성공" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.보유_착용상태_여부" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.보유목록에서_삭제_성공" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.포인트사용내역_환불정보_성공" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.환불_유저포인트_증가_성공" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.64" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ItemUserServiceTest.testBuy_item" />
-        <item itemvalue="JUnit.ItemUserDaoImplTest.포인트사용내역_insert" />
-        <item itemvalue="JUnit.ItemUserDaoImplTest.거래내역_insert" />
-        <item itemvalue="JUnit.ItemUserDaoImplTest.보유_insert" />
-        <item itemvalue="JUnit.ItemUserDaoImplTest.유저_포인터_업데이트" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.포인트사용내역_환불정보_성공" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.거래내역_환불정보_성공" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.보유목록에서_삭제_성공" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.환불_유저포인트_증가_성공" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.보유_착용상태_여부" />
       </list>
     </recent_temporary>
   </component>
@@ -468,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661070687786</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat: 장바구니 구매 기능 구현">
+      <created>1661167433835</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1661167433835</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +502,8 @@
     <MESSAGE value="fix: 컨텐츠 검색 결과 안내 텍스트 수정.&#10;&#10;컨텐츠 검색결과에 대한 안내 텍스트 수정함. 검색 결과 없는 경우와 있는 경우로 변경." />
     <MESSAGE value="feat: 컨텐츠 평가 mapper, dao 작성&#10;&#10;컨텐츠 평가(좋아요/싫어요) mapper, dao 작성함." />
     <MESSAGE value="refactor: BbsService.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: BbsService.java" />
+    <MESSAGE value="feat: 장바구니 구매 기능 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 장바구니 구매 기능 구현" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

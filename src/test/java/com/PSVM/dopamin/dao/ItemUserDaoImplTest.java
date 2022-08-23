@@ -95,7 +95,7 @@ public class ItemUserDaoImplTest {
         assertTrue(update_point==1);
     }
     @Test
-//    @Transactional
+    @Transactional
     public void 보유_insert() throws Exception{
         //있으면 삭제하는 메서드 추가되어야함.
         List<OrderDto> orderDtoList=new ArrayList<>();
@@ -146,4 +146,50 @@ public class ItemUserDaoImplTest {
         int result=itemUserDaoImpl.pnt_use_detl(orderDtoList);
         assertTrue(result== orderDtoList.size());
     }
+    @Test
+    public void 보유_착용상태_여부_성공() throws Exception{
+        OrderDto orderDto=new OrderDto(13,"ldhoon0813");     
+        int equip_stat= itemUserDaoImpl.getStat_from_possesion(orderDto);
+        assertTrue(equip_stat==-1);
+    }
+    @Test
+    @Transactional
+    public void 환불_유저포인트_증가_성공() throws Exception{
+        
+        int point=itemUserDaoImpl.getUser_point("ldhoon0813");
+        int total_point=point+2000;
+        ConcurrentHashMap point_map=new ConcurrentHashMap();
+        point_map.put("user_id","ldhoon0813");
+        point_map.put("total_point",total_point);
+        int result=itemUserDaoImpl.increase_userPoint(point_map);
+        assertTrue(result==1);
+    }
+    @Test
+    @Transactional
+    public void 보유목록에서_삭제_성공() throws Exception{
+        OrderDto orderDto=new OrderDto(13,"ldhoon0813");
+        int delete_result=itemUserDaoImpl.delete_in_possesion(orderDto);
+        assertTrue(delete_result==1);
+    }
+    @Test
+    @Transactional
+    public void 거래내역_환불정보_성공() throws Exception{
+        OrderDto orderDto= new OrderDto();
+        orderDto.setItem_id(13);
+        orderDto.setItem_price(2000);
+        orderDto.setUser_id("ldhoon0813");
+        int result=itemUserDaoImpl.exchange_insert_deal_detl(orderDto);
+        assertTrue(result==1);
+    }
+    @Test
+    @Transactional
+    public void 포인트사용내역_환불정보_성공() throws Exception{
+        OrderDto orderDto= new OrderDto();
+        orderDto.setItem_id(13);
+        orderDto.setItem_price(2000);
+        orderDto.setUser_id("ldhoon0813");
+        int result=itemUserDaoImpl.exchange_insert_pnt_detl(orderDto);
+        assertTrue(result==1);
+    }
+
 }

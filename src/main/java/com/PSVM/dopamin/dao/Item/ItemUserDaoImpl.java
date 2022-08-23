@@ -46,18 +46,38 @@ public class ItemUserDaoImpl {
         return sqlSession.update(namespace+"updateUser_point",user_map);
     }
 
-    public int delete_item_in_Cart(ConcurrentHashMap cart_map) {
+    public int delete_item_in_Cart(ConcurrentHashMap cart_map)throws Exception {
         return sqlSession.delete(namespace+"delete_item_in_Cart",cart_map);
     }
-    public int add_item_to_user(List<OrderDto> orderDtoList) {
+    public int add_item_to_user(List<OrderDto> orderDtoList) throws Exception{
         return sqlSession.insert(namespace+"insert_item_in_Possesion",orderDtoList);
     }
 
-    public int add_deal_detl(List<OrderDto> orderDtoList) {
+    public int add_deal_detl(List<OrderDto> orderDtoList) throws Exception{
         return sqlSession.insert(namespace+"add_deal_detl",orderDtoList);
     }
 
-    public int pnt_use_detl(List<OrderDto> orderDtoList) {
+    public int pnt_use_detl(List<OrderDto> orderDtoList) throws Exception{
         return sqlSession.insert(namespace+"pnt_use_detl",orderDtoList);
+    }
+
+    public int getStat_from_possesion(OrderDto orderDto) throws Exception{
+        return sqlSession.selectOne(namespace+"getStat_from_possesion",orderDto);
+    }
+
+    public int increase_userPoint(ConcurrentHashMap point_map) {
+        return sqlSession.update(namespace+"increase_userPoint",point_map);
+    }
+
+    public int delete_in_possesion(OrderDto orderDto) {
+        return sqlSession.delete(namespace+"delete_in_possesion",orderDto);
+    }
+
+    public int exchange_insert_deal_detl(OrderDto orderDto) {
+        return sqlSession.insert(namespace+"exchange_insert_deal_detl",orderDto);
+    }
+
+    public int exchange_insert_pnt_detl(OrderDto orderDto) {
+        return sqlSession.insert(namespace+"exchange_insert_pnt_detl",orderDto);
     }
 }

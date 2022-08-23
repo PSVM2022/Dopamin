@@ -27,6 +27,31 @@ public class ItemUserController {
         this.itemUserService = itemUserService;
     }
 
+    //환불 버튼 클릭시
+    //프런트에서 받아올 데이터는, item_id, item_price 이렇게만 받아오면 될듯.
+    @PostMapping("/exchangeItem")
+    @ResponseBody
+    public void exchange_Item(@RequestBody OrderDto orderDto, HttpSession session){
+        //로그인 체크해야함.지금은 하드코딩
+        String user_id="ldhoon0813";
+        try{
+            orderDto.setUser_id(user_id);
+            int item_stat=itemUserService.getStat_from_possesion(orderDto);
+            if(item_stat!=-1){
+                throw new Exception("사용하신 아이템은 환불이 불가능합니다.");
+            }
+            boolean result=itemUserService.exchange_item(orderDto);
+            if (!result) {
+                throw new Exception("환불에 실패했습니다.");
+            }
+        }catch (Exception e){
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            System.out.println("message = " + message);
+        }
+    }
+
     //구매 버튼 클릭 시
     //일단 포인트가 충분한지 확인
     //만일 포인트가 부족하다면, 보유 포인트가 부족합니다. 포인트 충전하러 가시겠습니까? 예/아니오
@@ -122,18 +147,22 @@ public class ItemUserController {
         int cart_id=2; //-> 지금은 하드코딩
 
         //url로 그냥 들어오는 경우는 어떻게 처리할 것인가? login_check 함수로 체크하자.
-        if(login_check()){
-            throw new NullPointerException("로그인해야합니다.");
-        }//지금은 로그인이 항상 되어있다는 가정하에 진행. 추후, 수정해야함.
+
 
         //장바구니에 들어있는 아이템 정보들을 다 가져와야함.
         //장바구니_아이템 테이블과 아이템 테이블 아이템_아이디 로 조인해서 원하는 값만 뽑아내자.
         //가져와야하는 정보들: 아이템_아이디, 리스트_아이디, 등급_이름, 아이템_이름, 아이템_설명, 아이템_가격, 아이템_이미지
         try {
+            if(login_check()){
+                throw new NullPointerException("로그인해야합니다.");
+            }//지금은 로그인이 항상 되어있다는 가정하에 진행. 추후, 수정해야함.
             List<ItemDto> list=itemUserService.getCart_list(cart_id);
             return new ResponseEntity<Object>(list, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<Object>(message,HttpStatus.BAD_REQUEST);
         }
         //없으면 없는대로 보여주면 됨.
     }

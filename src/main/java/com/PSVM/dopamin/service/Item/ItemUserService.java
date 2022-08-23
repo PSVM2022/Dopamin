@@ -89,4 +89,37 @@ public class ItemUserService {
         }
         return 1;
     }
+    public int getStat_from_possesion(OrderDto orderDto) throws Exception{
+        return itemUserDaoimpl.getStat_from_possesion(orderDto);
+    }
+
+    @Transactional(rollbackFor = Exception.class)//오류 발생 시 모든 변경을 이전상태로 롤백시킴
+    public boolean exchange_item(OrderDto orderDto) throws Exception{
+        //1. 유저 포인트 증가
+        int point=itemUserDaoimpl.getUser_point(orderDto.getUser_id());
+        int total_point=point+orderDto.getItem_price();
+        ConcurrentHashMap point_map=new ConcurrentHashMap();
+        point_map.put("user_id",orderDto.getUser_id());
+        point_map.put("total_point",total_point);
+        int result=itemUserDaoimpl.increase_userPoint(point_map);
+        if(result!=1){
+            throw new Exception("환불에 실패했습니다. 포인트 갱신에 실패했습니다.");
+        }
+        //2.보유 목록에서 삭제
+        int delete_in_possesion=itemUserDaoimpl.delete_in_possesion(orderDto);
+        if(delete_in_possesion!=1){
+            throw new Exception("환불에 실패했습니다. 보유목록에서 제거되지 않았습니다.");
+        }
+        //3. 거래내역에 환불정보 올려야함.
+        int exchange_insert_deal_detl=itemUserDaoimpl.exchange_insert_deal_detl(orderDto);
+        if(exchange_insert_deal_detl!=1){
+            throw new Exception("환불에 실패했습니다. 거래내역에 추가되지 않았습니다.");
+        }
+        //4. 포인트 사용내역에 추가/ use_stat 0 환불
+        int exchange_insert_pnt_detl=itemUserDaoimpl.exchange_insert_pnt_detl(orderDto);
+        if(exchange_insert_pnt_detl!=1){
+            throw new Exception("환불에 실패했습니다. 포인트 사용내역에 추가되지 않았습니다.");
+        }
+        return true;
+    }
 }

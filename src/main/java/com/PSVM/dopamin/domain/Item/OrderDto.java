@@ -21,6 +21,11 @@ public class OrderDto {
     public OrderDto(){
     }
 
+    public OrderDto(int item_id, String user_id) {
+        this.item_id = item_id;
+        this.user_id = user_id;
+    }
+
     public OrderDto(int item_id, String item_nm, int item_price) {
         this.item_id = item_id;
         this.item_nm = item_nm;
