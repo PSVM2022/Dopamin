@@ -3,6 +3,8 @@ package com.PSVM.dopamin.domain;
 import java.sql.Timestamp;
 
 public class ContentsDto {
+
+    private ContentsWishDto cntsw;
     private Integer cnts_id;
     private String cnts_title;
     private String cnts_subttl;
@@ -21,7 +23,6 @@ public class ContentsDto {
     private String cnts_g_rated;
     private String cnts_szn_cnt;
     private String cnts_ep_cnt;
-
     private Integer ott1_stat;
     private Integer ott2_stat;
     private Integer ott3_stat;
@@ -43,7 +44,12 @@ public class ContentsDto {
     private String up_user;
 
     //기본생성자
-    public ContentsDto() {
+
+    public ContentsDto(){
+
+    }
+    public ContentsDto(ContentsWishDto cntsw) {
+        this.cntsw = cntsw;
 
     }
 
@@ -76,6 +82,14 @@ public class ContentsDto {
     }
 
     //getter setter
+    public ContentsWishDto getCntsw() {
+        return cntsw;
+    }
+
+    public void setCntsw(ContentsWishDto cntsw) {
+        this.cntsw = cntsw;
+    }
+
     public Integer getCnts_id() {
         return cnts_id;
     }
@@ -375,12 +389,13 @@ public class ContentsDto {
     @Override
     public String toString() {
         return "ContentsDto{" +
-                "cnts_id=" + cnts_id +
+                "cntsw=" + cntsw +
+                ", cnts_id=" + cnts_id +
                 ", cnts_title='" + cnts_title + '\'' +
                 ", cnts_subttl='" + cnts_subttl + '\'' +
                 ", cnts_postr_img='" + cnts_postr_img + '\'' +
                 ", cnts_op_date='" + cnts_op_date + '\'' +
-                ", cnts_genre1='" + cnts_genre1 + '\'' +
+                ", cnts_genre1=" + cnts_genre1 +
                 ", cnts_genre2=" + cnts_genre2 +
                 ", cnts_genre3=" + cnts_genre3 +
                 ", cnts_genre4=" + cnts_genre4 +

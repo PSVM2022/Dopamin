@@ -19,13 +19,6 @@
         where cnts_id = #{cnts_id} and cnts_visib_stat = 1
     </select>
 
-    <!--장르한글변환-->
-    <select id="genreIdToNm" parameterType="int" resultType="String">
-        select genre_nm
-        from GENRE
-        WHERE genre_id = #{genre_id}
-    </select>
-
     <!--컨텐츠 ott 조회수-->
     <update id="updateCntsCnt" parameterType="map">
         update CNTS set ott1_click_cnt = ott1_click_cnt + #{ott1_click_cnt}
@@ -87,7 +80,20 @@
         </choose>
     </select>
 
+    <!--컨텐츠 찜-->
+    <!--찜-->
+    <insert id="insertWish" parameterType="com.PSVM.dopamin.domain.ContentsWishDto">
+        insert INTO CNTS_WISH
+            (cnts_id, user_id, in_date, in_user, up_date, up_user)
+        values (#{cnts_id}, #{user_id}, now(), #{user_id}, now(), #{user_id})
+    </insert>
 
+    <!--찜 취소-->
+    <delete id="deleteWish" parameterType="map">
+        DELETE FROM CNTS_WISH WHERE cnts_id = #{cnts_id} AND user_id = #{user_id}
+    </delete>
+
+    <!--컨텐츠 평가(좋아요/싫어요)-->
     <!--평가 기록 있는지 확인-->
     <select id="evalCheck" parameterType="map" resultType="CntsEvalDto">
         select *
@@ -128,5 +134,4 @@
     <delete id="deleteCntsEval">
         delete from cnts_rt where cnts_id = #{cnts_id} and user_id=#{user_id} and cnts_eval
     </delete>
-
 </mapper>
