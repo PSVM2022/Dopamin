@@ -189,8 +189,7 @@ bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋�
                     <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <div class="row">
-                                    <c:forEach var="i" begin="0" end="3">
+                                <div class="row"><c:forEach var="i" begin="0" end="3">
                                         <div class="col-md-3 mb-3">
                                             <div class="card">
                                                 <img class="img-fluid" alt="100%x280"

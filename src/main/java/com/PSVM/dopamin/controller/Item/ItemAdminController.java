@@ -40,17 +40,17 @@ public class ItemAdminController {
         binder.setValidator(new ItemValidator ());
     }//webdatabinder에 validator 추가
 
-    @GetMapping("/")//상정 메인 페이지
+    @GetMapping("/")//상점 메인 페이지
     public String item_main(Model m,RedirectAttributes redirectAttributes){//각 아이템 항목별 TOP5를 보여주기
         //통계 각 항목별 TOP4 가져와 보여주면 됨.
         try {
-            List<ItemDto> list1=itemAdminService.getPage("스킨");
-            List<ItemDto> list2=itemAdminService.getPage("꾸미기");
-            System.out.println("list1 = " + list1);
-            System.out.println("list2 = " + list2);
-            m.addAttribute("list1",list1);
-            m.addAttribute("list2",list2);
-            return "Item/cart_main";
+            List<ItemDto> list=itemAdminService.getPage("스킨");
+            //List<ItemDto> list2=itemAdminService.getPage("꾸미기");
+            System.out.println("list = " + list);
+           // System.out.println("list2 = " + list2);
+            m.addAttribute("list",list);
+            //m.addAttribute("list2",list2);
+            return "Item/cart_main2";
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -17,7 +17,6 @@
 .bg-grey {
     background-color: #eae8e8;
 }
-
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     width: 100%;
     padding-right: var(--bs-gutter-x,.75rem);

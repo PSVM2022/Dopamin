@@ -8,7 +8,7 @@
         FROM ITEM
     </select>
     <select id="item_getPage" parameterType="int" resultType="ItemDto">
-        SELECT item_nm,grd_nm,item_dsc,item_price,item_img
+        SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
         FROM ITEM
         WHERE list_id=#{index} and stat=1
     </select>
