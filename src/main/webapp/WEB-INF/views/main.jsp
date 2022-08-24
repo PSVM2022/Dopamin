@@ -56,7 +56,7 @@
                 <br>
                 <tr>
                     <div>
-                        <td><a href='/psvm/contents/${cnts.cnts_id}'/>${cnts.cnts_postr_img}</td><br>
+                        <td><a href='/psvm/contents/${cnts.cnts_id}'/><img src="${cnts.cnts_postr_img}"></td><br>
                         <td>${cnts.cnts_title}</td><br>
                         <td>${cnts.cnts_subttl}</td><br>
                         <td>${cnts.cnts_op_date}</td><br>

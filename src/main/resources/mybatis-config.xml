@@ -4,8 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="ItemDto" type="com.PSVM.dopamin.domain.ItemDto"/>
-        <typeAlias alias="Cart_ItemDto" type="com.PSVM.dopamin.domain.Cart_ItemDto"/>
+        <typeAlias alias="ItemDto" type="com.PSVM.dopamin.domain.Item.ItemDto"/>
+        <typeAlias alias="OrderDto" type="com.PSVM.dopamin.domain.Item.OrderDto"/>
+        <typeAlias alias="Cart_ItemDto" type="com.PSVM.dopamin.domain.Item.Cart_ItemDto"/>
         <typeAlias alias="BbsDto" type="com.PSVM.dopamin.domain.BbsDto"/>
         <typeAlias alias="PostDto" type="com.PSVM.dopamin.domain.PostDto"/>
         <typeAlias alias="RevwDto" type="com.PSVM.dopamin.domain.RevwDto"/>
@@ -14,8 +15,8 @@
         <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
         <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
         <typeAlias alias="CntsEvalDto" type="com.PSVM.dopamin.domain.CntsEvalDto"/>
-<!--        <typeAlias alias="BoardDto" type="com.fastcampus.ch4.domain.BoardDto"/>-->
-<!--        <typeAlias alias="CommentDto" type="com.fastcampus.ch4.domain.CommentDto"/>-->
+        <typeAlias alias="MyPageItemsDto" type="com.PSVM.dopamin.domain.MyPageItemsDto"/>
+        <typeAlias alias="MyPagePointDto" type="com.PSVM.dopamin.domain.MyPagePointDto"/>
 
         <typeAlias alias="SearchCondition" type="com.PSVM.dopamin.domain.SearchCondition"/>
     </typeAliases>

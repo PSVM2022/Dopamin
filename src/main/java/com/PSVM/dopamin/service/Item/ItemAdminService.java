@@ -1,8 +1,8 @@
-package com.PSVM.dopamin.service;
+package com.PSVM.dopamin.service.Item;
 
-import com.PSVM.dopamin.domain.ItemDto;
-import com.PSVM.dopamin.dao.ItemAdminDaoImpl;
-import com.PSVM.dopamin.domain.ItemForm;
+import com.PSVM.dopamin.domain.Item.ItemDto;
+import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
+import com.PSVM.dopamin.domain.Item.ItemForm;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -75,7 +75,7 @@ public class ItemAdminService {
         itemDto.setGrd_nm(itemForm.getItem_grd());
         itemDto.setItem_nm(itemForm.getItem_nm());
         itemDto.setItem_dsc(itemForm.getItem_dsc());
-        itemDto.setItem_price(new BigDecimal(itemForm.getItem_price()));
+        itemDto.setItem_price(Integer.parseInt(itemForm.getItem_price()));
         return itemDto;
     }
     private String save_File(MultipartFile multipartFile) {

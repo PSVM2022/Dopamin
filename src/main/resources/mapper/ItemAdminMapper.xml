@@ -10,7 +10,7 @@
     <select id="item_getPage" parameterType="int" resultType="ItemDto">
         SELECT item_nm,grd_nm,item_dsc,item_price,item_img
         FROM ITEM
-        WHERE list_id=#{index}
+        WHERE list_id=#{index} and stat=1
     </select>
     <select id="item_getStat_0" parameterType="map" resultType="ItemDto">
         SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
@@ -36,7 +36,7 @@
         INSERT INTO ITEM
         (list_id,grd_nm,item_nm,item_dsc,item_price,item_img,user_nic,in_date,in_user,up_user)
         VALUES
-            (#{list_id},#{grd_nm},#{item_nm},#{item_dsc},#{item_price},#{item_img},#{user_nic},now(),#{in_user},#{up_user});
+            (#{list_id},#{grd_nm},#{item_nm},#{item_dsc},#{item_price},#{item_img},#{user_nic},now(),#{in_user},#{up_user})
     </select>
     <select id="remove_item" parameterType="int">
         DELETE FROM ITEM

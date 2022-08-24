@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -81,62 +81,56 @@
 -->
 <main>
     <section class="container py-5">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
+        <c:if test="${empty pntList}">
+            nothing!
+        </c:if>
+        <div class="table-responsive">
+            <table class="table table-responsive table-borderless">
+                <thead>
+                <tr class="bg-light">
+                    <th scope="col" width="10%"></th>
+                    <th scope="col" width="20%"></th>
+                    <th scope="col" width="20%"></th>
+                    <th scope="col" width="10%"></th>
+                    <th scope="col" width="10%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="list" items="${pntList}">
+                    <tr>
+                        <td> ${list.in_date}</td>
+                        <td><div style = "height:100%"><img src="${list.item_img}"></div></td>
+                        <td>
+                            <div>
+                                    [${list.grd_nm}] ${list.item_nm}
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                    ${list.pnt_use_id}<br>
+                                수량 : 1
+                            </div>
+                        </td>
+                        <td> ${list.use_stat == 0 ? '환불' : '구매' }</td>
+                        <td>
+                            <c:if test="${list.use_stat == 0}">
+                                -${list.pnt}
+                            </c:if>
+                            <c:if test="${list.use_stat == 1}">
+                                ${list.pnt}
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
 
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5 bg-light">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
+            </table>
 
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
 
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5 bg-light">
-        <!-- Carousel -->
-        <div id="demo" class="carousel slide w-25" data-bs-ride="carousel">
-            <!-- The slideshow/carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=1" alt="Los Angeles"
-                         class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=2" alt="Chicago"
-                         class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=3" alt="New York"
-                         class="d-block w-100">
-                </div>
-            </div>
-
-            <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
         </div>
     </section>
+
+
 </main>
 
 <footer class="footer mt-auto py-3 bg-light">

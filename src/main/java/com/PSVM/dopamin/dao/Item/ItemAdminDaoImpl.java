@@ -1,6 +1,6 @@
-package com.PSVM.dopamin.dao;
+package com.PSVM.dopamin.dao.Item;
 
-import com.PSVM.dopamin.domain.ItemDto;
+import com.PSVM.dopamin.domain.Item.ItemDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 

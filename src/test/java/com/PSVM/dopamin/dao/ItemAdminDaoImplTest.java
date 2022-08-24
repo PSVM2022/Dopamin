@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.ItemDto;
+import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
+import com.PSVM.dopamin.domain.Item.ItemDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class ItemAdminDaoImplTest {
         if(result!=null) {
             itemAdminDaoImpl.test_delete_item(item_name);
         }//테스트의 독립성을 위해 넣고자하는 데이터가 있으면 지우고 Insert를 한다.
-        ItemDto itemDto=new ItemDto(2,"전설",item_name,"야 빡치면 뿌시지말고 스킨으로 뿌셔봐 뿌셔뿌셔",new BigDecimal(3000), "url","후후른훈",new Timestamp(System.currentTimeMillis()),"ldhoon0813","ldhoon0813");
+        ItemDto itemDto=new ItemDto(2,"전설",item_name,"야 빡치면 뿌시지말고 스킨으로 뿌셔봐 뿌셔뿌셔",3000, "url","후후른훈",new Timestamp(System.currentTimeMillis()),"ldhoon0813","ldhoon0813");
         int result1= itemAdminDaoImpl.registerItem(itemDto);
         assertTrue(result1==1);
     }
@@ -71,7 +72,7 @@ public class ItemAdminDaoImplTest {
     @Test
     @Transactional
     public void 수정_성공() throws Exception{
-        ItemDto itemDto = new ItemDto(2,"우영우","박은빈팬이동훈",new BigDecimal(3000));
+        ItemDto itemDto = new ItemDto(2,"우영우","박은빈팬이동훈",3000);
         int result= itemAdminDaoImpl.modify(itemDto);
         assertTrue(result==1);
     }
