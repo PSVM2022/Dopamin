@@ -17,6 +17,7 @@
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <html>
 <html lang="ko">
+
 <head>
     <title>도파민!</title>
     <meta charset="utf-8">
@@ -37,13 +38,11 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer">
-    </script>
-
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
-<div class="container py-5">
+<div class="container">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
@@ -72,35 +71,66 @@
     </header>
 </div>
 
+
+<!--
+    내용 컨테이너. 여러개의 Row를 만들 때 secion 태그로 나눕니다.
+    container - 컨텐츠를 포함하고 채우고 정렬하는 부트스트랩 기본구성요소
+    py-5 - padding y축방향(위아래)로 5 단위만큼 부여 https://getbootstrap.kr/docs/5.0/utilities/spacing/ 참고
+    // 컨텐츠를 넣는 태그 만들 때 무조건 section 태그에 container py-5 주고 시작합니다(위 아래 컨텐츠간 여백)
+    bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
+-->
 <main>
     <section class="container py-5">
-        <h2>Contents Good Review</h2><br>
+        <c:if test="${empty pntList}">
+            nothing!
+        </c:if>
         <div class="table-responsive">
             <table class="table table-responsive table-borderless">
                 <thead>
                 <tr class="bg-light">
-                    <th scope="col" width="5%">#</th>
-                    <th scope="col" width="10%">컨텐츠 제목</th>
-                    <th scope="col" width="20%">내용</th>
-                    <th scope="col" width="20%">작성자</th>
-                    <th scope="col" width="20%">등록일</th>
+                    <th scope="col" width="10%"></th>
+                    <th scope="col" width="20%"></th>
+                    <th scope="col" width="20%"></th>
+                    <th scope="col" width="10%"></th>
+                    <th scope="col" width="10%"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="revw" items="${revwDtoList}">
+                <c:forEach var="list" items="${pntList}">
                     <tr>
-                        <td>${revw.revw_id}</td>
-                        <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
-                        <td>${revw.revw_body}</td>
-                        <td>${revw.user_id}</td>
-                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.mm.dd"/> ${revw.up_date}</td>
-
+                        <td> ${list.in_date}</td>
+                        <td><div style = "height:100%"><img src="${list.item_img}"></div></td>
+                        <td>
+                            <div>
+                                    [${list.grd_nm}] ${list.item_nm}
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                    ${list.pnt_use_id}<br>
+                                수량 : 1
+                            </div>
+                        </td>
+                        <td> ${list.use_stat == 0 ? '환불' : '구매' }</td>
+                        <td>
+                            <c:if test="${list.use_stat == 0}">
+                                -${list.pnt}
+                            </c:if>
+                            <c:if test="${list.use_stat == 1}">
+                                ${list.pnt}
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
+
             </table>
+
+
         </div>
     </section>
+
+
 </main>
 
 <footer class="footer mt-auto py-3 bg-light">
@@ -229,4 +259,3 @@
 </body>
 
 </html>
-

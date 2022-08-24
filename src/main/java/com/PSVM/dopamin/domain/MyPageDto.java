@@ -13,7 +13,7 @@ public class MyPageDto {
     private Integer sex;        // 유저 성별
     private String item_img;    // 착용중인 보유 스킨
 
-    public MyPageDto(){}
+    public MyPageDto(){                                           }
     public MyPageDto(String user_id, String prf_img, String nic, Integer dopa_exp, Integer dopa_point, Integer fav_genre1, String genre_nm, String btdt, Integer age, Integer sex, String item_img) {
         this.user_id = user_id;
         this.prf_img = prf_img;

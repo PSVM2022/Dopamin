@@ -1,12 +1,10 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.MyPageDao;
-import com.PSVM.dopamin.domain.MyPageCntsDto;
-import com.PSVM.dopamin.domain.MyPageDto;
-import com.PSVM.dopamin.domain.MyPagePostDto;
-import com.PSVM.dopamin.domain.RevwDto;
+import com.PSVM.dopamin.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -67,5 +65,51 @@ public class MyPageServiceImple implements MyPageService {
         int age = (int) (curYear - birthYear + 1) / 10 * 10;
         myPageDto.setAge(age);
     }
+
+    @Override
+    public List<MyPageItemsDto> profList(String user_id) {
+        return myPageDao.selectProfItem(user_id);
+    }
+
+    @Override
+    public List<MyPageItemsDto> skinList(String user_id) {
+        return myPageDao.selectSkinItem(user_id);
+    }
+
+    @Override
+    public List<MyPagePointDto> pntList(String user_id) {
+        return myPageDao.selectPntList(user_id);
+    }
+
+    @Override
+    public void modSkin(MyPageItemsDto myPageItemsDto) throws Exception {
+        try {
+            myPageDao.skinWearOff(myPageItemsDto);
+            myPageDao.equipSkin(myPageItemsDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void defaultSkin(MyPageItemsDto myPageItemsDto){
+        myPageDao.skinWearOff(myPageItemsDto);
+    }
+
+    @Override
+    public void modProf(MyPageItemsDto myPageItemsDto) throws Exception {
+        try {
+            myPageDao.profWearOff(myPageItemsDto);
+            myPageDao.equipProf(myPageItemsDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void defaultProf(MyPageItemsDto myPageItemsDto){
+        myPageDao.profWearOff(myPageItemsDto);
+    }
+
 
 }

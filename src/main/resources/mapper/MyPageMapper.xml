@@ -6,14 +6,14 @@
 <!--그래야 id의 충돌하는 경우가 적어지니까. 다른 이유도 있는데 일단 이 정도만 알아두시기 바랍니다.&ndash;&gt;-->
 <mapper namespace="com.PSVM.dopamin.dao.MyPageMapper">
     <select id="selectrevw" parameterType="String" resultType="RevwDto">
-        select r.user_id, r.revw_id, r.cnts_id, r.revw_body, c.cnts_title, r.revw_visib_stat
+        select r.user_id, r.revw_id, r.cnts_id, r.revw_body, c.cnts_title, r.revw_visib_stat, r.up_date
         from REVW r
                  join CNTS c on c.cnts_id = r.cnts_id
         where r.user_id = #{user_id}
     </select>
 
     <select id="selectrevwRt" parameterType="String" resultType="RevwDto">
-        select re.revw_id, r.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat
+        select re.revw_id, r.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat, r.revw_body, re.up_date, c.cnts_id
         from REVW_RT re
                  join REVW r on r.revw_id = re.revw_id
                  join CNTS c on c.cnts_id = r.cnts_id
@@ -78,4 +78,70 @@
         from GENRE
         WHERE genre_id = #{genre_id}
     </select>
+
+    <select id="selectSkinItem" parameterType="String" resultType="MyPageItemsDto">
+        select i.item_id, i.list_id, i.item_nm, i.item_img, p.user_id, p.equip_stat
+        from ITEM i
+                 join POSSESION p on i.item_id = p.item_id
+        where user_id = #{user_id}
+          and i.list_id = 1
+    </select>
+
+    <select id="selectProfItem" parameterType="String" resultType="MyPageItemsDto">
+        select i.item_id, i.list_id, i.item_nm, i.item_img, p.user_id, p.equip_stat
+        from ITEM i
+                 join POSSESION p on i.item_id = p.item_id
+        where user_id = #{user_id}
+          and i.list_id = 2
+    </select>
+
+    <select id="selectPntList" parameterType="String" resultType="MyPagePointDto">
+        select p.pnt_use_id,
+               p.pchs_item_id,
+               p.use_stat,
+               p.pnt,
+               p.user_id,
+               i.list_id,
+               i.grd_nm,
+               i.item_nm,
+               i.item_img,
+               p.in_date
+        from PNT_USE_DETL p
+                 join ITEM i on p.pchs_item_id = i.item_id
+        where p.user_id = #{user_id}
+        ORDER BY p.in_date desc
+    </select>
+
+    <update id="skinWearOff" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 0
+        where p.equip_stat = 1 and i.list_id = 1 and p.user_id = #{user_id}
+    </update>
+
+    <update id="equipSkin" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 1
+        where i.list_id = 1 and p.user_id = #{user_id} and p.item_id = #{item_id}
+    </update>
+
+    <update id="equipProf" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 2
+        where i.list_id = 1 and p.user_id = #{user_id} and p.item_id = #{item_id}
+    </update>
+
+    <update id="profWearOff" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 0
+        where p.equip_stat = 1 and i.list_id = 2 and p.user_id = #{user_id}
+    </update>
+
 </mapper>
