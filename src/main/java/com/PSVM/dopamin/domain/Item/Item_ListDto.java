@@ -1,51 +1,41 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.Item;
 
 import java.sql.Timestamp;
 
-public class Cart_ItemDto {
-    private int item_id;
-    private int cart_id;
-    private Timestamp in_date;
+public class Item_ListDto {
+    private int list_id;
+    private String list_nm;
     private String in_user;
     private Timestamp up_date;
     private String up_user;
 
-    public Cart_ItemDto(){}
+    public Item_ListDto(){}
 
     @Override
     public String toString() {
-        return "Cart_ITemDto{" +
-                "item_id=" + item_id +
-                ", cart_id=" + cart_id +
-                ", in_date=" + in_date +
+        return "Item_ListDto{" +
+                "list_id=" + list_id +
+                ", list_nm='" + list_nm + '\'' +
                 ", in_user='" + in_user + '\'' +
                 ", up_date=" + up_date +
                 ", up_user='" + up_user + '\'' +
                 '}';
     }
 
-    public int getItem_id() {
-        return item_id;
+    public int getList_id() {
+        return list_id;
     }
 
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
+    public void setList_id(int list_id) {
+        this.list_id = list_id;
     }
 
-    public int getCart_id() {
-        return cart_id;
+    public String getList_nm() {
+        return list_nm;
     }
 
-    public void setCart_id(int cart_id) {
-        this.cart_id = cart_id;
-    }
-
-    public Timestamp getIn_date() {
-        return in_date;
-    }
-
-    public void setIn_date(Timestamp in_date) {
-        this.in_date = in_date;
+    public void setList_nm(String list_nm) {
+        this.list_nm = list_nm;
     }
 
     public String getIn_user() {
