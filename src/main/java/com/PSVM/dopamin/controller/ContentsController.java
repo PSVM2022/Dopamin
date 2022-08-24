@@ -45,8 +45,9 @@ public class ContentsController {
 
     //메인 페이지
     @GetMapping("/")
-    public String contentsList(HttpServletRequest request, Model model) {
-        String user_id = "sohyeon9253";
+    public String contentsList(HttpServletRequest request, HttpSession session, Model model) {
+        String user_id = (String)session.getAttribute("USERID");
+
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
         model.addAttribute("cntsDtoList", cntsDtoList);
@@ -58,12 +59,7 @@ public class ContentsController {
     //컨텐츠 상세 조회
     @GetMapping("/contents/{cnts_id}")
     public String contentsView(@PathVariable(required = false) Integer cnts_id, HttpServletRequest request, HttpSession session, Model model) {
-        String user_id = "sohyeon9253";
-
-        //로그인 세션 얻어옴
-        //login(request);
-        //String user_id = (String) session.getAttribute("id");
-        //System.out.println("id = "+ user_id);
+        String user_id = (String)session.getAttribute("USERID");
 
         //로그인 되지 않은 경우, 로그인 화면으로 리다이렉트(임시페이지)
         if(session==null) {
@@ -90,8 +86,8 @@ public class ContentsController {
 
     //컨텐츠 검색
     @GetMapping("/contents/search/")
-    public String getSearchCntsPage(SearchCondition sc, Model model) {
-        String user_id = "sohyeon9253";
+    public String getSearchCntsPage(SearchCondition sc, HttpSession session, Model model) {
+        String user_id = (String)session.getAttribute("USERID");
 
         int totalCnt = contentsService.getSearchResultCnt(sc);
         model.addAttribute("totalCnt", totalCnt);
