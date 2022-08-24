@@ -30,11 +30,23 @@ public class ReviewDto {
         this.up_user = up_user;
     }
 
-    public ReviewDto(Integer revw_id, String user_id, String revw_body,Timestamp up_date) {
+    public ReviewDto(String user_id, Integer cnts_id, String revw_body, String in_user, String up_user) {
+        this.user_id = user_id;
+        this.cnts_id = cnts_id;
+        this.revw_body = revw_body;
+        this.in_user = in_user;
+        this.up_user = up_user;
+    }
+
+    public ReviewDto(Integer revw_id, String user_id, String revw_body) {
         this.revw_id = revw_id;
         this.user_id = user_id;
         this.revw_body = revw_body;
-        this.up_date = up_date;
+    }
+
+    public ReviewDto(Integer revw_id, String user_id) {
+        this.revw_id = revw_id;
+        this.user_id = user_id;
     }
 
     public Integer getRevw_id() {

@@ -29,16 +29,15 @@
     <!--한줄평 작성-->
     <insert id="insertRevw" parameterType="com.PSVM.dopamin.domain.ReviewDto">
         insert into REVW
-            (user_id, cnts_id, revw_body, in_date, in_user, up_date, up_user)
+            (user_id, cnts_id, revw_body,in_user, in_date,up_user)
         values
-            (#{user_id}, #{cnts_id}, #{revw_body}, now(), #{in_user}, now(), #{up_user})
+            (#{user_id}, #{cnts_id}, #{revw_body}, #{in_user},now(), #{up_user})
     </insert>
 
     <!--한줄평 수정-->
     <update id="updateRevw" parameterType="com.PSVM.dopamin.domain.ReviewDto">
         UPDATE REVW
         SET revw_body = #{revw_body}
-          , up_date = now()
         WHERE revw_id = #{revw_id} and user_id = #{user_id}
     </update>
 

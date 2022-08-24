@@ -29,10 +29,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public int insertRevw(ReviewDto reviewDto) throws Exception{
-        reviewDao.updateRevwCnt(reviewDto.getCnts_id(), 1);
+    public int insertRevw(ReviewDto reviewDto) throws Exception {
+        //reviewDao.updateRevwCnt(reviewDto.getCnts_id(), 1);
         return reviewDao.insertRevw(reviewDto);
     }
+
 
     @Override
     public int updateRevw(ReviewDto reviewDto) throws Exception {

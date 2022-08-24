@@ -12,4 +12,6 @@ public interface ReviewService {
     int deleteRevw(Integer cnts_id, String user_id) throws Exception;
 
     int deleteRevw(Integer revw_id, Integer cnts_id, String user_id) throws Exception;
+
+
 }
