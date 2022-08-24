@@ -1,9 +1,8 @@
 package com.PSVM.dopamin.controller.Item;
 
-import com.PSVM.dopamin.domain.Item.ItemDto;
-import com.PSVM.dopamin.domain.Item.ItemForm;
-import com.PSVM.dopamin.domain.Item.ItemValidator;
-import com.PSVM.dopamin.domain.Item.ItemValidatorException;
+import com.PSVM.dopamin.domain.Item.*;
+import com.PSVM.dopamin.domain.PageHandler;
+import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.Item.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +45,6 @@ public class ItemAdminController {
         try {
             List<ItemDto> list=itemAdminService.getPage("스킨");
             //List<ItemDto> list2=itemAdminService.getPage("꾸미기");
-            System.out.println("list = " + list);
            // System.out.println("list2 = " + list2);
             m.addAttribute("list",list);
             //m.addAttribute("list2",list2);
@@ -55,8 +53,19 @@ public class ItemAdminController {
             throw new RuntimeException(e);
         }
     }
+    @GetMapping("/item")//메인페이지 인기글 8개씩 가져옴
+    public ResponseEntity<List<ItemDto>> get_pop(Integer num){
+        List<ItemDto> list=null;
+        try{
+            list=itemAdminService.get_pop(num);
+            System.out.println("list.size() = " + list.size());
+            return new ResponseEntity<List<ItemDto>>(list,HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<List<ItemDto>>(HttpStatus.BAD_REQUEST);
+        }
+    }
     @GetMapping("/list/{order}")
-    public String list(@PathVariable String order, Model m, RedirectAttributes redirectAttributes){
+    public String list(@PathVariable String order,Model m, RedirectAttributes redirectAttributes){
         //로그인 여부와 상관없이
         //메인에서 <스킨> 누르면 스킨에 해당하는 아이템 목록 스킨==1
         //메인에서 <꾸미기> 누르면 꾸미이게 해당하는 아이템 목록 보여주기 꾸미기==2
@@ -67,9 +76,11 @@ public class ItemAdminController {
                 if(totalCnt==0){
                     throw new Exception("보여질 아이템이 없습니다.");
                 }
+                Map map=new HashMap<>();
+                m.addAttribute("totalCnt",totalCnt);
                 List<ItemDto> list= itemAdminService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
                 m.addAttribute("list",list);
-                return "Item/ilist";
+                return "Item/detail_item";
             }
             else{
                 throw new Exception("잘못된 요청입니다");
@@ -77,8 +88,9 @@ public class ItemAdminController {
         }
         catch(Exception e){
             String msg=e.getMessage();
+            System.out.println("msg = " + msg);
             redirectAttributes.addFlashAttribute("msg",msg);
-            return "redirect:/item/";
+            return "Item/detail_item";
         }
     }
     @GetMapping("/item_admin")

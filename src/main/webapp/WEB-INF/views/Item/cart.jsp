@@ -110,7 +110,7 @@
             <li><a class="nav-link px-2 link-dark" href="#">인기작</a></li>
             <li><a class="nav-link px-2 link-dark" href="#">커뮤니티</a></li>
             <li><a class="nav-link px-2 link-dark" href="#">이벤트</a></li>
-            <li><a class="nav-link px-2 link-dark" href="#">상점</a></li>
+            <li><a class="nav-link px-2 link-dark" href="/psvm/item/">상점</a></li>
         </ul>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <input aria-label="Search" class="form-control form-control-dark" placeholder="Search..." type="search">
@@ -133,27 +133,27 @@
                                     <h6 class="mb-0 text-muted">${list.size()} items</h6>
                                 </div>
                                 <hr class="my-4">
-                                <c:forEach var="i" begin="0" end="${list.size()-1}">
+                                <c:forEach var="i" begin="1" end="${list.size()}">
                                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                                         <div class="col-md-2 col-lg-2 col-xl-2">
                                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
                                                  class="img-fluid rounded-3" alt="Cotton T-shirt">
                                         </div>
                                         <div class="col-md-2 col-lg-2 col-xl-2">
-                                            <h6 class="text-muted">${list[i].list_nm}</h6>
-                                            <h6 class="text-muted">${list[i].grd_nm}</h6>
-                                            <input type="hidden" id="nm${i}" value="${list[i].item_nm}">
-                                            <h6 class="text-black mb-0">${list[i].item_nm}</h6>
+                                            <h6 class="text-muted">${list[i-1].list_nm}</h6>
+                                            <h6 class="text-muted">${list[i-1].grd_nm}</h6>
+                                            <input type="hidden" id="nm${i-1}" value="${list[i-1].item_nm}">
+                                            <h6 class="text-black mb-0">${list[i-1].item_nm}</h6>
                                         </div>
                                         <div class="col-md-4 col-lg-4 col-xl-4">
-                                            <h6 class="text-black mb-0">${list[i].item_dsc}</h6>
+                                            <h6 class="text-black mb-0">${list[i-1].item_dsc}</h6>
                                         </div>
                                         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <input type="hidden" id="price${i}" value="${list[i].item_price}">
-                                            <h6 id="item_price" class="mb-0">${list[i].item_price} DP</h6>
+                                            <input type="hidden" id="price${i-1}" value="${list[i-1].item_price}">
+                                            <h6 id="item_price" class="mb-0">${list[i-1].item_price} DP</h6>
                                         </div>
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end" data-item_id="${list[i].item_id}">
-                                            <input type="hidden" id="id${i}" value="${list[i].item_id}">
+                                            <input type="hidden" id="id${i-1}" value="${list[i-1].item_id}">
                                             <button type="button" class="btn-close" aria-label="Close"></button>
                                         </div>
                                     </div>

@@ -117,4 +117,20 @@ public class ItemAdminService {
     public int show(Integer item_id) throws Exception{
         return itemAdminDaoImpl.NoShowToShow(item_id);
     }
+
+    public List<ItemDto> getPage_map(Map map) {
+        int index;
+        if(map.get("order").equals("스킨")){
+            index=1;
+        }
+        else{
+            index=2;
+        }
+        map.put("index",index);
+        return itemAdminDaoImpl.getPage_map(map);
+    }
+
+    public List<ItemDto> get_pop(Integer num) throws Exception {
+        return itemAdminDaoImpl.get_pop(num);
+    }
 }

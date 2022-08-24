@@ -44,45 +44,14 @@
     </script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script>
-        // let num=8;
-        // let toHtml=function(comments){
-        //     let tmp="";
-        //     comments.forEach(function(comment){
-        //         let i=0;
-        //         tmp+='<div id="item_card" class="col-md-3" ><div id="item_img" class="card card-product-grid" style="height:24rem;">'
-        //         tmp+='<a class="img-wrap" data-item_id='+comment.item_id+'>'
-        //         tmp+='<img src="/css/image/items/1.jpg">'
-        //         tmp+='<button class="insertCart">장바구니에 담기</button></a>'
-        //         tmp+='<figcaption class="info-wrap">'
-        //         tmp+='<input type="hidden" id="id'+i
-        //         tmp+='value='+comment.item_id+'>'
-        //         tmp+='<h5 class="title">'+comment.item_nm+'</h5>'
-        //         tmp+='<h6>'+comment.item_dsc+'</h6>'
-        //         tmp+='<div class="price mt-1">'+comment.item_price+' DP</div>'
-        //         tmp+='</figcaption></div></div>'
-        //         i=i+1;
-        //     })
-        // }
-        // let showList=function(num){
-        //     $.ajax({
-        //         type:'GET',
-        //         url:'/psvm/item/item?num='+num,
-        //         success:function(result){
-        //             $("#multi").html(toHtml(result));
-        //         },
-        //         error:function(){alert("error")}
-        //     })
-        // }
         $(document).ready(function(){
-            // $('#next').click(function(){
-            //     showList(num);//수정필요
-            // });
             $('#multi').on("click",".insertCart",function(){
+
                 let item_id=$(this).parent().attr("data-item_id");
                 console.log(item_id);
                 if(confirm("장바구니에 담으시겠습니까?")){
                     $.ajax({
-                        type:'POSt',
+                        type:'post',
                         url:'/psvm/item/addCart/'+item_id,
                         success:function(result){
                             alert("장바구니에 담겼습니다.");
@@ -156,13 +125,10 @@
 <section class="section-name padding-y-sm">
     <div id="multi1" class="container">
         <header class="section-heading">
-            <a href="#" class="btn btn-outline-primary float-end">더보기</a>
-            <h3 class="section-title">인기 상품</h3>
+            <h3 class="section-title">스킨</h3>
         </header><!-- sect-heading -->
-        <button id="prev">이전</button>
-        <button id="next">다음</button>
         <div id="multi" class="row">
-            <c:forEach var="i" begin="0" end="7">
+            <c:forEach var="i" begin="0" end="${list.size()}">
                 <div id="${i}" class="col-md-3" >
                     <div id="item_img" class="card card-product-grid" style="height:24rem;">
                         <a class="img-wrap" data-item_id="${list[i].item_id}">
@@ -181,6 +147,17 @@
         </div> <!-- row.// -->
     </div><!-- container // -->
 </section>
+<div>
+    <c:if test="${ph.show_prev}">
+        <a href="<c:url value='/psvm/item/list/스킨?page=${ph.begin_page-1}&pageSize=${ph.page_size}'/>">&lt;</a>
+    </c:if>>
+    <c:forEach var="i" begin="${ph.begin_page}" end="${ph.end_page}">
+        <a href="<c:url value='/psvm/item/list/스킨?page=${i}&pageSize=${ph.page_size}'/>">${i}</a>
+    </c:forEach>
+    <c:if test="${ph.show_next}">
+        <a href="<c:url value='/psvm/item/list/스킨?page=${ph.end_page+1}&pageSize=${ph.page_size}'/>">&gt;</a>
+    </c:if>>
+</div>
 <section class="section-name padding-y bg">
     <div class="container">
         <div class="row">
@@ -195,7 +172,6 @@
         </div> <!-- row.// -->
     </div><!-- container // -->
 </section>
-
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">

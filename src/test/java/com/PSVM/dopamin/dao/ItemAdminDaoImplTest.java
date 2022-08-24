@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 @WebAppConfiguration
@@ -26,6 +28,31 @@ public class ItemAdminDaoImplTest {
     public void getCount() throws Exception {
         int rowcnt= itemAdminDaoImpl.getCount();
         System.out.println(rowcnt);
+    }
+    @Test
+    public void getPage() throws Exception{
+        int index=1;
+        List<ItemDto> list=itemAdminDaoImpl.getPage(1);
+        System.out.println("list = " + list);
+        System.out.println("list.size() = " + list.size());
+    }
+    @Test
+    public void get_pop() throws Exception{
+        int num=8;
+        List<ItemDto> list=itemAdminDaoImpl.get_pop(num);
+        assertTrue(list.size()==num);
+    }
+    @Test
+    public void getPage_map() throws Exception{
+        Map map=new HashMap<>();
+        int page=1;
+        int pageSize=8;
+        int totalCnt=15;
+        map.put("offset",(page-1)*pageSize);
+        map.put("pageSize",pageSize);
+        map.put("index",1);
+        List<ItemDto> lsit=itemAdminDaoImpl.getPage_map(map);
+        System.out.println("lsit = " + lsit);
     }
     @Test
     public void getUser_stat_0() throws Exception{

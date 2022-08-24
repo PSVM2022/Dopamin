@@ -3,14 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.PSVM.dopamin.dao.ItemAdminMapper">
+    <select id="get_pop" parameterType="int" resultType="ItemDto">
+        SELECT *
+        FROM ITEM
+        WHERE stat=1
+        LIMIT #{num}
+    </select>
     <select id="item_getCount" resultType="int">
         SELECT count(*)
         FROM ITEM
+        WHERE stat=1
     </select>
     <select id="item_getPage" parameterType="int" resultType="ItemDto">
         SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
         FROM ITEM
         WHERE list_id=#{index} and stat=1
+    </select>
+    <select id="getPage_map" parameterType="map" resultType="ItemDto">
+        SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
+        FROM ITEM
+        WHERE list_id=#{index} and stat=1
+        LIMIT #{offset},#{pageSize}
     </select>
     <select id="item_getStat_0" parameterType="map" resultType="ItemDto">
         SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
