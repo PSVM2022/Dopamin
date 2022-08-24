@@ -48,7 +48,6 @@ public class ItemUserController {
             Message message = Message.builder()
                     .message1(e.getMessage())
                     .build();
-            System.out.println("message = " + message);
         }
     }
 
@@ -100,7 +99,7 @@ public class ItemUserController {
             if(delete_result!=1){
                 throw new Exception("삭제에 실패했습니다.");
             }
-            return new ResponseEntity<Object>("DELETE_OK",HttpStatus.OK);
+            return new ResponseEntity<Object>("장바구니에서 제거되었습니다.",HttpStatus.OK);
         } catch (Exception e) {
             Message message = Message.builder()
                     .message1(e.getMessage())
@@ -137,10 +136,12 @@ public class ItemUserController {
             if(result!=1){
                 throw new Exception("담아지지 않았습니다.");
             }
-            return new ResponseEntity<>("ADD_CART_OK", HttpStatus.OK);
+            return new ResponseEntity<>("장바구니에 추가되었습니다.", HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("ADD_CART_FAILED", HttpStatus.BAD_REQUEST);
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>("이미 담겨져있습니다.", HttpStatus.BAD_REQUEST);
         }
     }
     @GetMapping("/cart")//장바구니 조회
@@ -160,7 +161,9 @@ public class ItemUserController {
             int my_point= itemUserService.getUser_point(user_id);
             int total_point=0;
             List<ItemDto> list=itemUserService.getCart_list(cart_id);
-            System.out.println("list = " + list);
+            if(list.size()==0){
+                throw new Exception("보여줄 아이템이 없습니다.");
+            }
             for(ItemDto itemDto:list){
                 total_point+=itemDto.getItem_price();
             }
@@ -173,7 +176,6 @@ public class ItemUserController {
             Message message = Message.builder()
                     .message1(e.getMessage())
                     .build();
-            System.out.println("message = " + message);
             return "Item/cart";
         }
         //없으면 없는대로 보여주면 됨.

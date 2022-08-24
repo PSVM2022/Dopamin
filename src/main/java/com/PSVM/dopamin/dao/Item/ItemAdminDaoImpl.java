@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ItemAdminDaoImpl {
@@ -13,6 +14,7 @@ public class ItemAdminDaoImpl {
         this.sqlSession = sqlSession;
     }
     String namespace="com.PSVM.dopamin.dao.ItemAdminMapper.";
+
     public int getCount() throws Exception{
         return sqlSession.selectOne(namespace+"item_getCount");
     }//테스트 완료
@@ -57,5 +59,12 @@ public class ItemAdminDaoImpl {
 
     public int NoShowToShow(Integer item_id) throws Exception{
         return sqlSession.update(namespace+"NoShowToShow",item_id);
+    }
+
+    public List<ItemDto> getPage_map(Map map) {
+        return sqlSession.selectList(namespace+"getPage_map",map);
+    }
+    public List<ItemDto> get_pop(Integer num) throws Exception{
+        return sqlSession.selectList(namespace+"get_pop",num);
     }
 }
