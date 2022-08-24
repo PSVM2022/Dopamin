@@ -41,9 +41,19 @@ public class ItemAdminController {
     }//webdatabinder에 validator 추가
 
     @GetMapping("/")//상정 메인 페이지
-    public String item_main(){//각 아이템 항목별 TOP5를 보여주기
+    public String item_main(Model m,RedirectAttributes redirectAttributes){//각 아이템 항목별 TOP5를 보여주기
         //통계 각 항목별 TOP4 가져와 보여주면 됨.
-        return "Item/item";
+        try {
+            List<ItemDto> list1=itemAdminService.getPage("스킨");
+            List<ItemDto> list2=itemAdminService.getPage("꾸미기");
+            System.out.println("list1 = " + list1);
+            System.out.println("list2 = " + list2);
+            m.addAttribute("list1",list1);
+            m.addAttribute("list2",list2);
+            return "Item/cart_main";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     @GetMapping("/list/{order}")
     public String list(@PathVariable String order, Model m, RedirectAttributes redirectAttributes){
@@ -58,7 +68,6 @@ public class ItemAdminController {
                     throw new Exception("보여질 아이템이 없습니다.");
                 }
                 List<ItemDto> list= itemAdminService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
-                System.out.println(list);
                 m.addAttribute("list",list);
                 return "Item/ilist";
             }
