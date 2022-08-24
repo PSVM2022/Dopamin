@@ -42,13 +42,14 @@ public class ReviewServiceImplTest extends TestCase {
 
     //한줄평 등록 테스트
     @Test
-    public void testInsertRevw() {
+    public void testInsertRevw() throws Exception{
 
         ReviewDto reviewDto = new ReviewDto(34, "sohyeon9253", 26, "테스트영화보러가고싶다아아ㅏ아아", 1, 0, new Timestamp(System.currentTimeMillis()), "sohyeon9253", new Timestamp(System.currentTimeMillis()), "sohyeon9253");
 
         try {
             if(reviewService.insertRevw(reviewDto)!=1)
                 throw new Exception("글쓰기 실패");
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("e.getMessage() = " + e.getMessage());
@@ -58,7 +59,7 @@ public class ReviewServiceImplTest extends TestCase {
     //한줄평 수정 테스트
     @Test
     public void testUpdateRevw()  throws Exception {
-        ReviewDto reviewDto = new ReviewDto(35, "sohyeon9253", "test테스트영화보러가고싶다아아ㅏ아아", new Timestamp(System.currentTimeMillis()));
+        ReviewDto reviewDto = new ReviewDto(35, "sohyeon9253", "222test테스트영화보러가고싶다아아ㅏ아아");
 
         try {
             if (reviewService.updateRevw(reviewDto)!=1)
