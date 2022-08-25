@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ page session="false" %>
 <%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
 <%
@@ -12,7 +11,7 @@
 %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <html>
@@ -53,8 +52,8 @@
             <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
+            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
         <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
            <select class="search-option" name="option">
@@ -68,7 +67,7 @@
 
         <!--로그인/회원가입버튼-->
         <div class="text-end">
-            <button type="button" class="btn btn-warning me-2">Login</button>
+            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">Login</button>
         </div>
     </header>
 </div>

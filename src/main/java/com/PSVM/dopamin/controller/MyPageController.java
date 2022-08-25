@@ -27,7 +27,9 @@ public class MyPageController {
 
     // MyPage 메인 화면
     @GetMapping("")
-    public String myPage( HttpSession session, Model m,HttpServletRequest request) throws Exception {
+    public String myPage(Model m,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+        System.out.println("/mypage!!!!");
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }
@@ -40,7 +42,9 @@ public class MyPageController {
 
     //한줄평 리스트 가져오기
     @GetMapping("/revw")
-    public String readRevwList( HttpSession session, Model m,HttpServletRequest request) throws Exception {
+    public String readRevwList(Model m,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }
@@ -53,7 +57,9 @@ public class MyPageController {
 
     // 평가된 한줄평 가져오기
     @GetMapping("/revwrt")
-    public String readRevwRtList(HttpSession session, Model m,HttpServletRequest request) throws Exception {
+    public String readRevwRtList(Model m,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }
@@ -66,7 +72,9 @@ public class MyPageController {
 
     //컨텐츠 찜 목록 가져오기
     @GetMapping("/cntswish")
-    public String readCntsWishList( HttpSession session, Model m,HttpServletRequest request) throws Exception {
+    public String readCntsWishList(Model m,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }
@@ -79,7 +87,9 @@ public class MyPageController {
 
     //컨텐츠 조회 기록 목록 가져오기
     @GetMapping("/cntsview")
-    public String readCntsViewList( HttpSession session, Model m,HttpServletRequest request) throws Exception {
+    public String readCntsViewList(Model m,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }
@@ -92,7 +102,9 @@ public class MyPageController {
 
     //게시글 목록 가져오기
     @GetMapping("/post")
-    public String readPostList( HttpSession session, Model m,HttpServletRequest request) throws Exception {
+    public String readPostList( Model m,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }
@@ -104,7 +116,9 @@ public class MyPageController {
 
     //보유 아이템 목록
     @GetMapping("/myItem")
-    public String readMyItemList( HttpSession session, Model m,HttpServletRequest request) throws Exception {
+    public String readMyItemList( Model m,HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }
@@ -148,7 +162,9 @@ public class MyPageController {
 
 
     @GetMapping("/point")
-    public String pointList( HttpSession session, Model m,HttpServletRequest request) {
+    public String pointList( Model m,HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }

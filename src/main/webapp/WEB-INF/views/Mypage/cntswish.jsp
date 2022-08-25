@@ -12,7 +12,7 @@
 %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <html>
@@ -49,16 +49,15 @@
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
         <a href="<c:url value='/'/>"
            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
-            <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
+            <object data="<c:url value='/image/main_logo.svg'/>" width="150" height="96"></object>
         </a>
-
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
+            <li><a href="<c:url value='/'>" class="nav-link px-2 link-secondary">홈</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
+            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -67,7 +66,7 @@
         </form>
 
         <div class="text-end">
-            <button type="button" class="btn btn-warning me-2">Login</button>
+            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">Login</button>
         </div>
     </header>
 </div>

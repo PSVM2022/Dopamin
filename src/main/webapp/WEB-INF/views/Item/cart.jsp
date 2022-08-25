@@ -9,7 +9,7 @@
     response.setDateHeader("Expires", 0); %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}" />
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}" />
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}" />
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}" />
 <html>
