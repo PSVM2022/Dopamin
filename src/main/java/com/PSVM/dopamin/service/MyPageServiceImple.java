@@ -1,10 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.MyPageDao;
-import com.PSVM.dopamin.domain.MyPageCntsDto;
-import com.PSVM.dopamin.domain.MyPageDto;
-import com.PSVM.dopamin.domain.MyPagePostDto;
-import com.PSVM.dopamin.domain.RevwDto;
+import com.PSVM.dopamin.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,17 +40,22 @@ public class MyPageServiceImple implements MyPageService {
 
     @Override
     public MyPageDto selectMyInfo(String user_id) {
-        System.out.println("service 도착");
         MyPageDto myPageDto = myPageDao.selectMyInfo(user_id);
-        System.out.println("selectMyInfo dao 성공");
-        myPageDto = myPageDao.selectSkin(user_id);
-        System.out.println("myPageDto = " + myPageDto);
-        System.out.println("myPageDto.gets = " + myPageDto.getItem_img());
+        try {
+            String item_img = myPageDao.selectSkin(user_id);
+            myPageDto.setItem_img(item_img);
 
-        System.out.println("myPageDto.getBtdt() = " + myPageDto.getBtdt());
+            if (myPageDto.getGenre_nm() != null) {
+                int genre_id = myPageDto.getFav_genre1();
+                myPageDto.setGenre_nm(myPageDao.genreIdToNm(genre_id));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //유저의 생년월일 정보를 받아서 나이값 구하고 myPageDto에 넣어주기
         calAge(myPageDto);
-        //myPageDto에 착용 스킨
         return myPageDto;
     }
 
@@ -62,6 +64,51 @@ public class MyPageServiceImple implements MyPageService {
         int curYear = LocalDate.now().getYear();
         int age = (int) (curYear - birthYear + 1) / 10 * 10;
         myPageDto.setAge(age);
+    }
+
+    @Override
+    public List<MyPageItemsDto> profList(String user_id) {
+        return myPageDao.selectProfItem(user_id);
+    }
+
+    @Override
+    public List<MyPageItemsDto> skinList(String user_id) {
+        return myPageDao.selectSkinItem(user_id);
+    }
+
+    @Override
+    public List<MyPagePointDto> pntList(String user_id) {
+        return myPageDao.selectPntList(user_id);
+    }
+
+    @Override
+    public void modSkin(MyPageItemsDto myPageItemsDto) throws Exception {
+        try {
+            myPageDao.skinWearOff(myPageItemsDto);
+            myPageDao.equipSkin(myPageItemsDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void defaultSkin(MyPageItemsDto myPageItemsDto){
+        myPageDao.skinWearOff(myPageItemsDto);
+    }
+
+    @Override
+    public void modProf(MyPageItemsDto myPageItemsDto) throws Exception {
+        try {
+            myPageDao.profWearOff(myPageItemsDto);
+            myPageDao.equipProf(myPageItemsDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void defaultProf(MyPageItemsDto myPageItemsDto){
+        myPageDao.profWearOff(myPageItemsDto);
     }
 
 

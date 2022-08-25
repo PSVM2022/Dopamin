@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -43,7 +43,7 @@
 </head>
 
 <body>
-<div class="container py-5">
+<div class="container">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
@@ -72,33 +72,70 @@
     </header>
 </div>
 
+
+<!--
+    내용 컨테이너. 여러개의 Row를 만들 때 secion 태그로 나눕니다.
+    container - 컨텐츠를 포함하고 채우고 정렬하는 부트스트랩 기본구성요소
+    py-5 - padding y축방향(위아래)로 5 단위만큼 부여 https://getbootstrap.kr/docs/5.0/utilities/spacing/ 참고
+    // 컨텐츠를 넣는 태그 만들 때 무조건 section 태그에 container py-5 주고 시작합니다(위 아래 컨텐츠간 여백)
+    bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
+-->
 <main>
     <section class="container py-5">
-        <h2>Contents Good Review</h2><br>
-        <div class="table-responsive">
-            <table class="table table-responsive table-borderless">
-                <thead>
-                <tr class="bg-light">
-                    <th scope="col" width="5%">#</th>
-                    <th scope="col" width="10%">컨텐츠 제목</th>
-                    <th scope="col" width="20%">내용</th>
-                    <th scope="col" width="20%">작성자</th>
-                    <th scope="col" width="20%">등록일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="revw" items="${revwDtoList}">
-                    <tr>
-                        <td>${revw.revw_id}</td>
-                        <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
-                        <td>${revw.revw_body}</td>
-                        <td>${revw.user_id}</td>
-                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.mm.dd"/> ${revw.up_date}</td>
+        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
+        처벌·보안처분 또는 강제노역을 받지
+        아니한다.
 
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
+        개인이 가지는 불가침의 기본적
+        인권을 확인하고 이를 보장할 의무를 진다.
+    </section>
+    <section class="container py-5 bg-light">
+        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
+        처벌·보안처분 또는 강제노역을 받지
+        아니한다.
+
+        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
+        개인이 가지는 불가침의 기본적
+        인권을 확인하고 이를 보장할 의무를 진다.
+    </section>
+    <section class="container py-5">
+        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
+        처벌·보안처분 또는 강제노역을 받지
+        아니한다.
+
+        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
+        개인이 가지는 불가침의 기본적
+        인권을 확인하고 이를 보장할 의무를 진다.
+    </section>
+    <section class="container py-5 bg-light">
+        <!-- Carousel -->
+        <div id="demo" class="carousel slide w-25" data-bs-ride="carousel">
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://dummyimage.com/160x240/000/fff&text=1" alt="Los Angeles"
+                         class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://dummyimage.com/160x240/000/fff&text=2" alt="Chicago"
+                         class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://dummyimage.com/160x240/000/fff&text=3" alt="New York"
+                         class="d-block w-100">
+                </div>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
     </section>
 </main>
@@ -229,4 +266,3 @@
 </body>
 
 </html>
-

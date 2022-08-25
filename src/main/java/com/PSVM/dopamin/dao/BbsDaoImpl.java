@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BbsDaoImpl implements BbsDao {
 
-    private static String namespace = "com.PSVM.dopamin.dao.BbsMapper.";
+    private static String namespace = "com.PSVM.dopamin.dao.BbsDao.";
     @Autowired
     private SqlSession session;
 
