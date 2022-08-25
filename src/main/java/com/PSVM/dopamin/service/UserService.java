@@ -14,12 +14,14 @@ public interface UserService {
 
     int idDuplicateCheck(String user_id);
 
-    int withdrawUser(String user_id);
+    void withdrawUser(String user_id);
 
     String getCartId(String user_id);
 
     boolean loginCheck(HttpServletRequest request);
 
     int surveyGenre(UserDto userDto);
+
+    int modifyUserInform(UserDto userDto);
 
 }

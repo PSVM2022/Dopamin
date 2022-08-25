@@ -1,14 +1,13 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.MyPageCntsDto;
-import com.PSVM.dopamin.domain.MyPageDto;
-import com.PSVM.dopamin.domain.MyPagePostDto;
-import com.PSVM.dopamin.domain.RevwDto;
+import com.PSVM.dopamin.domain.*;
 import com.PSVM.dopamin.service.MyPageService;
+import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,8 @@ import java.util.List;
 public class MyPageController {
     @Autowired
     MyPageService myPageService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/contents/{cnts_id}")
     public String test(@PathVariable Integer cnts_id, Model m, HttpServletRequest request){
@@ -97,6 +98,31 @@ public class MyPageController {
         List<MyPagePostDto> postDtoList = myPageService.postList(user_id);
         m.addAttribute("postDtoList", postDtoList);
         return "Mypage/post";
+    }
+
+    @PostMapping("/usercheck")
+    public String modifyUserCheck(HttpSession session, String pwd, RedirectAttributes redirectAttributes,Model model){
+        System.out.println("getMapping /userinform");
+        String id = (String) session.getAttribute("USERID");
+        System.out.println("id = " + id);
+        //비밀번호 불일치
+        if(!userService.idPwdCheck(id,pwd)){
+            redirectAttributes.addFlashAttribute("msg","비밀번호가 일치하지 않습니다!");
+            return "redirect:/mypage";
+        }
+        UserDto userDto = userService.getUser(id);
+        model.addAttribute("userDto",userDto);
+        return "Mypage/modifyUserInform";
+    }
+
+    @PostMapping("/userinform")
+    public String modifyUserInform(UserDto userDto, RedirectAttributes redirectAttributes,HttpSession session){
+        //수정 완료
+        String user_id = (String) session.getAttribute("USERID");
+        userDto.setUser_id(user_id);
+        userService.modifyUserInform(userDto);
+        redirectAttributes.addFlashAttribute("msg","MODIFY_SUCCESS");
+        return "redirect:/mypage";
     }
 
 }

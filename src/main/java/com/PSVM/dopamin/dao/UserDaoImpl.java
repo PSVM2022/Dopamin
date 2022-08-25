@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Repository
 public class UserDaoImpl implements UserDao {
 
@@ -33,7 +36,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int updateUser(UserDto userDto) {
-        return 0;
+        return session.update(namespace+"updateUser",userDto);
     }
 
     @Override
@@ -68,7 +71,29 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int updateUserGenre(UserDto userDto) {
-        System.out.println("call updateUserGenre in UserDaoImpl");
         return session.update(namespace+"updateUserGenre",userDto);
+    }
+
+    @Override
+    public int updateUserPwd(UserDto userDto) {
+        return session.update(namespace+"updateUserPwd",userDto);
+    }
+
+    @Override
+    public int deleteUserPwdHist(String user_id) {
+        return session.delete(namespace+"deleteUserHist",user_id);
+    }
+
+    @Override
+    public int insertUserPwdHist(String user_id, String user_pwd) {
+        Map map = new HashMap();
+        map.put("user_id",user_id);
+        map.put("user_pwd",user_pwd);
+        return session.insert(namespace+"insertUserHist",map);
+    }
+
+    @Override
+    public String selectUserPwdHist(String user_id) {
+        return session.selectOne(namespace+"selectUserPwdHist",user_id);
     }
 }

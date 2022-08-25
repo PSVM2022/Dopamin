@@ -12,12 +12,18 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap');
 	</style>
 </head>
 
 <body>
+<script>
+	let msg = "${msg}";
+	if(msg!="") alert(msg);
+</script>
 
 <div class="topnav">
 	<div class="responsive">
@@ -42,7 +48,36 @@
 			<h1>${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를 좋아하는 ${myPageDto.age}대 ${myPageDto.sex == 0 ? '여성' : '남성'}입니다. </h1>
 			<h4>dopa_exp = ${myPageDto.dopa_exp}</h4>
 			<h4>dopa_point = ${myPageDto.dopa_point}</h4>
-			<button href="#" onclick='alert("회원 정보 변경")'>회원 정보 변경</button>
+			<<!-- 회원정보 변경 버튼 모달 -->
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+				내 정보 변경
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">비밀번호 인증</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							회원 정보 변경을 위해서 비밀번호 인증이 필요합니다.
+							<form action="<c:url value='/mypage/userinform'/>" method="get">
+								<label for="pwd">비밀번호 입력</label>
+								<input id="pwd" type="password">
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+							<button type="submit" class="btn btn-primary">인증</button>
+						</div>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
 
 		</div>
 		<div class="box">

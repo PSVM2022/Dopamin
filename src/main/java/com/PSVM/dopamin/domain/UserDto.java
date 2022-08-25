@@ -54,6 +54,7 @@ public class UserDto {
         this.sex = sex;
     }
 
+    //설문조사 테스트시 필요
     public UserDto(String user_id, Integer fav_genre1, Integer fav_genre2, Integer fav_genre3, Integer fav_genre4, Integer fav_genre5) {
         this.user_id = user_id;
         this.fav_genre1 = fav_genre1;
@@ -61,6 +62,28 @@ public class UserDto {
         this.fav_genre3 = fav_genre3;
         this.fav_genre4 = fav_genre4;
         this.fav_genre5 = fav_genre5;
+    }
+
+    public UserDto(String user_id,String user_pwd, String f_nm, String l_nm, String phone_num, String mbti, String cnty, String email, String nic, String btdt, byte sex, String prf_img, Integer fav_genre1, Integer fav_genre2, Integer fav_genre3, Integer fav_genre4, Integer fav_genre5, Date up_date, String up_user) {
+        this.user_id = user_id;
+        this.user_pwd = user_pwd;
+        this.f_nm = f_nm;
+        this.l_nm = l_nm;
+        this.phone_num = phone_num;
+        this.mbti = mbti;
+        this.cnty = cnty;
+        this.email = email;
+        this.nic = nic;
+        this.btdt = btdt;
+        this.sex = sex;
+        this.prf_img = prf_img;
+        this.fav_genre1 = fav_genre1;
+        this.fav_genre2 = fav_genre2;
+        this.fav_genre3 = fav_genre3;
+        this.fav_genre4 = fav_genre4;
+        this.fav_genre5 = fav_genre5;
+        this.up_date = up_date;
+        this.up_user = up_user;
     }
 
     public String getUser_id() {
