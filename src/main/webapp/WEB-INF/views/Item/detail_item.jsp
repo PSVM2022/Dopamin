@@ -12,9 +12,9 @@
 %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}" />
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}" />
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}" />
 <html>
 <html lang="ko">
 
@@ -25,20 +25,46 @@
     <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png'/>">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
-    <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/item.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/bootstrap.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/ui.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/responsive.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/all.min.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/cart_main.css?after'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#multi').on("click",".insertCart",function(){
+
+                let item_id=$(this).parent().attr("data-item_id");
+                console.log(item_id);
+                if(confirm("장바구니에 담으시겠습니까?")){
+                    $.ajax({
+                        type:'post',
+                        url:'/psvm/item/addCart/'+item_id,
+                        success:function(result){
+                            alert("장바구니에 담겼습니다.");
+                            location.reload();
+                        },
+                        error:function(){
+                            alert("잠시후 다시 시도해주세요.");
+                        }
+                    })
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -50,95 +76,102 @@
            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
             <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
         </a>
-
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="/psvm/item/" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
-
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" class="form-control form-control-dark" placeholder="Search..."
-                   aria-label="Search">
+            <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
-
         <div class="text-end">
             <button type="button" class="btn btn-warning me-2">Login</button>
         </div>
     </header>
 </div>
-
-
-<!--
-    내용 컨테이너. 여러개의 Row를 만들 때 secion 태그로 나눕니다.
-    container - 컨텐츠를 포함하고 채우고 정렬하는 부트스트랩 기본구성요소
-    py-5 - padding y축방향(위아래)로 5 단위만큼 부여 https://getbootstrap.kr/docs/5.0/utilities/spacing/ 참고
-    // 컨텐츠를 넣는 태그 만들 때 무조건 section 태그에 container py-5 주고 시작합니다(위 아래 컨텐츠간 여백)
-    bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
--->
-<main>
-    <section class="container py-5">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
-
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5 bg-light">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
-
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
-
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5 bg-light">
-        <!-- Carousel -->
-        <div id="demo" class="carousel slide w-25" data-bs-ride="carousel">
-            <!-- The slideshow/carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=1" alt="Los Angeles"
-                         class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=2" alt="Chicago"
-                         class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=3" alt="New York"
-                         class="d-block w-100">
-                </div>
+<section class="section-main bg padding-y">
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3">
+                <nav class="card">
+                    <ul class="menu-category">
+                        <li class="has-submenu"><a href="#">아이템 목록</a>
+                            <ul class="submenu">
+                                <li><a href="/psvm/item/list/스킨">프로필 스킨</a></li>
+                                <li><a href="/psvm/item/list/꾸미기">프로필 꾸미기</a></li>
+                                <li><a href="#">-----Getting ready-----</a></li>
+                                <li><a href="#">-----Getting ready-----</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/psvm/item/cart">장바구니</a></li>
+                        <li><a href="#">보유 아이템 목록</a></li>
+                        <li><a href="#">거래 내역</a></li>
+                        <li><a href="#">포인트 사용 내역</a></li>
+                        <li><a href="#">포인트 충전</a></li>
+                    </ul>
+                </nav>
+            </aside> <!-- col.// -->
+            <div class="col-md-9">
+                <article class="banner-wrap">
+                    <img src="assets/images/2.jpg" class="w-100 rounded">
+                </article>
+            </div> <!-- col.// -->
+        </div> <!-- row.// -->
+    </div> <!-- container //  -->
+</section>
+<section class="section-name padding-y-sm">
+    <div id="multi1" class="container">
+        <header class="section-heading">
+            <h3 class="section-title">스킨</h3>
+        </header><!-- sect-heading -->
+        <div id="multi" class="row">
+            <c:forEach var="i" begin="0" end="${list.size()}">
+                <div id="${i}" class="col-md-3" >
+                    <div id="item_img" class="card card-product-grid" style="height:24rem;">
+                        <a class="img-wrap" data-item_id="${list[i].item_id}">
+                            <img src="/css/image/items/1.jpg">
+                            <button class="insertCart">장바구니에 담기</button>
+                        </a>
+                        <figcaption class="info-wrap">
+                            <input type="hidden" id="id${i}" value="${list[i].item_id}">
+                            <h5 class="title">${list[i].item_nm}</h5>
+                            <h6>${list[i].item_dsc}</h6>
+                            <div class="price mt-1">${list[i].item_price} DP</div>
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+            </c:forEach>
+        </div> <!-- row.// -->
+    </div><!-- container // -->
+</section>
+<div>
+    <c:if test="${ph.show_prev}">
+        <a href="<c:url value='/psvm/item/list/스킨?page=${ph.begin_page-1}&pageSize=${ph.page_size}'/>">&lt;</a>
+    </c:if>>
+    <c:forEach var="i" begin="${ph.begin_page}" end="${ph.end_page}">
+        <a href="<c:url value='/psvm/item/list/스킨?page=${i}&pageSize=${ph.page_size}'/>">${i}</a>
+    </c:forEach>
+    <c:if test="${ph.show_next}">
+        <a href="<c:url value='/psvm/item/list/스킨?page=${ph.end_page+1}&pageSize=${ph.page_size}'/>">&gt;</a>
+    </c:if>>
+</div>
+<section class="section-name padding-y bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Download app demo text</h3>
+                <p>Get an amazing app to make Your life easy</p>
             </div>
-
-            <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </section>
-</main>
-
+            <div class="col-md-6 text-md-end">
+                <a href="#"><img src="assets/images/misc/appstore.png" height="40"></a>
+                <a href="#"><img src="assets/images/misc/appstore.png" height="40"></a>
+            </div>
+        </div> <!-- row.// -->
+    </div><!-- container // -->
+</section>
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -147,7 +180,6 @@
                 <span>Get connected with us on social networks:</span>
             </div>
             <!-- Left -->
-
             <!-- Right -->
             <div>
                 <a href="" class="me-4 text-reset">
@@ -172,7 +204,6 @@
             <!-- Right -->
         </section>
         <!-- Section: Social media -->
-
         <!-- Section: Links  -->
         <section class="">
             <div class="container text-center text-md-start mt-5">
@@ -262,6 +293,9 @@
     </div>
 </footer>
 
+<!-- ========================= FOOTER END // ========================= -->
 </body>
 
 </html>
+
+

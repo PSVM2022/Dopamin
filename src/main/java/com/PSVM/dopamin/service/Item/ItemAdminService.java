@@ -1,8 +1,8 @@
-package com.PSVM.dopamin.service;
+package com.PSVM.dopamin.service.Item;
 
-import com.PSVM.dopamin.domain.ItemDto;
-import com.PSVM.dopamin.dao.ItemAdminDaoImpl;
-import com.PSVM.dopamin.domain.ItemForm;
+import com.PSVM.dopamin.domain.Item.ItemDto;
+import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
+import com.PSVM.dopamin.domain.Item.ItemForm;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -75,7 +75,7 @@ public class ItemAdminService {
         itemDto.setGrd_nm(itemForm.getItem_grd());
         itemDto.setItem_nm(itemForm.getItem_nm());
         itemDto.setItem_dsc(itemForm.getItem_dsc());
-        itemDto.setItem_price(new BigDecimal(itemForm.getItem_price()));
+        itemDto.setItem_price(Integer.parseInt(itemForm.getItem_price()));
         return itemDto;
     }
     private String save_File(MultipartFile multipartFile) {
@@ -116,5 +116,21 @@ public class ItemAdminService {
 
     public int show(Integer item_id) throws Exception{
         return itemAdminDaoImpl.NoShowToShow(item_id);
+    }
+
+    public List<ItemDto> getPage_map(Map map) {
+        int index;
+        if(map.get("order").equals("스킨")){
+            index=1;
+        }
+        else{
+            index=2;
+        }
+        map.put("index",index);
+        return itemAdminDaoImpl.getPage_map(map);
+    }
+
+    public List<ItemDto> get_pop(Integer num) throws Exception {
+        return itemAdminDaoImpl.get_pop(num);
     }
 }

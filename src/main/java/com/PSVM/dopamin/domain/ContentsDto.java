@@ -3,12 +3,14 @@ package com.PSVM.dopamin.domain;
 import java.sql.Timestamp;
 
 public class ContentsDto {
+
+    private ContentsWishDto cntsw;
     private Integer cnts_id;
     private String cnts_title;
     private String cnts_subttl;
     private String cnts_postr_img;
     private String cnts_op_date;
-    private String cnts_genre1;
+    private Integer cnts_genre1;
     private Integer cnts_genre2;
     private Integer cnts_genre3;
     private Integer cnts_genre4;
@@ -21,6 +23,9 @@ public class ContentsDto {
     private String cnts_g_rated;
     private String cnts_szn_cnt;
     private String cnts_ep_cnt;
+    private Integer ott1_stat;
+    private Integer ott2_stat;
+    private Integer ott3_stat;
     private Long ott1_click_cnt;
     private Long ott2_click_cnt;
     private Long ott3_click_cnt;
@@ -39,11 +44,16 @@ public class ContentsDto {
     private String up_user;
 
     //기본생성자
-    public ContentsDto() {
+
+    public ContentsDto(){
+
+    }
+    public ContentsDto(ContentsWishDto cntsw) {
+        this.cntsw = cntsw;
 
     }
 
-    public ContentsDto(Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, String cnts_genre1, Integer cnts_genre2, Integer cnts_genre3, Integer cnts_genre4, Integer cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_visib_stat) {
+    public ContentsDto(Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, Integer cnts_genre1, Integer cnts_genre2, Integer cnts_genre3, Integer cnts_genre4, Integer cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Integer ott1_stat, Integer ott2_stat, Integer ott3_stat, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_visib_stat) {
         this.cnts_id = cnts_id;
         this.cnts_title = cnts_title;
         this.cnts_subttl = cnts_subttl;
@@ -62,6 +72,9 @@ public class ContentsDto {
         this.cnts_g_rated = cnts_g_rated;
         this.cnts_szn_cnt = cnts_szn_cnt;
         this.cnts_ep_cnt = cnts_ep_cnt;
+        this.ott1_stat = ott1_stat;
+        this.ott2_stat = ott2_stat;
+        this.ott3_stat = ott3_stat;
         this.ott1_click_cnt = ott1_click_cnt;
         this.ott2_click_cnt = ott2_click_cnt;
         this.ott3_click_cnt = ott3_click_cnt;
@@ -69,6 +82,14 @@ public class ContentsDto {
     }
 
     //getter setter
+    public ContentsWishDto getCntsw() {
+        return cntsw;
+    }
+
+    public void setCntsw(ContentsWishDto cntsw) {
+        this.cntsw = cntsw;
+    }
+
     public Integer getCnts_id() {
         return cnts_id;
     }
@@ -109,11 +130,11 @@ public class ContentsDto {
         this.cnts_op_date = cnts_op_date;
     }
 
-    public String getCnts_genre1() {
+    public Integer getCnts_genre1() {
         return cnts_genre1;
     }
 
-    public void setCnts_genre1(String cnts_genre1) {
+    public void setCnts_genre1(Integer cnts_genre1) {
         this.cnts_genre1 = cnts_genre1;
     }
 
@@ -211,6 +232,30 @@ public class ContentsDto {
 
     public void setCnts_ep_cnt(String cnts_ep_cnt) {
         this.cnts_ep_cnt = cnts_ep_cnt;
+    }
+
+    public Integer getOtt1_stat() {
+        return ott1_stat;
+    }
+
+    public void setOtt1_stat(Integer ott1_stat) {
+        this.ott1_stat = ott1_stat;
+    }
+
+    public Integer getOtt2_stat() {
+        return ott2_stat;
+    }
+
+    public void setOtt2_stat(Integer ott2_stat) {
+        this.ott2_stat = ott2_stat;
+    }
+
+    public Integer getOtt3_stat() {
+        return ott3_stat;
+    }
+
+    public void setOtt3_stat(Integer ott3_stat) {
+        this.ott3_stat = ott3_stat;
     }
 
     public Long getOtt1_click_cnt() {
@@ -344,12 +389,13 @@ public class ContentsDto {
     @Override
     public String toString() {
         return "ContentsDto{" +
-                "cnts_id=" + cnts_id +
+                "cntsw=" + cntsw +
+                ", cnts_id=" + cnts_id +
                 ", cnts_title='" + cnts_title + '\'' +
                 ", cnts_subttl='" + cnts_subttl + '\'' +
                 ", cnts_postr_img='" + cnts_postr_img + '\'' +
                 ", cnts_op_date='" + cnts_op_date + '\'' +
-                ", cnts_genre1='" + cnts_genre1 + '\'' +
+                ", cnts_genre1=" + cnts_genre1 +
                 ", cnts_genre2=" + cnts_genre2 +
                 ", cnts_genre3=" + cnts_genre3 +
                 ", cnts_genre4=" + cnts_genre4 +
@@ -362,6 +408,9 @@ public class ContentsDto {
                 ", cnts_g_rated='" + cnts_g_rated + '\'' +
                 ", cnts_szn_cnt='" + cnts_szn_cnt + '\'' +
                 ", cnts_ep_cnt='" + cnts_ep_cnt + '\'' +
+                ", ott1_stat=" + ott1_stat +
+                ", ott2_stat=" + ott2_stat +
+                ", ott3_stat=" + ott3_stat +
                 ", ott1_click_cnt=" + ott1_click_cnt +
                 ", ott2_click_cnt=" + ott2_click_cnt +
                 ", ott3_click_cnt=" + ott3_click_cnt +

@@ -19,13 +19,37 @@
         where cnts_id = #{cnts_id} and cnts_visib_stat = 1
     </select>
 
-    <!--컨텐츠 검색-->
+    <!--컨텐츠 ott 조회수-->
+    <update id="updateCntsCnt" parameterType="map">
+        update CNTS set ott1_click_cnt = ott1_click_cnt + #{ott1_click_cnt}
+                    where cnts_id = #{cnts_id}
+    </update>
+
+    <!--컨텐츠 검색(옵션3개)-->
     <select id="searchSelectCnts" parameterType="SearchCondition" resultType="com.PSVM.dopamin.domain.ContentsDto">
         select *,
                replace(#{keyword},' ','')
         from CNTS
-        where (cnts_title LIKE concat('%', #{keyword}, '%')
-            or cnts_subttl LIKE concat('%', #{keyword}, '%')) and cnts_visib_stat = 1
+        where cnts_visib_stat = 1
+          <choose>
+          <when test='option=="ttl"'> <!--제목부제목-->
+          and (cnts_title LIKE concat('%', #{keyword}, '%')
+            or cnts_subttl LIKE concat('%', #{keyword}, '%'))
+          </when>
+
+          <when test='option=="cast"'><!--출연진-->
+            and (cnts_director LIKE concat('%', #{keyword}, '%')
+            or cnts_actor LIKE concat('%', #{keyword}, '%'))
+          </when>
+
+          <otherwise><!--장르-->
+              and (cnts_genre1 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre2 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre3 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre4 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre5 LIKE concat('%', #{keyword}, '%'))
+        </otherwise>
+          </choose>
         order by in_date desc
             LIMIT #{offset}, #{pageSize}
     </select>
@@ -34,11 +58,42 @@
     <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
         select count(*)
         from CNTS
-        where (cnts_title LIKE concat('%', #{keyword}, '%')
-            or cnts_subttl LIKE concat('%', #{keyword}, '%')) and cnts_visib_stat = 1
+        where cnts_visib_stat = 1
+        <choose>
+            <when test='option=="ttl"'> <!--제목부제목-->
+                and (cnts_title LIKE concat('%', #{keyword}, '%')
+                or cnts_subttl LIKE concat('%', #{keyword}, '%'))
+            </when>
+
+            <when test='option=="cast"'><!--출연진-->
+                and (cnts_director LIKE concat('%', #{keyword}, '%')
+                or cnts_actor LIKE concat('%', #{keyword}, '%'))
+            </when>
+
+            <otherwise><!--장르-->
+                and (cnts_genre1 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre2 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre3 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre4 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre5 LIKE concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
     </select>
 
+    <!--컨텐츠 찜-->
+    <!--찜-->
+    <insert id="insertWish" parameterType="com.PSVM.dopamin.domain.ContentsWishDto">
+        insert INTO CNTS_WISH
+            (cnts_id, user_id, in_date, in_user, up_date, up_user)
+        values (#{cnts_id}, #{user_id}, now(), #{user_id}, now(), #{user_id})
+    </insert>
 
+    <!--찜 취소-->
+    <delete id="deleteWish" parameterType="map">
+        DELETE FROM CNTS_WISH WHERE cnts_id = #{cnts_id} AND user_id = #{user_id}
+    </delete>
+
+    <!--컨텐츠 평가(좋아요/싫어요)-->
     <!--평가 기록 있는지 확인-->
     <select id="evalCheck" parameterType="map" resultType="CntsEvalDto">
         select *
@@ -79,5 +134,4 @@
     <delete id="deleteCntsEval">
         delete from cnts_rt where cnts_id = #{cnts_id} and user_id=#{user_id} and cnts_eval
     </delete>
-
 </mapper>

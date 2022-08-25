@@ -1,5 +1,7 @@
 package com.PSVM.dopamin.domain;
 
+import java.util.Date;
+
 public class RevwDto {
     private Integer revw_id;     //한줄평 id
     private String user_id;      //user id
@@ -8,9 +10,10 @@ public class RevwDto {
     private String revw_body;    // 컨텐츠 내용
     private Integer revw_eval;  // 한줄평 평가
     private Integer revw_visib_stat; //한줄평 상태
+    private Date up_date;       // 한줄평 등록일
 
     public RevwDto(){}
-    public RevwDto(Integer revw_id, String user_id, Integer cnts_id, String cnts_title, String revw_body, Integer revw_eval, Integer revw_visib_stat) {
+    public RevwDto(Integer revw_id, String user_id, Integer cnts_id, String cnts_title, String revw_body, Integer revw_eval, Integer revw_visib_stat, Date up_date) {
         this.revw_id = revw_id;
         this.user_id = user_id;
         this.cnts_id = cnts_id;
@@ -18,6 +21,7 @@ public class RevwDto {
         this.revw_body = revw_body;
         this.revw_eval = revw_eval;
         this.revw_visib_stat = revw_visib_stat;
+        this.up_date = up_date;
     }
 
     public Integer getRevw_id() {
@@ -74,6 +78,14 @@ public class RevwDto {
 
     public void setRevw_visib_stat(Integer revw_visib_stat) {
         this.revw_visib_stat = revw_visib_stat;
+    }
+
+    public Date getUp_date() {
+        return up_date;
+    }
+
+    public void setUp_date(Date up_date) {
+        this.up_date = up_date;
     }
 }
 

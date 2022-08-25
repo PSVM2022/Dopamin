@@ -1,4 +1,4 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.Item;
 
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ public class  ItemDto {
     private String grd_nm;
     private String item_nm;
     private String item_dsc;
-    private BigDecimal item_price;
+    private Integer item_price;
     private String item_img;
     private String user_nic;
     private Integer stat;
@@ -22,9 +22,20 @@ public class  ItemDto {
     private String in_user;
     private Timestamp up_date;
     private String up_user;
+
+    private String list_nm;
+
+    public String getList_nm() {
+        return list_nm;
+    }
+
+    public void setList_nm(String list_nm) {
+        this.list_nm = list_nm;
+    }
+
     public ItemDto(){}
 
-    public ItemDto(Integer item_id, Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, Integer stat, Integer dc_rate, Integer dc_price, Timestamp in_date, String in_user, Timestamp up_date, String up_user, String user_nic) {
+    public ItemDto(Integer item_id, Integer list_id, String grd_nm, String item_nm, String item_dsc, Integer item_price, String item_img, Integer stat, Integer dc_rate, Integer dc_price, Timestamp in_date, String in_user, Timestamp up_date, String up_user, String user_nic) {
         this.item_id = item_id;
         this.list_id = list_id;
         this.grd_nm = grd_nm;
@@ -42,7 +53,7 @@ public class  ItemDto {
         //this.user_nic = user_nic;
     }
 
-    public ItemDto(Integer list_id, String grd_nm, String item_nm, String item_dsc, BigDecimal item_price, String item_img, String user_nic, Timestamp in_date, String in_user, String up_user) {
+    public ItemDto(Integer list_id, String grd_nm, String item_nm, String item_dsc, Integer item_price, String item_img, String user_nic, Timestamp in_date, String in_user, String up_user) {
         this.list_id = list_id;
         this.grd_nm = grd_nm;
         this.item_nm = item_nm;
@@ -55,7 +66,7 @@ public class  ItemDto {
         this.up_user = up_user;
     }
 
-    public ItemDto(Integer item_id, String item_nm, String item_dsc, BigDecimal item_price) {
+    public ItemDto(Integer item_id, String item_nm, String item_dsc, Integer item_price) {
         this.item_id = item_id;
         this.item_nm = item_nm;
         this.item_dsc = item_dsc;
@@ -102,11 +113,11 @@ public class  ItemDto {
         this.item_dsc = item_dsc;
     }
 
-    public BigDecimal getItem_price() {
+    public Integer getItem_price() {
         return item_price;
     }
 
-    public void setItem_price(BigDecimal item_price) {
+    public void setItem_price(Integer item_price) {
         this.item_price = item_price;
     }
 
@@ -200,6 +211,7 @@ public class  ItemDto {
                 ", in_user='" + in_user + '\'' +
                 ", up_date=" + up_date +
                 ", up_user='" + up_user + '\'' +
+                ", list_nm='" + list_nm + '\'' +
                 '}';
     }
 }
