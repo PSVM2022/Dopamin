@@ -1,0 +1,48 @@
+@import "../../common/default.css";
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.bbs-title {
+  border-bottom: 4px solid black;
+  margin-bottom: 1rem;
+  color: var(--orange2);
+}
+
+.recommand-post-wrapper > * {
+  font-size: 0.8rem;
+}
+
+.recommand-post {
+  display: flex;
+  justify-content: space-between;
+  padding: .2rem 0;
+}
+
+.post-title {
+  width: 350px;
+  padding: 0 .5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.img-wrapper > img {
+  width: 100%;
+  height: 8rem;
+  object-fit: contain;
+}
+
+.recommanded-content-embed-post {
+}
