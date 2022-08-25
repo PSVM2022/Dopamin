@@ -2,6 +2,7 @@ package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.ReviewDto;
 import com.PSVM.dopamin.service.ReviewService;
+import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
+
+    @Autowired
+    UserService userService;
 
     //지정 컨텐츠의 모든 한줄평 조회
     @GetMapping("/contents/{cnts_id}/reviews")
@@ -40,10 +44,10 @@ public class ReviewController {
     //한줄평 등록
     @PostMapping("/contents/{cnts_id}/reviews1")
     public ResponseEntity<String> insertRevw(@RequestBody ReviewDto reviewDto, BindingResult bindingResult, @PathVariable Integer cnts_id, HttpSession session) {
-        //String user_id = (String)session.getAttribute("user_id");
+
+        String user_id = (String) session.getAttribute("USERID");
         System.out.println("bindingResult = " + bindingResult);
         System.out.println(reviewDto);
-        String user_id = "sohyeon9253";
         reviewDto.setUser_id(user_id);
         reviewDto.setCnts_id(cnts_id);
         //System.out.println(reviewDto);
@@ -63,10 +67,9 @@ public class ReviewController {
     @PostMapping("/contents/{cnts_id}/reviews2")
     //@ResponseBody
     public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, ReviewDto reviewDto, HttpSession session) {
-        //String user_id = (String)session.getAttribute("user_id");
+        String user_id = (String)session.getAttribute("USERID");
         //String bal = reviewDto.getRevw_body();
         //System.out.println(bal);
-        String user_id = "sohyeon9253333";
         reviewDto.setUser_id(user_id);
         System.out.println(reviewDto);
 
@@ -83,8 +86,7 @@ public class ReviewController {
     //한줄평 삭제
     @DeleteMapping("/contents/{cnts_id}/reviews/{revw_id}")
     public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @PathVariable Integer revw_id, HttpSession session) {
-        //String user_id = (String)session.getAttribute("user_id");
-        String user_id = "eunbi77";     //주의!!!!!!! 바꿔줄것
+        String user_id = (String)session.getAttribute("USERID");
 
         try {
             int rowCnt = reviewService.deleteRevw(revw_id, cnts_id, user_id);

@@ -52,3 +52,5 @@ atlassian-ide-plugin.xml
 # VS Code
 .vscode/
 .DS_Store
+
+src/main/resources/email.properties

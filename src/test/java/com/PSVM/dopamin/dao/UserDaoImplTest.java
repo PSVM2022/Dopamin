@@ -1,18 +1,18 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.service.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.spec.ECField;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -21,6 +21,8 @@ import static org.junit.Assert.*;
 public class UserDaoImplTest {
     @Autowired
     UserDao userDao;
+    @Autowired
+    UserService userService;
 
 
     @Before
@@ -88,8 +90,6 @@ public class UserDaoImplTest {
         assertEquals(1,rowCnt1);
         assertEquals(1,rowCnt2);
         assertEquals(1,rowCnt3);
-
-
     }
 
     @Test
@@ -171,21 +171,116 @@ public class UserDaoImplTest {
         assertEquals(1,rowCnt3);
     }
 
-    //테스트 작성 중
-//    @Test
-//    @Transactional
-//    public void testSelectCartId(){
-//        //given
-//        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
-//        int rowCnt1 = userDao.insertUser(userDto);
-//        int rowCnt2 = userDao.insertUserPwd(userDto);
-//        int rowCnt3 = userDao.insertCart(userDto.getUser_id());
-//
-//        //when
-//        String cart_id = userDao.selectCartId(userDto.getUser_id());
-//
-//        System.out.println("cart_id = " + cart_id);
-//
-//    }
+    @Test
+    @Transactional
+    public void testSelectCartId(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt1 = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+        int rowCnt3 = userDao.insertCart(userDto.getUser_id());
 
+        //when
+        String cart_id = userDao.selectCartId(userDto.getUser_id());
+
+        //then
+        assertTrue(cart_id != null);
+
+    }
+
+    @Test
+    @Transactional
+    public void testUpdateUserGenre(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt1 = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+        UserDto survey = new UserDto(userDto.getUser_id(),8,2,3,4,5);
+        //when
+        int rowCnt3 = userDao.updateUserGenre(survey);
+        UserDto user = userDao.selectUser(userDto.getUser_id());
+        //then
+        assertEquals(1,rowCnt1);
+        assertEquals(1,rowCnt2);
+        assertEquals(1,rowCnt3);
+        assertEquals((Integer) 8,user.getFav_genre1());
+    }
+
+    @Test
+    @Transactional
+    public void IsNullWhenSurveyIfGenreIsNull(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt1 = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+        UserDto survey = new UserDto(userDto.getUser_id(),null,null,null,null,null);
+
+        //when
+        int rowCnt3 = userDao.updateUserGenre(survey);
+        UserDto user = userDao.selectUser(userDto.getUser_id());
+
+        //then
+        assertEquals(1,rowCnt1);
+        assertEquals(1,rowCnt2);
+        assertEquals(1,rowCnt3);
+        assertEquals(null,user.getFav_genre1());
+    }
+    @Test
+    @Transactional
+    public void testUpdateUser() {
+            //given
+            UserDto userDto = new UserDto("testid", "testpwd", "성", "이름", "010-1234-1234", "KOREA", "test@email.com", "testnic", "20000101", (byte) 1);
+            int rowCnt1 = userDao.insertUser(userDto);
+            UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+            userDto = userDao.selectUser(userDto.getUser_id());
+
+            //when
+            int rowCnt2 = userDao.updateUser(upUserDto);
+            userDto = userDao.selectUser(userDto.getUser_id());
+            //then
+            assertEquals(1, rowCnt1);
+            assertEquals(1, rowCnt2);
+            assertEquals("testid", userDto.getUser_id());
+            assertEquals(userDto.getF_nm(), upUserDto.getF_nm());
+    }
+
+    @Test
+    @Transactional
+    public void testUpdateUserPwd(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt1 = userDao.insertUser(userDto);
+        int rowCnt2 = userDao.insertUserPwd(userDto);
+        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+
+        //when
+        int rowCnt3 = userDao.updateUserPwd(upUserDto);
+        String userPwd = userDao.selectUserPwd(userDto.getUser_id());
+
+        //then
+        assertEquals(1,rowCnt1);
+        assertEquals(1,rowCnt2);
+        assertEquals(userPwd,upUserDto.getUser_pwd());
+    }
+
+    @Test
+    @Transactional
+    public void testInsertUserHistWhenUserModifyPwd(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        //가입
+        userService.joinUser(userDto);
+        //수정
+        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+        String before_pwd = userDao.selectUserPwd("testid");
+        //비번수정
+        userDao.updateUserPwd(upUserDto);
+
+        //when
+        userDao.insertUserPwdHist("testid",before_pwd);
+        userDto = userService.getUser("testid");
+        //then
+        assertEquals(userDao.selectUserPwd("testid"),upUserDto.getUser_pwd());
+        assertEquals("testpwd",userDao.selectUserPwdHist("testid"));
+    }
 }

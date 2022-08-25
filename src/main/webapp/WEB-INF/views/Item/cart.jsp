@@ -152,7 +152,7 @@
                                             <input type="hidden" id="price${i-1}" value="${list[i-1].item_price}">
                                             <h6 id="item_price" class="mb-0">${list[i-1].item_price} DP</h6>
                                         </div>
-                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end" data-item_id="${list[i].item_id}">
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end" data-item_id="${list[i-1].item_id}">
                                             <input type="hidden" id="id${i-1}" value="${list[i-1].item_id}">
                                             <button type="button" class="btn-close" aria-label="Close"></button>
                                         </div>

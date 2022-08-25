@@ -10,12 +10,12 @@
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
 %>
-<%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
-<html>
+<c:set var="SURVEY" value="${pageContext.request.getSession(false).getAttribute('SURVEY')}"/>
+
 <html lang="ko">
 
 <head>
@@ -45,7 +45,8 @@
 <div class="container">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
-        <a href="<c:url value='/'/>" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
+        <a href="<c:url value='/'/>"
+           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
             <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -71,7 +72,7 @@
 <main>
     <div class="container">
         <section>
-        <!-- Carousel wrapper -->
+            <!-- Carousel wrapper -->
         </section>
 
         <div class="bg-image d-flex justify-content-center align-items-center"
@@ -85,13 +86,20 @@
                         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                             <div class="input-group input-group-lg">
                                 <!--검색창 가운데정렬(col-lg-auto me-lg-auto 이거 빼주면 됨) : option 손봐야함-->
-                                <form class="nav col-12 mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
-                            <select class="search-option" name="option">
-                                <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>제목/부제목</option>
-                                <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
-                                <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
-                            </select>
-                                <li><input type="text" class="form-control form-control-lg rounded" placeholder="search your contents" aria-label="Type Keywords" aria-describedby="basic-addon2" name="keyword" class="search-input" type="text" value="${sc.keyword}" /></li>
+                                <form class="nav col-12 mb-2 justify-content-center mb-md-0"
+                                      action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form"
+                                      method="get">
+                                    <select class="search-option" name="option">
+                                        <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>
+                                            제목/부제목
+                                        </option>
+                                        <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
+                                        <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
+                                    </select>
+                                    <li><input type="text" class="form-control form-control-lg rounded"
+                                               placeholder="search your contents" aria-label="Type Keywords"
+                                               aria-describedby="basic-addon2" name="keyword" class="search-input"
+                                               type="text" value="${sc.keyword}"/></li>
                                 </form>
                             </div>
                         </div>
@@ -103,124 +111,24 @@
         <!--section을 py-5로 주고하는게 여기도 해당되나?-->
         <!--1-->
         <section class="container py-5">
-                <div class="row">
-                    <div class="col-6">
-                        <h3 class="mb-3">인기 컨텐츠</h3>
-                    </div>
-                    <div class="col-6 text-right">  <!--(<,>)버튼-->
-                        <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button" data-slide="prev">
-                            <i class="fa fa-arrow-left"></i>
-                        </a>
-                        <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button" data-slide="next">
-                            <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!--여기부터 반복-->
-                    <div class="col-12">
-                        <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="row">
-
-                                        <section class="container py-5">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <c:forEach var="i" begin="0" end="2" items="${cntsDtoList}">
-                                                        <div class="col-4">
-                                                            <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                                <img class="img-fluid" src=${i.cnts_postr_img}/>
-                                                                <div class="card-body">
-                                                                    <h4 class="card-title">${i.cnts_title}</h4>
-                                                                    <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                    <p class="card-text">${i.cnts_op_date}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-                                                </div>
-                                            </div>
-                                        </section>
-
-                                    </div>
-                                </div>    <!--한 번에 보여지는 카드 수-->
-
-                                <div class="carousel-item">
-                                    <div class="row">
-
-                                        <section class="container py-5">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <c:forEach var="i" begin="3" end="5" items="${cntsDtoList}">
-                                                        <div class="col-4">
-                                                            <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                                <img class="img-fluid" src=${i.cnts_postr_img}/>
-                                                                <div class="card-body">
-                                                                    <h4 class="card-title">${i.cnts_title}</h4>
-                                                                    <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                    <p class="card-text">${i.cnts_op_date}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-                                                </div>
-                                            </div>
-                                        </section>
-
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class="row">
-
-                                        <section class="container py-5">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <c:forEach var="i" begin="6" end="8" items="${cntsDtoList}">
-                                                        <div class="col-4">
-                                                            <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                                <img class="img-fluid" src=${i.cnts_postr_img}/>
-                                                                <div class="card-body">
-                                                                    <h4 class="card-title">${i.cnts_title}</h4>
-                                                                    <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                    <p class="card-text">${i.cnts_op_date}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-                                                </div>
-                                            </div>
-                                        </section>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-        </section>
-
-        <!--2-->
-        <section class="container py-5">
             <div class="row">
                 <div class="col-6">
-                    <h3 class="mb-3">신규 컨텐츠</h3>
+                    <h3 class="mb-3">인기 컨텐츠</h3>
                 </div>
                 <div class="col-6 text-right">  <!--(<,>)버튼-->
-                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators4" role="button" data-slide="prev">
+                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button"
+                       data-slide="prev">
                         <i class="fa fa-arrow-left"></i>
                     </a>
-                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators4" role="button" data-slide="next">
+                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button"
+                       data-slide="next">
                         <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!--여기부터 반복-->
                 <div class="col-12">
-                    <div id="carouselExampleIndicators4" class="carousel slide" data-ride="carousel">
+                    <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row">
@@ -228,9 +136,10 @@
                                     <section class="container py-5">
                                         <div class="container">
                                             <div class="row">
-                                                <c:forEach var="i" begin="9" end="11" items="${cntsDtoList}">
+                                                <c:forEach var="i" begin="0" end="2" items="${cntsDtoList}">
                                                     <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                                        <div class="card m-2"
+                                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
                                                             <img class="img-fluid" src=${i.cnts_postr_img}/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
@@ -253,9 +162,10 @@
                                     <section class="container py-5">
                                         <div class="container">
                                             <div class="row">
-                                                <c:forEach var="i" begin="12" end="14" items="${cntsDtoList}">
+                                                <c:forEach var="i" begin="3" end="5" items="${cntsDtoList}">
                                                     <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                                        <div class="card m-2"
+                                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
                                                             <img class="img-fluid" src=${i.cnts_postr_img}/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
@@ -267,177 +177,53 @@
                                                 </c:forEach>
                                             </div>
                                         </div>
+                                        <script>
+                                            <%--let surveyMsg = "${SUR_SUCCESS}"--%>
+                                            if ("${SUR_SUCCESS}" != "") alert("${SUR_SUCCESS}")
+                                            if ("${SUR_ERR}" != "") alert("${SUR_ERR}")
+
+                                        </script>
                                     </section>
 
-                                </div>
-                            </div>
+                                    <div class="content">
+                                        <div class="responsive-content">
+                                            <h2>DOPAMIN</h2>
+                                            <div class="content-preview" style="text-align:center">
 
-                            <div class="carousel-item">
-                                <div class="row">
 
-                                    <section class="container py-5">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach var="i" begin="15" end="17" items="${cntsDtoList}">
-                                                    <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src=${i.cnts_postr_img}/>
-                                                            <div class="card-body">
-                                                                <h4 class="card-title">${i.cnts_title}</h4>
-                                                                <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                <p class="card-text">${i.cnts_op_date}</p>
-                                                            </div>
+                                                <c:forEach var="cnts" items="${cntsDtoList}">
+                                                    <br>
+                                                    <tr>
+                                                        <div>
+                                                            <td>
+                                                                <a href='/psvm/contents/${cnts.cnts_id}'/>${cnts.cnts_postr_img}
+                                                            </td>
+                                                            <br>
+                                                            <td>${cnts.cnts_title}</td>
+                                                            <br>
+                                                            <td>${cnts.cnts_subttl}</td>
+                                                            <br>
+                                                            <td>${cnts.cnts_op_date}</td>
+                                                            <br>
+                                                            <!-- <td>${cnts.cnts_cnty}</td><br>-->
                                                         </div>
-                                                    </div>
+                                                    </tr>
                                                 </c:forEach>
                                             </div>
+                                            <br>
                                         </div>
-                                    </section>
 
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
+                                        <i class="fa-brands fa-instagram"></i>
+                                        <i class="fa-brands fa-facebook"></i>
+                                        <i class="fa-brands fa-youtube"></i>
+                                        <div class="content-preview"></div>
+                                        <div class="content-teenager-girl-movie"></div>
+                                    </div>
 
-            </div>
-
-        </section>
-
-        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    </div>
-
-        <!-- Inner -->
-<section class="container py-5"></section>
-
-</main>
-
-<!--여기서부터 푸터-->
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-            <!-- Left -->
-            <div class="me-5 d-none d-lg-block">
-                <span>Get connected with us on social networks:</span>
-            </div>
-            <!-- Left -->
-            <!-- Right -->
-            <div>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <!-- Right -->
-        </section>
-        <!-- Section: Social media -->
-
-        <!-- Section: Links  -->
-        <section class="">
-            <div class="container text-center text-md-start mt-5">
-                <!-- Grid row -->
-                <div class="row mt-3">
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>Company name
-                        </h6>
-                        <p>
-                            Here you can use rows and columns to organize your footer content. Lorem
-                            ipsum
-                            dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Products
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Angular</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">React</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Vue</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Laravel</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Useful links
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Pricing</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Settings</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Orders</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Help</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-                        <p>
-                            <i class="fas fa-envelope me-3"></i>
-                            info@example.com
-                        </p>
-                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-            </div>
-        </section>
-        <!-- Section: Links  -->
-
-        <!-- Copyright -->
-        <div class="text-center p-4 copyright">
-            © 2021 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
-    </div>
-</footer>
+                                    <div class="footer">
+                                        <div>about</div>
+                                        <div>2022 PSVM팀</div>
+                                    </div>
 </body>
 </html>
