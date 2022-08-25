@@ -34,4 +34,5 @@ public class ContentsDaoImplTest {
         System.out.println("contentsDao = " + list);
     }
 
+
 }

@@ -5,18 +5,20 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class SearchCondition {
 
     private Integer page = 1;
-    private Integer pageSize = 3;   //한 페이지에 보여줄 컨텐츠 개수
+    private Integer pageSize = 9;   //한 페이지에 보여줄 컨텐츠 개수
     private String  keyword = "";
     //private Integer  offset = 0;
+    private String  option = "";
 
 
     public SearchCondition() {
     }
 
-    public SearchCondition(Integer page, Integer pageSize, String keyword) {
+    public SearchCondition(Integer page, Integer pageSize, String keyword, String option) {
         this.page = page;
         this.pageSize = pageSize;
         this.keyword = keyword;
+        this.option = option;
     }
 
     public String getQueryString(Integer page) {
@@ -24,6 +26,7 @@ public class SearchCondition {
                 .queryParam("page", page)       //페이지 지정해준 경우
                 .queryParam("pageSize", pageSize)
                 .queryParam("keyword", keyword)
+                .queryParam("option",   option)
                 .build().toString();
     }
 
@@ -56,6 +59,14 @@ public class SearchCondition {
         this.keyword = keyword;
     }
 
+    public String getOption() {
+        return option;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
     public Integer getOffset() {
         return (page-1) * pageSize;
     }
@@ -71,6 +82,7 @@ public class SearchCondition {
                 "page=" + page +
                 ", pageSize=" + pageSize +
                 ", keyword='" + keyword + '\'' +
+                ", option='" + option + '\'' +
                 ", offset=" + getOffset() +
                 '}';
     }
