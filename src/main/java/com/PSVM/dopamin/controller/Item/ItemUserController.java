@@ -151,7 +151,9 @@ public class ItemUserController {
         }
     }
     @GetMapping("/cart")//장바구니 조회
-    public String cart_list(Model m, HttpSession session,HttpServletRequest request){
+    public String cart_list(Model m,HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+
         if(!userService.loginCheck(request)){
             return "redirect:/login/login";
         }

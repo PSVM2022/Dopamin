@@ -3,7 +3,7 @@ package com.PSVM.dopamin.controller;
 import com.PSVM.dopamin.domain.UserDto;
 import com.PSVM.dopamin.domain.UserDtoValidator;
 import com.PSVM.dopamin.domain.UserValidatorException;
-import com.PSVM.dopamin.service.MailSendService;
+//import com.PSVM.dopamin.service.MailSendService;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,8 +26,8 @@ import java.util.Map;
 public class JoinController {
     @Autowired
     UserService userService;
-    @Autowired
-    MailSendService mailSendService;
+//    @Autowired
+//    MailSendService mailSendService;
 
     @ExceptionHandler(UserValidatorException.class)
     @ResponseBody
@@ -107,12 +107,12 @@ public class JoinController {
         return "redirect:/";
     }
 
-    @GetMapping("/mailCheck")
-    @ResponseBody
-    public String mailCheck(@RequestParam(name = "email") String email){
-        System.out.println("이메일 인증 요청");
-        System.out.println("in method email = " + email);
-        return mailSendService.joinEmail(email);
-    }
+//    @GetMapping("/mailCheck")
+//    @ResponseBody
+//    public String mailCheck(@RequestParam(name = "email") String email){
+//        System.out.println("이메일 인증 요청");
+//        System.out.println("in method email = " + email);
+//        return mailSendService.joinEmail(email);
+//    }
 
 }
