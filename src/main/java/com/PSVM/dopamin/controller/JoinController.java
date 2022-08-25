@@ -53,7 +53,7 @@ public class JoinController {
     }
     @PostMapping("/idduplck")
     @ResponseBody
-    public Map idDupleCheck(@RequestParam String userId,BindingResult bindingResult){
+    public Map idDupleCheck(String userId,BindingResult bindingResult){
         System.out.println("user_id = " + userId);
         System.out.println("bindingResult = " + bindingResult);
         Map result = new HashMap();
@@ -75,8 +75,9 @@ public class JoinController {
 
     @PostMapping("/join")
     @ResponseBody
-    public Map join(@Valid @RequestBody UserDto userDto, BindingResult result) throws UserValidatorException ,DuplicateKeyException{
+    public Map join(@Valid @RequestBody UserDto userDto, BindingResult result, String pwdCheck) throws UserValidatorException ,DuplicateKeyException{
         try {
+            System.out.println("pwdCheck = " + pwdCheck);
             //검증 실패면
             if (result.hasErrors()) {
                 throw new UserValidatorException(result, "검증 실패");

@@ -60,7 +60,6 @@ public class LoginController {
             return "Login/loginForm";
         }
 
-        System.out.println("넘어오지마!!");
 //        id, pwd 일치하면 로그인 성공 ,세션 생성
         HttpSession session = request.getSession();
         //  세션 객체에 저장할 정보 - user_id, 장바구니_id, 유저 상태(관리자인지 일반유저인지), 설문조사 했는지 안했는지 여부
