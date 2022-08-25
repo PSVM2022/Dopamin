@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.PSVM.dopamin.dao.community.postMapper">
+  <delete id="deletePostInBbs">
+    DELETE
+    FROM POST
+    WHERE bbs_id = #{bbs_id}
+  </delete>
+
+  <insert id="insert" parameterType="post">
+    INSERT INTO POST
+    (bbs_id, user_id, post_title, post_body, post_atch1, post_atch2, post_atch3, post_atch4,
+     post_atch5, in_date, in_user, up_user)
+    VALUES (#{bbs_id}, #{user_id}, #{post_title}, #{post_body},
+            #{post_atch1, jdbcType = VARCHAR},
+            #{post_atch2, jdbcType = VARCHAR},
+            #{post_atch3, jdbcType = VARCHAR},
+            #{post_atch4, jdbcType = VARCHAR},
+            #{post_atch5, jdbcType = VARCHAR},
+            #{in_date}, #{in_user}, #{up_user})
+  </insert>
+
+  <select id="selectLatestOne" parameterType="int" resultType="post">
+    SELECT *
+    FROM post
+    WHERE bbs_id = #{bbs_id}
+    ORDER BY bbs_id DESC limit 1
+  </select>
+
+  <select id="selectPost" parameterType="int" resultType="post">
+    SELECT post_id,
+           bbs_id,
+           user_id,
+           post_title,
+           post_body,
+           post_reply_cnt,
+           post_view_cnt,
+           post_visib,
+           post_atch1,
+           post_atch2,
+           post_atch3,
+           post_atch4,
+           post_atch5,
+           post_rept_cnt,
+           up_date
+    FROM POST
+    WHERE post_id = #{post_id}
+  </select>
+
+  <select id="countPostInBbs" parameterType="int" resultType="_int">
+    SELECT count(*)
+    FROM POST
+    WHERE bbs_id = #{bbs_id}
+  </select>
+
+
+  <select id="previewPostInBbs" parameterType="map" resultType="post">
+    SELECT post_id, post_title, post_reply_cnt, post_prior
+    FROM POST
+    WHERE bbs_id = #{bbs_id}
+      AND post_visib = 1
+    ORDER BY in_date DESC
+      LIMIT #{view_size};
+  </select>
+
+  <select id="selectPage" parameterType="map" resultType="post">
+    SELECT post_id,
+           user_id,
+           post_title,
+           post_reply_cnt,
+           post_view_cnt,
+           post_prior,
+           post_atch1,
+           in_date
+    FROM POST
+    WHERE bbs_id = #{bbs_id}
+      AND post_visib = 1
+    ORDER BY post_prior ASC, post_id DESC
+      LIMIT #{offset}, #{pageSize};
+  </select>
+
+  <update id="update" parameterType="post">
+    UPDATE POST
+    SET post_title = #{post_title},
+        post_body  = #{post_body},
+        post_atch1 = #{post_atch1},
+        post_atch2 = #{post_atch2},
+        post_atch3 = #{post_atch3},
+        post_atch4 = #{post_atch4},
+        post_atch5 = #{post_atch5},
+        up_date    = #{up_date},
+        WHERE post_id = #{post_id};
+  </update>
+
+  <update id="hidePost" parameterType="map">
+    UPDATE POST
+    SET post_visib = #{post_visib}
+    WHERE post_id = #{post_id}
+  </update>
+
+  <update id="increase1View" parameterType="int">
+    UPDATE POST
+    SET post_view_cnt = post_view_cnt + 1
+    WHERE post_id = #{post_id}
+  </update>
+
+  <update id="increase1Comment" parameterType="int">
+    UPDATE POST
+    SET post_reply_cnt = post_reply_cnt + 1
+    WHERE post_id = #{post_id}
+  </update>
+
+  <update id="decrease1Comment" parameterType="int">
+    UPDATE POST
+    SET post_reply_cnt = post_reply_cnt - 1
+    WHERE post_id = #{post_id}
+  </update>
+
+  <update id="adjustPrior" parameterType="int">
+    UPDATE POST
+    SET post_prior = #{int}
+    WHERE post_id = #{post_id}
+  </update>
+
+</mapper>
