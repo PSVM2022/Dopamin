@@ -102,6 +102,8 @@
                                         <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
                                     </select>
                                     <li><input type="text" class="form-control form-control-lg rounded" placeholder="search your contents" aria-label="Type Keywords" aria-describedby="basic-addon2" name="keyword" class="search-input" type="text" value="${sc.keyword}" /></li>
+
+
                                 </form>
                             </div>
                         </div>
@@ -139,7 +141,7 @@
                                                 <c:forEach var="i" begin="0" end="2" items="${cntsDtoList}">
                                                     <div class="col-4">
                                                         <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src=${i.cnts_postr_img}/>
+                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
                                                                 <h6 class="text-muted">${i.cnts_subttl}</h6>
@@ -164,7 +166,7 @@
                                                 <c:forEach var="i" begin="3" end="5" items="${cntsDtoList}">
                                                     <div class="col-4">
                                                         <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src=${i.cnts_postr_img}/>
+                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
                                                                 <h6 class="text-muted">${i.cnts_subttl}</h6>
@@ -189,7 +191,7 @@
                                                 <c:forEach var="i" begin="6" end="8" items="${cntsDtoList}">
                                                     <div class="col-4">
                                                         <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src=${i.cnts_postr_img}/>
+                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
                                                                 <h6 class="text-muted">${i.cnts_subttl}</h6>
@@ -241,7 +243,7 @@
                                                 <c:forEach var="i" begin="9" end="11" items="${cntsDtoList}">
                                                     <div class="col-4">
                                                         <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src=${i.cnts_postr_img}/>
+                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
                                                                 <h6 class="text-muted">${i.cnts_subttl}</h6>
@@ -266,7 +268,7 @@
                                                 <c:forEach var="i" begin="12" end="14" items="${cntsDtoList}">
                                                     <div class="col-4">
                                                         <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src=${i.cnts_postr_img}/>
+                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
                                                                 <h6 class="text-muted">${i.cnts_subttl}</h6>
@@ -291,7 +293,7 @@
                                                 <c:forEach var="i" begin="15" end="17" items="${cntsDtoList}">
                                                     <div class="col-4">
                                                         <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src=${i.cnts_postr_img}/>
+                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                                             <div class="card-body">
                                                                 <h4 class="card-title">${i.cnts_title}</h4>
                                                                 <h6 class="text-muted">${i.cnts_subttl}</h6>
