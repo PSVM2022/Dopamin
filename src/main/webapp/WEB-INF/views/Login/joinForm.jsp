@@ -81,7 +81,6 @@
             <table border="1">
                 <tbody>
 
-
                 <tr>
                     <th>아이디</th>
                     <td class="input-box"><input type="text" id="user_id" placeholder="아이디를 입력해주세요."/>
@@ -92,9 +91,8 @@
                     <td>
                         <div id="user_id_msg" class="msg"></div>
                     </td>
+                    <button id="idCheckBtn">아이디 중복 체크</button>
                 </tr>
-
-
                 <tr>
                     <th>비밀번호</th>
                     <td><input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호를 입력해주세요."/>
@@ -107,8 +105,6 @@
 
                     </td>
                 </tr>
-
-
                 <tr>
                     <th>비밀번호 확인</th>
                     <td><input type="password" id="pwdCheck"/>
@@ -117,8 +113,6 @@
                         <div id="pwd_check_msg" class="msg"></div>
                     </td>
                 </tr>
-
-
                 <tr>
                     <th>성</th>
                     <td><input type="text" id="f_nm" name="f_nm"/>
@@ -135,7 +129,6 @@
                         <div id="l_nm_msg" class="msg"></div>
                     </td>
                 </tr>
-
                 <tr>
                     <th>닉네임</th>
                     <td><input type="text" id="nic" name="nic"/>
@@ -144,8 +137,6 @@
                         <div id="nic_msg" class="msg"></div>
                     </td>
                 </tr>
-
-
                 <tr>
                     <th>생년월일</th>
                     <td>
@@ -174,7 +165,6 @@
                         <div id="phone_num_msg" class="msg"></div>
                     </td>
                 </tr>
-
                 <tr>
                     <th>성별</th>
                     <td><select autofocus id="sex" name="sex">
@@ -187,8 +177,6 @@
 
                     </td>
                 </tr>
-
-
                 <tr id="nation">
                     <th>국적</th>
                     <td><select id="cnty">
@@ -408,8 +396,6 @@
 
                     </td>
                 </tr>
-
-
                 <tr>
                     <th>이메일</th>
                     <td>
@@ -588,40 +574,17 @@
 
     })
 
-
-    function pwdCheck() {
-        let pwd = document.getElementById('user_pwd');
-        let pwdCheck = document.getElementById('pwdCheck');
-        let pwd_check_msg = document.getElementById('pwd_check_msg');
-        if (pwd.value == pwdCheck.value) {
-            pwd_check_msg.innerHTML = "비밀번호 일치";
-        } else {
-            pwd_check_msg.style.color = "#ff0000"
-            pwd_check_msg.innerHTML = "비밀번호 불일치";
-        }
-    }
-
-    function idDuplCheck() {
+    $("#idCheckBtn").click(function (){
         $.ajax({
-            type: 'POST',       // 요청 메서드
-            url: '/psvm/join/idduplck',  // 요청 URI
-            headers: {"content-type": "application/json"}, // 요청 헤더
-            dataType: 'text', // 전송받을 데이터의 타입
-            data: JSON.stringify({"user_id": $("#user_id").val()}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
-            success: function (response) {
-                let cnt = JSON.parse(response);
-                if (cnt == "1") {
-                    alert("이미 사용된 아이디입니다.")
-                } else {
-                    alert("사용 가능한 아이디입니다.")
-                }
+            url:"<c:url value='/join/idduplck'/>",
+            type:"POST",
+            data:{id:$("#user_id").val()},
+            success:function (res){
+                alert(res.msg)
+            }
+        })
+    });
 
-            },
-            error: function () {
-                alert("error")
-            } // 에러가 발생했을 때, 호출될 함수
-        });
-    }
 
     $("#joinBtn").click(function () {
         //비밀번호 확인
@@ -629,11 +592,8 @@
         let pwdCheck = document.getElementById('pwdCheck');
         let pwd_check_msg = document.getElementById('pwd_check_msg');
         if (pwd.value != pwdCheck.value) {
-            pwd_check_msg.style.color = "#ff0000"
-            pwd_check_msg.innerHTML = "비밀번호 불일치";
+            alert("비밀번호가 일치하지 않습니다.")
             return;
-        } else {
-            pwd_check_msg.innerHTML = "";
         }
 
         let email = $('#userEmail1').val() + $("#userEmail2").val();

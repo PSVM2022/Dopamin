@@ -1,6 +1,6 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 import com.PSVM.dopamin.service.UserService;
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +23,6 @@ public class UserDaoImplTest {
     UserDao userDao;
     @Autowired
     UserService userService;
-
 
     @Before
     @Transactional
@@ -182,6 +181,7 @@ public class UserDaoImplTest {
 
         //when
         String cart_id = userDao.selectCartId(userDto.getUser_id());
+        System.out.println(cart_id);
 
         //then
         assertTrue(cart_id != null);

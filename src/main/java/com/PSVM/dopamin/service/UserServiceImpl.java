@@ -1,7 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.UserDaoImpl;
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.regex.Pattern;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -46,9 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int idDuplicateCheck(String user_id)throws NullPointerException {
-        int rowCnt = userDao.selectIdDuplCnt(user_id);
-        return rowCnt;
+    public int idDuplicateCheck(String user_id){
+        return userDao.selectIdDuplCnt(user_id);
     }
 
     @Override
@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String getCartId(String user_id) {
+
         return userDao.selectCartId(user_id);
     }
 
@@ -88,5 +89,12 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUserPwdHist(userDto.getUser_id());
         //변경 전 비밀번호 넣기
         return userDao.insertUserPwdHist(userDto.getUser_id(),beforePwd);
+    }
+
+    @Override
+    public boolean idValidCheck(String id) {
+        final String idPattern = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,15}$";
+        boolean idResult = Pattern.matches(idPattern, id);
+        return idResult;
     }
 }

@@ -1,5 +1,6 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.User;
 
+import com.PSVM.dopamin.domain.User.UserDto;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
@@ -20,13 +21,17 @@ public class UserDtoValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        UserDto userDto = (UserDto) target;
+        //userDt0=UserDto{user_id='asdsd', user_pwd='', f_nm='', l_nm='', phone_num='', mbti='null', cnty='KR',
+        // email='@naver.com', nic='', btdt=20220826, sex=0, prf_img='null', dopa_exp=null, dopa_point=null, user_stat=null,
+        // fav_genre1='null', fav_genre2='null', fav_genre3='null', fav_genre4='null', fav_genre5='null',
+        // rept_times=null, in_date=null, in_user='null', up_date=null, up_user='null'}
         System.out.println("validate");
 
-        UserDto userDto = (UserDto) target;
-        final String rqrMsg= "필수 정보입니다.";
         System.out.println("userDt0="+userDto);
 
         //2. 모든 입력값 필수로 처리
+        final String rqrMsg= "필수 정보입니다.";
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"user_id","rqrMsg",rqrMsg);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"user_pwd","rqrMsg",rqrMsg);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"f_nm","rqrMsg",rqrMsg);
@@ -46,11 +51,16 @@ public class UserDtoValidator implements Validator {
 //            System.out.println("qqq");
 //            errors.rejectValue("btdt","rqrMsg",rqrMsg);
 //        }
+        //이름 검사
+        String f_nm = userDto.getF_nm();
+//        if(f_nm.length())
 
 
         //아이디, 비밀번호, 전화번호, 이메일 정규표현식
+        //4~15자, 영문+숫자 조합
         final String idPattern = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,15}$";
         final String phone_numPattern="^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$";
+        //8~15자, 영문+숫자+특수 조합
         final String pwdPattern = "^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
         final String emailPattern = "^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
 

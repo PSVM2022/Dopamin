@@ -85,7 +85,7 @@
                     url:'/psvm/item/deleteCart/'+item_id,
                     success:function(result){
                         alert(result);
-                        location.reload();
+                       // location.reload();
                     },
                     error:function(){
                         alert("삭제에 실패했습니다. 잠시후 다시 시도해주세요,");

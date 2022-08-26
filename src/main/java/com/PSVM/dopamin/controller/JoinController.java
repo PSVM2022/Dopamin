@@ -1,12 +1,11 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.UserDto;
-import com.PSVM.dopamin.domain.UserDtoValidator;
-import com.PSVM.dopamin.domain.UserValidatorException;
+import com.PSVM.dopamin.domain.User.UserDto;
+import com.PSVM.dopamin.domain.User.UserDtoValidator;
+import com.PSVM.dopamin.domain.User.UserValidatorException;
 //import com.PSVM.dopamin.service.MailSendService;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 
@@ -37,11 +36,12 @@ public class JoinController {
 
     @ExceptionHandler(DuplicateKeyException.class)
     @ResponseBody
-    public Map catcher2(DuplicateKeyException de){
+    public Map catcher2(DuplicateKeyException de) {
         Map error_msg = new HashMap();
         error_msg.put("id_dupl_err", de.getMessage());
         return error_msg;
     }
+
     @InitBinder
     public void userDtoValidator(WebDataBinder binder) {
         binder.setValidator(new UserDtoValidator());
@@ -51,31 +51,30 @@ public class JoinController {
     public String joinForm() {
         return "Login/joinForm";
     }
-    @PostMapping("/idduplck")
+
     @ResponseBody
-    public Map idDupleCheck(String userId,BindingResult bindingResult){
-        System.out.println("user_id = " + userId);
-        System.out.println("bindingResult = " + bindingResult);
+    @PostMapping("/idduplck")
+    public Map test(@RequestParam("id") String id) {
+        String msg;
+        System.out.println(id);
+        System.out.println("id = " + id);
         Map result = new HashMap();
-        try{
-            if(userId==null){
-                throw new NullPointerException("아이디를 입력해주세요.");
-            }
-            int cnt = userService.idDuplicateCheck(userId);
-            String msg = (cnt==1 ? "ID_DUPLE_ERR" : "ID_DUPLE_OK");
-            result.put("ID_CHECK",msg);
-            System.out.println("cnt = " + cnt);
-
-
-        }catch (NullPointerException ne){
-            result.put("ID_CHECK",ne.getMessage());
+        if (id.equals("")) {
+            msg = "아이디를 입력하세요.";
+        } else {
+            int count = userService.idDuplicateCheck(id);
+            System.out.println("userService.idValidCheck(id) = " + userService.idValidCheck(id));
+            msg = (userService.idValidCheck(id) && count == 0 ? "사용 가능한 아이디입니다." : "사용 불가한 아이디입니다.");
         }
-        return result;
+
+
+        return (Map) result.put("msg",msg);
+
     }
 
     @PostMapping("/join")
     @ResponseBody
-    public Map join(@Valid @RequestBody UserDto userDto, BindingResult result, String pwdCheck) throws UserValidatorException ,DuplicateKeyException{
+    public Map join(@Valid @RequestBody UserDto userDto, BindingResult result, String pwdCheck) throws UserValidatorException, DuplicateKeyException {
         try {
             System.out.println("pwdCheck = " + pwdCheck);
             //검증 실패면
@@ -89,20 +88,20 @@ public class JoinController {
             throw new DuplicateKeyException("중복된 아이디입니다.");
         }
         Map map = new HashMap();
-        map.put("successJoin","축하드립니다! 도파민 회원가입을 완료했습니다!");
+        map.put("successJoin", "축하드립니다! 도파민 회원가입을 완료했습니다!");
         return map;
     }
 
     @PostMapping("/survey")
-    public String surveyGenre(UserDto userDto,BindingResult bindingResult, RedirectAttributes redirectAttributes,HttpSession session){
+    public String surveyGenre(UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession session) {
 
-        try{
+        try {
             int i = userService.surveyGenre(userDto);
             session.removeAttribute("SURVEY");
-            redirectAttributes.addFlashAttribute("SUR_SUCCESS","설문 조사에 응답해주셔서 감사합니다.");
+            redirectAttributes.addFlashAttribute("SUR_SUCCESS", "설문 조사에 응답해주셔서 감사합니다.");
 
-        }catch (NullPointerException ne){
-            redirectAttributes.addFlashAttribute("SUR_ERR",ne.getMessage());
+        } catch (NullPointerException ne) {
+            redirectAttributes.addFlashAttribute("SUR_ERR", ne.getMessage());
         }
         return "redirect:/";
     }

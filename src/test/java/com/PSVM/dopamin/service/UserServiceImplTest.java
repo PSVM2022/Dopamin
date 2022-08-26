@@ -1,7 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.UserDao;
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -196,6 +196,23 @@ public class UserServiceImplTest {
 
         assertEquals("upPwd",pwd);
         assertEquals("upFnm",userDto.getF_nm());
+    }
+
+    @Test
+    @Transactional
+    public void testGetCartId(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        userService.joinUser(userDto);
+        UserDto user = userService.getUser("testid");
+
+        //when
+        String cartId = userService.getCartId(user.getUser_id());
+        //then
+        assertTrue(cartId!=null);
+        System.out.println("cartId = " + cartId);
+        int test = Integer.parseInt(cartId);
+
     }
 
 

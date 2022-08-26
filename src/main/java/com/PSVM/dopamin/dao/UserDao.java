@@ -1,6 +1,6 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 
 public interface UserDao {
 

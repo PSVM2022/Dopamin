@@ -1,6 +1,6 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -25,7 +25,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int insertUserPwd(UserDto userDto) throws DuplicateKeyException {
         System.out.println("call insertUserPwdin UserDaoImpl");
-
         return session.insert(namespace+"insertUserPwd",userDto);
     }
 

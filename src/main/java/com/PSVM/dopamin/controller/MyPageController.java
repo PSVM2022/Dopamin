@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.*;
+import com.PSVM.dopamin.domain.User.UserDto;
 import com.PSVM.dopamin.service.MyPageService;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

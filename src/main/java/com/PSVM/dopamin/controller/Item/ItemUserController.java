@@ -159,7 +159,7 @@ public class ItemUserController {
         }
         //1. 세션에 "유저"의 "장바구니번호"를 가져온다.
 //        int cart_id=session.getAttribute("ldhoon0813"); //
-        int cart_id= (int) session.getAttribute("CARTID");
+        int cart_id = Integer.parseInt((String) session.getAttribute("CARTID"));
         String user_id= (String) session.getAttribute("USERID");
         //url로 그냥 들어오는 경우는 어떻게 처리할 것인가? login_check 함수로 체크하자.
         //장바구니에 들어있는 아이템 정보들을 다 가져와야함.

@@ -1,6 +1,6 @@
 package com.PSVM.dopamin.service;
 
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,5 +23,7 @@ public interface UserService {
     int surveyGenre(UserDto userDto);
 
     int modifyUserInform(UserDto userDto);
+
+    boolean idValidCheck(String id);
 
 }
