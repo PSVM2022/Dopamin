@@ -15,7 +15,7 @@ public interface PostDao {
 
     int count(Integer bbs_id) throws SQLException;
 
-    List<PostDto> previewPost(Map map) throws SQLException;
+    List<PostDto> previewPost(Integer bbsId, Integer size) throws SQLException;
 
     List<PostDto> selectPage(Map map) throws SQLException;
 

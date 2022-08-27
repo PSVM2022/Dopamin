@@ -92,29 +92,16 @@ public class PostDaoImplTest {
     @Test
     @Transactional
     @Rollback(true)
-    public void shouldReturnPreviewPostPerBbs() throws SQLException {
-        final int preview_size = 5;
+    public void shouldReturnPreviewPost() throws SQLException {
+        final int previewSize = 8;
+
         Map map = new HashMap();
-        Integer today_bbs_id = bbsDao.findByPrefixName("일일").getBbsId();
+        Integer today_bbs_id = bbsDao.findByPrefixName("데일리").getBbsId();
         map.put("bbs_id", today_bbs_id);
-        map.put("view_size", preview_size);
+        map.put("view_size", previewSize);
 
-        UserDto user = new UserDto();
-        user.setUser_id("changmoo");
-        userDao.insertUser(user);
-
-        int cnt = 0;
-        List<Integer> bbsIdList = bbsDao.findAll();
-
-        for (Integer bbs_id : bbsIdList) {
-            for (int j = 0; j < 5; ++j) {
-                postDao.insert(new PostDto(bbs_id, user.getUser_id()));
-            }
-
-            List<PostDto> postInBbs = postDao.previewPost(map);
-            cnt += postInBbs.size();
-        }
-        assertEquals(preview_size * bbsIdList.size(), cnt);
+        List<PostDto> previewList = postDao.previewPost(today_bbs_id, previewSize);
+        assertEquals(previewList.size(), previewSize);
     }
 
     @Test

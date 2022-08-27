@@ -65,7 +65,7 @@
       LIMIT #{view_size};
   </select>
 
-  <select id="selectPage" parameterType="map" resultType="post">
+  <select id="selectPage" parameterType="map" resultType="list">
     SELECT post_id,
            user_id,
            post_title,

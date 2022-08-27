@@ -2,6 +2,7 @@ package com.PSVM.dopamin.dao.community;
 
 import com.PSVM.dopamin.domain.community.PostDto;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
@@ -36,8 +37,11 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public List<PostDto> previewPost(Map map) throws SQLException {
-        return null;
+    public List<PostDto> previewPost(Integer bbsId, Integer size) throws SQLException {
+        Map<String, Integer> map = new HashMap();
+        map.put("bbs_id", bbsId);
+        map.put("view_size", size);
+        return session.selectList(namespace + "previewPostInBbs", map);
     }
 
     @Override
