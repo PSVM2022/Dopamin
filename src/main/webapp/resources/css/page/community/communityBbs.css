@@ -117,11 +117,11 @@ td {
 
 .pagination a {
   float: left;
-  padding: 8px 16px;
+  padding: .5rem 1rem;
   text-decoration: none;
   transition: background-color .3s;
   border: 1px solid #ddd;
-  margin: 0 4px;
+  margin: 0 .25rem;
 }
 
 .pagination a.active {
@@ -138,9 +138,36 @@ td {
   width: 100%;
 }
 
-.write-button {
-  display: inline-block;
-  position: absolute;
-  top: 11px;
-  right: 0;
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
+
+.write-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--main-white);
+  font-size: 0.9rem;
+}
+
+.write-button:hover {
+  color: var(--orange);
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.search-option, .search-input {
+  padding: 0.5rem;
+}
+
+.search-button {
+  padding: 0.5rem;
+  background-color: var(--orange);
+  color: var(--main-white);
+  border: 1px solid #ddd;
+}
+

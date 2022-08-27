@@ -172,19 +172,20 @@
             </tr>
             </tbody>
         </table>
-
-        <div class="bbs-action-wrapper">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#" class="active">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-            </div>
-            <button class="write-button">글쓰기</button>
+        <div class="button-wrapper">
+            <button class="write-button">
+                <i class="fa-solid fa-pencil"></i> 글쓰기
+            </button>
+        </div>
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a href="#" class="active">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">&raquo;</a>
         </div>
 
         <div class="search-container">
