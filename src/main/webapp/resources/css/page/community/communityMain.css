@@ -1,0 +1,59 @@
+@import "../../common/default.css";
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.rank-title {
+  border-bottom: 3px solid var(--main-black);
+  margin-bottom: 1rem;
+  color: var(--orange2);
+}
+
+.rank-title > * {
+  display: inline-block;
+}
+
+.list-group {
+  margin: .7rem;
+}
+
+.carousel-item > img {
+  width: 100%;
+}
+
+.bbs-title-wrapper {
+  border-bottom: 2px solid var(--main-black);
+}
+
+.bbs-title-wrapper {
+  padding: .5rem 0;
+}
+
+.bbs-title {
+  font-family: 'Noto Serif';
+  display: inline;
+}
+
+.post {
+  padding: .5rem 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 3px dashed #f1f1f1;
+}
+
+.post-title {
+  margin-right: 1rem;
+}
+
+.post-comment-cnt {
+  color: var(--orange);
+  font-size: .9rem;
+}
