@@ -11,29 +11,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/community")
 public class CommunityController {
 
     @Autowired
     CommunityService communityService;
 
-    @GetMapping("/")
+    @GetMapping("/community")
     public String main(HttpServletRequest request, Model m) throws Exception {
         Map<BbsDto, List<PostDto>> map = communityService.getAvailBbsPreview();
         m.addAttribute("bbsPreviewMap", map);
         return "Community/communityMain";
     }
 
-    @GetMapping("/{bbsId}")
+    @GetMapping("/community/{bbsId}")
     public String board(@PathVariable("bbsId") int bbsId) {
+        System.out.println("저는 게시판 페이지 " + bbsId + " 입니다");
         return "Community/communityBbs";
     }
 
     @GetMapping("/post/{postId}")
-    public String post(@PathVariable("postId") int bbsId) {
+    public String post(@PathVariable("postId") int postId) {
+        System.out.println("저는 포스트 페이지 " + postId + " 입니다");
         return "Community/communityPost";
     }
 
