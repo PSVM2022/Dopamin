@@ -48,9 +48,9 @@ public class UserDtoValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "rqrMsg", rqrMsg);
         //정규식 모음
         //이름: 한글 이름 2~4자
-        final String namePattern = "^[가-힣]{2,4}$";
-        //닉니임: 한글만 가능
-        final String nicPattern = "^[\\w\\Wㄱ-ㅎㅏ-ㅣ가-힣]{1,15}$";
+        final String namePattern = "^[가-힣]{1,4}$";
+        //닉네임: 한글만 가능 1~15자
+        final String nicPattern = "^[가-힣]{1,15}$";
         //아이디: (4~20자리, 첫글자 숫자 X)
         final String idPattern = "^[A-Za-z]{1}[A-Za-z0-9]{3,19}$";
         //비밀번호: 8~15자,대문자 1, 소문자1, 숫자1, 특수문자1
@@ -59,7 +59,6 @@ public class UserDtoValidator implements Validator {
         final String phone_numPattern = "(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})";
         final String emailPattern = "^[a-z0-9\\.\\-_]+@([a-z0-9\\-]+\\.)+[a-z]{2,6}$";
         //이름 검사
-
 
 
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -74,6 +73,16 @@ public class UserDtoValidator implements Validator {
             errors.rejectValue("btdt", "exactMsg", exactMsg);
         }
 
+        final String[] CNTIES = {
+                "GH", "NZ", "KR", "DK", "DE", "RU", "MX", "US", "BR", "SE", "CH",
+                "SG", "IS", "IE", "IN", "ID", "JP", "ZM", "CN", "PT", "FR", "PH", "HU"
+        };
+
+        System.out.println("====="+Arrays.asList(CNTIES).contains(userDto.getCnty()));
+
+        if (!Arrays.asList(CNTIES).contains(userDto.getCnty())) {
+            errors.rejectValue("cnty", "exactMsg", exactMsg);
+        }
 
         int[] smallMonth = {4, 6, 9, 11};
         int[] bigMonth = {1, 3, 5, 7, 8, 10, 12};
@@ -109,23 +118,23 @@ public class UserDtoValidator implements Validator {
                 errors.rejectValue("f_nm", "exactMsg", exactMsg);
             }
         }
-        if(!userDto.getL_nm().equals("")){
-            if(!Pattern.matches(namePattern,userDto.getL_nm())){
-                errors.rejectValue("f_nm", "exactMsg", exactMsg);
+        if (!userDto.getL_nm().equals("")) {
+            if (!Pattern.matches(namePattern, userDto.getL_nm())) {
+                errors.rejectValue("l_nm", "exactMsg", exactMsg);
             }
         }
 
 
         if (!userDto.getUser_id().equals("")) {
             if (!Pattern.matches(idPattern, userDto.getUser_id())) {
-                errors.rejectValue("user_id", "id_invalid", "4~15자 영문,숫자 조합을 사용하세요.");
+                errors.rejectValue("user_id", "id_invalid", "4~20자,영문 및 숫자 조합을 사용하세요.");
             }
         }
 
         if (!userDto.getUser_pwd().equals("")) {
             if (!Pattern.matches(pwdPattern, userDto.getUser_pwd())) {
 
-                errors.rejectValue("user_pwd", "pwd_invalid", "8~15자 영문,숫자,특수문자 조합을 사용하세요.");
+                errors.rejectValue("user_pwd", "pwd_invalid", "8~15자, 영문 대소문자, 숫자, 특수문자를 포함하세요.");
             }
         }
 
@@ -138,7 +147,7 @@ public class UserDtoValidator implements Validator {
         if (!userDto.getPhone_num().equals("")) {
             if (!Pattern.matches(phone_numPattern, userDto.getPhone_num())) {
 
-                errors.rejectValue("phone_num", "phone_num_invalid", "예시대로 입력해주세요");
+                errors.rejectValue("phone_num", "phone_num_invalid", "-없이 작성해주세요.");
             }
         }
     }

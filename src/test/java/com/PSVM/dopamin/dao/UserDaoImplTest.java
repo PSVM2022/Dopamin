@@ -195,7 +195,7 @@ public class UserDaoImplTest {
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         int rowCnt1 = userDao.insertUser(userDto);
         int rowCnt2 = userDao.insertUserPwd(userDto);
-        UserDto survey = new UserDto(userDto.getUser_id(),8,2,3,4,5);
+        UserDto survey = new UserDto(userDto.getUser_id(),"액션","로맨스","코미디","가족","다큐");
         //when
         int rowCnt3 = userDao.updateUserGenre(survey);
         UserDto user = userDao.selectUser(userDto.getUser_id());
@@ -231,7 +231,7 @@ public class UserDaoImplTest {
             //given
             UserDto userDto = new UserDto("testid", "testpwd", "성", "이름", "010-1234-1234", "KOREA", "test@email.com", "testnic", "20000101", (byte) 1);
             int rowCnt1 = userDao.insertUser(userDto);
-            UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+            UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", "액션", "로맨스", "코미디", "다큐", "공포", new Date(), "testid");
             userDto = userDao.selectUser(userDto.getUser_id());
 
             //when
@@ -251,7 +251,7 @@ public class UserDaoImplTest {
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         int rowCnt1 = userDao.insertUser(userDto);
         int rowCnt2 = userDao.insertUserPwd(userDto);
-        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", "액션", "로맨스", "코미디", "다큐", "공포", new Date(), "testid");
 
         //when
         int rowCnt3 = userDao.updateUserPwd(upUserDto);
@@ -271,7 +271,7 @@ public class UserDaoImplTest {
         //가입
         userService.joinUser(userDto);
         //수정
-        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", "액션", "로맨스", "코미디", "다큐", "공포", new Date(), "testid");
         String before_pwd = userDao.selectUserPwd("testid");
         //비번수정
         userDao.updateUserPwd(upUserDto);

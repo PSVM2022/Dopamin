@@ -163,7 +163,7 @@ public class UserServiceImplTest {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         userService.joinUser(userDto);
-        UserDto survey = new UserDto(userDto.getUser_id(),3,1,6,12,5);
+        UserDto survey = new UserDto(userDto.getUser_id(),"액션", "로맨스", "코미디", "다큐", "공포");
         //when
         int rowCnt = userService.surveyGenre(survey);
         UserDto user = userService.getUser(userDto.getUser_id());
@@ -179,7 +179,7 @@ public class UserServiceImplTest {
     public void shouldNullPointerExceptionWhenSurveyIfUserIdIsNull(){
         try{
             //given
-            UserDto survey = new UserDto(null,3,1,6,12,5);
+            UserDto survey = new UserDto(null,"액션","공포","다큐","로맨스","코미디");
             //when
             int rowCnt = userService.surveyGenre(survey);
 
@@ -198,7 +198,7 @@ public class UserServiceImplTest {
         //가입
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         userService.joinUser(userDto);
-        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", "액션", "로맨스", "코미디", "다큐", "공포", new Date(), "testid");
 
         //when
         //수정

@@ -33,12 +33,7 @@ public class MailSendServiceImpl implements MailSendService {
         String setFrom = "iks5951@naver.com";
         String toMail = email;
         String title = "도파민 회원 가입 인증 이메일 입니다."; // 이메일 제목
-        String content =
-                "홈페이지를 방문해주셔서 감사합니다." + 	//html 형식으로 작성 !
-                        "<br><br>" +
-                        "인증 번호는 " + authNumber + "입니다." +
-                        "<br>" +
-                        "해당 인증번호를 인증번호 확인란에 기입하여 주세요."; //이메일 내용 삽입
+        String content = "[도파민] 본인확인 인증번호는 ["+authNumber+"]입니다. 해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 
         mailSend(setFrom, toMail, title, content);
         return Integer.toString(authNumber);
@@ -48,8 +43,8 @@ public class MailSendServiceImpl implements MailSendService {
     @Override
     public void mailSend(String setFrom, String toEmail, String title, String content) throws MessagingException {
         String host="smtp.naver.com";
-        final String username="iks5951";
-        final String password = "ncx5763@@$$";
+        final String username="여기";
+        final String password = "여기";
         int port=465;
         Properties p = System.getProperties();
         p.put("mail.smtp.host", host);

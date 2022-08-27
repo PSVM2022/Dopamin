@@ -76,72 +76,55 @@
 <main>
     <div class="join-container">
 
-        <h1>SIGN UP</h1>
-        <div>
-            <table border="1">
+        <h1><span style="color: #e0994d;">DOPAMIN </span>SIGN UP</h1>
+        <div id="join-table">
+            <table>
                 <tbody>
-
                 <tr>
                     <th>아이디</th>
-                    <td class="input-box">
-                        <input type="text" id="user_id" placeholder="아이디를 입력해주세요."/>
-                    </td>
-                    <td>
-                        <div>(영문, 숫자 조합, 4~15자)</div>
-                    </td>
-                    <td>
+                    <td><input type="text" id="user_id" placeholder="아이디를 입력해주세요" autofocus/>
+                        (4~20자, 영문 및 숫자 조합)
+                        <button id="idCheckBtn">아이디 중복 체크</button>
                         <div id="user_id_msg" class="msg"></div>
                     </td>
-                    <button id="idCheckBtn">아이디 중복 체크</button>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호를 입력해주세요."/>
-                    </td>
                     <td>
-                        <div> (8~15자, 영어,숫자,특수문자 조합)</div>
-                    </td>
-                    <td>
+                        <input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호를 입력해주세요"/>
+                        (8~15자,영문 대소문자,숫자,특수문자 포함)
                         <div id="user_pwd_msg" class="msg"></div>
-
                     </td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인</th>
-                    <td><input type="password" id="pwdCheck"/>
-                    </td>
-                    <td>
-                        <div id="pwd_check_msg" class="msg"></div>
-                    </td>
+                    <td><input type="password" id="pwdCheck"/></td>
                 </tr>
                 <tr>
                     <th>성</th>
-                    <td><input type="text" id="f_nm" name="f_nm"/>
-                    </td>
                     <td>
+                        <input type="text" id="f_nm" name="f_nm"/>
                         <div id="f_nm_msg" class="msg"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <td><input type="text" id="l_nm" name="l_nm"/>
-                    </td>
                     <td>
+                        <input type="text" id="l_nm" name="l_nm"/>
                         <div id="l_nm_msg" class="msg"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>닉네임</th>
-                    <td><input type="text" id="nic" name="nic"/>
-                    </td>
                     <td>
+                        <input type="text" id="nic" name="nic"/> (한글만 가능)
                         <div id="nic_msg" class="msg"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>생년월일</th>
                     <td>
-                        <div class="info" id="btdt">
+                        <div id="btdt">
                             <select class="box" id="year">
                                 <option disabled selected>출생 연도</option>
                             </select>
@@ -152,286 +135,95 @@
                                 <option disabled selected>일</option>
                             </select>
                         </div>
-                    </td>
-                    <td>
                         <div id="btdt_msg" class="msg"></div>
-
                     </td>
                 </tr>
                 <tr>
                     <th>전화번호</th>
-                    <td><input type="text" id="phone_num" name="phone_num" placeholder="전화번호를 입력해주세요"/></td>
-                    <td>(예시: 010-1234-5678)</td>
                     <td>
+                        <input type="text" id="phone_num" name="phone_num" placeholder="전화번호를 입력해주세요"/>
+                        (-없이 입력)
                         <div id="phone_num_msg" class="msg"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>성별</th>
-                    <td><select autofocus id="sex" name="sex">
-                        <option value="0" selected>남자</option>
-                        <option value="1">여자</option>
-                    </select>
-                    </td>
                     <td>
+                        <select id="sex" name="sex">
+                            <option value="2" selected>--선택--</option>
+                            <option value="1">남자</option>
+                            <option value="0">여자</option>
+                        </select>
                         <div id="sex_msg" class="msg"></div>
-
                     </td>
                 </tr>
-                <tr id="nation">
+                <tr>
                     <th>국적</th>
-                    <td><select id="cnty">
-                        <option value="KR" selected="selected">한국(KOREA)</option>
-                        <option value="GH">가나(GHANA)</option>
-                        <option value="GA">가봉(GABON)</option>
-                        <option value="GY">가이아나(GUYANA)</option>
-                        <option value="GM">감비아(GAMBIA)</option>
-                        <option value="GT">과테말라(GUATEMALA)</option>
-                        <option value="GD">그레나다(GRENADA)</option>
-                        <option value="GE">그루지야(GEORGIA)</option>
-                        <option value="GR">그리스(GREECE)</option>
-                        <option value="GN">기니(GUINEA)</option>
-                        <option value="GW">기니비소(GUINEA-BISSAU)</option>
-                        <option value="NA">나미비아(NAMIBIA)</option>
-                        <option value="NG">나이지리아(NIGERIA)</option>
-                        <option value="ZA">남아프리카공화국(SOUTH AFRICA)</option>
-                        <option value="AN">네덜란드(네덜란드령앤틸리스)(NETHERLANDS(ANTILLES))</option>
-                        <option value="NL">네덜란드(네델란드)(NETHERLANDS)</option>
-                        <option value="AW">네덜란드(아루바섬)(ARUBA)</option>
-                        <option value="NP">네팔(NEPAL)</option>
-                        <option value="NO">노르웨이(NORWAY)</option>
-                        <option value="NZ">뉴질란드(NEW ZEALAND)</option>
-                        <option value="NE">니제르(NIGER)</option>
-                        <option value="NI">니카라과(NICARAGUA)</option>
-                        <option value="KR">대한민국(KOREA (REP OF,))</option>
-                        <option value="DK">덴마크(DENMARK)</option>
-                        <option value="GL">덴마크(그린란드)(GREENLAND)</option>
-                        <option value="FO">덴마크(페로즈제도)(FAROE ISLANDS)</option>
-                        <option value="DO">도미니카공화국(DOMINICAN REPUBLIC)</option>
-                        <option value="DM">도미니카연방(DOMINICA)</option>
-                        <option value="DE">독일(GERMANY)</option>
-                        <option value="TL">동티모르(TIMOR-LESTE)</option>
-                        <option value="LA">라오스(LAO PEOPLE'S DEM REP)</option>
-                        <option value="LR">라이베리아(LIBERIA)</option>
-                        <option value="LV">라트비아(LATVIA)</option>
-                        <option value="RU">러시아(RUSSIAN FEDERATION)</option>
-                        <option value="LB">레바논(LEBANON)</option>
-                        <option value="LS">레소토(LESOTHO)</option>
-                        <option value="RO">루마니아(ROMANIA)</option>
-                        <option value="LU">룩셈부르크(LUXEMBOURG)</option>
-                        <option value="RW">르완다(RWANDA)</option>
-                        <option value="LY">리비아(LIBYAN ARAB JAMAHIRIYA)</option>
-                        <option value="LI">리첸쉬테인(LIECHTENSTEIN)</option>
-                        <option value="LT">리투아니아(LITHUANIA)</option>
-                        <option value="MG">마다가스카르(MADAGASCAR)</option>
-                        <option value="MK">마케도니아(MACEDONIA)</option>
-                        <option value="MW">말라위(MALAWI)</option>
-                        <option value="MY">말레이지아(MALAYSIA)</option>
-                        <option value="ML">말리(MALI)</option>
-                        <option value="MX">멕시코(MEXICO)</option>
-                        <option value="MC">모나코(MONACO)</option>
-                        <option value="MA">모로코(MOROCCO)</option>
-                        <option value="MU">모리셔스(MAURITIUS)</option>
-                        <option value="MR">모리타니(MAURITANIA)</option>
-                        <option value="MZ">모잠비크(MOZAMBIQUE)</option>
-                        <option value="ME">몬테네그로(MONTENEGRO)</option>
-                        <option value="MD">몰도바(MOLDOVA, REPUBLIC OF)</option>
-                        <option value="MV">몰디브(MALDIVES)</option>
-                        <option value="MT">몰타(MALTA)</option>
-                        <option value="MN">몽고(MONGOLIA)</option>
-                        <option value="US">미국(U.S.A)</option>
-                        <option value="GU">미국(괌)(GUAM)</option>
-                        <option value="MH">미국(마아샬제도)(MARSHALL ISLANDS)</option>
-                        <option value="VI">미국(버진제도)(VIRGIN ISLANDS U.S.)</option>
-                        <option value="WS">미국(사모아, 구 서사모아)(SAMOA)</option>
-                        <option value="AS">미국(사모아제도)(AMERICAN SAMOA)</option>
-                        <option value="MP">미국(사이판)(NORTHERN MARIANA ISLANDS)</option>
-                        <option value="PW">미국(팔라우섬)(PALAU)</option>
-                        <option value="PR">미국(푸에르토리코섬)(PUERTO RICO)</option>
-                        <option value="MM">미얀마(MYANMAR)</option>
-                        <option value="FM">미크로네시아(마이크로네시아)(MICRONESIA)</option>
-                        <option value="VU">바누아투(VANUATU)</option>
-                        <option value="BH">바레인(BAHRAIN)</option>
-                        <option value="BB">바베이도스(BARBADOS)</option>
-                        <option value="BS">바하마(BAHAMAS)</option>
-                        <option value="BD">방글라데시(BANGLADESH)</option>
-                        <option value="VE">베네수엘라(VENEZUELA)</option>
-                        <option value="BJ">베넹(BENIN)</option>
-                        <option value="VN">베트남(VIET NAM)</option>
-                        <option value="BE">벨기에(BELGIUM)</option>
-                        <option value="BY">벨라루스(BELARUS)</option>
-                        <option value="BZ">벨리세(BELIZE)</option>
-                        <option value="BA">보스니아헤르체코비나(Bosnia and Herzegovina)</option>
-                        <option value="BW">보츠와나(BOTSWANA)</option>
-                        <option value="BO">볼리비아(BOLIVIA)</option>
-                        <option value="BF">부르키나파소(BURKINA FASO)</option>
-                        <option value="BT">부탄(BHUTAN)</option>
-                        <option value="BG">불가리아(BULGARIA(REP))</option>
-                        <option value="BR">브라질(BRAZIL)</option>
-                        <option value="BN">브루네이(나이)(BRUNEI DARUSSALAM)</option>
-                        <option value="BI">브룬디(BURUNDI)</option>
-                        <option value="SA">사우디아라비아(SAUDI ARABIA)</option>
-                        <option value="CY">사이프러스(CYPRUS)</option>
-                        <option value="SM">산마리노(SAN MARINO)</option>
-                        <option value="SN">세네갈(SENEGAL)</option>
-                        <option value="RS">세르비아/코소보(SERBIA/KOSOVO)</option>
-                        <option value="SC">세이셸(SEYCHELLES)</option>
-                        <option value="LC">세인트 루시아(SAINT LUCIA)</option>
-                        <option value="VC">세인트빈센트그레나딘(SAINT VINCENT AND THE GRENADINES)</option>
-                        <option value="KN">세인트키츠네비스(SAINT KITTS AND NEVIS)</option>
-                        <option value="SB">솔로몬아일란드(SOLOMON ISLANDS)</option>
-                        <option value="SR">수리남(SURINAME)</option>
-                        <option value="LK">스리랑카(SRI LANKA)</option>
-                        <option value="SZ">스와질랜드(SWAZILAND)</option>
-                        <option value="SE">스웨덴(SWEDEN)</option>
-                        <option value="CH">스위스(SWITZERLAND)</option>
-                        <option value="ES">스페인(에스파니아)(SPAIN)</option>
-                        <option value="SK">슬로바키아(SLOVAKIA)</option>
-                        <option value="SI">슬로베니아(SLOVENIA)</option>
-                        <option value="SL">시에라리온(SIERRA LEONE)</option>
-                        <option value="SG">싱가포르(SINGAPORE)</option>
-                        <option value="AE">아랍에미레이트연합국(UNITED ARAB EMIRATES)</option>
-                        <option value="AM">아르메니아(ARMENIA)</option>
-                        <option value="AR">아르헨티나(ARGENTINA)</option>
-                        <option value="IS">아이슬란드(ICELAND)</option>
-                        <option value="HT">아이티(HAITI)</option>
-                        <option value="IE">아일란드(에이레)(IRELAND)</option>
-                        <option value="AZ">아제르바이잔(AZERBAIJAN)</option>
-                        <option value="AF">아프가니스탄(AFGHANISTAN)</option>
-                        <option value="AD">안도라(ANDORRA)</option>
-                        <option value="AL">알바니아(ALBANIA)</option>
-                        <option value="DZ">알제리(ALGERIA)</option>
-                        <option value="AO">앙골라(ANGOLA)</option>
-                        <option value="AG">앤티과바부다(ANTIGUA AND BARBUDA)</option>
-                        <option value="ER">에리트리아(ERITREA)</option>
-                        <option value="EE">에스토니아(ESTONIA)</option>
-                        <option value="EC">에콰도르(ECUADOR)</option>
-                        <option value="SV">엘살바도르(EL SALVADOR)</option>
-                        <option value="GB">영국(UNITED KINGDOM)</option>
-                        <option value="MS">영국(몽세라)(MONTSERRAT)</option>
-                        <option value="BM">영국(버뮤다섬)(BERMUDA)</option>
-                        <option value="VG">영국(버진제도)(VIRGIN ISLANDS BRITISH)</option>
-                        <option value="AI">영국(안귈라섬)(ANGUILLA)</option>
-                        <option value="GI">영국(지브롤터)(GIBRALTAR)</option>
-                        <option value="KY">영국(케이만제도)(CAYMAN ISLANDS)</option>
-                        <option value="TC">영국(터크스케이코스제도)(TURKS AND CAICOS ISLANDS)</option>
-                        <option value="YE">예멘(YEMEN)</option>
-                        <option value="OM">오만(OMAN)</option>
-                        <option value="NF">오스트레일리아(노퍽섬)(NORFOLK ISLAND)</option>
-                        <option value="AU">오스트레일리아(호주)(AUSTRALIA)</option>
-                        <option value="AT">오스트리아(AUSTRIA)</option>
-                        <option value="HN">온두라스(HONDURAS)</option>
-                        <option value="JO">요르단(JORDAN)</option>
-                        <option value="UG">우간다(UGANDA)</option>
-                        <option value="UY">우루과이(URUGUAY)</option>
-                        <option value="UZ">우즈베크(UZBEKISTAN)</option>
-                        <option value="UA">우크라이나(UKRAINE)</option>
-                        <option value="ET">이디오피아(ETHIOPIA)</option>
-                        <option value="IQ">이라크(IRAQ)</option>
-                        <option value="IR">이란(IRAN(ISLAMIC REP))</option>
-                        <option value="IL">이스라엘(ISRAEL)</option>
-                        <option value="EG">이집트(EGYPT)</option>
-                        <option value="IT">이탈리아(이태리)(ITALY)</option>
-                        <option value="IN">인도(INDIA)</option>
-                        <option value="ID">인도네시아(INDONESIA)</option>
-                        <option value="JP">일본(JAPAN)</option>
-                        <option value="JM">자메이카(JAMAICA)</option>
-                        <option value="ZM">잠비아(ZAMBIA)</option>
-                        <option value="CN">중국(CHINA(PEOPLE'S REP))</option>
-                        <option value="MO">중국(마카오)(MACAU)</option>
-                        <option value="HK">중국(홍콩)(HONG KONG)</option>
-                        <option value="CF">중앙 아프리카(CENTRAL AFRICAN REPUBLIC)</option>
-                        <option value="DJ">지부티(DJIBOUTI)</option>
-                        <option value="ZW">짐바브웨(ZIMBABWE)</option>
-                        <option value="TD">차드(CHAD)</option>
-                        <option value="CZ">체코(CZECH REP)</option>
-                        <option value="CL">칠레(CHILE)</option>
-                        <option value="CM">카메룬(CAMEROON)</option>
-                        <option value="CV">카보베르데(CAPE VERDE)</option>
-                        <option value="KZ">카자흐(KAZAKHSTAN)</option>
-                        <option value="QA">카타르(QATAR)</option>
-                        <option value="KH">캄보디아(CAMBODIA)</option>
-                        <option value="CA">캐나다(CANADA)</option>
-                        <option value="KE">케냐(KENYA)</option>
-                        <option value="CR">코스타리카(COSTA RICA)</option>
-                        <option value="CI">코트디봐르(COTE D IVOIRE)</option>
-                        <option value="CO">콜롬비아(COLOMBIA)</option>
-                        <option value="CG">콩고(CONGO)</option>
-                        <option value="CU">쿠바(CUBA)</option>
-                        <option value="KW">쿠웨이트(KUWAIT)</option>
-                        <option value="HR">크로아티아(CROATIA)</option>
-                        <option value="KG">키르키즈스탄(KYRGYZSTAN)</option>
-                        <option value="KI">키리바티(KIRIBATI)</option>
-                        <option value="TH">타이(태국)(THAILAND)</option>
-                        <option value="TW">타이완(대만)(TAIWAN)</option>
-                        <option value="TJ">타지키스탄(TAJIKISTAN)</option>
-                        <option value="TZ">탄자니아(TANZANIA(UNITED REP))</option>
-                        <option value="TR">터키(TURKEY)</option>
-                        <option value="TG">토고(TOGO)</option>
-                        <option value="TO">통가(TONGA)</option>
-                        <option value="TM">투르크메니스탄(TURKMENISTAN)</option>
-                        <option value="TV">투발루(TUVALU)</option>
-                        <option value="TN">튀니지(TUNISIA)</option>
-                        <option value="TT">트리니다드토바고(TRINIDAD AND TOBAGO)</option>
-                        <option value="PA">파나마(PANAMA(REP))</option>
-                        <option value="PY">파라과이(PARAGUAY)</option>
-                        <option value="PK">파키스탄(PAKISTAN)</option>
-                        <option value="PG">파푸아뉴기니(PAPUA NEW GUINEA)</option>
-                        <option value="PE">페루(PERU)</option>
-                        <option value="PT">포르투갈(PORTUGAL)</option>
-                        <option value="PL">폴란드(POLAND(REP))</option>
-                        <option value="FR">프랑스(FRANCE)</option>
-                        <option value="GP">프랑스(과데루프섬)(GUADELOUPE)</option>
-                        <option value="GF">프랑스(기아나)(FRENCH GUIANA)</option>
-                        <option value="NC">프랑스(뉴칼레도니아섬)(NEW CALEDONIA)</option>
-                        <option value="RE">프랑스(레위니옹섬)(REUNION)</option>
-                        <option value="MQ">프랑스(마르티니크섬)(MARTINIQUE)</option>
-                        <option value="PF">프랑스(폴리네시아)(FRENCH POLYNESIA)</option>
-                        <option value="FJ">피지(FIJI)</option>
-                        <option value="FI">필란드(FINLAND)</option>
-                        <option value="PH">필리핀(PHILIPPINES)</option>
-                        <option value="HU">헝가리(HUNGARY(REP))</option>
-                    </select></td>
                     <td>
+                        <select id="cnty">
+                            <option value="GH">가나</option>
+                            <option value="NZ">뉴질란드</option>
+                            <option value="KR" selected>대한민국</option>
+                            <option value="DK">덴마크</option>
+                            <option value="DE">독일</option>
+                            <option value="RU">러시아</option>
+                            <option value="MX">멕시코</option>
+                            <option value="US">미국</option>
+                            <option value="BR">브라질</option>
+                            <option value="SE">스웨덴</option>
+                            <option value="CH">스위스</option>
+                            <option value="SG">싱가포르</option>
+                            <option value="IS">아이슬란드</option>
+                            <option value="IE">아일란드</option>
+                            <option value="IN">인도</option>
+                            <option value="ID">인도네시아</option>
+                            <option value="JP">일본</option>
+                            <option value="ZM">잠비아</option>
+                            <option value="CN">중국</option>
+                            <option value="PT">포르투갈</option>
+                            <option value="PL">폴란드</option>
+                            <option value="FR">프랑스</option>
+                            <option value="PH">필리핀</option>
+                            <option value="HU">헝가리</option>
+                        </select>
                         <div id="cnty_msg" class="msg"></div>
-
                     </td>
                 </tr>
                 <tr>
                     <th>이메일</th>
                     <td>
-                        <div id="email-box">
-                            <div  id="email">
-                                <input type="text" name="userEmail1" id="userEmail1"
-                                       placeholder="이메일">
-                                <select class="form-control" name="userEmail2" id="userEmail2">
-                                    <option>@naver.com</option>
-                                    <option>@daum.net</option>
-                                    <option>@gmail.com</option>
-                                    <option>@hanmail.com</option>
-                                    <option>@yahoo.co.kr</option>
-                                </select>
-                            </div>
-                            <div>
-                                <button type="button" id="mailCheckBtn">본인인증</button>
-                            </div>
-                            <div class="authNum-box">
-                                <input placeholder="인증번호 6자리를 입력해주세요."
-                                       disabled="disabled" maxlength="6" id="authNum">
-                                <button id="authNumCheckBtn">확인</button>
-                            </div>
 
+                        <div id="email">
+                            <input type="text" name="userEmail1" id="userEmail1"
+                                   placeholder="이메일">
+                            <select name="userEmail2" id="userEmail2">
+                                <option>@naver.com</option>
+                                <option>@daum.net</option>
+                                <option>@gmail.com</option>
+                                <option>@hanmail.com</option>
+                                <option>@yahoo.co.kr</option>
+                            </select>
                         </div>
-
                     </td>
-
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div>
+                            <button type="button" id="mailCheckBtn">인증번호 전송</button>
+                        </div>
+                        <div class="authNum-box">
+                            <input placeholder="인증번호 6자리"
+                                   disabled="disabled" maxlength="6" id="authNum">
+                            <button id="authNumCheckBtn">확인</button>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
 
-            <button type="submit" id="joinBtn">회원가입</button>
-
         </div>
+        <button type="submit" id="joinBtn">도파민 회원가입</button>
     </div>
 
 </main>
@@ -561,6 +353,7 @@
 
 <script>
     $(document).ready(function () {
+        $(".authNum-box").hide();
         var now = new Date();
         var year = now.getFullYear();
         var mon = (now.getMonth() + 1) > 9 ? '' + (now.getMonth() + 1) : '0' + (now.getMonth() + 1);
@@ -584,12 +377,10 @@
         $("#year  > option[value=" + year + "]").attr("selected", "true");
         $("#month  > option[value=" + mon + "]").attr("selected", "true");
         $("#day  > option[value=" + day + "]").attr("selected", "true");
-
-
     })
+
     //아이디 체크 버튼
     $("#idCheckBtn").click(function () {
-
         $.ajax({
             type: "POST",
             url: "<c:url value='/join/idduplicate'/>",
@@ -611,8 +402,11 @@
             return;
         }
 
+        if ($("#userEmail1").attr("disabled") == undefined) {
+            alert("이메일 본인인증을 해주세요!")
+            return;
+        }
         let email = $('#userEmail1').val() + $("#userEmail2").val();
-        let nic = $('#nic').val();
         let btdt = $('#year').val() + $('#month').val() + $('#day').val();
         let userDto = {
             "user_id": $('#user_id').val(),
@@ -641,6 +435,7 @@
                     location.href = "<c:url value="/login/login"/>";
                 }
 
+                //{"필드이름": "에러메세지"}
                 console.log(result)
                 console.log("result.user_id" + result.user_id)
                 console.log("result.user_pwd" + result.user_pwd)
@@ -652,19 +447,17 @@
                 console.log("result.nic" + result.nic)
                 console.log("result.btdt" + result.btdt)
                 console.log("result.sex" + result.sex)
-                console.log("result.id_dupl_err" + result.id_dupl_err);
 
                 $("#user_id_msg").html(result.user_id = (result.user_id !== undefined ? result.user_id : ""));
-                $("#user_id_msg2").html(result.id_dupl_err = (result.id_dupl_err !== undefined ? result.id_dupl_err : ""));
                 $("#user_pwd_msg").html(result.user_pwd = (result.user_pwd !== undefined ? result.user_pwd : ""));
                 $("#f_nm_msg").html(result.f_nm = (result.f_nm !== undefined ? result.f_nm : ""));
                 $("#l_nm_msg").html(result.l_nm = (result.l_nm !== undefined ? result.l_nm : ""));
-                $("#phone_num_msg").html(result.phone_num = (result.phone_num !== undefined ? result.phone_num : ""));
-                $("#cnty_msg").html(result.cnty = (result.cnty !== undefined ? result.cnty : ""));
-                $("#email_msg").html(result.email = (result.email !== undefined ? result.email : ""));
                 $("#nic_msg").html(result.nic = (result.nic !== undefined ? result.nic : ""));
                 $("#btdt_msg").html(result.btdt = (result.btdt !== undefined ? result.btdt : ""));
+                $("#phone_num_msg").html(result.phone_num = (result.phone_num !== undefined ? result.phone_num : ""));
                 $("#sex_msg").html(result.sex = (result.sex !== undefined ? result.sex : ""));
+                $("#cnty_msg").html(result.cnty = (result.cnty !== undefined ? result.cnty : ""));
+                $("#email_msg").html(result.email = (result.email !== undefined ? result.email : ""));
             },
             error: function () {
                 alert("error")
@@ -673,12 +466,13 @@
 
     });
 
-    //메일 전송 버튼
+    //인증번호 전송 버튼
     $('#mailCheckBtn').click(function () {
+
         const email = $('#userEmail1').val() + $('#userEmail2').val();
         console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
 
-        if($('#userEmail1').val()==""){
+        if ($('#userEmail1').val() == "") {
             alert("이메일을 입력해주세요");
             return;
         }
@@ -689,32 +483,32 @@
             data: {email: email},
             success: function (response) {
                 alert(response.msg);
-                $('#authNum').attr("disabled",false);
+                $('#authNum').attr("disabled", false);
+                $("#authNum-box").show();
             }
         }); // end ajax
     }); // end send eamil
 
     //확인 버튼
-    $("#authNumCheckBtn").click(function (){
+    $("#authNumCheckBtn").click(function () {
         const authNum = $("#authNum").val();
 
         $.ajax({
-           type:"post",
-           url:'<c:url value="/join/emailauth"/>',
-           data: {authNum: authNum},
-           success: function (response){
-               console.log(response)
-               if(response.msg==="SUCCESS"){
-                   alert("인증이 완료되었습니다.")
-                   $(".authNum-box").hide()
-                   $("#userEmail1").attr("disabled",true);
-                   $("#userEmail2").attr("disabled",true);
-               }
-               else{
-                   alert("인증번호가 일치하지않습니다.")
-               }
+            type: "post",
+            url: '<c:url value="/join/emailauth"/>',
+            data: {authNum: authNum},
+            success: function (response) {
+                console.log(response)
+                if (response.msg === "SUCCESS") {
+                    alert("인증이 완료되었습니다.")
+                    $(".authNum-box").hide()
+                    $("#userEmail1").attr("disabled", true);
+                    $("#userEmail2").attr("disabled", true);
+                } else {
+                    alert("인증번호가 일치하지않습니다.")
+                }
 
-           }
+            }
         });
 
     });

@@ -3,7 +3,7 @@ main{
 }
 .login-container{
 
-    border-radius: 2.5%;
+    border-radius: 2.5px;
     border: 3px solid #FFBC97;
     width: 30rem;
     height: 35rem;
@@ -52,11 +52,12 @@ form{
     cursor: pointer;
     border: 0;
     background-color: #e0994d;
-    border-radius: 3%;
+    border-radius: 3px;
     padding: 3%;
-    font-weight: normal;
+    font-weight: bold;
 
 }
 .login-btn:hover{
     color:white;
 }
+

@@ -86,9 +86,8 @@ public class JoinController {
 
     @PostMapping("/join")
     @ResponseBody
-    public Map join(@Valid @RequestBody UserDto userDto, BindingResult result, String pwdCheck) throws UserValidatorException, DuplicateKeyException {
+    public Map join(@Valid @RequestBody UserDto userDto, BindingResult result) throws UserValidatorException, DuplicateKeyException {
         try {
-            System.out.println("pwdCheck = " + pwdCheck);
             //검증 실패면
             if (result.hasErrors()) {
                 throw new UserValidatorException(result, "검증 실패");

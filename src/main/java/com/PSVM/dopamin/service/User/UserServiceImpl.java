@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
         return pwd.equals(user_pwd);
     }
 
-
     @Override
     @Transactional(rollbackFor = DuplicateKeyException.class)
     public int joinUser(UserDto userDto) throws DuplicateKeyException{
