@@ -206,7 +206,7 @@
 
                         <div class="bbs-post-list">
                             <c:forEach var="post" items="${entry.value}">
-                                <a href="<c:url value='/community/post/${post.post_id}'/>">
+                                <a href="<c:url value='/post/${post.post_id}'/>">
                                     <div id="1" class="post">
                                         <span class="post-title">${post.post_title}</span>
                                         <span class="post-comment-cnt">${post.post_reply_cnt}</span>
