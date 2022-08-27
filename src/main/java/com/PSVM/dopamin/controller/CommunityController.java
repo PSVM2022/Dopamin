@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,23 +24,21 @@ public class CommunityController {
     public String main(HttpServletRequest request, Model m) throws Exception {
         Map<BbsDto, List<PostDto>> map = communityService.getAvailBbsPreview();
         m.addAttribute("bbsPreviewMap", map);
-        System.out.println("커뮤니티 메인");
-        System.out.println(map);
         return "Community/communityMain";
     }
 
-    @GetMapping("/bbs/{bbs_id}")
-    public String board() {
-        return "Community/communityMain";
+    @GetMapping("/{bbsId}")
+    public String board(@PathVariable("bbsId") int bbsId) {
+        return "Community/communityBbs";
     }
 
-    @GetMapping("/post/{post_id}")
-    public String post() {
-        return "Community/communityMain";
+    @GetMapping("/post/{postId}")
+    public String post(@PathVariable("postId") int bbsId) {
+        return "Community/communityPost";
     }
 
     @GetMapping("/post/edit")
     public String editPost() {
-        return "Community/communityMain";
+        return "Community/communityPostEditor";
     }
 }
