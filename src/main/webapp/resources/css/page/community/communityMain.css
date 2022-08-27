@@ -9,40 +9,51 @@ a:hover {
   color: inherit;
 }
 
-ul {
-  list-style: none;
-  padding-left: 0px;
-}
-
-.bbs-title {
-  border-bottom: 4px solid black;
+.rank-title {
+  border-bottom: 3px solid var(--main-black);
   margin-bottom: 1rem;
   color: var(--orange2);
 }
 
-.recommand-post-wrapper > * {
-  font-size: 0.8rem;
+.rank-title > * {
+  display: inline-block;
 }
 
-.recommand-post {
-  display: flex;
-  justify-content: space-between;
-  padding: .2rem 0;
+.list-group {
+  margin: .7rem;
+}
+
+.carousel-item > img {
+  width: 100%;
+}
+
+.bbs-title-wrapper {
+  border-bottom: 2px solid var(--main-black);
+}
+
+.bbs-title-wrapper {
+  padding: .5rem 0;
+}
+
+.bbs-title {
+  font-family: 'Noto Serif';
+  display: inline;
+}
+
+.post {
+  padding: .5rem 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 3px dashed #f1f1f1;
 }
 
 .post-title {
-  width: 350px;
-  padding: 0 .5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-right: 1rem;
 }
 
-.img-wrapper > img {
-  width: 100%;
-  height: 8rem;
-  object-fit: contain;
-}
-
-.recommanded-content-embed-post {
+.post-comment-cnt {
+  color: var(--orange);
+  font-size: .9rem;
 }
