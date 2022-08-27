@@ -79,7 +79,7 @@ public class ItemAdminDaoImplTest {
         if(result!=null) {
             itemAdminDaoImpl.test_delete_item(item_name);
         }//테스트의 독립성을 위해 넣고자하는 데이터가 있으면 지우고 Insert를 한다.
-        ItemDto itemDto=new ItemDto(2,"전설",item_name,"야 빡치면 뿌시지말고 스킨으로 뿌셔봐 뿌셔뿌셔",3000, "url","후후른훈",new Timestamp(System.currentTimeMillis()),"ldhoon0813","ldhoon0813");
+        ItemDto itemDto=new ItemDto(2,"전설",item_name,"야 빡치면 뿌시지말고 스킨으로 뿌셔봐 뿌셔뿌셔",3000, "url",new Timestamp(System.currentTimeMillis()),"ldhoon0813","ldhoon0813");
         int result1= itemAdminDaoImpl.registerItem(itemDto);
         assertTrue(result1==1);
     }

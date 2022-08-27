@@ -10,20 +10,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemPageHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/detail_item.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemMainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemMain.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist_skin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemAdminDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemAdminDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ContentsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ContentsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main_not_use.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/common/item.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/common/item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/cart_main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/cart_main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/detail_item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/detail_item.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_item_admin.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template_home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template_home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/all.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/cart_main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/ui.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/Item/ItemUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/Item/ItemUserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +52,8 @@
         <option value="Interface" />
         <option value="JUnit3 Test Class" />
         <option value="CSS File" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -88,6 +103,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
     "last_opened_file_path": "C:/Users/LDH/IdeaProjects/Dopamin/src/main/webapp/resources/image",
@@ -95,7 +111,8 @@
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "600b67ecfca2968ff96e7a5df1440321"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -140,55 +157,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.64">
-    <configuration name="ItemAdminDaoImplTest.getPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemAdminDaoImplTest" />
-      <option name="METHOD_NAME" value="getPage" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ItemAdminDaoImplTest.getPage_map" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemAdminDaoImplTest" />
-      <option name="METHOD_NAME" value="getPage_map" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ItemAdminDaoImplTest.get_pop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemAdminDaoImplTest" />
-      <option name="METHOD_NAME" value="get_pop" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ItemUserDaoImplTest.장바구니_가져오기" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemUserDaoImplTest.보유목록에서찾기_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -198,13 +167,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
-      <option name="METHOD_NAME" value="장바구니_가져오기" />
+      <option name="METHOD_NAME" value="보유목록에서찾기_성공" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ItemUserDaoImplTest.장바구니_삭제" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ItemUserDaoImplTest.보유목록에서찾기_실패" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dopamin" />
       <extension name="coverage">
         <pattern>
@@ -214,20 +183,56 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
-      <option name="METHOD_NAME" value="장바구니_삭제" />
+      <option name="METHOD_NAME" value="보유목록에서찾기_실패" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
+    <configuration name="ItemUserDaoImplTest.장바구니_담기_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.dao.ItemUserDaoImplTest" />
+      <option name="METHOD_NAME" value="장바구니_담기_성공" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemUserServiceTest.장바구님_담기_실패" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.service.Item.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service.Item" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.Item.ItemUserServiceTest" />
+      <option name="METHOD_NAME" value="장바구님_담기_실패" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ItemUserServiceTest.장바구니_담기_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.service.Item.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service.Item" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.Item.ItemUserServiceTest" />
+      <option name="METHOD_NAME" value="장바구니_담기_성공" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -320,28 +325,40 @@
         </option>
       </method>
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.ItemAdminDaoImplTest.getPage" />
-      <item itemvalue="JUnit.ItemAdminDaoImplTest.getPage_map" />
-      <item itemvalue="JUnit.ItemAdminDaoImplTest.get_pop" />
-      <item itemvalue="JUnit.ItemUserDaoImplTest.장바구니_가져오기" />
-      <item itemvalue="JUnit.ItemUserDaoImplTest.장바구니_삭제" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.보유목록에서찾기_성공" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.보유목록에서찾기_실패" />
+      <item itemvalue="JUnit.ItemUserDaoImplTest.장바구니_담기_성공" />
+      <item itemvalue="JUnit.ItemUserServiceTest.장바구니_담기_성공" />
+      <item itemvalue="JUnit.ItemUserServiceTest.장바구님_담기_실패" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.64" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ItemAdminDaoImplTest.get_pop" />
-        <item itemvalue="JUnit.ItemAdminDaoImplTest.getPage" />
-        <item itemvalue="JUnit.ItemAdminDaoImplTest.getPage_map" />
-        <item itemvalue="JUnit.ItemUserDaoImplTest.장바구니_삭제" />
-        <item itemvalue="JUnit.ItemUserDaoImplTest.장바구니_가져오기" />
+        <item itemvalue="JUnit.ItemUserServiceTest.장바구니_담기_성공" />
+        <item itemvalue="JUnit.ItemUserServiceTest.장바구님_담기_실패" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.보유목록에서찾기_실패" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.보유목록에서찾기_성공" />
+        <item itemvalue="JUnit.ItemUserDaoImplTest.장바구니_담기_성공" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="745112ff-7e57-40ce-afb9-651092bb1d8b" name="Changes" comment="" />
+      <changelist id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능" />
       <created>1660134067896</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -352,6 +369,7 @@
       <workItem from="1660147896528" duration="3387000" />
       <workItem from="1660151890086" duration="19000" />
       <workItem from="1660179384443" duration="224000" />
+      <workItem from="1661487360073" duration="48911000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정">
       <created>1660301301297</created>
@@ -507,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661325972198</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능">
+      <created>1661385066403</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1661385066403</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

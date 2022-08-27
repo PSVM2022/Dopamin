@@ -159,8 +159,6 @@
             <a href="#" class="btn btn-outline-primary float-end">더보기</a>
             <h3 class="section-title">인기 상품</h3>
         </header><!-- sect-heading -->
-        <button id="prev">이전</button>
-        <button id="next">다음</button>
         <div id="multi" class="row">
             <c:forEach var="i" begin="0" end="7">
                 <div id="${i}" class="col-md-3" >

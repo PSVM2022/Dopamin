@@ -1,8 +1,6 @@
 package com.PSVM.dopamin.controller.Item;
 
 import com.PSVM.dopamin.domain.Item.*;
-import com.PSVM.dopamin.domain.PageHandler;
-import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.Item.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,7 +51,7 @@ public class ItemAdminController {
             throw new RuntimeException(e);
         }
     }
-    @GetMapping("/item")//메인페이지 인기글 8개씩 가져옴
+    @GetMapping("/ite1m")//메인페이지 인기글 8개씩 가져옴
     public ResponseEntity<List<ItemDto>> get_pop(Integer num){
         List<ItemDto> list=null;
         try{
@@ -80,7 +78,8 @@ public class ItemAdminController {
                 m.addAttribute("totalCnt",totalCnt);
                 List<ItemDto> list= itemAdminService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
                 m.addAttribute("list",list);
-                return "Item/detail_item";
+                m.addAttribute("order",order);
+                return "Item/new_itemlist_skin";
             }
             else{
                 throw new Exception("잘못된 요청입니다");
@@ -90,7 +89,7 @@ public class ItemAdminController {
             String msg=e.getMessage();
             System.out.println("msg = " + msg);
             redirectAttributes.addFlashAttribute("msg",msg);
-            return "Item/detail_item";
+            return "Item/new_itemlist_skin";
         }
     }
     @GetMapping("/item_admin")

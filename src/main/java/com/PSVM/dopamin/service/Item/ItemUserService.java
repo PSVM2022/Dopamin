@@ -4,6 +4,7 @@ import com.PSVM.dopamin.dao.Item.ItemUserDaoImpl;
 import com.PSVM.dopamin.domain.Item.Cart_ItemDto;
 import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.domain.Item.OrderDto;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,15 +21,23 @@ public class ItemUserService {
         this.itemUserDaoimpl = itemUserDaoimpl;
     }
 
+    public ItemDto find_item(Integer item_id) throws Exception {
+        if(itemUserDaoimpl.find_item(item_id).getStat()==0||itemUserDaoimpl.find_item(item_id)==null){
+            throw new NullPointerException("없는 아이템입니다.");
+        }
+        return itemUserDaoimpl.find_item(item_id);
+    }//테스트코드까지 완료.
     public int addCart(Cart_ItemDto cart_itemDto) throws Exception{
+        //장바구니에 담으려고 하는데
+        //1. 보유목록에 있다면
+        if(itemUserDaoimpl.find_possesion(cart_itemDto)!=null){
+            throw new NullPointerException("이미 구매한 아이템 입니다.");
+        };
+        //2. 장바구니에 있다면->Insert 시 DuplicateKey 에러 발생
         return itemUserDaoimpl.addCart(cart_itemDto);
     }
 
-    public int find_item(Integer item_id) throws Exception {
-        return itemUserDaoimpl.find_item(item_id);
-    }
-
-    public int getItem_stat(Integer item_id) throws Exception {
+    public int getItem_stat(int item_id) throws Exception {
         return itemUserDaoimpl.getItem_Stat(item_id);
     }
 
@@ -127,5 +136,9 @@ public class ItemUserService {
             throw new Exception("환불에 실패했습니다. 포인트 사용내역에 추가되지 않았습니다.");
         }
         return true;
+    }
+
+    public List<ItemDto> getItem_list() {
+        return itemUserDaoimpl.getItem_list();
     }
 }

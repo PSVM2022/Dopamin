@@ -52,7 +52,6 @@ public class ItemAdminService {
         itemDto.setItem_img((String) map.get("save_url"));
         itemDto.setIn_user((String)map.get("user_id"));
         itemDto.setUp_user((String)map.get("user_id"));
-        itemDto.setUser_nic((String)map.get("user_nic"));
         return itemAdminDaoImpl.registerItem(itemDto);
     }
     public int remove(Integer item_id) throws Exception{
