@@ -5,7 +5,7 @@ import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.domain.Item.OrderDto;
 import com.PSVM.dopamin.error.Message;
 import com.PSVM.dopamin.service.Item.ItemUserService;
-import com.PSVM.dopamin.service.UserService;
+import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

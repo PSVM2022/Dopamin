@@ -10,13 +10,14 @@
 
     <!-- Root Context: defines shared resources visible to all other web components -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://10.35.120.140:3306/testDB?useUnicode=true&amp;characterEncoding=utf8"></property>
-        <property name="username" value="PSVM"></property>
-        <property name="password" value="Psvm12!@"></property>
-<!--        <property name="url" value="jdbc:mysql://localhost:3306/dopadbtest?useUnicode=true&amp;characterEncoding=utf8"></property>-->
-<!--        <property name="username" value="eun"></property>-->
-<!--        <property name="password" value="1234"></property>-->
+        <!--        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>-->
+        <!--        <property name="url" value="jdbc:mysql://10.35.120.140:3306/testDB?useUnicode=true&amp;characterEncoding=utf8"></property>-->
+        <!--        <property name="username" value="PSVM"></property>-->
+        <!--        <property name="password" value="Psvm12!@"></property>-->
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property>
+        <property name="username" value="eun"></property>
+        <property name="password" value="rlagydms0101"></property>
     </bean>
     <!-- MyBatis 설정 !-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -25,40 +26,17 @@
         <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
     </bean>
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	<!-- MyBatis 설정 !-->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
-	<tx:annotation-driven/>
-	<context:component-scan base-package="com.PSVM.dopamin"/>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <!-- MyBatis 설정 !-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+    <tx:annotation-driven/>
+    <context:component-scan base-package="com.PSVM.dopamin"/>
 
-<!--    &lt;!&ndash; 이메일 인증 관련 빈 등록 &ndash;&gt;-->
-<!--    <context:property-placeholder location="classpath:/email.properties" />-->
-
-<!--    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">-->
-<!--        <property name="host" value="smtp.gmail.com" />-->
-<!--        <property name="port" value="587" />-->
-<!--        <property name="defaultEncoding" value="utf-8"/>-->
-<!--        <property name="username" value="${email.account}" />-->
-<!--        <property name="password" value="${email.password}" />-->
-<!--        <property name="javaMailProperties">-->
-<!--            <props>-->
-<!--                <prop key="mail.transport.protocol">smtp</prop>-->
-<!--                <prop key="mail.smtp.auth">true</prop>-->
-<!--                &lt;!&ndash; gmail의 경우 보안문제 업데이트로 인해 SSLSocketFactory를 추가해야 smtp 사용 가능. &ndash;&gt;-->
-<!--                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>-->
-<!--                <prop key="mail.smtp.starttls.enable">true</prop>-->
-<!--                <prop key="mail.debug">true</prop>-->
-<!--                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>-->
-<!--                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>-->
-<!--            </props>-->
-<!--        </property>-->
-
-<!--    </bean>-->
 
 
 </beans>

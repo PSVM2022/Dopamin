@@ -15,12 +15,7 @@
         <org.slf4j-version>1.6.6</org.slf4j-version>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.15.2</version>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
         <dependency>
@@ -28,7 +23,6 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
         <dependency>

@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int selectIdDuplCnt(String user_id) {
+    public int selectIdDuplCnt(String user_id)throws Exception {
         return session.selectOne(namespace+"selectIdDuplCnt",user_id);
     }
 

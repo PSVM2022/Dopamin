@@ -15,7 +15,7 @@ public interface UserDao {
 
     int deleteUser(String user_id);
 
-    int selectIdDuplCnt(String user_id);
+    int selectIdDuplCnt(String user_id) throws Exception;
 
     String selectUserPwd(String user_id);
 

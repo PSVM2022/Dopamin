@@ -1,7 +1,8 @@
-package com.PSVM.dopamin.service;
+package com.PSVM.dopamin.service.User;
 
 import com.PSVM.dopamin.dao.UserDaoImpl;
 import com.PSVM.dopamin.domain.User.UserDto;
+import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int idDuplicateCheck(String user_id){
+    public int idDuplicateCheck(String user_id) throws Exception{
         return userDao.selectIdDuplCnt(user_id);
     }
 
@@ -93,8 +94,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean idValidCheck(String id) {
-        final String idPattern = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,15}$";
-        boolean idResult = Pattern.matches(idPattern, id);
-        return idResult;
+        final String idPattern = "^[A-Za-z]{1}[A-Za-z0-9]{3,19}$";
+        return Pattern.matches(idPattern, id);
     }
 }

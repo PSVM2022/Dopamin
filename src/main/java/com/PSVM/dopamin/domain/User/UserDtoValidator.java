@@ -1,11 +1,13 @@
 package com.PSVM.dopamin.domain.User;
 
-import com.PSVM.dopamin.domain.User.UserDto;
-import com.PSVM.dopamin.service.UserService;
+import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.regex.Pattern;
 
 public class UserDtoValidator implements Validator {
@@ -28,78 +30,115 @@ public class UserDtoValidator implements Validator {
         // rept_times=null, in_date=null, in_user='null', up_date=null, up_user='null'}
         System.out.println("validate");
 
-        System.out.println("userDt0="+userDto);
+        System.out.println("userDt0=" + userDto);
 
-        //2. 모든 입력값 필수로 처리
-        final String rqrMsg= "필수 정보입니다.";
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"user_id","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"user_pwd","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"f_nm","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"l_nm","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"phone_num","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"cnty","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"email","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"nic","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"btdt","rqrMsg",rqrMsg);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"sex","rqrMsg",rqrMsg);
+        final String rqrMsg = "필수 정보입니다.";
+        final String exactMsg = "정확히 입력해주세요";
 
-//        if(userDto.getSex()==0){
-//            System.out.println("ddd");
-//            errors.rejectValue("sex","rqrMsg",rqrMsg);
-//        }
-//        if(userDto.getBtdt().equals("0")){
-//            System.out.println("qqq");
-//            errors.rejectValue("btdt","rqrMsg",rqrMsg);
-//        }
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user_id", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user_pwd", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "f_nm", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "l_nm", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nic", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "btdt", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone_num", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sex", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cnty", "rqrMsg", rqrMsg);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "rqrMsg", rqrMsg);
+        //정규식 모음
+        //이름: 한글 이름 2~4자
+        final String namePattern = "^[가-힣]{2,4}$";
+        //닉니임: 한글만 가능
+        final String nicPattern = "^[\\w\\Wㄱ-ㅎㅏ-ㅣ가-힣]{1,15}$";
+        //아이디: (4~20자리, 첫글자 숫자 X)
+        final String idPattern = "^[A-Za-z]{1}[A-Za-z0-9]{3,19}$";
+        //비밀번호: 8~15자,대문자 1, 소문자1, 숫자1, 특수문자1
+        final String pwdPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,15}";
+        //전화번호: -없이 입력
+        final String phone_numPattern = "(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})";
+        final String emailPattern = "^[a-z0-9\\.\\-_]+@([a-z0-9\\-]+\\.)+[a-z]{2,6}$";
         //이름 검사
-        String f_nm = userDto.getF_nm();
-//        if(f_nm.length())
 
 
-        //아이디, 비밀번호, 전화번호, 이메일 정규표현식
-        //4~15자, 영문+숫자 조합
-        final String idPattern = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,15}$";
-        final String phone_numPattern="^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$";
-        //8~15자, 영문+숫자+특수 조합
-        final String pwdPattern = "^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
-        final String emailPattern = "^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
+
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        String btdt = userDto.getBtdt();
+        int year = Integer.parseInt(btdt.substring(0, 4));
+        int month = Integer.parseInt(btdt.substring(4, 6));
+        int day = Integer.parseInt(btdt.substring(6));
+        System.out.println(year + "년" + month + "월" + day + "일");
+
+        if ((thisYear - 100) > year || year > thisYear || 1 > month || 12 < month) {
+            errors.rejectValue("btdt", "exactMsg", exactMsg);
+        }
 
 
-        if(!userDto.getUser_id().equals("")) {
-            boolean idResult = Pattern.matches(idPattern, userDto.getUser_id());
-            if (!idResult) {
-                System.out.println("아이디 정규식");
+        int[] smallMonth = {4, 6, 9, 11};
+        int[] bigMonth = {1, 3, 5, 7, 8, 10, 12};
+        //month가 bigMonth에 포함되있으면
+        if (Arrays.stream(bigMonth).anyMatch(x -> x == month)) {
+            if (0 > day || 31 < day) {
+                errors.rejectValue("btdt", "exactMsg", exactMsg);
+            }
+        } else if (month == 2) {
+            if (0 > day || 28 < day) {
+                errors.rejectValue("btdt", "exactMsg", exactMsg);
+            }
+        } else {
+            if (0 > day || 30 < day) {
+                errors.rejectValue("btdt", "exactMsg", exactMsg);
+            }
+        }
+
+        byte sex = userDto.getSex();
+        if (sex != 0 && sex != 1) {
+            errors.rejectValue("sex", "exactMsg", exactMsg);
+        }
+
+
+        if (!userDto.getNic().equals("")) {
+            if (!Pattern.matches(nicPattern, userDto.getNic())) {
+                errors.rejectValue("nic", "nic_invalid", "한글만 작성해주세요");
+            }
+        }
+
+        if (!userDto.getF_nm().equals("")) {
+            if (!Pattern.matches(namePattern, userDto.getF_nm())) {
+                errors.rejectValue("f_nm", "exactMsg", exactMsg);
+            }
+        }
+        if(!userDto.getL_nm().equals("")){
+            if(!Pattern.matches(namePattern,userDto.getL_nm())){
+                errors.rejectValue("f_nm", "exactMsg", exactMsg);
+            }
+        }
+
+
+        if (!userDto.getUser_id().equals("")) {
+            if (!Pattern.matches(idPattern, userDto.getUser_id())) {
                 errors.rejectValue("user_id", "id_invalid", "4~15자 영문,숫자 조합을 사용하세요.");
             }
-
         }
 
-        if(!userDto.getUser_pwd().equals("")){
+        if (!userDto.getUser_pwd().equals("")) {
+            if (!Pattern.matches(pwdPattern, userDto.getUser_pwd())) {
 
-
-            boolean pwdResult = Pattern.matches(pwdPattern,userDto.getUser_pwd());
-            if (!pwdResult) {
-                System.out.println("비번 정규식");
-                errors.rejectValue("user_pwd", "pwd_invalid","8~15자 영문,숫자,특수문자 조합을 사용하세요.");
+                errors.rejectValue("user_pwd", "pwd_invalid", "8~15자 영문,숫자,특수문자 조합을 사용하세요.");
             }
         }
 
-        if(!userDto.getEmail().equals("")){
+        if (!userDto.getEmail().equals("")) {
+            if (!Pattern.matches(emailPattern, userDto.getEmail())) {
 
-
-            boolean emailResult = Pattern.matches(emailPattern,userDto.getEmail());
-            if (!emailResult) {
-                System.out.println("이메일 정규식");
-                errors.rejectValue("email","email_invalid","이메일 양식을 확인해주세요.");
+                errors.rejectValue("email", "email_invalid", "이메일 양식을 확인해주세요.");
             }
         }
-        if(!userDto.getPhone_num().equals("")){
+        if (!userDto.getPhone_num().equals("")) {
+            if (!Pattern.matches(phone_numPattern, userDto.getPhone_num())) {
 
-
-            boolean phone_numResult = Pattern.matches(phone_numPattern,userDto.getPhone_num());
-            if (!phone_numResult) {
-                System.out.println("전화번호 정규식");
-                errors.rejectValue("phone_num","phone_num_invalid","예시대로 입력해주세요");
+                errors.rejectValue("phone_num", "phone_num_invalid", "예시대로 입력해주세요");
             }
         }
     }

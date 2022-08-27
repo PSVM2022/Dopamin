@@ -1,4 +1,4 @@
-package com.PSVM.dopamin.service;
+package com.PSVM.dopamin.service.User;
 
 import com.PSVM.dopamin.domain.User.UserDto;
 
@@ -12,7 +12,7 @@ public interface UserService {
 
     UserDto getUser(String user_id);
 
-    int idDuplicateCheck(String user_id);
+    int idDuplicateCheck(String user_id) throws Exception;
 
     void withdrawUser(String user_id);
 

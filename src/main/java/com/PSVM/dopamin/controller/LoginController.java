@@ -1,7 +1,7 @@
 package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.User.UserDto;
-import com.PSVM.dopamin.service.UserService;
+import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

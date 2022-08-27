@@ -83,7 +83,8 @@
 
                 <tr>
                     <th>아이디</th>
-                    <td class="input-box"><input type="text" id="user_id" placeholder="아이디를 입력해주세요."/>
+                    <td class="input-box">
+                        <input type="text" id="user_id" placeholder="아이디를 입력해주세요."/>
                     </td>
                     <td>
                         <div>(영문, 숫자 조합, 4~15자)</div>
@@ -399,19 +400,31 @@
                 <tr>
                     <th>이메일</th>
                     <td>
-                        <div class="input-group">
-                            <input type="text" name="userEmail1" id="userEmail1" placeholder="이메일을 입력해주세요">
-                            <select class="form-control" name="userEmail2" id="userEmail2">
-                                <option name="@naver.com">@naver.com</option>
-                                <option value="@daum.net">@daum.net</option>
-                                <option value="@gmail.com">@gmail.com</option>
-                                <option value="@hanmail.com">@hanmail.com</option>
-                            </select>
+                        <div id="email-box">
+                            <div  id="email">
+                                <input type="text" name="userEmail1" id="userEmail1"
+                                       placeholder="이메일">
+                                <select class="form-control" name="userEmail2" id="userEmail2">
+                                    <option>@naver.com</option>
+                                    <option>@daum.net</option>
+                                    <option>@gmail.com</option>
+                                    <option>@hanmail.com</option>
+                                    <option>@yahoo.co.kr</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="button" id="mailCheckBtn">본인인증</button>
+                            </div>
+                            <div class="authNum-box">
+                                <input placeholder="인증번호 6자리를 입력해주세요."
+                                       disabled="disabled" maxlength="6" id="authNum">
+                                <button id="authNumCheckBtn">확인</button>
+                            </div>
+
                         </div>
+
                     </td>
-                    <td>
-                        <div id="email_msg" class="msg"></div>
-                    </td>
+
                 </tr>
                 </tbody>
             </table>
@@ -572,26 +585,28 @@
         $("#month  > option[value=" + mon + "]").attr("selected", "true");
         $("#day  > option[value=" + day + "]").attr("selected", "true");
 
-    })
 
-    $("#idCheckBtn").click(function (){
+    })
+    //아이디 체크 버튼
+    $("#idCheckBtn").click(function () {
+
         $.ajax({
-            url:"<c:url value='/join/idduplck'/>",
-            type:"POST",
-            data:{id:$("#user_id").val()},
-            success:function (res){
+            type: "POST",
+            url: "<c:url value='/join/idduplicate'/>",
+            data: {id: $("#user_id").val()},
+            success: function (res) {
+                console.log(res);
                 alert(res.msg)
             }
         })
     });
 
-
+    //회원가입 버튼
     $("#joinBtn").click(function () {
         //비밀번호 확인
         let pwd = document.getElementById('user_pwd');
         let pwdCheck = document.getElementById('pwdCheck');
-        let pwd_check_msg = document.getElementById('pwd_check_msg');
-        if (pwd.value != pwdCheck.value) {
+        if (pwd.value !== pwdCheck.value) {
             alert("비밀번호가 일치하지 않습니다.")
             return;
         }
@@ -615,7 +630,7 @@
         console.log(userDto)
         $.ajax({
             type: 'POST',
-            url: '/psvm/join/join',
+            url: '<c:url value="/join/join"/>',
             headers: {"content-type": "application/json"},
             dataType: 'text',
             data: JSON.stringify(userDto),
@@ -623,8 +638,9 @@
                 let result = JSON.parse(response);
                 if (result.successJoin !== undefined) {
                     alert(result.successJoin);
-                    location.href = "/psvm/login/login";
+                    location.href = "<c:url value="/login/login"/>";
                 }
+
                 console.log(result)
                 console.log("result.user_id" + result.user_id)
                 console.log("result.user_pwd" + result.user_pwd)
@@ -656,6 +672,53 @@
         });
 
     });
+
+    //메일 전송 버튼
+    $('#mailCheckBtn').click(function () {
+        const email = $('#userEmail1').val() + $('#userEmail2').val();
+        console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+
+        if($('#userEmail1').val()==""){
+            alert("이메일을 입력해주세요");
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '<c:url value ="/join/email"/>',
+            data: {email: email},
+            success: function (response) {
+                alert(response.msg);
+                $('#authNum').attr("disabled",false);
+            }
+        }); // end ajax
+    }); // end send eamil
+
+    //확인 버튼
+    $("#authNumCheckBtn").click(function (){
+        const authNum = $("#authNum").val();
+
+        $.ajax({
+           type:"post",
+           url:'<c:url value="/join/emailauth"/>',
+           data: {authNum: authNum},
+           success: function (response){
+               console.log(response)
+               if(response.msg==="SUCCESS"){
+                   alert("인증이 완료되었습니다.")
+                   $(".authNum-box").hide()
+                   $("#userEmail1").attr("disabled",true);
+                   $("#userEmail2").attr("disabled",true);
+               }
+               else{
+                   alert("인증번호가 일치하지않습니다.")
+               }
+
+           }
+        });
+
+    });
+
 
 </script>
 

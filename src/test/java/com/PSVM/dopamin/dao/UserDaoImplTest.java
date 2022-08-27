@@ -1,7 +1,7 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.domain.User.UserDto;
-import com.PSVM.dopamin.service.UserService;
+import com.PSVM.dopamin.service.User.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -110,15 +110,15 @@ public class UserDaoImplTest {
 
     @Test
     @Transactional
-    public void selectIdDuplicateCount(){
+    public void testSelectIdDuplCnt() throws Exception {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         userDao.insertUser(userDto);
         userDao.insertUserPwd(userDto);
-
+        String id="newid";
         //when
-        int cnt = userDao.selectIdDuplCnt(userDto.getUser_id());
-        int cnt2 = userDao.selectIdDuplCnt("invalid_id");
+        int cnt = userDao.selectIdDuplCnt("testid");
+        int cnt2 = userDao.selectIdDuplCnt(id);
 
         //then
         assertEquals(1, cnt);

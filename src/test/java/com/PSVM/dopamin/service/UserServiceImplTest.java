@@ -2,6 +2,7 @@ package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.UserDao;
 import com.PSVM.dopamin.domain.User.UserDto;
+import com.PSVM.dopamin.service.User.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -75,18 +76,30 @@ public class UserServiceImplTest {
 
     @Test
     @Transactional
-    public void testIdDuplicateCheck(){
+    public void testIdDuplicateCheckWhenIdIsDuplication() throws Exception {
 
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         int rowCnt = userService.joinUser(userDto);
 
         //when
-        int cnt = userService.idDuplicateCheck(userDto.getUser_id());
+        int cnt = userService.idDuplicateCheck("testid");
 
         //then
         assertEquals(3, rowCnt);
         assertEquals(1, cnt);
+    }
+
+    @Test
+    @Transactional
+    public void IsSuccessIdDuplicateCheck() throws Exception {
+        //given
+        String id="newId";
+        //when
+        int cnt = userService.idDuplicateCheck(id);
+        //then
+        assertEquals(0,cnt);
+
     }
 
     @Test
@@ -131,7 +144,7 @@ public class UserServiceImplTest {
         }catch (NullPointerException ne){
             String msg =ne.getMessage();
             //then
-            assertEquals("User doesn't exist",msg);
+            assertEquals("존재하지 않는 아이디입니다.",msg);
         }
     }
 
@@ -213,6 +226,27 @@ public class UserServiceImplTest {
         System.out.println("cartId = " + cartId);
         int test = Integer.parseInt(cartId);
 
+    }
+
+    @Test
+    @Transactional
+    public void isFalseIdValidCheck(){
+        //given
+        String id= "12test";
+        //when
+        boolean result = userService.idValidCheck(id);
+        //then
+        assertTrue(!result);
+    }
+    @Test
+    @Transactional
+    public void isTrueIdValidCheck(){
+        //given
+        String id="testid";
+        //when
+        boolean result = userService.idValidCheck(id);
+        //then
+        assertTrue(result);
     }
 
 
