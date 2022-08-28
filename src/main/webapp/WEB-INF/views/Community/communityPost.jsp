@@ -72,13 +72,119 @@
 
 <main>
     <section name="post-main" class="container py-4">
-        게시글 컨텐츠, 좋아요, 싫어요, 첨부파일
+        <div class="bbs-title">
+            <h3><a href="/">데일리 베스트 판</a></h3>
+        </div>
+
+        <div class="post-target-title">새로운 아침이 밝았습니다. 시민들은 눈을뜨고</div>
+        <div class="post-info">
+            <span class="writer-id">
+                <i class="fa-solid fa-award"></i>
+                도파맨
+            </span>
+            <span class="post-time">
+                <i class="fa-solid fa-clock"></i>
+                2시간 전
+            </span>
+            <span class="post-views">
+                <i class="fa-solid fa-eye"></i>
+                1234
+            </span>
+        </div>
+        <div class="post-link">
+            <i class="fa-solid fa-link"></i>
+            http://localhost:8080/psvm/post/100
+        </div>
+
+        <div class="post-content">
+            대통령으로 선거될 수 있는 자는 국회의원의 피선거권이 있고 선거일 현재 40세에 달하여야 한다. 체포·구속·압수 또는 수색을 할 때에는 적법한 절차에 따라
+            검사의 신청에 의하여 법관이 발부한 영장을 제시하여야 한다. 다만, 현행범인인 경우와 장기 3년 이상의 형에 해당하는 죄를 범하고 도피 또는 증거인멸의 염려가
+            있을 때에는 사후에 영장을 청구할 수 있다.
+
+            이 헌법시행 당시의 법령과 조약은 이 헌법에 위배되지 아니하는 한 그 효력을 지속한다. 대법관은 대법원장의 제청으로 국회의 동의를 얻어 대통령이 임명한다.
+        </div>
+
+        <div class="post-reaction">
+            <button>
+                <i class="fa-regular fa-thumbs-up"></i>
+                좋아요
+                <span>12</span>
+            </button>
+            <button>
+                <i class="fa-regular fa-thumbs-up"></i>
+                싫어요
+            </button>
+            <button>
+                <i class="fa-solid fa-share-nodes"></i>
+                공유
+            </button>
+        </div>
+
+        <div class="comments-box">
+            <div class="comment-cnt">
+                <i class="fa-solid fa-comments"></i>
+                <span>14</span>
+                개의 댓글
+            </div>
+
+            <div class="comment">
+                <div class="comment-user-info">
+                    <span class="writer-id">
+                        <i class="fa-solid fa-award"></i>
+                        도파맨
+                    </span>
+                    <span>22/08/27</span>
+                </div>
+
+                <div class="comment-content">
+                    국회나 그 위원회의 요구가 있을 때에는 국무총리·국무위원 또는 정부위원은 출석·답변하여야 하며, 국무총리 또는 국무위원이 출석요구를 받은 때에는
+                    국무위원 또는 정부위원으로 하여금 출석·답변하게 할 수 있다.
+
+                    여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 헌법재판소 재판관은 탄핵 또는 금고 이상의
+                    형의 선고에 의하지 아니하고는 파면되지 아니한다.
+                </div>
+
+                <div class="comment-reaction">
+                    <button>좋아요 <span>14</span></button>
+                    <button>싫어요</button>
+                    <button>댓글</button>
+                    <button><i class="fa-solid fa-flag"></i>신고</button>
+                </div>
+            </div>
+
+            <div class="comment re-comment">
+                <div class="comment-user-info">
+                    <span class="writer-id">
+                        <i class="fa-solid fa-award"></i>
+                        도파맨
+                    </span>
+                    <span>22/08/27</span>
+                </div>
+
+                <div class="comment-content">
+                    국회나 그 위원회의 요구가 있을 때에는 국무총리·국무위원 또는 정부위원은 출석·답변하여야 하며, 국무총리 또는 국무위원이 출석요구를 받은 때에는
+                    국무위원 또는 정부위원으로 하여금 출석·답변하게 할 수 있다.
+
+                    여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 헌법재판소 재판관은 탄핵 또는 금고 이상의
+                    형의 선고에 의하지 아니하고는 파면되지 아니한다.
+                </div>
+
+                <div class="comment-reaction">
+                    <button>좋아요 <span>14</span></button>
+                    <button>싫어요</button>
+                    <button>댓글</button>
+                    <button><i class="fa-solid fa-flag"></i>신고</button>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <section name="comments" class="container py-2 mb-4">
-        댓글, 댓글 페이지네이션(위, 아래로 있어야됨)
+    <section name="pagination" class="container py-2 mb-4">
+        <div class="pagination">
+            <a href="#" class="active">1</a>
+        </div>
     </section>
-
     <section name="bbs" class="container py-3">
         <table class="bbs-page">
             <colgroup class="bbs-define-col">

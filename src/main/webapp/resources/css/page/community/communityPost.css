@@ -1,3 +1,72 @@
 @import "../../common/default.css";
 @import "./communityBbs.css";
 
+.bbs-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.post-target-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  border-bottom: 1px solid var(--main-grey);
+}
+
+.post-info {
+}
+
+.writer-id {
+}
+
+.post-time, .post-views, .post-link {
+  color: var(--main-grey);
+  font-size: .9rem;
+}
+
+.post-content {
+  margin: 4rem 0;
+}
+
+.post-reaction {
+  display: flex;
+  justify-content: center;
+}
+
+.post-reaction > button {
+  border: none;
+}
+
+.comments-box {
+
+}
+
+.comment-cnt {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.comment {
+  margin-bottom: .7rem;
+}
+
+.comment-user-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--main-grey);
+  padding: .5rem;
+}
+
+.comment-content {
+  padding: .5rem;
+}
+
+.comment-reaction {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.re-comment {
+  margin-left: 2rem;
+}
