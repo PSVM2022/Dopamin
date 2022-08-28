@@ -5,9 +5,9 @@ import com.PSVM.dopamin.domain.*;
 import java.util.List;
 
 public interface MyPageDao {
-    List<RevwDto> selectRevw(String user_id) throws Exception;
+    List<MyPageRevwDto> selectRevw(String user_id) throws Exception;
 
-    List<RevwDto> selectRevwRt(String user_id);
+    List<MyPageRevwDto> selectRevwRt(String user_id);
 
     List<MyPageCntsDto> selectCntsWish(String user_id);
 
@@ -34,4 +34,8 @@ public interface MyPageDao {
     int profWearOff(MyPageItemsDto myPageItemsDto);
 
     int equipProf(MyPageItemsDto myPageItemsDto);
+
+    int deleteRevw(Integer revwId);
+
+    int deletePost(Integer revwId);
 }

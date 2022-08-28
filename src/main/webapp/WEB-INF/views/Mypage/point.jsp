@@ -98,7 +98,8 @@
                 <tbody>
                 <c:forEach var="list" items="${pntList}">
                     <tr>
-                        <td> ${list.in_date}</td>
+                        <td><fmt:formatDate value="${list.in_date}" pattern="yyyy.MM.dd"/></td>
+<%--                        <td>${list.in_date}</td>--%>
                         <td><div style = "height:100%"><img src="${list.item_img}"></div></td>
                         <td>
                             <div>

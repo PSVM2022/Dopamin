@@ -165,8 +165,8 @@
         <div class="row gx-lg-5">
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
-                         >
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
                                 class="fa-solid fa-user"></i></div>
                         <h2 class="fs-4 fw-bold">Edit User Info</h2>
@@ -188,8 +188,8 @@
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
-                         >
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                         onclick="location.href='/psvm/mypage/myItem'">
+                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
                                 class="fa-solid fa-gift"></i></div>
                         <h2 class="fs-4 fw-bold">My Items</h2>
                         <p class="mb-0">보유 아이템 목록을 확인하세요!</p>

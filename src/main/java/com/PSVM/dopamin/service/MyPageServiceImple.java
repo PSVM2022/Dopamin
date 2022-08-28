@@ -14,12 +14,12 @@ public class MyPageServiceImple implements MyPageService {
     MyPageDao myPageDao;
 
     @Override
-    public List<RevwDto> revwList(String user_id) throws Exception {
+    public List<MyPageRevwDto> revwList(String user_id) throws Exception {
         return myPageDao.selectRevw(user_id);
     }
 
     @Override
-    public List<RevwDto> revwRtList(String user_id) {
+    public List<MyPageRevwDto> revwRtList(String user_id) {
         return myPageDao.selectRevwRt(user_id);
     }
 
@@ -45,10 +45,10 @@ public class MyPageServiceImple implements MyPageService {
             String item_img = myPageDao.selectSkin(user_id);
             myPageDto.setItem_img(item_img);
 
-            if (myPageDto.getGenre_nm() != null) {
-                int genre_id = myPageDto.getFav_genre1();
-                myPageDto.setGenre_nm(myPageDao.genreIdToNm(genre_id));
-            }
+//            if (myPageDto.getGenre_nm() != null) {
+//                int genre_id = myPageDto.getFav_genre1();
+//                myPageDto.setGenre_nm(myPageDao.genreIdToNm(genre_id));
+//            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -111,5 +111,27 @@ public class MyPageServiceImple implements MyPageService {
         myPageDao.profWearOff(myPageItemsDto);
     }
 
+    @Override
+    public int deleterevw(List<Integer> valueArr) throws Exception{
+        try{
+            for (Integer revwId : valueArr){
+                myPageDao.deleteRevw(revwId);
+            }
+        }catch (Exception e){
+            return 0;
+        }
+        return 1;
+    }
 
+    @Override
+    public int deletePost(List<Integer> valueArr) throws Exception{
+        try{
+            for (Integer postId : valueArr){
+                myPageDao.deletePost(postId);
+            }
+        }catch (Exception e){
+            return 0;
+        }
+        return 1;
+    }
 }
