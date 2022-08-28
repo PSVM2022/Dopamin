@@ -10,11 +10,11 @@ public class ContentsDto {
     private String cnts_subttl;
     private String cnts_postr_img;
     private String cnts_op_date;
-    private Integer cnts_genre1;
-    private Integer cnts_genre2;
-    private Integer cnts_genre3;
-    private Integer cnts_genre4;
-    private Integer cnts_genre5;
+    private String cnts_genre1;
+    private String cnts_genre2;
+    private String  cnts_genre3;
+    private String cnts_genre4;
+    private String cnts_genre5;
     private String cnts_cnty;
     private String cnts_director;
     private String cnts_actor;
@@ -53,7 +53,7 @@ public class ContentsDto {
 
     }
 
-    public ContentsDto(Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, Integer cnts_genre1, Integer cnts_genre2, Integer cnts_genre3, Integer cnts_genre4, Integer cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Integer ott1_stat, Integer ott2_stat, Integer ott3_stat, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_visib_stat) {
+    public ContentsDto(Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, String cnts_genre1, String cnts_genre2, String cnts_genre3, String cnts_genre4, String cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Integer ott1_stat, Integer ott2_stat, Integer ott3_stat, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_visib_stat) {
         this.cnts_id = cnts_id;
         this.cnts_title = cnts_title;
         this.cnts_subttl = cnts_subttl;
@@ -130,43 +130,43 @@ public class ContentsDto {
         this.cnts_op_date = cnts_op_date;
     }
 
-    public Integer getCnts_genre1() {
+    public String getCnts_genre1() {
         return cnts_genre1;
     }
 
-    public void setCnts_genre1(Integer cnts_genre1) {
+    public void setCnts_genre1(String cnts_genre1) {
         this.cnts_genre1 = cnts_genre1;
     }
 
-    public Integer getCnts_genre2() {
+    public String getCnts_genre2() {
         return cnts_genre2;
     }
 
-    public void setCnts_genre2(Integer cnts_genre2) {
+    public void setCnts_genre2(String cnts_genre2) {
         this.cnts_genre2 = cnts_genre2;
     }
 
-    public Integer getCnts_genre3() {
+    public String getCnts_genre3() {
         return cnts_genre3;
     }
 
-    public void setCnts_genre3(Integer cnts_genre3) {
+    public void setCnts_genre3(String cnts_genre3) {
         this.cnts_genre3 = cnts_genre3;
     }
 
-    public Integer getCnts_genre4() {
+    public String getCnts_genre4() {
         return cnts_genre4;
     }
 
-    public void setCnts_genre4(Integer cnts_genre4) {
+    public void setCnts_genre4(String cnts_genre4) {
         this.cnts_genre4 = cnts_genre4;
     }
 
-    public Integer getCnts_genre5() {
+    public String getCnts_genre5() {
         return cnts_genre5;
     }
 
-    public void setCnts_genre5(Integer cnts_genre5) {
+    public void setCnts_genre5(String cnts_genre5) {
         this.cnts_genre5 = cnts_genre5;
     }
 
@@ -395,11 +395,11 @@ public class ContentsDto {
                 ", cnts_subttl='" + cnts_subttl + '\'' +
                 ", cnts_postr_img='" + cnts_postr_img + '\'' +
                 ", cnts_op_date='" + cnts_op_date + '\'' +
-                ", cnts_genre1=" + cnts_genre1 +
-                ", cnts_genre2=" + cnts_genre2 +
-                ", cnts_genre3=" + cnts_genre3 +
-                ", cnts_genre4=" + cnts_genre4 +
-                ", cnts_genre5=" + cnts_genre5 +
+                ", cnts_genre1='" + cnts_genre1 + '\'' +
+                ", cnts_genre2='" + cnts_genre2 + '\'' +
+                ", cnts_genre3='" + cnts_genre3 + '\'' +
+                ", cnts_genre4='" + cnts_genre4 + '\'' +
+                ", cnts_genre5='" + cnts_genre5 + '\'' +
                 ", cnts_cnty='" + cnts_cnty + '\'' +
                 ", cnts_director='" + cnts_director + '\'' +
                 ", cnts_actor='" + cnts_actor + '\'' +

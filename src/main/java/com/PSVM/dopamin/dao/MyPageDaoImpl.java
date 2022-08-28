@@ -16,12 +16,12 @@ public class MyPageDaoImpl implements MyPageDao {
     private static String namespace = "com.PSVM.dopamin.dao.MyPageMapper.";
 
     @Override
-    public List<RevwDto> selectRevw(String user_id) throws Exception {
+    public List<MyPageRevwDto> selectRevw(String user_id) throws Exception {
         return session.selectList(namespace + "selectrevw", user_id);
     }
 
     @Override
-    public List<RevwDto> selectRevwRt(String user_id) {
+    public List<MyPageRevwDto> selectRevwRt(String user_id) {
         return session.selectList(namespace + "selectrevwRt", user_id);
     }
 
@@ -88,6 +88,16 @@ public class MyPageDaoImpl implements MyPageDao {
     @Override
     public int profWearOff(MyPageItemsDto myPageItemsDto) {
         return session.update(namespace + "profWearOff", myPageItemsDto);
+    }
+
+    @Override
+    public int deleteRevw(Integer revwId) {
+        return session.delete(namespace + "deleteRevw", revwId);
+    }
+
+    @Override
+    public int deletePost(Integer postId) {
+        return session.delete(namespace + "deletePost", postId);
     }
 
 }
