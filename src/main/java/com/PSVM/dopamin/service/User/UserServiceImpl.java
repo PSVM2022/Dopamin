@@ -2,7 +2,6 @@ package com.PSVM.dopamin.service.User;
 
 import com.PSVM.dopamin.dao.UserDaoImpl;
 import com.PSVM.dopamin.domain.User.UserDto;
-import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -69,9 +68,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int surveyGenre(UserDto userDto)  throws NullPointerException{
+    public int surveyDo(UserDto userDto)  throws NullPointerException{
         System.out.println("call serveyGenre method in UserSeviceImpl");
-        int result = userDao.updateUserGenre(userDto);
+        int result = userDao.updateUserSurvey(userDto);
         if(result==0){
             throw new NullPointerException("재시도해주시길 바랍니다.");
         }

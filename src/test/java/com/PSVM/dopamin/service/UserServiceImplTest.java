@@ -165,7 +165,7 @@ public class UserServiceImplTest {
         userService.joinUser(userDto);
         UserDto survey = new UserDto(userDto.getUser_id(),"액션", "로맨스", "코미디", "다큐", "공포");
         //when
-        int rowCnt = userService.surveyGenre(survey);
+        int rowCnt = userService.surveyDo(survey);
         UserDto user = userService.getUser(userDto.getUser_id());
 
         //then
@@ -181,7 +181,7 @@ public class UserServiceImplTest {
             //given
             UserDto survey = new UserDto(null,"액션","공포","다큐","로맨스","코미디");
             //when
-            int rowCnt = userService.surveyGenre(survey);
+            int rowCnt = userService.surveyDo(survey);
 
         }catch (NullPointerException ne){
             String msg = ne.getMessage();

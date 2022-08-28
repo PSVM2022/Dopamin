@@ -502,8 +502,8 @@
                 if (response.msg === "SUCCESS") {
                     alert("인증이 완료되었습니다.")
                     $(".authNum-box").hide()
-                    $("#userEmail1").attr("disabled", true);
-                    $("#userEmail2").attr("disabled", true);
+                    $("#userEmail1").attr("readonly", true);
+                    $("#userEmail2").attr("readonly", true);
                 } else {
                     alert("인증번호가 일치하지않습니다.")
                 }

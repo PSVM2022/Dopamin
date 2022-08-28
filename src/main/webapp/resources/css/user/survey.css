@@ -1,7 +1,109 @@
 .survey-container{
-    width: 50%;
-    margin: auto;
+    width: 50rem;
+    padding: 2rem 2rem 1rem 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    border: 0.3rem solid #FFBC97 ;
+    border-radius: 1.3rem;
 }
 select{
     margin: 2% 2% 2% 2%;
+    width: 13rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 0.1rem solid black;
+}
+select:focus{
+    background-color: #e0994d;
+    color: white;
+}
+select option:disabled{
+    color: black;
+    font-weight: bold;
+}
+
+
+h2{
+    margin-top: 4rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50rem;
+    font-weight: bolder;
+    text-align: center;
+
+}
+
+
+/*.fav-genres-box{*/
+/*    background-color: #0dcaf0;*/
+
+/*}*/
+
+.mbti-box{
+    padding: 0.5rem;
+    font-size: 2rem;
+}
+
+.mbti-box input[type=radio]{
+    display: none;
+}
+
+.mbti-box input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid black;
+    line-height: 24px;
+    font-size: 1.3rem;
+    border-radius: 5px;
+}
+
+.mbti-box input[type=radio]:checked+label{
+    background-color: #e0994d;
+    border:none;
+
+}
+
+.survey-index{
+    /*text-align: center;*/
+}
+
+.mbti-font{
+    /*font-weight: bold;*/
+    font-size: 1.5rem;
+    text-align: center;
+    /*color: #0a53be;*/
+    display: inline-block;
+    padding-top: 0.6rem;
+    margin: 0.7rem 0.1rem;
+
+}
+.survey-label{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#mbti-wrapper{
+    display: flex;
+    width: 16rem;
+    margin: auto;
+}
+#submitBtn{
+    width: 10rem;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    background-color: #e0994d;
+    border-radius: 5px;
+    padding: 1rem;
+    font-weight: bold;
+    /*margin-top: 0.5rem;*/
+    /*margin-left: 78rem*/
+
+}
+
+#submitBtn:hover{
+    color:white;
 }

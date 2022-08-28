@@ -197,7 +197,7 @@ public class UserDaoImplTest {
         int rowCnt2 = userDao.insertUserPwd(userDto);
         UserDto survey = new UserDto(userDto.getUser_id(),"액션","로맨스","코미디","가족","다큐");
         //when
-        int rowCnt3 = userDao.updateUserGenre(survey);
+        int rowCnt3 = userDao.updateUserSurvey(survey);
         UserDto user = userDao.selectUser(userDto.getUser_id());
         //then
         assertEquals(1,rowCnt1);
@@ -216,7 +216,7 @@ public class UserDaoImplTest {
         UserDto survey = new UserDto(userDto.getUser_id(),null,null,null,null,null);
 
         //when
-        int rowCnt3 = userDao.updateUserGenre(survey);
+        int rowCnt3 = userDao.updateUserSurvey(survey);
         UserDto user = userDao.selectUser(userDto.getUser_id());
 
         //then

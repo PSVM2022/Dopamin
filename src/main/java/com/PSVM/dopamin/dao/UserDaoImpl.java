@@ -70,8 +70,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int updateUserGenre(UserDto userDto) {
-        return session.update(namespace+"updateUserGenre",userDto);
+    public int updateUserSurvey(UserDto userDto) {
+        return session.update(namespace+"updateUserSurvey",userDto);
     }
 
     @Override

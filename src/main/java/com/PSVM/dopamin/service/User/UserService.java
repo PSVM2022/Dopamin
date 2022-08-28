@@ -20,7 +20,7 @@ public interface UserService {
 
     boolean loginCheck(HttpServletRequest request);
 
-    int surveyGenre(UserDto userDto);
+    int surveyDo(UserDto userDto);
 
     int modifyUserInform(UserDto userDto);
 

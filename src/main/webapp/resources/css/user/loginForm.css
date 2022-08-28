@@ -2,9 +2,8 @@ main{
     margin: 2% 0 2% 0;
 }
 .login-container{
-
-    border-radius: 2.5px;
-    border: 3px solid #FFBC97;
+    border-radius: 1.3rem;
+    border: 0.3rem solid #FFBC97;
     width: 30rem;
     height: 35rem;
     margin:auto;

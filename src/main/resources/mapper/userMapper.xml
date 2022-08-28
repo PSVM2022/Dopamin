@@ -60,13 +60,14 @@
         WHERE user_id = #{user_id};
     </select>
 
-    <update id="updateUserGenre" parameterType="UserDto">
+    <update id="updateUserSurvey" parameterType="UserDto">
         UPDATE USER
         SET fav_genre1=#{fav_genre1},
             fav_genre2=#{fav_genre2},
             fav_genre3=#{fav_genre3},
             fav_genre4=#{fav_genre4},
             fav_genre5=#{fav_genre5},
+            mbti=#{mbti},
             up_date=now(),
             up_user=#{user_id}
         WHERE user_id = #{user_id};

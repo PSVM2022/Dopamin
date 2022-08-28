@@ -50,6 +50,9 @@ public class JoinController {
 
     @GetMapping("/join")
     public String joinForm(HttpServletRequest request) {
+        if(userService.loginCheck(request)){
+           return "redirect:/";
+        }
 
         return "Login/joinForm";
     }
@@ -103,10 +106,11 @@ public class JoinController {
     }
 
     @PostMapping("/survey")
-    public String surveyGenre(UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession session) {
+    public String surveyGenre(UserDto userDto, RedirectAttributes redirectAttributes, HttpSession session) {
+        System.out.println("userDto = " + userDto);
 
         try {
-            int i = userService.surveyGenre(userDto);
+            int i = userService.surveyDo(userDto);
             session.removeAttribute("SURVEY");
             redirectAttributes.addFlashAttribute("SUR_SUCCESS", "설문 조사에 응답해주셔서 감사합니다.");
 
