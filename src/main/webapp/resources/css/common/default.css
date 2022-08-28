@@ -32,3 +32,12 @@ object {
 footer .copyright {
 	background-color: var(--main-grey2);
 }
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	color: inherit;
+}

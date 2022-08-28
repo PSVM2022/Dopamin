@@ -1,21 +1,11 @@
 @import "../../common/default.css";
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:hover {
-  color: inherit;
-}
-
 ul {
   list-style: none;
   padding-left: 0px;
 }
 
 .bbs-title {
-  border-bottom: 4px solid var(--main-black);
   margin-bottom: 1rem;
   color: var(--orange2);
 }

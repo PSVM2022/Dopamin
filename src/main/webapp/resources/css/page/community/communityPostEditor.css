@@ -1,0 +1,31 @@
+@import "../../common/default.css";
+
+.bbs-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--orange2);
+}
+
+.post-title {
+  width: 100%;
+  height: 2rem;
+  padding: .8rem;
+  margin: 1rem 0;
+}
+
+.ck-editor__editable_inline {
+  min-height: 32rem;
+}
+
+.content-search-bar > input {
+  width: 100%;
+  height: 2rem;
+  margin: 1rem 0;
+  padding: .8rem;
+}
+
+.editor-action {
+  display: flex;
+  justify-content: flex-end;
+}

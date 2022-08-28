@@ -10,7 +10,6 @@ a:hover {
 }
 
 .rank-title {
-  border-bottom: 3px solid var(--main-black);
   margin-bottom: 1rem;
   color: var(--orange2);
 }
