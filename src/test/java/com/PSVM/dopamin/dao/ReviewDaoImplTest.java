@@ -19,11 +19,12 @@ public class ReviewDaoImplTest {
     @Autowired
     ReviewDao reviewDao;
 
-    //데이터 추출 테스트
+    //조회 테스트
     @Test
     public void selectAllRevw() throws Exception {
-        List<ReviewDto> reviewDtoList = reviewDao.selectAllRevw(4);
-        if (reviewDtoList==null) {
+        List<ReviewDto> reviewDtoList = reviewDao.selectAllRevw(7);
+
+        if (reviewDtoList.isEmpty()) {
             System.out.println("컨텐츠에 한줄평 데이터 없음");
         }
         System.out.println("한줄평(컨텐츠 리뷰): " + reviewDtoList);
@@ -48,8 +49,8 @@ public class ReviewDaoImplTest {
         assertEquals(1, rowCnt);
     }
 
-    /*
     //삭제 테스트
+    /*
     @Test
     public void deleteRevw() {
         ReviewDto reviewDto = new ReviewDto(36, "tqtq");
