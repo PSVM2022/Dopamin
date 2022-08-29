@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ page session="false" %>
 <%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
 <%
@@ -35,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentsview.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -83,29 +82,63 @@
 <main>
     <section class="container py-5">
         <!-- Carousel -->
-        <div id="demo" class="carousel slide w-25" data-bs-ride="carousel">
+        <div id="demo" class="w-25" data-bs-ride="carousel">
             <!-- 컨텐츠 포스터 들어갈 자리 -->
-            <div>상세페이지는 공사중</div>
+            <div class="col-12">
+                <div class="row-3">
+                    <img class="img-fluid" style="width:100%" src="${contentsDto.cnts_postr_img}"
+                         alt="${contentsDto.cnts_title}"/>
+                </div>
+                <div class="row-7">
+                    <h4 class="title">${contentsDto.cnts_title}</h4>
+                    <h6 class="subttle-text-muted">${contentsDto.cnts_subttl}</h6>
+                    <p class="text">${contentsDto.cnts_op_date}</p>
+                    <p class="text">${contentsDto.cnts_cnty}</p>
+                    <table>
+                    <tr>
+                        <td><p class="text">${contentsDto.cnts_genre1}&nbsp;&nbsp;</p></td>
+                        <td><p class="text">${contentsDto.cnts_genre2}&nbsp;&nbsp;</p></td>
+                        <td><p class="text">${contentsDto.cnts_genre3}&nbsp;&nbsp;</p></td>
+                        <td><p class="text">${contentsDto.cnts_genre4}&nbsp;&nbsp;</p></td>
+                        <td><p class="text">${contentsDto.cnts_genre5}</p></td>
+                    </tr>
+                    </table>
+                    <p class="text">${contentsDto.cnts_director}</p>
+                    <p class="text">${contentsDto.cnts_actor}</p>
+                    <p class="text">${contentsDto.cnts_synop}</p>
+                </div><br>
 
+                <div>
+                    <c:if test="${contentsDto.ott1_stat==1}">
+                        <div class="ott1ProImg" onclick="window.open('https://www.netflix.com/browse')" style="cursor: pointer;"></div>
+                    </c:if>
+                    <c:if test="${contentsDto.ott2_stat==1}">
+                        <div class="ott2ProImg" onclick="window.open('https://watcha.com/')" style="cursor: pointer;"></div>
+                    </c:if>
+                    <c:if test="${contentsDto.ott3_stat==1}">
+                        <div class="ott3ProImg" onclick="window.open('https://www.disneyplus.com/ko-kr')" style="cursor: pointer;"></div>
+                    </c:if>
+                </div>
+                <br>
+
+                <div class="cnts-view-btn">
+                    <button type="button" class="wish-btn" onclick="location.href='/'">찜</button>
+                    <button type="button" class="like-btn" onclick="location.href='/'">좋아요</button>
+                    <button type="button" class="dislike-btn" onclick="location.href='/'">싫어요</button>
+                </div><br>
+                    <!--테스트용으로 /psvm/달아놓음 나중에 한줄평 페이지로 바꿀것-->
+                    <button class="show_cnts_rt" type="button"><a href="/psvm/contents/${contentsDto.cnts_id}/testReviewView/" class="nav-link px-2 link-dark">컨텐츠 한줄평 보러가기!</a></button>
+
+
+                </div>
+            </div>
         </div>
-        </section>
-    </section>
-    </section>
 
     </section>
 
-    <section class="container py-5">
-
-    </section>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <section class="container py-5"></section>
 
 </main>
-
-
 
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
