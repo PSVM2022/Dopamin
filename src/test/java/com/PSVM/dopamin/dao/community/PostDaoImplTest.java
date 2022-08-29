@@ -105,24 +105,14 @@ public class PostDaoImplTest {
     }
 
     @Test
-    @Transactional
-    @Rollback(true)
     public void selectPage() throws SQLException {
         Map map = new HashMap();
-        Integer today_bbs_id = bbsDao.findByPrefixName("일일").getBbsId();
-        map.put("bbs_id", today_bbs_id);
-        map.put("offset", 2);
-        map.put("pageSize", 10);
+        map.put("bbsId", 1);
+        map.put("offset", 0);
+        map.put("pageSize", 5);
 
-        UserDto user = new UserDto();
-        user.setUser_id("changmoo");
-        userDao.insertUser(user);
-
-        for (int i = 0; i < 100; ++i) {
-            postDao.insert(new PostDto(today_bbs_id, user.getUser_id()));
-        }
         List<PostDto> list = postDao.selectPage(map);
-        assertEquals(list.size(), map.get("pageSize"));
+        assertEquals(list.size(), 5);
     }
 
     @Test
@@ -134,7 +124,7 @@ public class PostDaoImplTest {
         target.setPost_title("수정했어요!");
         postDao.update(target);
 
-        PostDto nTarget = postDao.findById(target.getBbs_id());
+        PostDto nTarget = postDao.findById(target.getPost_id());
         assertEquals(nTarget.getPost_title(), "수정했어요!");
     }
 

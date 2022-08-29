@@ -12,6 +12,8 @@ public interface BbsDao<T, ID> {
 
     Optional<T> findById(ID bbsId) throws SQLException;
 
+    String getName(ID bbsId) throws SQLException;
+
     List<T> findAll() throws SQLException;
 
     List<T> findAllVisib() throws SQLException;

@@ -22,18 +22,18 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public PostDto findById(Integer post_id) throws SQLException {
-        return session.selectOne(namespace + "selectPost", post_id);
+    public PostDto findById(Integer postId) throws SQLException {
+        return session.selectOne(namespace + "selectPost", postId);
     }
 
     @Override
-    public PostDto findLatestOne(Integer bbs_id) throws SQLException {
-        return session.selectOne(namespace + "selectLatestOne", bbs_id);
+    public PostDto findLatestOne(Integer bbsId) throws SQLException {
+        return session.selectOne(namespace + "selectLatestOne", bbsId);
     }
 
     @Override
-    public int count(Integer bbs_id) throws SQLException {
-        return 0;
+    public int count(Integer bbsId) throws SQLException {
+        return session.selectOne(namespace + "countPostInBbs", bbsId);
     }
 
     @Override
@@ -46,12 +46,17 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public List<PostDto> selectPage(Map map) throws SQLException {
-        return null;
+        return session.selectList(namespace + "selectPage", map);
+    }
+
+    @Override
+    public List<PostDto> selectAll(Integer bbsId) throws SQLException {
+        return session.selectList(namespace + "selectAll", bbsId);
     }
 
     @Override
     public int update(PostDto post) throws SQLException {
-        return 0;
+        return session.update(namespace + "update", post);
     }
 
     @Override
@@ -60,27 +65,35 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public int increaseViewCnt(Integer post_id) throws SQLException {
+    public int increaseViewCnt(Integer postId) throws SQLException {
         return 0;
     }
 
     @Override
-    public int increaseCommentCnt(Integer post_id) throws SQLException {
+    public int increaseCommentCnt(Integer postId) throws SQLException {
         return 0;
     }
 
     @Override
-    public int decreaseCommentCnt(Integer post_id) throws SQLException {
+    public int decreaseCommentCnt(Integer postId) throws SQLException {
         return 0;
     }
 
     @Override
-    public int adjustPostPrior(Integer post_id, int prior) throws SQLException {
+    public int adjustPostPrior(Integer postId, int prior) throws SQLException {
         return 0;
     }
 
     @Override
-    public int deleteAll(Integer bbs_id) throws SQLException {
+    public int deleteAll(Integer bbsId) throws SQLException {
         return 0;
+    }
+
+    @Override
+    public int delete(Integer postId, String writer) throws SQLException {
+        Map map = new HashMap();
+        map.put("postId", postId);
+        map.put("writer", writer);
+        return session.delete(namespace + "deletePostInBbs", map);
     }
 }

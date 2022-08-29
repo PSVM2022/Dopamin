@@ -3,10 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.PSVM.dopamin.dao.community.postMapper">
-  <delete id="deletePostInBbs">
-    DELETE
-    FROM POST
-    WHERE bbs_id = #{bbs_id}
+  <delete id="deletePostInBbs" parameterType="map">
+    DELETE FROM POST
+    WHERE bbs_id = #{bbs_id} AND user_id = #{user_id}
   </delete>
 
   <insert id="insert" parameterType="post">
@@ -24,7 +23,7 @@
 
   <select id="selectLatestOne" parameterType="int" resultType="post">
     SELECT *
-    FROM post
+    FROM POST
     WHERE bbs_id = #{bbs_id}
     ORDER BY bbs_id DESC limit 1
   </select>
@@ -65,33 +64,31 @@
       LIMIT #{view_size};
   </select>
 
-  <select id="selectPage" parameterType="map" resultType="list">
-    SELECT post_id,
-           user_id,
-           post_title,
-           post_reply_cnt,
-           post_view_cnt,
-           post_prior,
-           post_atch1,
-           in_date
-    FROM POST
-    WHERE bbs_id = #{bbs_id}
+  <select id="selectPage" parameterType="map" resultType="post">
+    SELECT * FROM POST
+    WHERE bbs_id = #{bbsId}
       AND post_visib = 1
     ORDER BY post_prior ASC, post_id DESC
-      LIMIT #{offset}, #{pageSize};
+    LIMIT #{offset}, #{pageSize};
+  </select>
+
+  <select id="selectAll" parameterType="int" resultType="post">
+    SELECT * FROM POST
+    WHERE bbs_id = #{bbs_id} AND post_visib = 1;
+    ORDER BY post_id DESC;
   </select>
 
   <update id="update" parameterType="post">
     UPDATE POST
     SET post_title = #{post_title},
         post_body  = #{post_body},
-        post_atch1 = #{post_atch1},
-        post_atch2 = #{post_atch2},
-        post_atch3 = #{post_atch3},
-        post_atch4 = #{post_atch4},
-        post_atch5 = #{post_atch5},
-        up_date    = #{up_date},
-        WHERE post_id = #{post_id};
+        post_atch1 = #{post_atch1, jdbcType = VARCHAR},
+        post_atch2 = #{post_atch2, jdbcType = VARCHAR},
+        post_atch3 = #{post_atch3, jdbcType = VARCHAR},
+        post_atch4 = #{post_atch4, jdbcType = VARCHAR},
+        post_atch5 = #{post_atch5, jdbcType = VARCHAR},
+        up_date    = #{up_date}
+    WHERE post_id = #{post_id};
   </update>
 
   <update id="hidePost" parameterType="map">

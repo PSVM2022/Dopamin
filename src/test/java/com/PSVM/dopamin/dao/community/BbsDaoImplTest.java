@@ -127,4 +127,10 @@ public class BbsDaoImplTest {
         Optional<BbsDto> nBbs = bbsDao.findById(id);
         assertEquals(nBbs.get().getBbsNm(), "test name");
     }
+
+    @Test
+    public void getName() throws SQLException {
+        int bbsId = 1;
+        assertEquals(bbsDao.getName(1), "데일리 베스트");
+    }
 }

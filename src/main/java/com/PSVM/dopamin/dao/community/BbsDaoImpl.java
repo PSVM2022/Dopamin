@@ -26,6 +26,11 @@ public class BbsDaoImpl<T, ID> implements BbsDao<T, ID> {
     }
 
     @Override
+    public String getName(ID bbsId) throws SQLException {
+        return session.selectOne(namespace + "getName", bbsId);
+    }
+
+    @Override
     public List<T> findAll() throws SQLException {
         return session.selectList(namespace + "selectAll");
     }

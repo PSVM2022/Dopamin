@@ -37,6 +37,11 @@
     ORDER BY bbs_id ASC;
   </select>
 
+  <select id="getName" parameterType="int" resultType="string">
+    SELECT bbs_nm FROM BBS
+    WHERE bbs_id = #{bbsId};
+  </select>
+
   <select id="selectAllVisib" resultType="bbs">
     SELECT *
     FROM BBS
