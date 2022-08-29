@@ -41,6 +41,25 @@
     </script>
     <script>
         $(document).ready(function(){
+            $(".item_details").on("click",".add_cart_btn",function() {
+                let item_id = $(this).parent().attr("item_id");
+                console.log("item_id=" + item_id);
+                if (confirm("장바구니에 담으시겠습니까?")) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/psvm/item/addCart/' + item_id,
+                        success: function (result) {
+                            alert("장바구니에 담겼습니다.");
+                            if(confirm("장바구니로 바로 가시겠습니까?")){
+                                location.href="/psvm/item/cart";
+                            }
+                        },
+                        error: function (result) {
+                            alert(result);
+                        }
+                    })
+                }
+            })
         })
     </script>
 </head>
@@ -89,7 +108,7 @@
                     </div>
                 </div>
             </div>
-            <span class="item_menu">장바구니</span>
+            <span class="item_menu" onclick="location.href='/psvm/item/cart'" style="cursor:hand" onfocus="blur();">장바구니</span>
             <span class="item_menu">포인트사용내역</span>
             <span class="item_menu">충전샵</span>
             <span class="item_menu">마이페이지</span>
@@ -105,7 +124,7 @@
                 <c:forEach var="item" items="${list}">
                     <div class="detail-container" item_id="${item.item_id}">
                         <div id="item-img" style="margin-bottom: -24.4px">
-                            <div class="image-wrap">
+                            <div class="image-wrap" item_id="${item.item_id}">
                                 <img id="item-image" src="${item.item_img}">
                                 <button class="add_cart_btn">담기</button>
                             </div>

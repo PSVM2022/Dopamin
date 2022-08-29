@@ -60,8 +60,9 @@ public class ItemUserController {
     @PostMapping("/buyCart")//장바구니에서 아이템 구매 시, 발생하는 사건들.
     @ResponseBody
     public ResponseEntity<Object> buy_item_in_Cart(@RequestBody List<OrderDto> orderDtoList, HttpSession session){
+        System.out.println("orderDtoList = " + orderDtoList);
         try{
-            int cart_id=2;
+            int cart_id=1;
             String user_id="ldhoon0813";
             if(orderDtoList.size()==0 || orderDtoList==null){
                 throw new Exception("구매할 아이템을 선택해주세요.");
@@ -134,7 +135,8 @@ public class ItemUserController {
         }
     }
     @GetMapping("/cart_main")//장바구니 조회
-    public String cart_list(Model m, HttpSession session){
+    @ResponseBody
+    public ResponseEntity<Object> cart_list(HttpSession session){
         //1. 세션에 "유저"의 "장바구니번호"를 가져온다.
 //        int cart_id=session.getAttribute("ldhoon0813"); //
         int cart_id=1; //-> 지금은 하드코딩
@@ -156,16 +158,17 @@ public class ItemUserController {
             for(ItemDto itemDto:list){
                 total_point+=itemDto.getItem_price();
             }
-            m.addAttribute("list",list);
-            m.addAttribute("my_point",my_point);
-            m.addAttribute("total_point",total_point);
-            m.addAttribute("after_point",my_point-total_point);
-            return "Item/cart";
+            Map map = new HashMap();
+            map.put("list",list);
+            map.put("my_point",my_point);
+            map.put("total_point",total_point);
+            map.put("after_point",my_point-total_point);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         } catch (Exception e) {
             Message message = Message.builder()
                     .message1(e.getMessage())
                     .build();
-            return "Item/cart";
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
         //없으면 없는대로 보여주면 됨.
     }

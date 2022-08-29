@@ -9,6 +9,7 @@
     max-width: 1140px;
     width: 100%;
     overflow: hidden;
+    /*background-color: chartreuse;*/
 }
 #right_ad{
     width: 300px;
@@ -56,6 +57,7 @@
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    font-size:12px;
 }
 .item_price{
     font-size:20px;
@@ -67,9 +69,6 @@
 .item_grd{
     font-size:14px;
     line-height:2;
-}
-.item_dsc{
-    font-size:12px;
 }
 .img-wrap{
     display: block; /* 영역적용위해 사용 */
@@ -160,3 +159,253 @@
     /* -webkit-line-clamp: 3; */
     background-color: red;
 }
+.cartBar
+{
+    background-color:deepskyblue;
+    height:3rem;
+}
+.cartDetail{
+    display: flex;
+    gap:4rem;
+    margin-top: 1rem;
+}
+.cart_item{
+    background-color: #8a8f95;
+    width: 45rem;
+    max-width: 45rem;
+}
+.cart_point{
+    background-color: #e6e6e6;
+    width: 18rem;
+    max-width: 18rem;
+    min-height: 20rem;
+    max-height: 20rem;
+    border: 0.1rem solid black;
+    border-radius: 0.8rem;
+}
+.cart_item_num{
+    background-color: #e9e8e8;
+}
+.cart_img{
+    position: absolute;
+    width: 151.88px;
+    height: 119.48px;
+    left: 902.06px;
+    top: 417.15px;
+    background-color: #222222;
+}
+.image-wrap_cart {
+    max-width: 15rem;
+    max-height: 15rem;
+    object-fit: fill;
+}
+.item-num{
+    display: flex;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    border: 0.4rem solid #0ed994;
+}
+.cart-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: fill;
+}
+.cart_item_info{
+    background-color: azure;
+    width: 20rem;
+}
+.cart_item_price{
+    background-color: #FF7800;
+    height: 3rem;
+    width: 6.5rem;
+}
+.cart_item_detail{
+    background-color: antiquewhite;
+    width: 11rem;
+    margin-top: 1rem;
+}
+.cart_item_dsc {
+    background-color: #8A8F69;
+    margin-top: 1rem;
+    height: 6.3rem;
+    width: 18rem;
+}
+.closed{
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: aquamarine;
+    text-align: center;
+}
+.pay_info{
+    font-size:1.4rem;
+    margin-bottom:1rem;
+}
+.cart_item_pay_info{
+    border-bottom: 0.1rem solid #000000;
+    border-top: 0.1rem solid #000000;
+    padding-top: 0.8rem;
+}
+.item_info{
+    background-color: #8A8F69;
+}
+.numberofitem{
+    background-color: #e6e6e6;
+    float: right;
+}
+.total_amount{
+    background-color: darkgoldenrod;
+}
+.total_money{
+    background-color:#0ed994;
+    float: right;
+}
+.more_info{
+    height: 2rem;
+}
+.total_info{
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+.buy_button{
+    background-color: #FF7800;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 0.8rem;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+#nav{
+
+    list-style: none;
+    width: 15rem;
+
+    padding: 5px 1px;
+    /* background-color: #f29c74; */
+    margin-left: 2rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    border: 1px solid;
+    text-align: center;
+
+}
+#nav li{
+    position: relative;
+    margin: 1rem 1.2rem;
+    padding: 0;
+}
+#nav li a{
+    display: block;
+    /* font-family: "굴림"; */
+    font-weight: bold;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    margin: 0;
+    color: #fff;
+    margin: 0;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgb(0 0 0);
+}
+#nav li:hover > a{
+    background:#ffcab2;
+    color:black;
+    margin:0;
+}
+#nav ul{
+    list-style: none;
+    padding-left: 1rem;
+    /* position: absolute; */
+    left: 0;
+    top: 40px;
+    width: 105px;
+    margin-left: 2.4rem;
+}
+#nav ul a{
+    font-weight:normal;
+    color:black;
+}
+#nav ul li:hover a{
+    background-color: #cc9882;
+    font-weight:bold;
+}
+#admin_content{
+    width: 70rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.admin_title{
+    font-size: 3rem;
+    font-weight: 600;
+}
+@font-face { font-family: 'GmarketSansMedium'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); font-weight: normal; font-style: normal; }
+#wrap{
+    background-color:#ffffff;
+    position: relative;
+    overflow: hidden;
+    width: 19rem;
+    height: 19rem;
+}
+#wrap #gameContainer{
+    width: 19rem;
+    height: 19rem;
+    text-align: center;
+    position: relative;
+    margin: 0px auto;
+}
+#wrap #gameContainer h1{}
+#wrap #gameContainer .obj{position: absolute;}
+#wrap #gameContainer .board_start{
+    padding: 10px;
+    background: #f00;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 3.5rem;
+    border: 1px solid #000;
+    color: #fff;
+    background: #f00;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    position: absolute;
+    left: 7.1rem;
+    top: 6.7rem;
+    z-index: 9;
+    width: 5rem;
+    border-radius: 100px;
+}
+#wrap #gameContainer .board_start
+img{width:100%;}
+#wrap #gameContainer .board_bg{width:508px; height:508px; top:40px; left:0px; z-index: 2;}
+#wrap #gameContainer .board_bg img{width:100%;}
+#wrap #gameContainer .board_on{
+    width: 19rem;
+    height: 19rem;
+    /* top: 40px; */
+    left: 0px;
+    z-index: 3;
+    background-image: url(//img.babathe.com/upload/specialDisplay/htmlImage/2019/test/roulette_circle_bg.png);
+    background-size: 19rem;
+}
+#wrap #gameContainer .board_on img{position:absolute; width:100px;top:115px; height:100px;}
+#wrap #gameContainer .board_on img:nth-child(1){    left: 55px;  transform: rotate( -60deg );  top: 120px;}
+#wrap #gameContainer .board_on img:nth-child(2){left: 62px;  transform: rotate( -113deg );  top: 286px;  }
+#wrap #gameContainer .board_on img:nth-child(3){  left: 208px;  top: 372px; transform: rotate(-180deg);}
+#wrap #gameContainer .board_on img:nth-child(4){left: 351px; top: 286px;  transform: rotate(-245deg);}
+#wrap #gameContainer .board_on img:nth-child(5){ left: 351px;  top: 125px;  transform: rotate(-292deg);   }
+#wrap #gameContainer .board_on img:nth-child(6){  left: 205px;  top: 42px;  transform: rotate(5deg); }
+
+#wrap #gameContainer .obj.board_arrow{width:90px; height:105px; top:0px; left:195px; z-index: 5;}
+#wrap #gameContainer .char1{width:259px; height:246px; top:400px; left:90px; z-index: 1;}
+#wrap #gameContainer .char2{width:175px; height:198px; top:449px; left:600px; z-index: 1;}
+#wrap #gameContainer .char3{width:112px; height:108px; top:540px; left:550px; z-index: 3;}
+#wrap #gameContainer .txt1{width:420px; height:30px; bottom:20px; left:260px; z-index: 3;}
+
+.popup {display: none; position: fixed; left: 50%; z-index: 99999; text-align: center; background:#fff; font-size:20px; color:#000;}
+#fade {display: none;background: #000;position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: .60;z-index: 9999;}
+#popup_gift{width:475px; height:505px; top:120px;}
+#popup_gift .lottery_present {text-align:center;}
+#popup_gift .lottery_present img{ display:block; margin: 50px auto 30px;}
+
+#popup_fail{width:475px; height:505px; top:120px;}
+.popup  .close{ display:inline-block; width:150px; hegiht:50px; line-height:50px; color:#fff; background:#333; margin: 30px 0 0;}

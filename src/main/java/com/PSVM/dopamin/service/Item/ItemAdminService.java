@@ -65,11 +65,13 @@ public class ItemAdminService {
     }
     private ItemDto save_into_ItemDto(ItemForm itemForm) {
         ItemDto itemDto = new ItemDto();
-        if(itemForm.getList_nm().equals("스킨")){
-            itemDto.setList_id(1);
-        }
-        else{
-            itemDto.setList_id(2);
+        if(itemForm.getList_nm()!=null){
+            if(itemForm.getList_nm().equals("스킨")){
+                itemDto.setList_id(1);
+            }
+            else{
+                itemDto.setList_id(2);
+            }
         }
         itemDto.setGrd_nm(itemForm.getItem_grd());
         itemDto.setItem_nm(itemForm.getItem_nm());

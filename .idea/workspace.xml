@@ -9,36 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemMainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemMain.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist_skin.jsp" afterDir="false" />
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 상점 UI, 카테고리별 UI">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/Item/ItemUserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ContentsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/ContentsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/domain/Item/ItemDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/detail_item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/detail_item.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_item_admin.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template_home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template_home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/all.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/cart_main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/responsive.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/ui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemAdminDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/dao/ItemUserDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/Item/ItemUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/PSVM/dopamin/service/Item/ItemUserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main_not_use.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_admin.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemMain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemMain.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist_skin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/common/item.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/item.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +75,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2DAFd1wCMeLTxc2Ets2QxxMWbfG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -112,6 +97,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "spring.configuration.checksum": "600b67ecfca2968ff96e7a5df1440321"
   },
   "keyToStringList": {
@@ -239,7 +225,8 @@
     </configuration>
     <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11" nameIsGenerated="true">
       <option name="COMMON_VM_ARGUMENTS" value="-Duser.language=en -Duser.region=us" />
-      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="dopamin:war exploded">
           <settings>
@@ -369,7 +356,7 @@
       <workItem from="1660147896528" duration="3387000" />
       <workItem from="1660151890086" duration="19000" />
       <workItem from="1660179384443" duration="224000" />
-      <workItem from="1661487360073" duration="48911000" />
+      <workItem from="1661487360073" duration="110753000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정">
       <created>1660301301297</created>
@@ -532,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661385066403</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat: 상점 UI, 카테고리별 UI">
+      <created>1661587852576</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1661587852577</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,7 +577,8 @@
     <MESSAGE value="feat: 장바구니 UI &#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치" />
     <MESSAGE value="feat: 장바구니 UI + 아이템 상점 메인페이지&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능" />
     <MESSAGE value="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능" />
+    <MESSAGE value="feat: 상점 UI, 카테고리별 UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 상점 UI, 카테고리별 UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

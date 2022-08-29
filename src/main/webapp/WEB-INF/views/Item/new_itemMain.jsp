@@ -40,12 +40,75 @@
             crossorigin="anonymous" referrerpolicy="no-referrer">
     </script>
     <script>
+        $(document).ready(function() {
+            var gift;
+            var  present =[ 1,2,3 , 4,5,6 ]
+            iniGame = function(num){
+                gift = num;
+                TweenLite.killTweensOf($(".board_on"));
+                TweenLite.to($(".board_on"), 0, {css:{rotation:rotationPos[gift]}});
+                TweenLite.from($(".board_on"),5, {css:{rotation:-3000}, onComplete:endGame, ease:Sine.easeOut});
+                console.log("gift 숫자 : "+ (gift +1) +"rotationPos" + rotationPos );
+            }
+            var rotationPos = new Array(60,120,180,240,300,360);
+            TweenLite.to($(".board_on"), 360, {css:{rotation:-4000}, ease: Linear.easeNone});
+            function endGame(){
+                var  copImg= "http://img.babathe.com/upload/specialDisplay/htmlImage/2019/test/coupon"+( gift +1) + ".png";
+                console.log("이미지 : " + copImg );
+
+                $("#popup_gift .lottery_present" ).text(function( ) {   return "축하드립니다."+present [gift ] + " 룰렛숫장"+ ( gift +1)   + " 당첨 되셨습니다.";    });
+                $( '<img  src="' + copImg+ '" />' ).prependTo("#popup_gift .lottery_present");
+                setTimeout(function() {openPopup("popup_gift");	}, 1000);
+            }
+
+            $(".popup .btn").on("click",function(){
+                location.reload();
+            });
+            function openPopup(id) {
+                closePopup();
+                $('.popup').slideUp(0);
+                var popupid = id
+                $('body').append('<div id="fade"></div>');
+                $('#fade').css({
+                    'filter' : 'alpha(opacity=60)'
+                }).fadeIn(300);
+                var popuptopmargin = ($('#' + popupid).height()) / 2;
+                var popupleftmargin = ($('#' + popupid).width()) / 2;
+                $('#' + popupid).css({
+                    'margin-left' : -popupleftmargin
+                });
+                $('#' + popupid).slideDown(500);
+            }
+            function closePopup() {
+                $('#fade').fadeOut(300, function() {
+                    // $(".player").html('');
+                });
+                $('.popup').slideUp(400);
+                return false
+            }
+            $(".close").click(closePopup);
+
+        });
+        $(function() {
+            var clicked  =0;
+            for(i=1; i<7; i++){
+                var  pictures = "http://img.babathe.com/upload/specialDisplay/htmlImage/2019/test/coupon"+ i  + ".png";
+                $(".board_on").append('<img  src="' + pictures + '" />');
+            }
+
+            $(".join").on("mousedown",function(){
+                if( clicked <= 0){    iniGame(Math.floor(Math.random() *6));    }
+                else  if( clicked >=1 ){    event.preventDefault(); alert( "이벤트 참여 하셨씁니다."); }
+                clicked ++
+            });
+        })
+
         let toHtml=function(items){
             let tmp="<div class='items'>";
             items.forEach(function(item){
                 tmp+='<div class="item-container" item_id='+item.item_id+'>'
                 tmp+='<div id="item-img" style="margin-bottom: -24.4px">'
-                tmp+='<div class="image-wrap">'
+                tmp+='<div class="image-wrap" item_id='+item.item_id+'>'
                 tmp+='<img id="item-image" src='+item.item_img+'>'
                 tmp+='<button class="add_cart_btn">담기</button>'
                 tmp+='</div>'
@@ -61,7 +124,7 @@
             return tmp+"</div>"
         }
         $(document).ready(function(){
-            $("#item-img").on("click",".add_cart_btn",function(){
+            $("#section").on("click",".add_cart_btn",function(){
                 let item_id=$(this).parent().attr("item_id");
                 console.log("item_id="+item_id);
                 if(confirm("장바구니에 담으시겠습니까?")){
@@ -70,6 +133,9 @@
                         url:'/psvm/item/addCart/'+item_id,
                         success:function(result){
                             alert("장바구니에 담겼습니다.");
+                            if(confirm("장바구니로 바로 가시겠습니까?")){
+                                location.href="/psvm/item/cart";
+                            }
                         },
                         error:function(result){
                             alert(result);
@@ -127,7 +193,7 @@
     <div id="main_container">
         <div id="main_bar">
             <div class="dropdown">
-                <span class="item_menu">상점</span>
+                <span class="item_menu" onclick="location.href='/psvm/item/item'" style="cursor:hand" onfocus="blur();">상점</span>
                 <div class="dropdown-content">
                     <div class="category">
                         <a href="/psvm/item/list/스킨" class="skin">스킨</a>
@@ -137,13 +203,25 @@
                     </div>
                 </div>
             </div>
-            <span class="item_menu">장바구니</span>
+            <span class="item_menu" onclick="location.href='/psvm/item/cart'" style="cursor:hand" onfocus="blur();">장바구니</span>
             <span class="item_menu">포인트사용내역</span>
             <span class="item_menu">충전샵</span>
             <span class="item_menu">마이페이지</span>
         </div>
         <%--    <a href="/psvm/item/cart_main">장바구니</a>--%>
-        <div class="banner"></div>
+        <div class="banner">
+            <div id="event"></div>
+            <div id="wrap">
+                <div id="gameContainer">
+                    <div class="board_start join">시작</div>
+                    <div class="board_on obj"></div>
+                </div>
+                <div id="popup_gift" class="popup">
+                    <div class="lottery_present"></div>
+                    <a href="javascript:;" class="close">닫기 </a>
+                </div>
+            </div>
+        </div>
         <div id="section">
 
         </div>

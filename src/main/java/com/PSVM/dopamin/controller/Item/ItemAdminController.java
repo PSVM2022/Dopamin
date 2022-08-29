@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.controller.Item;
 
 import com.PSVM.dopamin.domain.Item.*;
+import com.PSVM.dopamin.error.Message;
 import com.PSVM.dopamin.service.Item.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 @Controller
@@ -79,7 +77,7 @@ public class ItemAdminController {
                 List<ItemDto> list= itemAdminService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
                 m.addAttribute("list",list);
                 m.addAttribute("order",order);
-                return "Item/new_itemlist_skin";
+                return "Item/new_itemlist";
             }
             else{
                 throw new Exception("잘못된 요청입니다");
@@ -89,7 +87,7 @@ public class ItemAdminController {
             String msg=e.getMessage();
             System.out.println("msg = " + msg);
             redirectAttributes.addFlashAttribute("msg",msg);
-            return "Item/new_itemlist_skin";
+            return "Item/new_itemlist";
         }
     }
     @GetMapping("/item_admin")
@@ -109,7 +107,7 @@ public class ItemAdminController {
             m.addAttribute("list_0",list_0);
             m.addAttribute("list_1",list_1);
             m.addAttribute("mode","list");
-            return "Item/item_admin"; //조회와 수정에 사용.
+            return "Item/new_admin"; //조회와 수정에 사용.
             // 조회에 사용시-> mode:list;
             // 수정에 사용시-> mode:change,
         }
@@ -172,59 +170,83 @@ public class ItemAdminController {
     }
     @DeleteMapping("/remove/{item_id}")//삭제니깐 delete매핑
     @ResponseBody
-    public ResponseEntity<String> remove(@PathVariable Integer item_id){
+    public ResponseEntity<Object> remove(@PathVariable Integer item_id){
         try {
             int row_cnt= itemAdminService.remove(item_id);//삭제 성공 시 1반환
             if(row_cnt!=1){
-                throw new Exception("Delete Failed");
+                throw new Exception("삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.");
             }
-            return new ResponseEntity<>("DEL_OK", HttpStatus.OK);
+            return new ResponseEntity<>("삭제에 성공했습니다.", HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
     }
     @PatchMapping("/noshowtoshow/{item_id}")//비공개를 공개로
     @ResponseBody
-    public ResponseEntity<String> show(@PathVariable Integer item_id){
+    public ResponseEntity<Object> show(@PathVariable Integer item_id){
         try {
             int result= itemAdminService.show(item_id);
             if(result!=1){
-                throw new Exception("Show Failed");
+                throw new Exception("공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
             }
-            return new ResponseEntity<>("Show Success",HttpStatus.OK);
+            return new ResponseEntity<>("공개에 성공했습니다.",HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("Show Failed",HttpStatus.BAD_REQUEST);
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
         }
     }
     @PatchMapping("/showtonoshow/{item_id}")//공개를 비공개로
     @ResponseBody
-    public ResponseEntity<String> noShow(@PathVariable Integer item_id){
+    public ResponseEntity<Object> noShow(@PathVariable Integer item_id){
         try {
             int result= itemAdminService.noShow(item_id);
             if(result!=1){
-                throw new Exception("NoShow Failed");
+                throw new Exception("비공개에 실패했습니다. 잠시 후 다시 시도해주세요.");
             }
-            return new ResponseEntity<>("noshow_success",HttpStatus.OK);
+            return new ResponseEntity<>("비공개에 성공했습니다.",HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("noshow_fail",HttpStatus.BAD_REQUEST);
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
         }
     }
-    @PatchMapping("/modify/{item_id}")
+    @PatchMapping("/modify")
     @ResponseBody
-    public ResponseEntity<String> modify(@PathVariable Integer item_id, @RequestBody ItemForm itemForm){
-        itemForm.setItem_id(item_id);
+    public ResponseEntity<Object> modify(@RequestBody ItemForm itemForm){
+        String[] grd_nm={"1등급","2등급","3등급","4등급","5등급"};
         try {
+            //입력받은 데이터에 대해서 백단에서 검증이 필요함.
+            if(itemForm.getItem_nm()==null){
+                throw new Exception("아이템 이름을 입력해 주세요.");
+            }
+            if(!Arrays.asList(grd_nm).contains(itemForm.getItem_grd())){
+                throw new Exception("등급 양식은 0등급입니다");
+            }
+            if(itemForm.getItem_dsc()==null){
+                throw new Exception("설명을 작성해 주세요.");
+            }
+            if(itemForm.getItem_dsc().length()>30){
+                throw new Exception("설명은 30글자 이하입니다.");
+            }
+            if(!itemForm.getItem_price().matches("[+-]?\\d*(\\.\\d+)?")){
+                throw new Exception("가격은 숫자만 입력 가능합니다.");
+            }
             int result= itemAdminService.modify(itemForm);
             if(result!=1){
-                throw new Exception("MODIFY FAILED");
+                throw new Exception("잠시후 다시 등록해 주세요");
             }
-            return new ResponseEntity<>("MODIFY_OK",HttpStatus.OK);
+            return new ResponseEntity<>("아이템 수정에 성공했습니다.",HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
     }
     //관리자 인증 구현을 했지만, 아직 세션이 없어 NullpointException Error 터짐

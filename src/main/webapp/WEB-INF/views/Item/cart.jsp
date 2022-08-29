@@ -43,10 +43,9 @@
     <script>
         $(document).ready(function() {
             let point=Number($('#amount_price').text().split(" ",1));
-            //let total_point=Number($('#total_point').text().split(" ",1));
             if(point<0){
                 $("#amount_price").css("color", "#f00");
-            }//$("test2 li").css("color", "#f00");
+            }
             $('#buy_item').click(function(){
                 console.log("click");
                 if(point<0){
