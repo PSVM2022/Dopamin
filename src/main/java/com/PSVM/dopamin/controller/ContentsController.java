@@ -5,6 +5,7 @@ import com.PSVM.dopamin.domain.ContentsWishDto;
 import com.PSVM.dopamin.domain.PageHandler;
 import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.ContentsService;
+import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,9 @@ public class ContentsController {
 
     @Autowired
     ContentsService contentsService;
+
+    @Autowired
+    UserService userService;
     //@Autowired
     //ReviewService reviewService;
 
@@ -45,9 +49,16 @@ public class ContentsController {
 
     //메인 페이지
     @GetMapping("/")
-    public String contentsList(HttpServletRequest request, HttpSession session, Model model) {
-        String user_id = (String)session.getAttribute("USERID");
+    public String contentsList(HttpServletRequest request, Model model) {
 
+        //설문조사 안했다면
+        HttpSession session = request.getSession(false);
+        if(session!=null) {
+                //SURVEY가 존재한다면,아직 설문 조사안한것
+                if(session.getAttribute("SURVEY")!=null){
+                    return "Login/survey";
+                }
+        }
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
         model.addAttribute("cntsDtoList", cntsDtoList);
@@ -61,10 +72,6 @@ public class ContentsController {
     public String contentsView(@PathVariable(required = false) Integer cnts_id, HttpServletRequest request, HttpSession session, Model model) {
         String user_id = (String)session.getAttribute("USERID");
 
-        //로그인 되지 않은 경우, 로그인 화면으로 리다이렉트(임시페이지)
-        if(session==null) {
-            return "Contents/loginAction";
-        }
 
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
@@ -75,8 +82,9 @@ public class ContentsController {
             ContentsWishDto contentsWishDto = new ContentsWishDto();    //찜 읽어오기
             contentsWishDto.setCnts_id(cnts_id);
             contentsWishDto.setUser_id(user_id);
-
             model.addAttribute("contentsWishDto", contentsWishDto);
+
+            
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -86,8 +94,7 @@ public class ContentsController {
 
     //컨텐츠 검색
     @GetMapping("/contents/search/")
-    public String getSearchCntsPage(SearchCondition sc, HttpSession session, Model model) {
-        String user_id = (String)session.getAttribute("USERID");
+    public String getSearchCntsPage(SearchCondition sc, Model model) {
 
         int totalCnt = contentsService.getSearchResultCnt(sc);
         model.addAttribute("totalCnt", totalCnt);
@@ -102,20 +109,8 @@ public class ContentsController {
 
         return "Contents/contentsSearchList";
     }
-/*
-    //컨텐츠 찜
-    @PostMapping("contents/{cnts_id}")
-    public ResponseEntity<Integer> insertWish(@RequestBody ContentsWishDto contentsWishDto, @PathVariable Integer cnts_id, HttpSession session) {
-        String user_id = "sohyeon9253";
-        contentsWishDto.setUser_id(user_id);
-        contentsWishDto.setCnts_id(cnts_id);
-        System.out.println("contentsWishDto: "+contentsWishDto);
-        try {
-            if (contentsService.insertWish(contentsWishDto)!=1)
-                throw new DuplicateKeyException ("찜 취소");
-            return new ResponseEntity<>("찜 성공", HttpStatus.OK);
-        } catch(DuplicateKeyException e) {
 
-        }
-    }*/
+    //컨텐츠 찜
+
+
 }

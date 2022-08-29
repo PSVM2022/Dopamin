@@ -1,0 +1,83 @@
+@import "../common/default.css";
+/* 이걸 각자 만드는 css 모듈마다 import 해줘야 default.css에 정의된 컬러변수를 사용할 수 있음 */
+
+.form-control:focus {
+    border: 1px solid var(--orange);
+    box-shadow: 0 0 10px var(--orange);
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+}
+
+.ott1ProImg {
+    position: relative;
+    z-index: 1;
+    background: url(https://an2-glx.amz.wtchn.net/images/ex_netflix_logo_square.png) center center / cover no-repeat;
+    width: 15%;
+    height: 7%;
+    border-radius: 50%;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0px 0px 1px inset;
+}
+
+.ott2ProImg {
+    position: relative;
+    z-index: 1;
+    background: url(https://an2-glx.amz.wtchn.net/images/ex_watcha_logo_square.png) center center / cover no-repeat;
+    width: 15%;
+    height: 7%;
+    border-radius: 50%;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0px 0px 1px inset;
+}
+
+.ott3ProImg {
+    position: relative;
+    z-index: 1;
+    background: url(https://an2-img.amz.wtchn.net/image/v2/ryWIr0pNWgEBU-qIsDRsYw.png?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKd0lqb2lMM1l5TDNOMGIzSmxMM1ZwYldGblpTOHhOalF5TURZME16SXlPVEUxT0RJNE9EazFJbjAuVEM5ZjBaTnBlUmM5MklUTWdVakxmM3BieElmaTFHLTNWc0d2RUxqa3FDSQ) center center / cover no-repeat;
+    width: 15%;
+    height: 7%;
+    border-radius: 50%;
+    box-shadow: rgb(0 0 0 / 8%) 0px 0px 0px 1px inset;
+}
+
+/*모달창*/
+button {
+    background-color: #F9B514;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalBox {
+    position: absolute;
+    background-color: #fff;
+    width: 400px;
+    height: 200px;
+    padding: 15px;
+}
+
+.modalBox button {
+    display: block;
+    width: 80px;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
