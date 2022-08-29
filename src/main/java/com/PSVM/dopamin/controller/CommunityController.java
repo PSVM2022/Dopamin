@@ -1,5 +1,7 @@
 package com.PSVM.dopamin.controller;
 
+import com.PSVM.dopamin.domain.PageHandler;
+import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.domain.community.BbsDto;
 import com.PSVM.dopamin.domain.community.PostDto;
 import com.PSVM.dopamin.service.community.CommunityService;
@@ -46,9 +48,13 @@ public class CommunityController {
             List<PostDto> list = postService.getPage(map);
             String bbsNm = postService.getBbsName(bbsId);
 
-            m.addAttribute("list", list);
+            m.addAttribute("postList", list);
             m.addAttribute("bbsNm", bbsNm);
 
+            int totalCnt = postService.getCountInBbs(bbsId);
+            PageHandler ph = new PageHandler(totalCnt, new SearchCondition(page, 25, ""));
+
+            m.addAttribute("ph", ph);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

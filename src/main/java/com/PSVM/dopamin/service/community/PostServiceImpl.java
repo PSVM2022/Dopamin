@@ -35,7 +35,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getPage(Map<String, Integer> map) throws Exception {
-        final Integer pageSize = 20;
+        final Integer pageSize = 25;
         Integer offset = (map.get("page") - 1) * pageSize;
 
         map.put("pageSize", pageSize);

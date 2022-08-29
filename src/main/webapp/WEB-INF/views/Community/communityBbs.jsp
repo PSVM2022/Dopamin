@@ -12,7 +12,7 @@
 <html lang="ko">
 
 <head>
-    <title>판 - 도파민</title>
+    <title>${bbsNm} 판 - 도파민</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png'/>">
@@ -37,6 +37,7 @@
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src="<c:url value='/js/parseTime.js'/>"></script>
 </head>
 
 <body class="bg-light">
@@ -72,7 +73,7 @@
 <main>
     <section name="bbs-rank" class="container py-3">
         <div class="bbs-title">
-            <h3><a href="/">데일리 베스트 판</a></h3>
+            <h3><a href="/">${bbsNm} 판</a></h3>
         </div>
         <div class="row recommand-post-wrapper">
             <div class="col-6">
@@ -158,18 +159,26 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="bbs-post">
-                <td>100</td>
-                <td class="bbs-post-title">
-							<span>제목 25자 미
-								넘으면 elf다?</span>
-                    <span class="post-comment-cnt">24</span>
-                </td>
-                <td>테슬라맨</td>
-                <td>144</td>
-                <td>22/08/25</td>
-                <td>12451</td>
-            </tr>
+            <c:forEach var="post" items="${postList}">
+                <tr class="bbs-post">
+                    <td>
+                        <c:choose>
+                            <c:when test="${post.post_prior ne 1}"><b>공지</b></c:when>
+                            <c:otherwise>${post.post_id}</c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td class="bbs-post-title">
+                        <span>${post.post_title}</span>
+                        <span class="post-comment-cnt">${post.post_reply_cnt}</span>
+                    </td>
+                    <td>${post.user_id}</td>
+                    <td>0</td>
+                    <td id='postTime_<c:out value="${post.post_id}"/>'></td>
+                    <td>${post.post_view_cnt}</td>
+                </tr>
+                <script>$('#postTime_<c:out value="${post.post_id}"/>').text(
+                    parseTime('<c:out value="${post.in_date}"/>'))</script>
+            </c:forEach>
             </tbody>
         </table>
         <div class="button-wrapper">
@@ -178,14 +187,21 @@
             </button>
         </div>
         <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+            <c:if test="${ph.showPrev}">
+                <a href="<c:url value="/community/${bbsId}?page=${ph.beginPage - 1}"/>">
+                    <i class="fa-solid fa-caret-left"></i>
+                </a>
+            </c:if>
+            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                <a
+                        <c:if test="${i eq ph.sc.page}">class="active"</c:if>
+                        href="<c:url value="/community/${bbsId}?page=${i}"/>">${i}</a>
+            </c:forEach>
+            <c:if test="${ph.showNext}">
+                <a href="<c:url value="/community/${bbsId}?page=${ph.endPage + 1}"/>">
+                    <i class="fa-solid fa-caret-right"></i>
+                </a>
+            </c:if>
         </div>
 
         <div class="search-container">
@@ -329,5 +345,4 @@
     </div>
 </footer>
 </body>
-
 </html>
