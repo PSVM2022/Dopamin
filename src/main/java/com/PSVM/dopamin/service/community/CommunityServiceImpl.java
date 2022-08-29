@@ -16,10 +16,11 @@ import org.springframework.stereotype.Service;
 public class CommunityServiceImpl implements CommunityService {
 
     final Integer previewSize = 8;
+
     @Autowired
-    PostDao postDao;
+    private PostDao postDao;
     @Autowired
-    BbsDao bbsDao;
+    private BbsDao bbsDao;
 
     @Override
     public List<PostEmbedContentDto> rankListPerHours() throws Exception {
