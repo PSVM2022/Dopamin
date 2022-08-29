@@ -37,9 +37,11 @@
                         return false;
                     }
                 }
+                console.log($("#item_img")[0].files[0])
                 var formData=new FormData();
                 formData.append('key',new Blob([JSON.stringify(data)],{type:"application/json"}));
                 formData.append("item_img",$("#item_img")[0].files[0]);
+                console.log(formData)
                 if(formData.get("item_img")==null){
                     alert("이미지는 필수 값입니다.");
                 }

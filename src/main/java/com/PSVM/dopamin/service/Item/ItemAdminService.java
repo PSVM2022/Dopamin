@@ -46,10 +46,9 @@ public class ItemAdminService {
         //여기서는 itemForm들의 정보를 item table처럼 가공해야하고,
         //file의 저장 경로도 설정해줘야 한다.
         //전제: 이미지 무조건 있다 -> Controller에서 검사하고 들어왔으니
-        System.out.println(multipartFile.getOriginalFilename());
         String save_url=save_File(multipartFile);//파일 저장 //이미지 경로 반환
         ItemDto itemDto=save_into_ItemDto(itemForm);
-        itemDto.setItem_img((String) map.get("save_url"));
+        itemDto.setItem_img(save_url);
         itemDto.setIn_user((String)map.get("user_id"));
         itemDto.setUp_user((String)map.get("user_id"));
         return itemAdminDaoImpl.registerItem(itemDto);

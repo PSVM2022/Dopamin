@@ -121,52 +121,33 @@ public class ItemAdminController {
             return "redirect:/item/";
         }//관리자가 아니라면 비관리자들한테 이페이지의 존재 유무를 알릴 필요가 없기 때문에
         //item 메인화면으로 돌아간다.
-        return "Item/item_register";
+        return "Item/new_item_register";
     }
     @PostMapping("/registerItem")
-    public String write(@RequestPart(value="item_img",required = false) MultipartFile file, @Valid @RequestPart(value="key") ItemForm itemForm, BindingResult bindingResult) throws Exception{
-        System.out.println(bindingResult);
+    @ResponseBody
+    public ResponseEntity<Object> write(@RequestPart(value="item_img",required = false) MultipartFile file, @Valid @RequestPart(value="key") ItemForm itemForm, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
             throw new ItemValidatorException(bindingResult,"검증실패11");
         }
-        String user_id="ldhoon0813";
-        String user_nic="후후른훈";
-        Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
-        map.put("user_id",user_id);
-        map.put("user_nic",user_nic);
-        int result= itemAdminService.registerItem(itemForm,file,map);
-        if(result==1){
-            return "Item/item_admin";
+        try {
+            String user_id="ldhoon0813";
+            String user_nic="후후른훈";
+            Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
+            map.put("user_id",user_id);
+            map.put("user_nic",user_nic);
+            int result= itemAdminService.registerItem(itemForm,file,map);
+            if(result==1){
+                return new ResponseEntity<>("아이템 등록에 성공했습니다.",HttpStatus.OK);
+            }
+            else{
+                throw new Exception("아이템 등록에 실패했습니다.");
+            }
+        } catch (Exception e) {
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
-        else{
-            return "Item/item_admin"; //수정 필요
-        }
-//        try {
-//            //HttpSession session=request.getSession();
-//            //String user_id=(String) session.getAttribute("id");
-//            //String user_nic=itemService.getUser_nic(user_id);
-//            //아직은 세션없으니깐 임시로 만들자
-//            String user_id="ldhoon0813";
-//            String user_nic="후후른훈";
-//            Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
-//            map.put("user_id",user_id);
-//            map.put("user_nic",user_nic);
-//            int result=itemService.registerItem(itemForm,file,map);
-//            if(result==1){
-//                return "item_admin";
-//            }
-//            else{
-//                throw new Exception("아이템 등록에 실패했습니다.");
-//            }
-//            //추가로 해야할 것.
-//            //1. 이름이 같은 아이템은 세상에 없다. 이름이 같은 아이템을 들어가지 못하게 하기
-//            //2. 이미지 미리보기 + 화면에 이미지 띄우기.
-//
-//        } catch (Exception e) {
-//            String msg=e.getMessage();
-//            redirectAttributes.addFlashAttribute("msg",msg);
-//            return "redirect:/item/registerItem";
-//        }
     }
     @DeleteMapping("/remove/{item_id}")//삭제니깐 delete매핑
     @ResponseBody

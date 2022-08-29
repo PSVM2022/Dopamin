@@ -308,26 +308,6 @@
                         </c:forEach>
                     </div>
                 </div>
-                <%--  <div id="modalWin" class="modal">--%>
-                <%--    <!-- Modal content -->--%>
-                <%--    <div class="modal-content">--%>
-                <%--      <span class="close">&times;</span>--%>
-                <%--      <p>--%>
-                <%--      <h2> 아이템 수정</h2>--%>
-                <%--      <div id="modify-writebox">--%>
-                <%--        <div class="commenter commenter-writebox"></div>--%>
-                <%--        <div class="modify-writebox-content">--%>
-                <%--          <textarea name="" id="" cols="30" rows="5" placeholder="댓글을 남겨보세요"></textarea>--%>
-                <%--        </div>--%>
-                <%--        <div id="modify-writebox-bottom">--%>
-                <%--          <div class="register-box">--%>
-                <%--            <a href="#" class="btn" id="btn-write-modify">등록</a>--%>
-                <%--          </div>--%>
-                <%--        </div>--%>
-                <%--      </div>--%>
-                <%--      </p>--%>
-                <%--    </div>--%>
-                <%--  </div>--%>
             </div>
         </div>
     </div>

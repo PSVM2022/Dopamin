@@ -9,8 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 관리자 UI 삭제, 공개, 비공개, 수정 예외처리까지 완료&#10;     (예외처리: Controller에서 검증 후 발생한 에러에 대한 메시지 ajax에서 받아서 출력하는 것까지 완료)">
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="fix: psvm.css파일 에러 수정.">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_item_register.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/register.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" afterDir="false" />
     </list>
@@ -25,9 +31,9 @@
         <option value="JUnit4 Test Class" />
         <option value="Interface" />
         <option value="JUnit3 Test Class" />
-        <option value="CSS File" />
         <option value="Class" />
         <option value="Jsp File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -345,7 +351,7 @@
       <workItem from="1660147896528" duration="3387000" />
       <workItem from="1660151890086" duration="19000" />
       <workItem from="1660179384443" duration="224000" />
-      <workItem from="1661487360073" duration="111381000" />
+      <workItem from="1661487360073" duration="122481000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정">
       <created>1660301301297</created>
@@ -522,7 +528,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661776425430</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fix: psvm.css파일 에러 수정.">
+      <created>1661776913611</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1661776913611</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +588,8 @@
     <MESSAGE value="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능" />
     <MESSAGE value="feat: 상점 UI, 카테고리별 UI" />
     <MESSAGE value="feat: 관리자 UI 삭제, 공개, 비공개, 수정 예외처리까지 완료&#10;     (예외처리: Controller에서 검증 후 발생한 에러에 대한 메시지 ajax에서 받아서 출력하는 것까지 완료)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 관리자 UI 삭제, 공개, 비공개, 수정 예외처리까지 완료&#10;     (예외처리: Controller에서 검증 후 발생한 에러에 대한 메시지 ajax에서 받아서 출력하는 것까지 완료)" />
+    <MESSAGE value="fix: psvm.css파일 에러 수정." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: psvm.css파일 에러 수정." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
