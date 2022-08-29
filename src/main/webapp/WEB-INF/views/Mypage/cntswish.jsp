@@ -12,7 +12,7 @@
 %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <html>
@@ -49,16 +49,15 @@
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
         <a href="<c:url value='/'/>"
            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
-            <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
+            <object data="<c:url value='/image/main_logo.svg'/>" width="150" height="96"></object>
         </a>
-
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
+            <li><a href="<c:url value='/'/>" class="nav-link px-2 link-secondary">홈</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
+            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -67,7 +66,9 @@
         </form>
 
         <div class="text-end">
-            <button type="button" class="btn btn-warning me-2">Login</button>
+            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">
+                Login
+            </button>
         </div>
     </header>
 </div>
@@ -81,39 +82,24 @@
                     <c:when test="${empty cntsDtoList}">
                         <li class="col-2">
                             <div>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6w87nBO1Els6CpW4xtA5TgpqvYMU3CB_F5g&usqp=CAU" class="css-qhzw1o-StyledImg">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6w87nBO1Els6CpW4xtA5TgpqvYMU3CB_F5g&usqp=CAU"
+                                     class="css-qhzw1o-StyledImg">
                                 <h3>아직 평가하신 작품이 없어요!</h3>
                             </div>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <c:forEach var="cnts" items="${cntsDtoList}">
-                            <c:choose>
-                                <c:when test="${cnts.cnts_visib_stat eq 0}">
-                                        <li class="col-2">
-                                            <a href="#" onclick='alert("비공개 처리된 컨텐츠 입니다.")'>
-                                                <div><img
-                                                        src="https://dummyimage.com/138x202/000/fff&text=hidden-contents" class="col-2">
-                                                </div>
-                                                <div>비공개 컨텐츠</div>
-                                            </a>
-                                        </li>
-                                </c:when>
-                                <c:otherwise>
-                                        <li class="css-8y23cj">
-                                            <a href='<c:url value="/contents/${cnts.cnts_id}"/>'>
-                                                <div><img src="${cnts.cnts_postr_img}" class="col2"></div>
-                                                <div>${cnts.cnts_title}</div>
-                                            </a>
-                                        </li>
-                                </c:otherwise>
-                            </c:choose>
+                                    <li class="css-8y23cj">
+                                        <a href='<c:url value="/contents/${cnts.cnts_id}"/>'>
+                                            <div><img src="${cnts.cnts_postr_img}" class="col2"></div>
+                                            <div>${cnts.cnts_title}</div>
+                                        </a>
+                                    </li>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
-                </li>
             </ul>
-
         </div>
     </section>
 </main>
@@ -237,40 +223,7 @@
             © 2021 Copyright:
             <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
         </div>
-        <!-- Copyright -->
     </div>
 </footer>
-
 </body>
-
-</html>
-
-
-<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-<div class="content">
-    <div class="responsive-content">
-        <div>
-            <h1> 찜 누른 컨텐츠 모아보기 </h1>
-        </div>
-
-
-        <div>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-youtube"></i>
-            <div class="content-preview">
-            </div>
-            <div class="content-teenager-girl-movie"></div>
-
-        </div>
-    </div>
-
-
-    <div class="footer">
-        <div>about</div>
-        <div>2022 PSVM팀</div>
-    </div>
-</div>
-</body>
-
 </html>

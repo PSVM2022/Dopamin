@@ -2,9 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ page session="false" %>
-<%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
 <%
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Pragma", "no-cache");
@@ -13,8 +11,8 @@
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
        value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/mypage'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '마이페이지'}"/>
 <html>
 <html lang="ko">
 
@@ -33,12 +31,13 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/rcss/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/mypage/modifyUserInform.css'/>">
 </head>
 
 <body>
@@ -71,66 +70,46 @@
     </header>
 </div>
 
-
-<!--
-    내용 컨테이너. 여러개의 Row를 만들 때 secion 태그로 나눕니다.
-    container - 컨텐츠를 포함하고 채우고 정렬하는 부트스트랩 기본구성요소
-    py-5 - padding y축방향(위아래)로 5 단위만큼 부여 https://getbootstrap.kr/docs/5.0/utilities/spacing/ 참고
-    // 컨텐츠를 넣는 태그 만들 때 무조건 section 태그에 container py-5 주고 시작합니다(위 아래 컨텐츠간 여백)
-    bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
--->
 <main>
-    <section class="container py-5">
-        <c:if test="${empty pntList}">
-            nothing!
-        </c:if>
-        <div class="table-responsive">
-            <table class="table table-responsive table-borderless">
-                <thead>
-                <tr class="bg-light">
-                    <th scope="col" width="10%"></th>
-                    <th scope="col" width="20%"></th>
-                    <th scope="col" width="20%"></th>
-                    <th scope="col" width="10%"></th>
-                    <th scope="col" width="10%"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="list" items="${pntList}">
-                    <tr>
-                        <td><fmt:formatDate value="${list.in_date}" pattern="yyyy.MM.dd"/></td>
-<%--                        <td>${list.in_date}</td>--%>
-                        <td><div style = "height:100%"><img src="${list.item_img}"></div></td>
-                        <td>
-                            <div>
-                                    [${list.grd_nm}] ${list.item_nm}
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                    ${list.pnt_use_id}<br>
-                                수량 : 1
-                            </div>
-                        </td>
-                        <td> ${list.use_stat == 0 ? '환불' : '구매' }</td>
-                        <td>
-                            <c:if test="${list.use_stat == 0}">
-                                -${list.pnt}
-                            </c:if>
-                            <c:if test="${list.use_stat == 1}">
-                                ${list.pnt}
-                            </c:if>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-
-            </table>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">${userDto.user_id}</span><span class="text-black-50">${userDto.email}</span><span> </span></div>
+            </div>
+            <div class="col-md-5 border-right">
 
 
+                <form action="<c:url value="/mypage/userinform"/>" method="post">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">성</label><input type="text" class="form-control" value="${userDto.f_nm}"></div>
+                            <div class="col-md-6"><label class="labels">이름</label><input type="text" class="form-control" value="${userDto.l_nm}"></div>
+                            <div class="col-md-6"><label class="labels">닉네임</label><input type="text" class="form-control" value="${userDto.nic}"></div>
+
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label class="labels">전화번호</label><input type="text" class="form-control" placeholder="enter phone number" value="${userDto.phone_num}"></div>
+                            <div class="col-md-12"><label class="labels">MBTI</label><input type="text" class="form-control" placeholder="enter address line 2" value="mbti"></div>
+                            <div class="col-md-12"><label class="labels">나라</label><input type="text" class="form-control" placeholder="enter address line 2" value="${userDto.cnty}"></div>
+                            <div class="col-md-12"><label class="labels">생일</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                            <div class="col-md-12"><label class="labels">성별</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6"><label class="labels">선호 장르1</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                        </div>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">변경</button></div>
+                    </div>
+                </form>
+
+
+            </div>
         </div>
-    </section>
-
+    </div>
+    </div>
+    </div>
 
 </main>
 

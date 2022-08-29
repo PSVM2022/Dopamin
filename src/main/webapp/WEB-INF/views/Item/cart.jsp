@@ -9,7 +9,7 @@
     response.setDateHeader("Expires", 0); %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}" />
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}" />
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}" />
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}" />
 <html>
@@ -152,7 +152,7 @@
                                             <input type="hidden" id="price${i-1}" value="${list[i-1].item_price}">
                                             <h6 id="item_price" class="mb-0">${list[i-1].item_price} DP</h6>
                                         </div>
-                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end" data-item_id="${list[i].item_id}">
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end" data-item_id="${list[i-1].item_id}">
                                             <input type="hidden" id="id${i-1}" value="${list[i-1].item_id}">
                                             <button type="button" class="btn-close" aria-label="Close"></button>
                                         </div>

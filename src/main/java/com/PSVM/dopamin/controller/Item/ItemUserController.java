@@ -5,12 +5,15 @@ import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.domain.Item.OrderDto;
 import com.PSVM.dopamin.error.Message;
 import com.PSVM.dopamin.service.Item.ItemUserService;
+import com.PSVM.dopamin.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -26,14 +29,18 @@ public class ItemUserController {
     public ItemUserController(ItemUserService itemUserService) {
         this.itemUserService = itemUserService;
     }
-
+    @Autowired
+    UserService userService;
     //환불 버튼 클릭시
     //프런트에서 받아올 데이터는, item_id, item_price 이렇게만 받아오면 될듯.
     @PostMapping("/exchangeItem")
     @ResponseBody
-    public void exchange_Item(@RequestBody OrderDto orderDto, HttpSession session){
+    public String exchange_Item(@RequestBody OrderDto orderDto, HttpSession session, HttpServletRequest request){
         //로그인 체크해야함.지금은 하드코딩
-        String user_id="ldhoon0813";
+        if(!userService.loginCheck(request)){
+            return "redirect:/login/login";
+        }
+        String user_id= (String) session.getAttribute("USERID");
         try{
             orderDto.setUser_id(user_id);
             int item_stat=itemUserService.getStat_from_possesion(orderDto);
@@ -49,6 +56,8 @@ public class ItemUserController {
                     .message1(e.getMessage())
                     .build();
         }
+
+        return null;
     }
 
     //구매 버튼 클릭 시
@@ -65,8 +74,8 @@ public class ItemUserController {
             {
                 System.out.println("orderDto = " + orderDto);
             }
-            int cart_id=2;
-            String user_id="ldhoon0813";
+            int cart_id= (int) session.getAttribute("CARTID");
+            String user_id= (String) session.getAttribute("USERID");
             if(orderDtoList.size()==0 || orderDtoList==null){
                 throw new Exception("구매할 아이템을 선택해주세요.");
             }
@@ -87,11 +96,8 @@ public class ItemUserController {
         //cart_item은 (item_id,cart_id)가 PK
         //cart_id는 session으로부터 얻어올 수 있음
         //item_id는 장바구니에서 삭제 버튼 누를 때 넘어오게 하자.
-        int cart_id=2;//원래는 세션에서 가지고 와야함. 하드코딩임
+        int cart_id= (int) session.getAttribute("CARTID");//원래는 세션에서 가지고 와야함. 하드코딩임
         try {
-            if(login_check()){
-                throw new NullPointerException("로그인해야합니다.");
-            }
             Map map=new HashMap<>();
             map.put("item_id",item_id);
             map.put("cart_id",cart_id);
@@ -109,14 +115,14 @@ public class ItemUserController {
     }
     @PostMapping("/addCart/{item_id}")//장바구니에 아이템 담기
     @ResponseBody
-    public ResponseEntity<String> add_Cart(@PathVariable Integer item_id){
+    public ResponseEntity<String> add_Cart(@PathVariable Integer item_id,HttpSession session){
         //세션에서 cart_id 받는다. 지금은 세션이 없으니깐, 임시로 cart_id 하드코딩
         Cart_ItemDto cart_itemDto=new Cart_ItemDto();
         try {
             int find_result=0;
-            int cart_id=2;//세션에서 받아오기-> 지금은 하드코딩
+            int cart_id= (int) session.getAttribute("CARTID");//세션에서 받아오기-> 지금은 하드코딩
             cart_itemDto.setCart_id(cart_id);
-            String user_id="ldhoon0813";//세션에서 받아오기 -> 하드코딩
+            String user_id= (String) session.getAttribute("USERID");
             cart_itemDto.setIn_user(user_id);
             cart_itemDto.setUp_user(user_id);
             //없는 경우
@@ -145,19 +151,21 @@ public class ItemUserController {
         }
     }
     @GetMapping("/cart")//장바구니 조회
-    public String cart_list(Model m, HttpSession session){
+    public String cart_list(Model m,HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+
+        if(!userService.loginCheck(request)){
+            return "redirect:/login/login";
+        }
         //1. 세션에 "유저"의 "장바구니번호"를 가져온다.
 //        int cart_id=session.getAttribute("ldhoon0813"); //
-        int cart_id=2; //-> 지금은 하드코딩
-        String user_id="ldhoon0813";
+        int cart_id= (int) session.getAttribute("CARTID");
+        String user_id= (String) session.getAttribute("USERID");
         //url로 그냥 들어오는 경우는 어떻게 처리할 것인가? login_check 함수로 체크하자.
         //장바구니에 들어있는 아이템 정보들을 다 가져와야함.
         //장바구니_아이템 테이블과 아이템 테이블 아이템_아이디 로 조인해서 원하는 값만 뽑아내자.
         //가져와야하는 정보들: 아이템_아이디, 리스트_아이디, 등급_이름, 아이템_이름, 아이템_설명, 아이템_가격, 아이템_이미지
-        try {
-            if(login_check()){
-                throw new NullPointerException("로그인해야합니다.");
-            }//지금은 로그인이 항상 되어있다는 가정하에 진행. 추후, 수정해야함.
+        try {//지금은 로그인이 항상 되어있다는 가정하에 진행. 추후, 수정해야함.
             int my_point= itemUserService.getUser_point(user_id);
             int total_point=0;
             List<ItemDto> list=itemUserService.getCart_list(cart_id);
@@ -179,8 +187,5 @@ public class ItemUserController {
             return "Item/cart";
         }
         //없으면 없는대로 보여주면 됨.
-    }
-    private boolean login_check() {
-        return false;
     }
 }

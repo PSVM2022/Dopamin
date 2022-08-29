@@ -12,7 +12,7 @@
 %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <html>
@@ -53,12 +53,12 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
+            <li><a href="/psvm/" class="nav-link px-2 link-secondary">홈</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
+            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -75,41 +75,37 @@
 <main>
     <section class="container py-5">
         <h2>Contents Review</h2><br>
-        <div class="table-responsive">
-            <table class="table table-responsive table-borderless">
+
+        <div>
+            <table>
                 <thead>
-                <tr class="bg-light">
-                    <th scope="col" width="5%"><input class="form-check-input" type="checkbox"></th>
-                    <th scope="col" width="5%">#</th>
-                    <th scope="col" width="10%">컨텐츠 제목</th>
-                    <th scope="col" width="20%">내용</th>
-                    <th scope="col" width="20%">등록일</th>
+                <tr>
+                    <th><input type="checkbox" id="allCheck" name="allCheck"></th>
+                    <th>#</th>
+                    <th>컨텐츠 제목</th>
+                    <th>내용</th>
+                    <th>등록일</th>
                     <%--                <th scope="col" class="text-end" width="20%"><span>등록일</span></th>--%>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="revw" items="${revwDtoList}">
-                    <c:choose>
-                        <c:when test="${revw.revw_visib_stat eq 0}">
-                            <tr>
-                                <th scope="row"><input class="form-check-input" type="checkbox" value="${revw.revw_id}"></th>
-                                <td> 가려진 한줄평 입니다.</td>
-                            </tr>
-                        </c:when>
-                        <c:otherwise>
-                            <tr>
-                                <th scope="row"><input class="form-check-input" type="checkbox" value="${revw.revw_id}"></th>
-                                <td>${revw.revw_id}</td>
-                                <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
-                                <td>${revw.revw_body}</td>
-                                <td>${revw.up_date}</td>
-                            </tr>
-                        </c:otherwise>
-                    </c:choose>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="revwId" value="${revw.revw_id}"></th>
+                        <td>${revw.revw_id}</td>
+                        <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
+                        <td>${revw.revw_body}</td>
+                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.MM.dd"/></td>
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
+        <div>
+            <input type="button" calss="btn" value="선택삭제" onclick="deleteValue();">
+        </div>
+
     </section>
 </main>
 
@@ -146,95 +142,61 @@
             <!-- Right -->
         </section>
         <!-- Section: Social media -->
-
-        <!-- Section: Links  -->
-        <section class="">
-            <div class="container text-center text-md-start mt-5">
-                <!-- Grid row -->
-                <div class="row mt-3">
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>Company name
-                        </h6>
-                        <p>
-                            Here you can use rows and columns to organize your footer content. Lorem
-                            ipsum
-                            dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Products
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Angular</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">React</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Vue</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Laravel</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Useful links
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Pricing</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Settings</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Orders</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Help</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-                        <p>
-                            <i class="fas fa-envelope me-3"></i>
-                            info@example.com
-                        </p>
-                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-            </div>
-        </section>
-        <!-- Section: Links  -->
-
-        <!-- Copyright -->
-        <div class="text-center p-4 copyright">
-            © 2021 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
     </div>
+
 </footer>
+
+<script type="text/javascript">
+    $(function () {
+        var chkObj = document.getElementsByName("revwId");
+        var rowCnt = chkObj.length;
+
+        $("input[name='allCheck']").click(function () {
+            var chk_listArr = $("input[name='revwId']");
+            for (var i = 0; i < chk_listArr.length; i++) {
+                chk_listArr[i].checked = this.checked;
+            }
+        });
+        $("input[name='revwId']").click(function () {
+            if ($("input[name='revwId']:checked").length == rowCnt) {
+                $("input[name='allCheck']")[0].checked = true;
+            } else {
+                $("input[name='allCheck']")[0].checked = false;
+            }
+        });
+    });
+
+    function deleteValue() {
+        var valueArr = new Array();
+        var list = $("input[name='revwId']");
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].checked) { //선택되어 있으면 배열에 값을 저장함
+                valueArr.push(list[i].value);
+            }
+        }
+        console.log(valueArr)
+
+
+        if (valueArr.length == 0) {
+            alert("선택된 한줄평이 없습니다.");
+        } else {
+            var chk = confirm("정말 삭제하시겠습니까?");
+            $.ajax({
+                url: '/psvm/mypage/deleterevw',                    // 전송 URL
+                type: 'POST',                // POST 방식
+                headers: {"content-type": "application/json"},
+                data: JSON.stringify(valueArr),
+                success: function () {
+                    alert("삭제 성공");
+                    location.replace("revw")
+                },
+                error: function () {
+                    alert("error")
+                } // 에러가 발생했을 때, 호출될 함수
+            });
+        }
+    }
+</script>
 
 </body>
 
