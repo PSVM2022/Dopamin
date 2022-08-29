@@ -9,20 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 상점 UI, 카테고리별 UI">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" afterDir="false" />
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="feat: 관리자 UI 삭제, 공개, 비공개, 수정 예외처리까지 완료&#10;     (예외처리: Controller에서 검증 후 발생한 에러에 대한 메시지 ajax에서 받아서 출력하는 것까지 완료)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ItemAdminMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/cart_main_not_use.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/item_admin.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemMain.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemMain.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist_skin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/common/item.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/item.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -356,7 +345,7 @@
       <workItem from="1660147896528" duration="3387000" />
       <workItem from="1660151890086" duration="19000" />
       <workItem from="1660179384443" duration="224000" />
-      <workItem from="1661487360073" duration="110753000" />
+      <workItem from="1661487360073" duration="111381000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 컨텐츠 전체보기 작성중. 컨트롤러, 서비스 수정중이라 다시 커밋할 예정">
       <created>1660301301297</created>
@@ -526,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661587852577</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat: 관리자 UI 삭제, 공개, 비공개, 수정 예외처리까지 완료&#10;     (예외처리: Controller에서 검증 후 발생한 에러에 대한 메시지 ajax에서 받아서 출력하는 것까지 완료)">
+      <created>1661776425430</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1661776425430</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +574,8 @@
     <MESSAGE value="feat: 장바구니 UI + 아이템 상점 메인페이지&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능" />
     <MESSAGE value="feat: 장바구니 UI + 아이템 상점 메인페이지 변경&#10;  + 추가 구현해야할 사항: 예외 메세지, 되돌아가는 위치, 아이템 검색 기능" />
     <MESSAGE value="feat: 상점 UI, 카테고리별 UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 상점 UI, 카테고리별 UI" />
+    <MESSAGE value="feat: 관리자 UI 삭제, 공개, 비공개, 수정 예외처리까지 완료&#10;     (예외처리: Controller에서 검증 후 발생한 에러에 대한 메시지 ajax에서 받아서 출력하는 것까지 완료)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 관리자 UI 삭제, 공개, 비공개, 수정 예외처리까지 완료&#10;     (예외처리: Controller에서 검증 후 발생한 에러에 대한 메시지 ajax에서 받아서 출력하는 것까지 완료)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

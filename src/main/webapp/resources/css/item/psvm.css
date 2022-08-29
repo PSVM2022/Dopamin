@@ -318,8 +318,8 @@
     /* position: absolute; */
     left: 0;
     top: 40px;
-    width: 105px;
-    margin-left: 2.4rem;
+    width: 10rem;
+    margin-left: 0.6rem;
 }
 #nav ul a{
     font-weight:normal;
@@ -374,8 +374,7 @@
     width: 5rem;
     border-radius: 100px;
 }
-#wrap #gameContainer .board_start
-img{width:100%;}
+#wrap #gameContainer .board_start img{width:100%;}
 #wrap #gameContainer .board_bg{width:508px; height:508px; top:40px; left:0px; z-index: 2;}
 #wrap #gameContainer .board_bg img{width:100%;}
 #wrap #gameContainer .board_on{

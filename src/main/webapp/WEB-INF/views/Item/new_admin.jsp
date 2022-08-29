@@ -209,10 +209,10 @@
     <div style="display: flex">
         <div>
             <ul id="nav">
-                <li><a href="#">메인 메뉴</a>
+                <li><a href="/psvm/item/item_admin">아이템 관리자</a>
                     <ul>
-                        <li><a href="#">1-1</a></li>
-                        <li><a href="#">1-2</a></li>
+                        <li><a href="/psvm/item/item_admin">아이템 관리</a></li>
+                        <li><a href="/psvm/item/register">아이템 등록</a></li>
                     </ul>
                 </li>
                 <li><a href="#">메인 메뉴</a>
