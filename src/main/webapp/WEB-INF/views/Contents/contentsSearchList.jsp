@@ -104,7 +104,7 @@
                         <div class="card-body">
                             <h4 class="card-title">${i.cnts_title}</h4>
                             <h6 class="text-muted">${i.cnts_subttl}</h6>
-                            <p class="card-text">${i.cnts_op_date}</p>
+                            <p class="card-text">${i.cnts_op_date} : ${i.cnts_cnty}</p>
                         </div>
                     </div>
                 </div>
