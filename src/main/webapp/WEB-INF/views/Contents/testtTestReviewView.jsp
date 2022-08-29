@@ -35,9 +35,14 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/test.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!--ajax, script 밑에 위치-->
+
+
 </head>
 
 <body>
@@ -78,57 +83,30 @@
         </div>
     </header>
 </div>
+
 <main>
-    <!--TEST추가코드-->
-    <button id="sendBtn" type="button">SEND</button>
-    <h2>한줄평 테스트 JSP</h2>
-    <div id="reviewList"></div>
-    <script>
-
-        let showList = function (cnts_id) {
-            $.ajax({
-                type:'GET',       // 요청 메서드
-                url: '/psvm/contents/${cnts_id}/reviews',  // 요청 URI
-                success : function(result){
-                    ${"#reviewList"}.html(result);
-                },
-                error   : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
-            }); // $.ajax()
-        }
-
-        $(document).ready(function(){
-            $("#sendBtn").click(function(){
-                showList(cnts_id);
-            });
-        });
-        <!--TEST추가코드-->
     <div class="content">
         <br>
         <div style="text-align:center">
+            <div><!--컨텐츠 한줄평 조회-->
+                <c:forEach var="i" items="${reviewDtoList}">
+                <td>${i.revw_id}</td>
+                <td>${i.user_id}</td>
+                <td>${i.revw_body}</td>
+                <td>${i.in_date}</td>
+                    <br>
+                </c:forEach>
+            </div>
             <div><!--한줄평 작성-->
                 <div><textarea class="form-control" row="1"> </textarea></div>
                 <div>
                     <button class="btn">등록</button>
                 </div>
             </div>
-            <div><!--컨텐츠 한줄평 조회-->
-                <td>${reviewDto.revw_id}</td>
-                <br>
-                <td>${reviewDto.user_id}</td>
-                <br>
-                <td>${reviewDto.revw_body}</td>
-                <td>${reviewDto.in_date}</td>
-            </div>
-
-            <!-- 한줄평 top 3-->
-            <div></div>
-
-            </tr>
-
         </div>
     </div>
 
-    </div>
+
 </main>
 
 <footer class="footer mt-auto py-3 bg-light">

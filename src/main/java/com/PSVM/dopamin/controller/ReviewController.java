@@ -15,21 +15,26 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@RequestMapping("/contents")
 public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
 
     //지정 컨텐츠의 모든 한줄평 조회
-    @GetMapping("/contents/{cnts_id}/reviews")
-    public ResponseEntity<List<ReviewDto>> list(@PathVariable Integer cnts_id) {
-        List<ReviewDto> list = null;
+    @GetMapping("/{cnts_id}/testReviewView")
+    public String list(@PathVariable Integer cnts_id, Model model) {
+        List<ReviewDto> reviewDtoList = null;
         try {
-            list = reviewService.getRevwList(cnts_id);
-            return new ResponseEntity<List<ReviewDto>>(list, HttpStatus.OK); //200
+            reviewDtoList = reviewService.getRevwList(cnts_id);
+            //System.out.println(list);
+            model.addAttribute("reviewDtoList", reviewDtoList);
+            //return new ResponseEntity<List<ReviewDto>>(list, HttpStatus.OK); //200
+            return "Contents/testtTestReviewView";
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<List<ReviewDto>>(HttpStatus.BAD_REQUEST); //400
+            return null;    //임시로 return null
+            //return new ResponseEntity<List<ReviewDto>>(HttpStatus.BAD_REQUEST); //400
         }
     }
     /*  List<ReviewDto> list = null;
@@ -38,7 +43,7 @@ public class ReviewController {
         return "Contents/contentsView";}*/
 
     //한줄평 등록
-    @PostMapping("/contents/{cnts_id}/reviews1")
+    @PostMapping("/{cnts_id}/reviews1")
     public ResponseEntity<String> insertRevw(@RequestBody ReviewDto reviewDto, BindingResult bindingResult, @PathVariable Integer cnts_id, HttpSession session) {
         //String user_id = (String)session.getAttribute("user_id");
         System.out.println("bindingResult = " + bindingResult);
@@ -60,7 +65,7 @@ public class ReviewController {
 
 
     //한줄평 수정
-    @PostMapping("/contents/{cnts_id}/reviews2")
+    @PostMapping("/{cnts_id}/reviews2")
     //@ResponseBody
     public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, ReviewDto reviewDto, HttpSession session) {
         //String user_id = (String)session.getAttribute("user_id");
@@ -68,6 +73,7 @@ public class ReviewController {
         //System.out.println(bal);
         String user_id = "sohyeon9253333";
         reviewDto.setUser_id(user_id);
+        reviewDto.setCnts_id(cnts_id);  //0827 추가함
         System.out.println(reviewDto);
 
         try {
@@ -81,7 +87,7 @@ public class ReviewController {
     }
 
     //한줄평 삭제
-    @DeleteMapping("/contents/{cnts_id}/reviews/{revw_id}")
+    @DeleteMapping("/{cnts_id}/reviews/{revw_id}")
     public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @PathVariable Integer revw_id, HttpSession session) {
         //String user_id = (String)session.getAttribute("user_id");
         String user_id = "eunbi77";     //주의!!!!!!! 바꿔줄것
