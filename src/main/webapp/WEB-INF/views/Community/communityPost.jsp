@@ -13,7 +13,7 @@
 <html lang="ko">
 
 <head>
-    <title>포스트제목 - 도파민</title>
+    <title>${post.post_title} - 도파민</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png'/>">
@@ -38,6 +38,7 @@
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type='text/javascript' src="<c:url value='/js/parseTime.js'/>"></script>
 </head>
 
 <body class="bg-light">
@@ -73,35 +74,36 @@
 <main>
     <section name="post-main" class="container py-4">
         <div class="bbs-title">
-            <h3><a href="/">데일리 베스트 판</a></h3>
+            <h3><a href="<c:url value='/community/${post.bbs_id}'/>">${bbsNm} 판</a></h3>
         </div>
 
-        <div class="post-target-title">새로운 아침이 밝았습니다. 시민들은 눈을뜨고</div>
+        <div class="post-target-title">${post.post_title}</div>
         <div class="post-info">
-            <span class="writer-id">
-                <i class="fa-solid fa-award"></i>
-                도파맨
-            </span>
-            <span class="post-time">
-                <i class="fa-solid fa-clock"></i>
-                2시간 전
-            </span>
-            <span class="post-views">
-                <i class="fa-solid fa-eye"></i>
-                1234
-            </span>
+            <div>
+                <span class="writer-id">
+                    <i class="fa-solid fa-award"></i>
+                    ${post.user_id}
+                </span>
+                <span id="post_time" class="post-time">
+                    <i class="fa-solid fa-clock"></i>
+                </span>
+                <span class="post-views">
+                    <i class="fa-solid fa-eye"></i>
+                    ${post.post_view_cnt}
+                </span>
+            </div>
+            <div>
+                <form id="post_form">
+                </form>
+            </div>
         </div>
         <div class="post-link">
             <i class="fa-solid fa-link"></i>
-            http://localhost:8080/psvm/post/100
+            <a href=${nowUrl}>${nowUrl}</a>
         </div>
 
         <div class="post-content">
-            대통령으로 선거될 수 있는 자는 국회의원의 피선거권이 있고 선거일 현재 40세에 달하여야 한다. 체포·구속·압수 또는 수색을 할 때에는 적법한 절차에 따라
-            검사의 신청에 의하여 법관이 발부한 영장을 제시하여야 한다. 다만, 현행범인인 경우와 장기 3년 이상의 형에 해당하는 죄를 범하고 도피 또는 증거인멸의 염려가
-            있을 때에는 사후에 영장을 청구할 수 있다.
-
-            이 헌법시행 당시의 법령과 조약은 이 헌법에 위배되지 아니하는 한 그 효력을 지속한다. 대법관은 대법원장의 제청으로 국회의 동의를 얻어 대통령이 임명한다.
+            ${post.post_body}
         </div>
 
         <div class="post-reaction">
@@ -177,7 +179,6 @@
                 </div>
             </div>
         </div>
-
     </section>
 
     <section name="pagination" class="container py-2 mb-4">
@@ -185,77 +186,8 @@
             <a href="#" class="active">1</a>
         </div>
     </section>
-    <section name="bbs" class="container py-3">
-        <table class="bbs-page">
-            <colgroup class="bbs-define-col">
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-            </colgroup>
-            <thead>
-            <tr>
-                <th scope="col">번호</th>
-                <th scope="col">제목</th>
-                <th scope="col">글쓴이</th>
-                <th scope="col">좋아요</th>
-                <th scope="col">날짜</th>
-                <th scope="col">조회수</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="bbs-post">
-                <td>100</td>
-                <td class="bbs-post-title">
-                    <span>제목 25자 미넘으면 elf다?</span>
-                    <span class="post-comment-cnt">24</span>
-                </td>
-                <td>테슬라맨</td>
-                <td>144</td>
-                <td>22/08/25</td>
-                <td>12451</td>
-            </tr>
-            </tbody>
-        </table>
 
-        <div class="button-wrapper">
-            <button class="write-button">
-                <i class="fa-solid fa-pencil"></i> 글쓰기
-            </button>
-        </div>
-
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
-        </div>
-
-        <div class="search-container">
-            <form action="/" class="search-form" method="get">
-                <select class="search-option" name="option">
-                    <option value="all">제목+내용</option>
-                    <option value="subject">제목</option>
-                    <option value="content">내용</option>
-                    <option value="comment">댓글</option>
-                    <option value="writer">닉네임</option>
-                    s
-                </select>
-
-                <input type="text" name="keyword" class="search-input" type="text" value=""
-                       placeholder="검색">
-                <input type="submit" class="search-button" value="검색">
-            </form>
-
-        </div>
-    </section>
-
+    <c:import url="bbs.jsp"/>
 </main>
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
@@ -381,4 +313,30 @@
 </footer>
 </body>
 
+<script>
+  let writer = "${post.user_id}";
+  // TODO: sessionID 교체
+  let sessionId = "${post.user_id}"
+  let postTitle = "${post.post_title}"
+
+  $(document).ready(function () {
+    $('#post_time').text(parseTime('<c:out value="${post.in_date}"/>'))
+
+    if (writer == sessionId) {
+      $('#post_form').append(
+          "<button id='removeBtn'><i class='fa-solid fa-pen-to-square'></i> 수정</button>" +
+          "<button id='deleteBtn'><i class='fa-solid fa-eraser'></i> 삭제</button>"
+      )
+
+      $('#deleteBtn').on('click', function () {
+        if (!confirm('\"' + postTitle + '\"' + " 포스트를 삭제하시겠습니까?")) return false;
+
+        let form = $('#post_form')
+        form.attr('action', "<c:url value='/post/remove/${post.post_id}'/>")
+        form.attr('method', 'post')
+        form.submit();
+      })
+    }
+  })
+</script>
 </html>

@@ -77,7 +77,7 @@ th:nth-child(3) {
 th:nth-child(4),
 th:nth-child(5),
 th:nth-child(6) {
-  width: 7%;
+  width: 8%;
 }
 
 td {
@@ -85,6 +85,9 @@ td {
   height: 2rem;
 }
 
+.bbs-post:hover {
+  background-color: var(--main-grey2);
+}
 
 .bbs-post-title {
   width: 500px;
