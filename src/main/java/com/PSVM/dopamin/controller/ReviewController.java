@@ -95,11 +95,11 @@ public class ReviewController {
     }
 
     //한줄평 삭제
-    @DeleteMapping("/{cnts_id}/reviews3/")
+    @PostMapping("/{cnts_id}/reviews3")
     @ResponseBody
-    public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, ReviewDto reviewDto, HttpSession session) {
+    public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
-
+        System.out.println("revw_id"+revw_id);
         try {
             int rowCnt = reviewService.deleteRevw(revw_id, cnts_id, user_id);
             if (rowCnt!=1)  //삭제되면 1 반환됨

@@ -102,30 +102,27 @@
         };
 
         //한줄평 삭제 -> 유저 본인이 작성한 한줄평인지 alert 띄워줘야함
-        function deleteBtn(cnts_id) {
-            let revw_id = $(this).parent().attr("button");
-            //$(".deleteBtn").click(function () {      -> 이거쓰면 무한루프 돌듯이 클릭 횟수만큼 alert창 띄워짐
-            console.log("click");
-
-            console.log(revw_id);
+        function deleteBtn(cnts_id, revw_id) {
+            //let revw_id = $(this).parent().attr("deleteBtn");
+            //console.log(revw_id);
+            //console.log(cnts_id);
+            //console.log("click");
             //alert("여기까지")  //여기까지는 실행됨
-
-
             $.ajax({
-                type: 'DELETE',       // 요청 메서드
+                type: 'POST',       // 요청 메서드
                 url: '/psvm/contents/' + cnts_id + '/reviews3',
-                headers: {"content-type": "application/json"},
-                data: JSON.stringify(revw_id),
+                data: {
+                    "revw_id": revw_id
+                },
                 success: function () {
                     alert("한줄평이 삭제되었습니다.")
                     location.replace('/psvm/contents/' + cnts_id + '/testReviewView')
                 },
                 error: function () {// 에러가 발생했을 때, 호출될 함수
-                    alert("잠시 후 다시 시도해주세요.")
+                    alert("삭제 권한이 없습니다.")
                     //location.replace('/psvm/contents/' + cnts_id + '/testReviewView')
                 }
             }); // $.ajax()
-            // });
         };
 
 
@@ -179,14 +176,12 @@
             <div>
                 <c:forEach var="i" items="${reviewDtoList}">
                     <%--                <td>${i.revw_id}</td> 컨텐츠당 revw_id가 갱신되는게 아니라 안넣는게 나을듯?--%>
-                    <div class="button" data="${i.revw_id}">
                         <td>${i.user_id}</td>
                         <td>${i.revw_body}</td>
                         <td>${i.in_date}</td>
-                        <td><input type="button" value="수정" class="updateBtn" onclick="updateBtn(${cnts_id})"></td>
-                        <td><input type="button" value="삭제" class="deleteBtn" onclick="deleteBtn(${cnts_id})"></td>
+                        <td><input type="button" value="수정" class="updateBtn" onclick="updateBtn(${i.cnts_id})"></td>
+                        <td><input type="button" value="삭제" class="deleteBtn" onclick="deleteBtn(${i.cnts_id}, ${i.revw_id})"></td>
                         <br>
-                    </div>
                 </c:forEach>
             </div>
             <!--한줄평 작성-->
