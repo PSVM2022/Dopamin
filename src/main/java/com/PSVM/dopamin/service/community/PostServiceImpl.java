@@ -4,6 +4,7 @@ import com.PSVM.dopamin.dao.community.BbsDao;
 import com.PSVM.dopamin.dao.community.PostDao;
 import com.PSVM.dopamin.domain.community.PostDto;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +35,22 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getPage(Map<String, Integer> map) throws Exception {
+    public List<PostDto> getPage(Integer bbsId, Integer page) throws Exception {
         final Integer pageSize = 25;
-        Integer offset = (map.get("page") - 1) * pageSize;
+        Integer offset = (page - 1) * pageSize;
 
+        Map map = new HashMap<>();
+        map.put("bbsId", bbsId);
+        map.put("page", page);
         map.put("pageSize", pageSize);
         map.put("offset", offset);
         return postDao.selectPage(map);
+    }
+
+    @Override
+    public PostDto read(Integer postId) throws Exception {
+        postDao.increaseViewCnt(postId);
+        return postDao.select(postId);
     }
 
     @Override
@@ -49,12 +59,19 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public int remove(PostDto post) throws SQLException{
-        return postDao.delete(post.getPost_id(), post.getUser_id());
+    public int remove(Integer postId, String writer) throws SQLException {
+        return postDao.delete(postId, writer);
     }
 
     @Override
     public String getBbsName(Integer bbsId) throws SQLException {
         return bbsDao.getName(bbsId);
+    }
+
+    @Override
+    public String getBbsNameByPostId(Integer postId) throws SQLException {
+        PostDto post = postDao.findById(postId);
+
+        return bbsDao.getName(post.getBbs_id());
     }
 }

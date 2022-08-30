@@ -3,7 +3,6 @@ package com.PSVM.dopamin.service.community;
 import com.PSVM.dopamin.domain.community.PostDto;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 public interface PostService {
 
@@ -13,11 +12,15 @@ public interface PostService {
 
     List<PostDto> getAllList(Integer bbsId) throws Exception;
 
-    List<PostDto> getPage(Map<String, Integer> map) throws Exception;
+    List<PostDto> getPage(Integer bbsId, Integer page) throws Exception;
+
+    PostDto read(Integer postId) throws Exception;
 
     int modify(PostDto post) throws SQLException;
 
-    int remove(PostDto post) throws SQLException;
+    int remove(Integer postId, String writer) throws SQLException;
 
     String getBbsName(Integer bbsId) throws SQLException;
+
+    String getBbsNameByPostId(Integer postId) throws SQLException;
 }
