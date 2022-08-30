@@ -32,34 +32,39 @@ public class ReviewController {
         try {
             reviewDtoList = reviewService.getRevwList(cnts_id);
             //System.out.println(list);
+            model.addAttribute("cnts_id",cnts_id);
             model.addAttribute("reviewDtoList", reviewDtoList);
             //return new ResponseEntity<List<ReviewDto>>(list, HttpStatus.OK); //200
             return "Contents/testtTestReviewView";
         } catch (Exception e) {
             e.printStackTrace();
-            return null;    //임시로 return null
+            return null;    //임시로 return null 바꿔줄것!!!!!
             //return new ResponseEntity<List<ReviewDto>>(HttpStatus.BAD_REQUEST); //400
         }
     }
-    /*  List<ReviewDto> list = null;
-        List<ReviewDto> reviewDtoList = reviewService.getRevwList(cnts_id);
-        model.addAttribute("reviewDtoList", reviewDtoList);
-        return "Contents/contentsView";}*/
 
     //한줄평 등록
     @PostMapping("/{cnts_id}/reviews1")
-    public ResponseEntity<String> insertRevw(@RequestBody ReviewDto reviewDto, BindingResult bindingResult, @PathVariable Integer cnts_id, HttpSession session) {
+    @ResponseBody
+    public ResponseEntity<String> insertRevw(@RequestParam("review") String revw_body, @PathVariable Integer cnts_id, HttpSession session) throws Exception {
 
+        //System.out.println(revw_body);
+
+        ReviewDto reviewDto = new ReviewDto();
         String user_id = (String) session.getAttribute("USERID");
-        System.out.println("bindingResult = " + bindingResult);
-        System.out.println(reviewDto);
+//        System.out.println(reviewDto);
         reviewDto.setUser_id(user_id);
         reviewDto.setCnts_id(cnts_id);
+        reviewDto.setRevw_body(revw_body);
+        reviewDto.setIn_user(user_id);
+        reviewDto.setUp_user(user_id);
         //System.out.println(reviewDto);
+        //reviewService.insertRevw(reviewDto);
 
         try {
-            if(reviewService.insertRevw(reviewDto)!=1)
-                throw new Exception("글쓰기 실패");
+            reviewService.insertRevw(reviewDto);
+//            if(reviewService.insertRevw(reviewDto)!=1)
+//                throw new Exception("글쓰기 실패");
             return new ResponseEntity<>("write succsess", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +75,7 @@ public class ReviewController {
 
     //한줄평 수정
     @PostMapping("/{cnts_id}/reviews2")
-    //@ResponseBody
+    @ResponseBody
     public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, ReviewDto reviewDto, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
         //String bal = reviewDto.getRevw_body();
@@ -90,8 +95,9 @@ public class ReviewController {
     }
 
     //한줄평 삭제
-    @DeleteMapping("/{cnts_id}/reviews/{revw_id}")
-    public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @PathVariable Integer revw_id, HttpSession session) {
+    @DeleteMapping("/{cnts_id}/reviews3/")
+    @ResponseBody
+    public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, ReviewDto reviewDto, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
 
         try {
