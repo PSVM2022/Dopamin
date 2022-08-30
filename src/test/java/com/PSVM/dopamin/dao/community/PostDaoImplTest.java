@@ -3,6 +3,7 @@ package com.PSVM.dopamin.dao.community;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import com.PSVM.dopamin.dao.UserDao;
 import com.PSVM.dopamin.domain.UserDto;
@@ -198,5 +199,23 @@ public class PostDaoImplTest {
         Integer today_bbs_id = bbsDao.findByPrefixName("일일").getBbsId();
         postDao.deleteAll(today_bbs_id);
         assertEquals(postDao.count(today_bbs_id), 0);
+    }
+
+    @Test
+    public void select() throws SQLException {
+        Integer post_id = 264;
+        PostDto post = postDao.select(post_id);
+        assertEquals(post.getPost_id(), post_id);
+    }
+
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void delete() throws SQLException {
+        Integer postId = 263;
+        String writer = "user1";
+        postDao.delete(postId, writer);
+
+        assertNull(postDao.select(postId));
     }
 }

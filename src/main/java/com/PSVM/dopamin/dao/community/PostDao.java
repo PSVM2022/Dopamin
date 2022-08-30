@@ -21,6 +21,8 @@ public interface PostDao {
 
     List<PostDto> selectAll(Integer bbsId) throws SQLException;
 
+    PostDto select(Integer postId) throws SQLException;
+
     int update(PostDto post) throws SQLException;
 
     int hidePost(Map map) throws SQLException;
@@ -35,5 +37,5 @@ public interface PostDao {
 
     int deleteAll(Integer bbsId) throws SQLException;
 
-    int delete(Integer postId, String user_id) throws SQLException;
+    int delete(Integer postId, String writer) throws SQLException;
 }

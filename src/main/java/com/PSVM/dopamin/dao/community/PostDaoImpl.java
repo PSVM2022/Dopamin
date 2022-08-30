@@ -55,6 +55,12 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
+    public PostDto select(Integer postId) throws SQLException {
+        return session.selectOne(namespace + "select", postId);
+    }
+
+
+    @Override
     public int update(PostDto post) throws SQLException {
         return session.update(namespace + "update", post);
     }
@@ -66,7 +72,7 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public int increaseViewCnt(Integer postId) throws SQLException {
-        return 0;
+        return session.update(namespace + "increase1View", postId);
     }
 
     @Override

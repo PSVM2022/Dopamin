@@ -223,4 +223,29 @@ public class PostDto {
     public int hashCode() {
         return Objects.hash(bbs_id, user_id, post_title, post_body);
     }
+
+    @Override
+    public String toString() {
+        return "PostDto{" +
+            "post_id=" + post_id +
+            ", bbs_id=" + bbs_id +
+            ", user_id='" + user_id + '\'' +
+            ", post_title='" + post_title + '\'' +
+            ", post_body='" + post_body + '\'' +
+            ", post_reply_cnt=" + post_reply_cnt +
+            ", post_view_cnt=" + post_view_cnt +
+            ", post_visib=" + post_visib +
+            ", post_prior=" + post_prior +
+            ", post_atch1='" + post_atch1 + '\'' +
+            ", post_atch2='" + post_atch2 + '\'' +
+            ", post_atch3='" + post_atch3 + '\'' +
+            ", post_atch4='" + post_atch4 + '\'' +
+            ", post_atch5='" + post_atch5 + '\'' +
+            ", post_rept_cnt=" + post_rept_cnt +
+            ", in_date=" + in_date +
+            ", in_user='" + in_user + '\'' +
+            ", up_date=" + up_date +
+            ", up_user='" + up_user + '\'' +
+            '}';
+    }
 }

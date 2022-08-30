@@ -4,8 +4,10 @@
 
 <mapper namespace="com.PSVM.dopamin.dao.community.postMapper">
   <delete id="deletePostInBbs" parameterType="map">
-    DELETE FROM POST
-    WHERE bbs_id = #{bbs_id} AND user_id = #{user_id}
+    DELETE
+    FROM POST
+    WHERE post_id = #{postId}
+      AND user_id = #{writer}
   </delete>
 
   <insert id="insert" parameterType="post">
@@ -69,13 +71,21 @@
     WHERE bbs_id = #{bbsId}
       AND post_visib = 1
     ORDER BY post_prior ASC, post_id DESC
-    LIMIT #{offset}, #{pageSize};
+      LIMIT #{offset}, #{pageSize};
   </select>
 
   <select id="selectAll" parameterType="int" resultType="post">
-    SELECT * FROM POST
-    WHERE bbs_id = #{bbs_id} AND post_visib = 1;
+    SELECT *
+    FROM POST
+    WHERE bbs_id = #{bbs_id}
+      AND post_visib = 1;
     ORDER BY post_id DESC;
+  </select>
+
+  <select id="select" parameterType="int" resultType="post">
+    SELECT *
+    FROM POST
+    WHERE post_id = #{postId};
   </select>
 
   <update id="update" parameterType="post">
