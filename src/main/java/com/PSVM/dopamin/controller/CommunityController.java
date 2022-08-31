@@ -6,6 +6,8 @@ import com.PSVM.dopamin.domain.community.BbsDto;
 import com.PSVM.dopamin.domain.community.PostDto;
 import com.PSVM.dopamin.service.community.CommunityService;
 import com.PSVM.dopamin.service.community.PostService;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CommunityController {
@@ -36,7 +39,7 @@ public class CommunityController {
     }
 
     @GetMapping("/community/{bbsId}")
-    public String board(
+    public String bbs(
         @PathVariable Integer bbsId,
         @RequestParam(required = false, defaultValue = "1") Integer page,
         Model m
@@ -105,6 +108,42 @@ public class CommunityController {
         }
 
         return "redirect:/community/" + bbsId;
+    }
+
+    @GetMapping("/community/write/{bbsId}")
+    public String postEditor(@PathVariable Integer bbsId, Model m) throws SQLException {
+        String bbsNm = postService.getBbsName(bbsId);
+        m.addAttribute("bbsNm", bbsNm);
+
+        return "Community/communityPostEditor";
+    }
+
+    @PostMapping("/community/write")
+    public String write(PostDto post, Model m, HttpSession session, RedirectAttributes rattr)
+        throws SQLException {
+        // TODO: session 처리
+        String writer = "user1";
+        post.setUser_id(writer);
+        post.setIn_user(writer);
+        post.setUp_user(writer);
+        post.setIn_date(new Timestamp(System.currentTimeMillis()));
+
+        // TODO: 시간 관련 정보는 Service 레이어로 로직 이동
+
+        try {
+            if (postService.write(post) != 1) {
+                throw new Exception("포스트 등록 실패");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            rattr.addFlashAttribute("msg", "error");
+            m.addAttribute(post);
+            return "redirect:/community/write/" + post.getBbs_id();
+        }
+
+        Integer myPostId = postService.getRecenltyPostedId(writer);
+        return "redirect:/post/" + myPostId;
     }
 
     @GetMapping("/post/edit")
