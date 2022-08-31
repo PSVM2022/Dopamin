@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUser(String user_id) {
+    public UserDto getUser(String user_id){
         return userDao.selectUser(user_id);
     }
 
@@ -78,16 +78,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int modifyUserInform(UserDto userDto) {
+    public int modifyUserInfo(UserDto userDto) {
         //변경 전 비밀번호 가져오기
-        String beforePwd = userDao.selectUserPwd(userDto.getUser_id());
-        //수정
-        userDao.updateUser(userDto);
-        userDao.updateUserPwd(userDto);
-        //USER_PWD_UPD_HIST DB에서 delete 후 insert
-        userDao.deleteUserPwdHist(userDto.getUser_id());
+//        String beforePwd = userDao.selectUserPwd(userDto.getUser_id());
+        //유저 수정하기// 아이디, 이메일 변경 안됨. 비번 변경은 따로 작성.
+         return userDao.updateUser(userDto);
+
+//
+//        userDao.updateUserPwd(userDto);
+//        //USER_PWD_UPD_HIST DB에서 delete 후 insert //없는 값 delete 해도 에러 안나서 따로 예외처리 안함.
+//        userDao.deleteUserPwdHist(userDto.getUser_id());
         //변경 전 비밀번호 넣기
-        return userDao.insertUserPwdHist(userDto.getUser_id(),beforePwd);
+//        return userDao.insertUserPwdHist(userDto.getUser_id(),beforePwd);
     }
 
     @Override

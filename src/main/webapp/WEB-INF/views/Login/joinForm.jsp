@@ -212,9 +212,8 @@
                         <div>
                             <button type="button" id="mailCheckBtn">인증번호 전송</button>
                         </div>
-                        <div class="authNum-box">
-                            <input placeholder="인증번호 6자리"
-                                   disabled="disabled" maxlength="6" id="authNum">
+                        <div id="authNum-box">
+                            <input placeholder="인증번호 6자리" maxlength="6" id="authNum">
                             <button id="authNumCheckBtn">확인</button>
                         </div>
                     </td>
@@ -353,7 +352,7 @@
 
 <script>
     $(document).ready(function () {
-        $(".authNum-box").hide();
+        $("#authNum-box").hide();
         var now = new Date();
         var year = now.getFullYear();
         var mon = (now.getMonth() + 1) > 9 ? '' + (now.getMonth() + 1) : '0' + (now.getMonth() + 1);
@@ -379,6 +378,7 @@
         $("#day  > option[value=" + day + "]").attr("selected", "true");
     })
 
+
     //아이디 체크 버튼
     $("#idCheckBtn").click(function () {
         $.ajax({
@@ -401,8 +401,7 @@
             alert("비밀번호가 일치하지 않습니다.")
             return;
         }
-
-        if ($("#userEmail1").attr("disabled") == undefined) {
+        if ($("#userEmail1").attr("readonly") == undefined) {
             alert("이메일 본인인증을 해주세요!")
             return;
         }
@@ -434,7 +433,6 @@
                     alert(result.successJoin);
                     location.href = "<c:url value="/login/login"/>";
                 }
-
                 //{"필드이름": "에러메세지"}
                 console.log(result)
                 console.log("result.user_id" + result.user_id)
@@ -447,7 +445,6 @@
                 console.log("result.nic" + result.nic)
                 console.log("result.btdt" + result.btdt)
                 console.log("result.sex" + result.sex)
-
                 $("#user_id_msg").html(result.user_id = (result.user_id !== undefined ? result.user_id : ""));
                 $("#user_pwd_msg").html(result.user_pwd = (result.user_pwd !== undefined ? result.user_pwd : ""));
                 $("#f_nm_msg").html(result.f_nm = (result.f_nm !== undefined ? result.f_nm : ""));
@@ -463,7 +460,6 @@
                 alert("error")
             }
         });
-
     });
 
     //인증번호 전송 버튼
@@ -483,8 +479,10 @@
             data: {email: email},
             success: function (response) {
                 alert(response.msg);
-                $('#authNum').attr("disabled", false);
                 $("#authNum-box").show();
+            },
+            error: function (){
+                alert("다시 시도해주세요.")
             }
         }); // end ajax
     }); // end send eamil
@@ -501,13 +499,15 @@
                 console.log(response)
                 if (response.msg === "SUCCESS") {
                     alert("인증이 완료되었습니다.")
-                    $(".authNum-box").hide()
+                    $("#authNum-box").hide();
                     $("#userEmail1").attr("readonly", true);
                     $("#userEmail2").attr("readonly", true);
                 } else {
                     alert("인증번호가 일치하지않습니다.")
                 }
-
+            },
+            error: function (){
+                alert("다시 시도해주세요.")
             }
         });
 

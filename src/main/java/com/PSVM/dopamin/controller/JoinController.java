@@ -32,6 +32,7 @@ public class JoinController {
     @ExceptionHandler(UserValidatorException.class)
     @ResponseBody
     public Map catcher1(UserValidatorException ve) {
+        //{"필드이름" : "에러 메세지",...}
         return ve.getError_msg();
     }
 

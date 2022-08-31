@@ -203,7 +203,7 @@ public class UserDaoImplTest {
         assertEquals(1,rowCnt1);
         assertEquals(1,rowCnt2);
         assertEquals(1,rowCnt3);
-        assertEquals((Integer) 8,user.getFav_genre1());
+        assertEquals("액션",user.getFav_genre1());
     }
 
     @Test

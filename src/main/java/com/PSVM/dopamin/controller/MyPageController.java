@@ -14,7 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/mypage")
@@ -183,29 +185,45 @@ public class MyPageController {
         return "Mypage/point";
     }
 
-    @PostMapping("/usercheck")
-    public String modifyUserCheck(HttpSession session, String pwd, RedirectAttributes redirectAttributes, Model model) {
-        System.out.println("getMapping /userinform");
-        String id = (String) session.getAttribute("USERID");
-        System.out.println("id = " + id);
-        //비밀번호 불일치
-        if (!userService.idPwdCheck(id, pwd)) {
-            redirectAttributes.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다!");
-            return "redirect:/mypage";
+
+
+    @PostMapping("/userInfo")
+    public String userInfocheck(HttpSession session, @RequestParam String pwd, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            String id = (String) session.getAttribute("USERID");
+            System.out.println("id = " + id);
+            System.out.println("pwd = " + pwd);
+            Map result = new HashMap();
+            //비밀번호 불일치
+            if (!userService.idPwdCheck(id, pwd)) {
+                redirectAttributes.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다!");
+                return "redirect:/mypage";
+            }
+            //비밀번호 일치하면 userInfo 페이지로.
+            UserDto userDto = userService.getUser(id);
+            model.addAttribute("userDto", userDto);
+        } catch (Exception e) {
+            //아직 예외처리 안함.
+            return "redirect:/login/login";
         }
-        UserDto userDto = userService.getUser(id);
-        model.addAttribute("userDto", userDto);
-        return "Mypage/modifyUserInform";
+        return "Mypage/userInfo";
     }
 
-    @PostMapping("/userinform")
-    public String modifyUserInform(UserDto userDto, RedirectAttributes redirectAttributes, HttpSession session) {
-        //수정 완료
+    @GetMapping("/userInfo")
+    public String userInfo(){
+        return "redirect:/mypage";
+    }
+
+    @PostMapping("/modifyuserinfo")
+    @ResponseBody
+    public Map modifyUserInfo(@RequestBody UserDto userDto, HttpSession session) {
+        //유효성 검사, 예외 처리 필요.
         String user_id = (String) session.getAttribute("USERID");
         userDto.setUser_id(user_id);
-        userService.modifyUserInform(userDto);
-        redirectAttributes.addFlashAttribute("msg", "MODIFY_SUCCESS");
-        return "redirect:/mypage";
+        userService.modifyUserInfo(userDto);
+        Map result = new HashMap();
+        result.put("msg","내 정보가 수정되었습니다");
+        return result;
     }
 
     //한줄평 삭제

@@ -248,8 +248,8 @@
                     <input type=hidden value="" name="mbti">
                 </div>
             </div>
+            <button type="submit" id="submitBtn">제출하기</button>
         </form>
-        <button type="submit" id="submitBtn">제출하기</button>
     </div>
 
 </main>

@@ -40,6 +40,7 @@ public class MyPageServiceImple implements MyPageService {
 
     @Override
     public MyPageDto selectMyInfo(String user_id) {
+        //유저 아이디가 null일때 예외처리 필요!
         MyPageDto myPageDto = myPageDao.selectMyInfo(user_id);
         try {
             String item_img = myPageDao.selectSkin(user_id);

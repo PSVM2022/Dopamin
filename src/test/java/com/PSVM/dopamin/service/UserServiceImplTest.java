@@ -170,8 +170,8 @@ public class UserServiceImplTest {
 
         //then
         assertEquals(1,rowCnt);
-        assertEquals((Integer)12,user.getFav_genre4());
-        assertEquals((Integer) 5,user.getFav_genre5());
+        assertEquals("다큐",user.getFav_genre4());
+        assertEquals("공포",user.getFav_genre5());
     }
 
     @Test
@@ -198,16 +198,19 @@ public class UserServiceImplTest {
         //가입
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         userService.joinUser(userDto);
-        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", "액션", "로맨스", "코미디", "다큐", "공포", new Date(), "testid");
+        UserDto upUserDto = new UserDto(userDto.getUser_id(),"", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", "액션", "로맨스", "코미디", "다큐", "", new Date(), "testid");
 
         //when
         //수정
-        int rowCnt = userService.modifyUserInform(upUserDto);
+        int rowCnt = userService.modifyUserInfo(upUserDto);
         userDto = userService.getUser("testid");
-        String pwd = userDao.selectUserPwd("testid");
+        System.out.println("upUserDto = " + upUserDto);
+        System.out.println("userDto = " + userDto);
         //then
+        assertEquals(1,rowCnt);
 
-        assertEquals("upPwd",pwd);
+        assertEquals(upUserDto.getPhone_num(), userDto.getPhone_num());
+        assertEquals(upUserDto.getNic(),userDto.getNic());
         assertEquals("upFnm",userDto.getF_nm());
     }
 

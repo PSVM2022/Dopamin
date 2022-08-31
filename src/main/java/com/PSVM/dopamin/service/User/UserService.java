@@ -22,7 +22,7 @@ public interface UserService {
 
     int surveyDo(UserDto userDto);
 
-    int modifyUserInform(UserDto userDto);
+    int modifyUserInfo(UserDto userDto);
 
     boolean idValidCheck(String id);
 
