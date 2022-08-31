@@ -3,7 +3,7 @@ package com.PSVM.dopamin.controller.Item;
 import com.PSVM.dopamin.domain.Item.*;
 import com.PSVM.dopamin.error.Message;
 import com.PSVM.dopamin.service.Item.ItemAdminService;
-import com.PSVM.dopamin.service.UserService;
+import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,31 +41,8 @@ public class ItemAdminController {
         binder.setValidator(new ItemValidator ());
     }//webdatabinder에 validator 추가
 
-    @GetMapping("/")//상점 메인 페이지
-    public String item_main(Model m,RedirectAttributes redirectAttributes){//각 아이템 항목별 TOP5를 보여주기
-        //통계 각 항목별 TOP4 가져와 보여주면 됨.
-        try {
-            List<ItemDto> list=itemAdminService.getPage("스킨");
-            //List<ItemDto> list2=itemAdminService.getPage("꾸미기");
-           // System.out.println("list2 = " + list2);
-            m.addAttribute("list",list);
-            //m.addAttribute("list2",list2);
-            return "Item/cart_main2";
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @GetMapping("/ite1m")//메인페이지 인기글 8개씩 가져옴
-    public ResponseEntity<List<ItemDto>> get_pop(Integer num){
-        List<ItemDto> list=null;
-        try{
-            list=itemAdminService.get_pop(num);
-            System.out.println("list.size() = " + list.size());
-            return new ResponseEntity<List<ItemDto>>(list,HttpStatus.OK);
-        }catch(Exception e){
-            return new ResponseEntity<List<ItemDto>>(HttpStatus.BAD_REQUEST);
-        }
-    }
+
+
     @GetMapping("/list/{order}")
     public String list(@PathVariable String order,Model m, RedirectAttributes redirectAttributes){
         //로그인 여부와 상관없이
@@ -104,8 +81,9 @@ public class ItemAdminController {
         //어떠한 행위를 한다는 것 자체가, 어떤 유저에게는 "아 이 페이지에 뭐가 있구나" 알고,
         //어떻게든 접근하려하지 않을까?
         //그럴바에는 해당 ur로 접근 시, 관리자가 아니라면 에러메시지 보단, 상점 메인페이지 반환하자.
-        if(check_Admin(request)){
-            return "redirect:/item/";
+        int userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+        if(userstat!=0){
+            return "redirect:/";
         }
         try{
             List<ItemDto> list_0= itemAdminService.getStat_0();//상태 0이 비공개
@@ -123,9 +101,11 @@ public class ItemAdminController {
     }
     @GetMapping(value="/register")
     public String write(Model m,HttpServletRequest request){
-        if(check_Admin(request)){
-            return "redirect:/item/";
-        }//관리자가 아니라면 비관리자들한테 이페이지의 존재 유무를 알릴 필요가 없기 때문에
+        int userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+        if(userstat!=0){
+            return "redirect:/";
+        }
+        //관리자가 아니라면 비관리자들한테 이페이지의 존재 유무를 알릴 필요가 없기 때문에
         //item 메인화면으로 돌아간다.
         return "Item/new_item_register";
     }
@@ -157,8 +137,13 @@ public class ItemAdminController {
     }
     @DeleteMapping("/remove/{item_id}")//삭제니깐 delete매핑
     @ResponseBody
-    public ResponseEntity<Object> remove(@PathVariable Integer item_id){
+    public ResponseEntity<Object> remove(@PathVariable Integer item_id,HttpServletRequest request){
+
         try {
+            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+            if(userstat==null || userstat!=0){
+                throw new Exception("삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+            }
             int row_cnt= itemAdminService.remove(item_id);//삭제 성공 시 1반환
             if(row_cnt!=1){
                 throw new Exception("삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -173,8 +158,12 @@ public class ItemAdminController {
     }
     @PatchMapping("/noshowtoshow/{item_id}")//비공개를 공개로
     @ResponseBody
-    public ResponseEntity<Object> show(@PathVariable Integer item_id){
+    public ResponseEntity<Object> show(@PathVariable Integer item_id,HttpServletRequest request){
         try {
+            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+            if(userstat==null || userstat!=0){
+                throw new Exception("공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+            }
             int result= itemAdminService.show(item_id);
             if(result!=1){
                 throw new Exception("공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -189,8 +178,12 @@ public class ItemAdminController {
     }
     @PatchMapping("/showtonoshow/{item_id}")//공개를 비공개로
     @ResponseBody
-    public ResponseEntity<Object> noShow(@PathVariable Integer item_id){
+    public ResponseEntity<Object> noShow(@PathVariable Integer item_id,HttpServletRequest request){
         try {
+            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+            if(userstat==null || userstat!=0){
+                throw new Exception("비공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+            }
             int result= itemAdminService.noShow(item_id);
             if(result!=1){
                 throw new Exception("비공개에 실패했습니다. 잠시 후 다시 시도해주세요.");
@@ -205,9 +198,13 @@ public class ItemAdminController {
     }
     @PatchMapping("/modify")
     @ResponseBody
-    public ResponseEntity<Object> modify(@RequestBody ItemForm itemForm){
+    public ResponseEntity<Object> modify(@RequestBody ItemForm itemForm,HttpServletRequest request){
         String[] grd_nm={"1등급","2등급","3등급","4등급","5등급"};
         try {
+            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+            if(userstat==null || userstat!=0){
+                throw new Exception("수정에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+            }
             //입력받은 데이터에 대해서 백단에서 검증이 필요함.
             if(itemForm.getItem_nm()==null){
                 throw new Exception("아이템 이름을 입력해 주세요.");
@@ -235,17 +232,5 @@ public class ItemAdminController {
                     .build();
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
-    }
-
-    @GetMapping("")
-    //관리자 인증 구현을 했지만, 아직 세션이 없어 NullpointException Error 터짐
-    private boolean check_Admin(HttpServletRequest request) {
-//        HttpSession httpsession= request.getSession();
-//        String user_id=(String) httpsession.getAttribute("id");
-//        int user_stat=itemService.getUser_stat(user_id);
-//        if(user_stat==0){
-//            return true;
-//        }
-        return false;
     }
 }

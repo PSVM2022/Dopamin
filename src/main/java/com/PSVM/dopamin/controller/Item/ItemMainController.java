@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 public class ItemMainController {
 
     @GetMapping("/item")
-    public String item_main(HttpSession session){
+    public String item_main(){
         return "Item/new_itemMain";
     }
     @GetMapping("/cart")
-    public String cart_main(HttpSession session) {return "Item/new_cart";}
+    public String cart_main() {return "Item/new_cart";}
 }
