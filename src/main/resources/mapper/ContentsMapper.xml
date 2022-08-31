@@ -170,4 +170,13 @@
         where c.cnts_visib_stat = 1
           and u.user_id = #{user_id}
     </select>
+
+    <select id="selectUserId" parameterType="string" resultType="com.PSVM.dopamin.domain.ContentsUserDto">
+        select u.nic
+        from CNTS c
+                 join USER u on c.cnts_genre1 = u.fav_genre1
+        where c.cnts_visib_stat = 1
+          and u.user_id = #{user_id}
+            LIMIT 1
+    </select>
 </mapper>

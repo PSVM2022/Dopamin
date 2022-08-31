@@ -1,9 +1,6 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.ContentsDto;
-import com.PSVM.dopamin.domain.ContentsWishDto;
-import com.PSVM.dopamin.domain.PageHandler;
-import com.PSVM.dopamin.domain.SearchCondition;
+import com.PSVM.dopamin.domain.*;
 import com.PSVM.dopamin.service.ContentsService;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +28,6 @@ public class ContentsController {
     //@Autowired
     //ReviewService reviewService;
 
-    /*임시 로그인 세션
-    public void login(HttpServletRequest request) {
-        //임시로 session에 id넣기
-        //  세션 객체를 얻어오기
-        HttpSession session = request.getSession();
-        //  세션 객체에 id를 저장
-        session.setAttribute("id", "sohyeon9253");
-    }*/
-
     //예외처리
     @ExceptionHandler(Exception.class)
         public String catcher(Exception e) {
@@ -50,15 +38,24 @@ public class ContentsController {
     //메인 페이지
     @GetMapping("/")
     public String contentsList(HttpServletRequest request, Model model) {
-
         //설문조사 안했다면
         HttpSession session = request.getSession(false);
         if(session!=null) {
-                //SURVEY가 존재한다면,아직 설문 조사안한것
-                if(session.getAttribute("SURVEY")!=null){
-                    return "Login/survey";
-                }
+            //SURVEY가 존재한다면,아직 설문 조사안한것
+            if(session.getAttribute("SURVEY")!=null){
+                return "Login/survey";
+            }
+            //로그인 한 상태
+            String user_id = (String) session.getAttribute("USERID");
+            List<ContentsUserDto> userContentsDtoList = contentsService.selectUserAllCnts(user_id);
+            ContentsUserDto contentsUserDto = contentsService.selectUserId(user_id);
+            //System.out.println("로그인 유저정보: "+user_id);
+            model.addAttribute("userContentsDtoList", userContentsDtoList);
+            model.addAttribute("contentsUserDto", contentsUserDto);
+
         }
+
+        //로그인 안한 상태
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 
         model.addAttribute("cntsDtoList", cntsDtoList);
@@ -71,7 +68,6 @@ public class ContentsController {
     @GetMapping("/contents/{cnts_id}")
     public String contentsView(@PathVariable(required = false) Integer cnts_id, HttpServletRequest request, HttpSession session, Model model) {
         String user_id = (String)session.getAttribute("USERID");
-
 
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 

@@ -1,14 +1,15 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.CntsEvalDto;
-import com.PSVM.dopamin.domain.ContentsDto;
-import com.PSVM.dopamin.domain.ContentsWishDto;
-import com.PSVM.dopamin.domain.SearchCondition;
+import com.PSVM.dopamin.domain.*;
 
 import java.util.List;
 
 public interface ContentsDao {
     List<ContentsDto> selectAllCnts();
+
+    List<ContentsUserDto> selectUserAllCnts(String user_id);
+
+    ContentsUserDto selectUserId(String user_id);
 
     ContentsDto selectCnts(Integer cnts_id);
 
