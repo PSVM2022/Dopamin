@@ -5,5 +5,5 @@
 
 <footer class="footer">
     <a href="https://github.com/PSVM2022">dopamin by PSVM © 2022.</a>
-    <p>powered by kebab and Issac toast.</p>
+    powered by kebab and Issac toast.
 </footer>
