@@ -57,7 +57,7 @@
                 },
                 error: function () {// 에러가 발생했을 때, 호출될 함수
                     alert("잠시 후 다시 시도해 주세요")
-                    //location.replace('/psvm/contents/' + cnts_id + '/testReviewView')
+                    //location.replace('/psvm/contents/' + cnts_id + '/contentsReview')
                 }
             }); // $.ajax()
         };
@@ -153,7 +153,7 @@
                     <input type="button" class="dislike-btn" value="싫어요" onclick="alert('싫어요 평가 완료');"/>
 
                     <button class="show_cnts_rt" style="margin-left: 37rem; margin-top: 0.2rem; border-radius: 0.3rem;" type="button">
-                        <a href="/psvm/contents/${contentsDto.cnts_id}/testReviewView/" class="nav-link px-2 link-dark">컨텐츠
+                        <a href="/psvm/contents/${contentsDto.cnts_id}/contentsReview/" class="nav-link px-2 link-dark">컨텐츠
                         한줄평 보러가기</a>
                     </button>
 

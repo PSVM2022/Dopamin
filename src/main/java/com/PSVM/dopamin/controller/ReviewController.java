@@ -8,10 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class ReviewController {
     UserService userService;
 
     //지정 컨텐츠의 모든 한줄평 조회
-    @GetMapping("/{cnts_id}/testReviewView")
+    @GetMapping("/{cnts_id}/contentsReview")
     public String list(@PathVariable Integer cnts_id, Model model) {
         List<ReviewDto> reviewDtoList = null;
         try {
@@ -35,7 +33,7 @@ public class ReviewController {
             model.addAttribute("cnts_id",cnts_id);
             model.addAttribute("reviewDtoList", reviewDtoList);
             //return new ResponseEntity<List<ReviewDto>>(list, HttpStatus.OK); //200
-            return "Contents/testtTestReviewView";
+            return "Contents/contentsReview";
         } catch (Exception e) {
             e.printStackTrace();
             return null;    //임시로 return null 바꿔줄것!!!!!
