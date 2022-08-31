@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPageMain.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -43,161 +43,130 @@
 </head>
 
 <body>
-<script>
-	let msg = "${msg}";
-	if(msg!="") alert(msg);
-</script>
-<div class="container py-5">
-    <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
-    <header
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
-        <a href="<c:url value='/'/>"
-           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
-            <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
-        </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/psvm/" class="nav-link px-2 link-secondary">홈</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
-            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
-        </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" class="form-control form-control-dark" placeholder="Search..."
-                   aria-label="Search">
-        </form>
-
-        <div class="text-end">
-            <button type="button" class="btn btn-warning me-2">Login</button>
-        </div>
-    </header>
-</div>
 <main>
-    <section class="container py-5">
-
-        <header class="py-5 bg-image-full"
-                style="background-image: url('${empty myPageDto.item_img ? 'https://dummyimage.com/600x400/ff7800/ffffff&text=DOPAMIN' : myPageDto.item_img}')">
-            <div class="text-center my-5">
-                <img class="img-fluid rounded-circle mb-4" src="${myPageDto.prf_img}" alt="..."/>
-                <h1 class="text-black fs-3 fw-bolder">${myPageDto.nic}님</h1>
-                <p class="text-black mb-0">
-                    <c:choose>
-                        <c:when test="${empty myPageDto.fav_genre1}">
-                            ${myPageDto.nic}님 설문 조사를 참여해주세요! 설문 링크 첨부
-                        </c:when>
-                        <c:otherwise>
-                            ${myPageDto.nic}님은 ${myPageDto.genre_nm} 장르를
-                            좋아하는 ${myPageDto.age}대 ${myPageDto.sex == 0 ? '여성' : '남성'}입니다.
-                        </c:otherwise>
-                    </c:choose>
-                </p>
-                <p class="text-black mb-0">dopa_point = ${myPageDto.dopa_point}</p>
-            </div>
+    <section class="container">
+        <header class="user-skin"
+                style="background-image: url('${empty myPageDto.item_img ? 'https://dummyimage.com/600x400/ff7800/ffffff&text=_' : myPageDto.item_img}')">
         </header>
-    </section>
-
-    <section class="container py-5">
-        <div><h2>활동 기록</h2><br></div>
-        <div class="row gx-lg-5">
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
+        <div class="user-profile">
+            <img class="user_profile_img" src="${myPageDto.prf_img}" alt="..."/>
+            <h1 class="user_nickname">${myPageDto.nic}님</h1>
+            <p class="user_info">
+                <c:choose>
+                    <c:when test="${empty myPageDto.fav_genre1}">
+                        ${myPageDto.nic}님 설문 조사를 참여해주세요! 설문 링크 첨부
+                    </c:when>
+                    <c:otherwise>
+                        ${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를
+                        좋아하는 ${myPageDto.age}대 ${myPageDto.sex == 0 ? '여성' : '남성'}입니다.
+                    </c:otherwise>
+                </c:choose>
+            </p>
+            <p>dopa_point = ${myPageDto.dopa_point}</p>
+        </div>
+        <div><h2 class="mypage_h2">활동 기록</h2></div>
+        <div class="list">
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
                          onclick="location.href='/psvm/mypage/revw'">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-comment"></i></div>
-                        <h2 class="fs-4 fw-bold">Contents Review</h2>
-                        <p class="mb-0">작성한 컨텐츠 한줄평을 확인하세요!</p>
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-comment mypage-icon"></i></div>
+                        <h2 class="mypage-title">Contents Review</h2>
+                        <p class="mypage-subtitle">작성한 컨텐츠 한줄평을 확인하세요!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
+
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
                          onclick="location.href='/psvm/mypage/revwrt'">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-thumbs-up"></i></div>
-                        <h2 class="fs-4 fw-bold">Contents Good Review</h2>
-                        <p class="mb-0">좋아요 누른 컨텐츠 한줄평을 확인하세요!</p>
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-thumbs-up mypage-icon"></i></div>
+                        <h2 class="mypage-title">Contents Good Review</h2>
+                        <p class="mypage-subtitle">좋아요 누른 한줄평을 확인하세요!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
+
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
                          onclick="location.href='/psvm/mypage/cntswish'">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-heart"></i></div>
-                        <h2 class="fs-4 fw-bold">Contents Wish</h2>
-                        <p class="mb-0">찜한 컨텐츠를 확인하세요!</p>
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-heart mypage-icon"></i></div>
+                        <h2 class="mypage-title">Contents Wish</h2>
+                        <p class="mypage-subtitle">찜한 컨텐츠를 확인하세요!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
+
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
                          onclick="location.href='/psvm/mypage/cntsview'">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-heart"></i></div>
-                        <h2 class="fs-4 fw-bold">Contents View</h2>
-                        <p class="mb-0">조회한 컨텐츠를 확인하세요!</p>
+                        <div class="mypage-cardc"><i class="fa-solid fa-circle-play mypage-icon"></i>
+                        </div>
+                        <h2 class="mypage-title">Contents View</h2>
+                        <p class="mypage-subtitle">조회한 컨텐츠를 확인하세요!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
+
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
                          onclick="location.href='/psvm/mypage/post'">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-comment-smile"></i></div>
-                        <h2 class="fs-4 fw-bold">Community Post</h2>
-                        <p class="mb-0">작성한 게시물를 확인하세요!!</p>
+                        <div class="mypage-cardc"><i class="fa-solid fa-face-smile mypage-icon"></i></div>
+                        <h2 class="mypage-title">Community Post</h2>
+                        <p class="mypage-subtitle">작성한 게시물를 확인하세요!!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="container py-5">
-        <div><h2>회원 정보</h2><br></div>
-        <div class="row gx-lg-5">
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+    <section class="container">
+        <div><h2 class="mypage_h2">회원 정보</h2></div>
+        <div class="list">
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
+                         onclick="location.href='/psvm'">
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-user mypage-icon"></i></div>
+                        <h2 class="mypage-title">Edit User Info</h2>
+                        <p class="mypage-subtitle">회원정보를 수정하세요!</p>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-user"></i></div>
-                        <h2 class="fs-4 fw-bold">Edit User Info</h2>
-                        <p class="mb-0">회원정보를 수정하세요!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
                          onclick="location.href='/psvm/mypage/point'">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-coins"></i></div>
-                        <h2 class="fs-4 fw-bold">Points</h2>
-                        <p class="mb-0">포인트 사용 내역을 확인하세요!</p>
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-coins mypage-icon"></i></div>
+                        <h2 class="mypage-title">Points</h2>
+                        <p class="mypage-subtitle">포인트 사용 내역을 확인하세요!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
+
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
                          onclick="location.href='/psvm/mypage/myItem'">
-                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
-                                class="fa-solid fa-gift"></i></div>
-                        <h2 class="fs-4 fw-bold">My Items</h2>
-                        <p class="mb-0">보유 아이템 목록을 확인하세요!</p>
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-gift mypage-icon"></i></div>
+                        <h2 class="mypage-title">My Items</h2>
+                        <p class="mypage-subtitle">보유 아이템 목록을 확인하세요!</p>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 
 </main>
