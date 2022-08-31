@@ -124,16 +124,10 @@
                         if(!$.isNumeric(item_price)){
                             alert("가격은 숫자만 가능합니다!");
                         }
-                        console.log(item_nm);
-                        console.log(item_grd);
-                        console.log(item_dsc);
-                        console.log(item_price);
-
                         let dto={"item_id":item_id,"item_nm":item_nm,"item_grd":item_grd,"item_dsc":item_dsc,"item_price":item_price}
 
                         if(confirm("등록하시겠습니까?")){
                             //ajax통신
-                            console.log(dto);
                             $.ajax({
                                 type:'PATCH',
                                 url:'/psvm/item/modify',

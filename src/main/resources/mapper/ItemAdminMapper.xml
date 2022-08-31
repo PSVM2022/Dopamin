@@ -79,19 +79,18 @@
         DELETE FROM ITEM
         WHERE item_nm=#{item_name}
     </select>
-
+    <select id="increase_user_point" parameterType="Pymt_DetlDto">
+        UPDATE USER set dopa_point=#{chg_pnt} where user_id=#{user_id}
+    </select>
+    <select id="get_user_point" parameterType="String" resultType="Integer">
+        SELECT dopa_point FROM USER WHERE user_id=#{user_id}
+    </select>
+    <select id="insert_pymt_detl" parameterType="Pymt_DetlDto" resultType="Integer">
+        INSERT INTO PYMT_DETL
+            (user_id,pymt_amt,chg_pnt,pg_corp_detl_id,in_date,in_user,up_user)
+        VALUES
+            (#{user_id},#{pymt_amt},#{chg_pnt},#{pg_corp_detl_id},now(),#{user_id},#{user_id})
+    </select>
 </mapper>
-<!--    <select id="UserStatus" parameterType="String" resultType="int">-->
-<!--        SELECT user_stat-->
-<!--        FROM USER-->
-<!--        WHERE user_id=#{user_id}-->
-<!--    </select>-->
-
-
-<!--    <select id="item_getStatus" parameterType="int">-->
-<!--        SELECT stat-->
-<!--        FROM ITEM-->
-<!--        WHERE item_id=#{item_id}-->
-<!--    </select>-->
 
 

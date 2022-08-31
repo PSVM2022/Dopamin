@@ -3,7 +3,9 @@ package com.PSVM.dopamin.service.Item;
 import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
 import com.PSVM.dopamin.domain.Item.ItemForm;
+import com.PSVM.dopamin.domain.Item.Pymt_DetlDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -132,5 +134,24 @@ public class ItemAdminService {
 
     public List<ItemDto> get_pop(Integer num) throws Exception {
         return itemAdminDaoImpl.get_pop(num);
+    }
+    @Transactional
+    //결제 실패 시 되돌려야 함.
+    public boolean pymt_detl(Pymt_DetlDto pymt_detlDto) throws Exception{
+        //현금으로 포인트 충전 시, 유저 포인트 올려주고, 결제내역 테이블에 내역 쌓아야 함.
+        int result_PY=itemAdminDaoImpl.insert_pymt_detl(pymt_detlDto);
+        if(result_PY!=1){
+            throw new Exception("잠시 후 다시 시도해주세요.");
+        }
+        //유저포인트 가져와서
+        int user_point=itemAdminDaoImpl.get_user_point(pymt_detlDto.getUser_id());
+        //충전한 포인트를 기존포인트에 더해서 올려줌.
+        pymt_detlDto.setChg_pnt(user_point+ pymt_detlDto.getChg_pnt());
+        int result_UP=itemAdminDaoImpl.increase_user_point(pymt_detlDto);
+        if(result_UP!=1){
+            throw new Exception("잠시 후 다시 시도해주세요.");
+        }
+
+        return true;
     }
 }

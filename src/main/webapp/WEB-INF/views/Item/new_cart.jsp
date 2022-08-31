@@ -41,19 +41,21 @@
     </script>
     <script>
         let toHtml1=function(items){
-            let tmp1='';
+            let tmp1='<div class="delete_select_entire"> 전체 선택 | 선택 삭제 </div>';
                 items.list.forEach(function(item){
                     tmp1+='<div class="item-num" data-item_id='+item.item_id+'>';
                     tmp1+='<div class="image-wrap_cart">';
                     tmp1+='<img class="cart-image" src='+item.item_img+'>';
                     tmp1+='</div>';
                     tmp1+='<div class="cart_item_info">';
-                    tmp1+='<div class="cart_item_detail">'+item.item_nm+'</div>';
-                    tmp1+='<div class="cart_item_detail">'+item.grd_nm+'</div>';
+                    tmp1+='<div class="cart_item_detail" style="font-size: 1.1rem; font-weight: 500;">'+item.item_nm+'</div>';
+                    tmp1+='<div style="display:flex; font-size: 0.8rem;">'
+                    tmp1+='<div class="cart_item_detail" style="width: 3rem;">'+item.grd_nm+'</div>';
                     tmp1+='<div class="cart_item_detail">'+item.list_nm+'</div>';
+                    tmp1+='</div>'
                     tmp1+='<div class="cart_item_dsc">'+item.item_dsc+'</div>';
                     tmp1+='</div>';
-                    tmp1+='<div class="cart_item_price">'+item.item_price+'</div>';
+                    tmp1+='<div class="cart_item_price">'+item.item_price+' DP</div>';
                     tmp1+='<buuton class="closed">x</buuton>';
                     tmp1+='</div>';
                 })
@@ -62,11 +64,11 @@
         let toHtml2=function(items){
             let tmp2='';
             tmp2+='<div class="cart_point">';
-            tmp2+='<div class="pay_info"> 결 제 정 보 </div>';
+            tmp2+='<div class="pay_info"> 결제 예정금액 </div>';
             tmp2+='<div class="cart_item_pay_info">';
             tmp2+='<div class="more_info"><span class="item_info">상품수</span><span class="numberofitem">'+items.list.length+' 개</span></div>';
             tmp2+='<div class="more_info"><span class="item_info">보유 금액</span><span class="numberofitem">'+items.my_point+' DP</span></div>';
-            tmp2+='<div class="more_info"><span class="item_info">상품금액</span><span class="numberofitem">'+items.total_point+' DP</span></div>';
+            tmp2+='<div class="more_info"><span class="item_info">상품금액</span><span class="numberofitem"  style="color:red;">'+items.total_point+' DP</span></div>';
             tmp2+='<div class="more_info"><span class="item_info">할인금액</span><span class="numberofitem">0개</span></div>';
             tmp2+='</div>';
             tmp2+='<div class="total_info"><span class="total_amount">총 결제금액</span><span class="total_money">'+items.after_point+' DP</span></div>';
@@ -74,6 +76,11 @@
             return tmp2+"</div>"
         }
         $(document).ready(function(){
+            const price = document.getElementsByClassName("numberofitem");
+            const _value = parseInt(price.innerHTML);
+            const priceChange = _value ? parseInt(_value).toLocaleString("ko-KR") : 0
+            price.innerHTML = priceChange;
+
             $('.cart_item').on("click",".closed",function(){
                 let item_id=$(this).parent().attr("data-item_id");
                 console.log(item_id);
@@ -159,7 +166,7 @@
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="/psvm/item/item" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <input type="search" class="form-control form-control-dark" placeholder="Search..."
@@ -169,13 +176,31 @@
             <button type="button" class="btn btn-warning me-2">Login</button>
         </div>
     </header>
+    <div id="main_bar" style="justify-content: center;text-align: center;">
+        <div class="dropdown" style="margin-left: -1rem;">
+            <span class="item_menu" onclick="location.href='/psvm/item/item'" style="cursor:hand" onfocus="blur();">상점</span>
+            <div class="dropdown-content">
+                <div class="category">
+                    <a href="/psvm/item/list/스킨" class="skin">스킨</a>
+                </div>
+                <div class="category">
+                    <a href="/psvm/item/list/꾸미기" class="skin">꾸미기</a>
+                </div>
+            </div>
+        </div>
+        <span class="item_menu" onclick="location.href='/psvm/item/cart'" style="cursor:hand" onfocus="blur();">장바구니</span>
+        <span class="item_menu">포인트사용내역</span>
+        <span class="item_menu" onclick="location.href='/psvm/item/chargePoint'" style="cursor:hand" onfocus="blur();">충전샵</span>
+        <span class="item_menu">마이페이지</span>
+    </div>
+    <div class="cartBar"><span style="font-size: 1.6rem; padding: 5rem; font-weight: 500;">장바구니</span><span style="float:right; padding: 0.6rem 10rem 0 0;">장바구니 > 주문완료</span></div>
 </div>
-<main style="display: flex;">
+<main style="display: flex;justify-content: center;">
     <div id="left_ad"></div>
     <div id="main_container">
-        <div class="cartBar"><span style="font-size: 2rem;">장바구니</span><span style="float:right; padding-top: 0.8rem;">장바구니 > 주문완료</span></div>
         <div class="cartDetail">
             <div class="cart_item">
+
             </div>
             <div id="cart_detail_price">
             </div>

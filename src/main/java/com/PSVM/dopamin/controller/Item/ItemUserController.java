@@ -5,6 +5,8 @@ import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.domain.Item.OrderDto;
 import com.PSVM.dopamin.error.Message;
 import com.PSVM.dopamin.service.Item.ItemUserService;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +54,10 @@ public class ItemUserController {
                     .build();
         }
     }
-
+    @GetMapping("/chargePoint")
+    public String charge_point(){
+        return "Item/new_point_charge";
+    }
     //구매 버튼 클릭 시
     //일단 포인트가 충분한지 확인
     //만일 포인트가 부족하다면, 보유 포인트가 부족합니다. 포인트 충전하러 가시겠습니까? 예/아니오
@@ -60,7 +67,6 @@ public class ItemUserController {
     @PostMapping("/buyCart")//장바구니에서 아이템 구매 시, 발생하는 사건들.
     @ResponseBody
     public ResponseEntity<Object> buy_item_in_Cart(@RequestBody List<OrderDto> orderDtoList, HttpSession session){
-        System.out.println("orderDtoList = " + orderDtoList);
         try{
             int cart_id=1;
             String user_id="ldhoon0813";
@@ -106,9 +112,8 @@ public class ItemUserController {
     }
     @PostMapping("/addCart/{item_id}")//장바구니에 아이템 담기
     @ResponseBody
-    public ResponseEntity<String> add_Cart(@PathVariable Integer item_id){
+    public ResponseEntity<Object> add_Cart(@PathVariable Integer item_id){
         //세션에서 cart_id 받는다. 지금은 세션이 없으니깐, 임시로 cart_id 하드코딩
-        System.out.println("start_addCart");
         Cart_ItemDto cart_itemDto=new Cart_ItemDto();
         try {
             int cart_id=1;//세션에서 받아오기-> 지금은 하드코딩
@@ -123,15 +128,25 @@ public class ItemUserController {
             //구매한 아이템의 경우 예외 발생.
             //따라서, 장바구니에 이미 있는 경우 예외 발생해야함.
             itemUserService.addCart(cart_itemDto);
-            System.out.println("장바구니에 추가되었습니다.");
             return new ResponseEntity<>("장바구니에 추가되었습니다.", HttpStatus.OK);
-        }catch(DuplicateKeyException e){
-            System.out.println("장바구니에 담겨져있습니다.");
-            return new ResponseEntity<>("이미 장바구니 담겨져 있습니다.",HttpStatus.BAD_REQUEST);
+        }catch(SQLException e){
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
+        }
+        catch (NullPointerException e) {
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
-            System.out.println("e.getMessage="+e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            System.out.println("e.getMessage() = " + e.getMessage());
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
     }
     @GetMapping("/cart_main")//장바구니 조회

@@ -51,14 +51,6 @@
                     data:formData,
                     success: function(response){
                         alert("성공");
-                        console.log(response);
-                        console.log(response.list_nm);
-                        console.log(response.item_grd);
-                        console.log(response.item_nm);
-                        console.log(response.item_dsc);
-                        console.log(response.item_price);
-                        //console.log(response.item_img);
-
                         $("#list_nm_msg").html(response.list_nm=(response.list_nm!==undefined ? response.list_nm : ""));
                         $("#item_grd_msg").html(response.item_grd=(response.item_grd!==undefined ? response.item_grd : ""));
                         $("#item_nm_msg").html(response.item_nm=(response.item_nm!==undefined ? response.item_nm : ""));

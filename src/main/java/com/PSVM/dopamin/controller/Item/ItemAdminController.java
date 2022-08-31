@@ -3,6 +3,7 @@ package com.PSVM.dopamin.controller.Item;
 import com.PSVM.dopamin.domain.Item.*;
 import com.PSVM.dopamin.error.Message;
 import com.PSVM.dopamin.service.Item.ItemAdminService;
+import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 
@@ -24,6 +29,7 @@ import java.util.*;
 public class ItemAdminController {
     @Autowired
     private ItemAdminService itemAdminService;
+
     @ExceptionHandler(ItemValidatorException.class)
     @ResponseBody
     public Map catcher1(ItemValidatorException ve){
@@ -230,6 +236,8 @@ public class ItemAdminController {
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("")
     //관리자 인증 구현을 했지만, 아직 세션이 없어 NullpointException Error 터짐
     private boolean check_Admin(HttpServletRequest request) {
 //        HttpSession httpsession= request.getSession();

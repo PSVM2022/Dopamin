@@ -210,7 +210,7 @@ public class ItemUserDaoImplTest {
         cart_itemDto.setCart_id(1);
         cart_itemDto.setIn_user("ldhoon0813");
         cart_itemDto.setUp_user("ldhoon0813");
-        cart_itemDto.setItem_id(3);
+        cart_itemDto.setItem_id(17);
         int result=itemUserDaoImpl.addCart(cart_itemDto);
         System.out.println("result = " + result);
     }

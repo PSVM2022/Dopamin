@@ -6,6 +6,7 @@ import com.PSVM.dopamin.domain.Item.OrderDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,7 +22,7 @@ public class ItemUserDaoImpl {
     public ItemDto find_item(Integer item_id) throws Exception {
         return sqlSession.selectOne(namespace+"find_item",item_id);
     }
-    public int addCart(Cart_ItemDto cart_itemDto) throws Exception{
+    public int addCart(Cart_ItemDto cart_itemDto) throws SQLException,Exception{
         return sqlSession.insert(namespace+"addCart",cart_itemDto);
     }
     public Cart_ItemDto find_possesion(Cart_ItemDto cart_itemDto) throws Exception{

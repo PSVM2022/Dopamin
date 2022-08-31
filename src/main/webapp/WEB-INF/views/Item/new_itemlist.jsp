@@ -28,8 +28,9 @@
           rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
@@ -39,7 +40,24 @@
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
     </script>
+    <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
     <script>
+        $(function() {
+            new Swiper('.swiper-container', {
+                slidesPerView: 5, //한번에 보여줄 개수
+                autoplay: false, // 자동 재생 여부
+                loop: true, // 반복 재생 여부
+                loopAdditionalSlides : 1,
+                pagination:{
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    prevEl: '.swiper-prev',   //이전 슬라이드를 볼 수 있음
+                    nextEl: '.swiper-next'    //이후 슬라이드를 볼 수 있음
+                }
+            });
+        })
         $(document).ready(function(){
             $(".item_details").on("click",".add_cart_btn",function() {
                 let item_id = $(this).parent().attr("item_id");
@@ -54,8 +72,9 @@
                                 location.href="/psvm/item/cart";
                             }
                         },
-                        error: function (result) {
-                            alert(result);
+                        error:function(request,status,error){
+                            var result=JSON.parse(request.responseText);
+                            alert(result["message1"]);
                         }
                     })
                 }
@@ -92,180 +111,86 @@
             <button type="button" class="btn btn-warning me-2">Login</button>
         </div>
     </header>
+    <div id="main_bar" style="justify-content: center;text-align: center;">
+        <div class="dropdown" style="margin-left: -1rem;">
+            <span class="item_menu" onclick="location.href='/psvm/item/item'" style="cursor:hand" onfocus="blur();">상점</span>
+            <div class="dropdown-content">
+                <div class="category">
+                    <a href="/psvm/item/list/스킨" class="skin">스킨</a>
+                </div>
+                <div class="category">
+                    <a href="/psvm/item/list/꾸미기" class="skin">꾸미기</a>
+                </div>
+            </div>
+        </div>
+        <span class="item_menu" onclick="location.href='/psvm/item/cart'" style="cursor:hand" onfocus="blur();">장바구니</span>
+        <span class="item_menu">포인트사용내역</span>
+        <span class="item_menu" onclick="location.href='/psvm/item/chargePoint'" style="cursor:hand" onfocus="blur();">충전샵</span>
+        <span class="item_menu">마이페이지</span>
+    </div>
 </div>
 <main style="display: flex;">
     <div id="left_ad"></div>
-    <div id="main_container">
-        <div id="main_bar">
-            <div class="dropdown">
-                <span class="item_menu" onclick="location.href='/psvm/item/item'" style="cursor:hand" onfocus="blur();">상점</span>
-                <div class="dropdown-content">
-                    <div class="category">
-                        <a href="/psvm/item/list/스킨" class="skin">스킨</a>
-                    </div>
-                    <div class="category">
-                        <a href="/psvm/item/list/꾸미기" class="skin">꾸미기</a>
-                    </div>
-                </div>
-            </div>
-            <span class="item_menu" onclick="location.href='/psvm/item/cart'" style="cursor:hand" onfocus="blur();">장바구니</span>
-            <span class="item_menu">포인트사용내역</span>
-            <span class="item_menu">충전샵</span>
-            <span class="item_menu">마이페이지</span>
-        </div>
-        <%--    <a href="/psvm/item/cart_main">장바구니</a>--%>
-        <div class="item_bar">
-            <span class="item">아이템</span>
-            <span class="direction"> > </span>
-            <span class="item_skin"> ${order} </span>
-        </div>
+    <div id="item_main_container" >
+        <div style='width: 20rem; margin: 2rem 5rem -1.1rem; font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;'><span style="font-size: 1.6rem;">아이템</span><span style="font-size: 1.2rem;"> > ${order} </span></div>
         <div id="section">
-            <div class="item_details">
-                <c:forEach var="item" items="${list}">
-                    <div class="detail-container" item_id="${item.item_id}">
-                        <div id="item-img" style="margin-bottom: -24.4px">
-                            <div class="image-wrap" item_id="${item.item_id}">
-                                <img id="item-image" src="${item.item_img}">
-                                <button class="add_cart_btn">담기</button>
+            <div class="swiper-container">
+                <div class="swiper-wrapper" style="height: 21rem;">
+                    <c:forEach var="item" items="${list}">
+                        <div class="swiper-slide">
+                            <div class="item_details">
+                                <div class="detail-container" item_id="${item.item_id}">
+                                    <div id="item-img" style="width: 11rem; height: 9rem; margin: 0 auto;">
+                                        <div class="image-wrap" item_id="${item.item_id}">
+                                            <img id="item-image" src="${item.item_img}">
+                                            <button class="add_cart_btn">담기</button>
+                                        </div>
+                                    </div>
+                                    <div style="padding:0.1rem;">
+                                        <span class="item_nm">${item.item_nm}</span>
+                                        <span class="item_grd">${item.grd_nm}</span>
+                                    </div>
+                                    <div class="item_detail_dsc"> ${item.item_dsc}</div>
+                                    <span class="item_price">${item.item_price}<span class="point">P</span></span>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <span class="item_nm">${item.item_nm}</span>
-                            <span class="item_grd">${item.grd_nm}</span>
+                    </c:forEach>
+                </div>
+                <div class="swiper-wrapper" style="height: 21rem;">
+                    <c:forEach var="item" items="${list}">
+                        <div class="swiper-slide">
+                            <div class="item_details">
+                                <div class="detail-container" item_id="${item.item_id}">
+                                    <div id="item-img" style="width: 11rem; height: 9rem; margin: 0 auto;">
+                                        <div class="image-wrap" item_id="${item.item_id}">
+                                            <img id="item-image" src="${item.item_img}">
+                                            <button class="add_cart_btn">담기</button>
+                                        </div>
+                                    </div>
+                                    <div style="padding:0.1rem;">
+                                        <span class="item_nm">${item.item_nm}</span>
+                                        <span class="item_grd">${item.grd_nm}</span>
+                                    </div>
+                                    <div class="item_detail_dsc"> ${item.item_dsc}</div>
+                                    <span class="item_price">${item.item_price}<span class="point">P</span></span>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="item_detail_dsc"> ${item.item_dsc}</div>
-                        <span class="item_price">${item.item_price}<span class="point">P</span></span>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="swiper-prev" style="left:16rem; top:6rem;">
+                <div class="material-icons">chevron_left</div>
+            </div>
+            <div class="swiper-next" style="right:16rem; top:6rem;">
+                <div class="material-icons">chevron_right</div>
             </div>
         </div>
     </div>
     <div id="right_ad"></div>
 </main>
-
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-            <!-- Left -->
-            <div class="me-5 d-none d-lg-block">
-                <span>Get connected with us on social networks:</span>
-            </div>
-            <!-- Left -->
-
-            <!-- Right -->
-            <div>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <!-- Right -->
-        </section>
-        <!-- Section: Social media -->
-
-        <!-- Section: Links  -->
-        <section class="">
-            <div class="container text-center text-md-start mt-5">
-                <!-- Grid row -->
-                <div class="row mt-3">
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>Company name
-                        </h6>
-                        <p>
-                            Here you can use rows and columns to organize your footer content. Lorem
-                            ipsum
-                            dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Products
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Angular</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">React</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Vue</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Laravel</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Useful links
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Pricing</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Settings</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Orders</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Help</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-                        <p>
-                            <i class="fas fa-envelope me-3"></i>
-                            info@example.com
-                        </p>
-                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-            </div>
-        </section>
-        <!-- Section: Links  -->
-
-        <!-- Copyright -->
-        <div class="text-center p-4 copyright">
-            © 2021 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
-    </div>
-</footer>
-
 </body>
 
 </html>
