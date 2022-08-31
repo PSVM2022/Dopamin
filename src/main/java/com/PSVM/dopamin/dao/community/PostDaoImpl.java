@@ -102,4 +102,9 @@ public class PostDaoImpl implements PostDao {
         map.put("writer", writer);
         return session.delete(namespace + "deletePostInBbs", map);
     }
+
+    @Override
+    public int getRecentlyPostedId(String userId) {
+        return session.selectOne(namespace + "recentlyPostedId", userId);
+    }
 }

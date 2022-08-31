@@ -38,4 +38,6 @@ public interface PostDao {
     int deleteAll(Integer bbsId) throws SQLException;
 
     int delete(Integer postId, String writer) throws SQLException;
+
+    int getRecentlyPostedId(String userId);
 }

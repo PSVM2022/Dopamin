@@ -218,4 +218,10 @@ public class PostDaoImplTest {
 
         assertNull(postDao.select(postId));
     }
+
+    @Test
+    public void getRecentlyPostedId() {
+        String userId = "user1";
+        assertEquals(267, postDao.getRecentlyPostedId(userId));
+    }
 }
