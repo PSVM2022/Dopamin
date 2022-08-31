@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -187,6 +188,42 @@ public class MyPageController {
 
 
 
+    //한줄평 삭제
+
+
+    @PostMapping("/deleterevw")
+    @ResponseBody
+    public ResponseEntity<?> delrevw(@RequestBody List<Integer> valueArr, HttpSession session) throws Exception {
+
+        String user_id = (String) session.getAttribute("USERID");
+        System.out.println(valueArr);
+
+        int res = myPageService.deleterevw(valueArr);
+        if (res == 1) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //게시물 삭제
+    @PostMapping("/deletepost")
+    @ResponseBody
+    public ResponseEntity<?> delpost(@RequestBody List<Integer> valueArr, HttpSession session) throws Exception {
+
+        String user_id = (String) session.getAttribute("USERID");
+        System.out.println(valueArr);
+
+        int res = myPageService.deletePost(valueArr);
+        if (res == 1) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
     @PostMapping("/userInfo")
     public String userInfocheck(HttpSession session, @RequestParam String pwd, Model model, RedirectAttributes redirectAttributes) {
         try {
@@ -226,36 +263,14 @@ public class MyPageController {
         return result;
     }
 
-    //한줄평 삭제
-    @PostMapping("/deleterevw")
+    @PostMapping("/modifyprfimg")
     @ResponseBody
-    public ResponseEntity<?> delrevw(@RequestBody List<Integer> valueArr, HttpSession session) throws Exception {
-
+    public String modifyProfileImg(@RequestParam("uploadImg") MultipartFile uploadImg, HttpSession session){
+        System.out.println("uploadImg = " + uploadImg);
         String user_id = (String) session.getAttribute("USERID");
-        System.out.println(valueArr);
+        userService.modifyUserPrfImg(uploadImg,user_id);
 
-        int res = myPageService.deleterevw(valueArr);
-        if (res == 1) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    //게시물 삭제
-    @PostMapping("/deletepost")
-    @ResponseBody
-    public ResponseEntity<?> delpost(@RequestBody List<Integer> valueArr, HttpSession session) throws Exception {
-
-        String user_id = (String) session.getAttribute("USERID");
-        System.out.println(valueArr);
-
-        int res = myPageService.deletePost(valueArr);
-        if (res == 1) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        return "success";
     }
 
 }

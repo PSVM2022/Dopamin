@@ -35,6 +35,7 @@ img {
     border-radius: 50%;
     width: 10rem;
     height: 10rem;
+    margin-left: 4.5rem;
 }
 
 table {
@@ -117,4 +118,64 @@ td{
 }
 .btdt{
     width: 3rem;
+}
+
+
+.modal{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .bg{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-box{
+    position: absolute;
+    background-color: white;
+    top: inherit;
+    width: 25rem;
+    height: 20rem;
+    padding: 3rem;
+    margin-top: 1rem;
+    border-radius: 1.3rem;
+    border: none;
+}
+
+.modal-box input{
+    display: block;
+    width: 17rem;
+    background-color: aqua;
+    margin: 0.5rem auto;
+}
+
+
+.modal-box button{
+    width: 4.3rem;
+    background-color: #FF7800;
+    display: inline-block;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+}
+
+.modal-box button:hover{
+    color: #eeeeee;
+}
+
+.hidden{
+    display: none;
+}
+
+.modal-btns{
+    margin-top: 1rem;
+    text-align: end;
 }

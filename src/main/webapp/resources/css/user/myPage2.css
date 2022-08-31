@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+.hidden{
+    display: none;
+}
+
 .modal .bg{
     width: 100%;
     height: 100%;
@@ -20,7 +24,7 @@
     position: absolute;
     background-color: white;
     top: inherit;
-    width: 30rem;
+    width: 25rem;
     height: 13rem;
     padding: 3rem;
     margin-top: 1rem;
@@ -28,11 +32,11 @@
     border: none;
 }
 
+
 .modal-box input{
     margin-top: 1.2rem;
     display: block;
 }
-
 
 .modal-box button{
     width: 4.3rem;
@@ -46,10 +50,6 @@
 
 .modal-box button:hover{
     color: #eeeeee;
-}
-
-.hidden{
-    display: none;
 }
 
 .modal-btns{

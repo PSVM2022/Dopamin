@@ -205,6 +205,8 @@
 
     </section>
 
+
+    <!--회원 정보 수정 비밀번호 확인 모달 -->
     <div class="modal hidden">
         <div class="bg"></div>
         <div class="modal-box">

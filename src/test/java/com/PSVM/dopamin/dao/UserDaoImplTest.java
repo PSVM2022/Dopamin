@@ -283,4 +283,20 @@ public class UserDaoImplTest {
         assertEquals(userDao.selectUserPwd("testid"),upUserDto.getUser_pwd());
         assertEquals("testpwd",userDao.selectUserPwdHist("testid"));
     }
+
+    @Test
+    @Transactional
+    public void testUpdateUserPrfImg(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        int rowCnt = userService.joinUser(userDto);
+
+        //when
+        int rowCnt2 = userDao.updateUserPrfImg("imgPath","testid");
+        UserDto user = userService.getUser("testid");
+        //then
+        assertEquals(3,rowCnt);
+        assertEquals(1,rowCnt2);
+        assertEquals("imgPath", user.getPrf_img());
+    }
 }

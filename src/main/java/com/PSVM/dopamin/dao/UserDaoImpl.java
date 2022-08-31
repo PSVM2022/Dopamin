@@ -96,4 +96,12 @@ public class UserDaoImpl implements UserDao {
     public String selectUserPwdHist(String user_id) {
         return session.selectOne(namespace+"selectUserPwdHist",user_id);
     }
+
+    @Override
+    public int updateUserPrfImg(String path,String user_id) {
+        Map map = new HashMap();
+        map.put("path",path);
+        map.put("user_id",user_id);
+        return session.update(namespace+"updateUserPrfImg", map);
+    }
 }

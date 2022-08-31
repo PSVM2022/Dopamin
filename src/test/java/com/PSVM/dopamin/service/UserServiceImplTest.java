@@ -253,4 +253,17 @@ public class UserServiceImplTest {
     }
 
 
+    //테스트 작성 중
+//    @Test
+//    @Transactional
+//    public void testModifyUserPrfImg(){
+//        //given
+//        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+//        userService.joinUser(userDto);
+//        //when
+//        userService.modifyUserPrfImg("updatePrf","testid");
+//        //then
+//    }
+
+
 }

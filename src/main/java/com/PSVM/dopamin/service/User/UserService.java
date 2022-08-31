@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.service.User;
 
 import com.PSVM.dopamin.domain.User.UserDto;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,5 +26,9 @@ public interface UserService {
     int modifyUserInfo(UserDto userDto);
 
     boolean idValidCheck(String id);
+
+    int modifyUserPrfImg(MultipartFile uploadImg,String user_id);
+
+    String convertFileToPath(MultipartFile multipartFile);
 
 }

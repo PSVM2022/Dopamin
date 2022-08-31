@@ -6,9 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 @Service
@@ -97,4 +103,42 @@ public class UserServiceImpl implements UserService {
         final String idPattern = "^[A-Za-z]{1}[A-Za-z0-9]{3,19}$";
         return Pattern.matches(idPattern, id);
     }
+
+    @Override
+    public int modifyUserPrfImg(MultipartFile uploadImg,String user_id) {
+        System.out.println("call modifyUserPrfImg in UserServiceImpl");
+        String path = convertFileToPath(uploadImg);
+        System.out.println(path);
+        userDao.updateUserPrfImg(path,user_id);
+
+        return 0;
+    }
+
+    @Override
+    public String convertFileToPath(MultipartFile multipartFile) {
+        String path = "C:\\Users\\NT551XDA\\Desktop\\img";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String str = sdf.format(date);
+        String datePath=str.replace("-", File.separator);
+        File uploadPath=new File(path,datePath);
+        if(uploadPath.exists()==false){
+            uploadPath.mkdirs();
+        }//여기까지 저장할 경로 생성
+        String uploadFileName= multipartFile.getOriginalFilename();
+        String uuid= UUID.randomUUID().toString();
+        uploadFileName=uuid+'_'+uploadFileName;
+        File saveFile=new File(uploadPath,uploadFileName);
+        try {
+            multipartFile.transferTo(saveFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalStateException e) {
+            throw new RuntimeException(e);
+        }
+        //파일 저장
+        String save_url=path+'\\'+datePath+'\\'+uploadFileName;
+        return save_url;
+    }
+
 }
