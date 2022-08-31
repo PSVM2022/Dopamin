@@ -76,12 +76,12 @@ public class ReviewController {
     //한줄평 수정
     @PostMapping("/{cnts_id}/reviews2")
     @ResponseBody
-    public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, ReviewDto reviewDto, HttpSession session) {
+    public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, ReviewDto reviewDto, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
         //String bal = reviewDto.getRevw_body();
         //System.out.println(bal);
         reviewDto.setUser_id(user_id);
-        reviewDto.setCnts_id(cnts_id);  //0827 추가함
+        reviewDto.setCnts_id(cnts_id);
         System.out.println(reviewDto);
 
         try {

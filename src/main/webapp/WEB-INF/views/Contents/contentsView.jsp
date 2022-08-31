@@ -125,6 +125,7 @@
                 <div class="contents-value">
                     <h4 class="title">${contentsDto.cnts_title}</h4>
                     <h6 class="subttle-text-muted">${contentsDto.cnts_subttl}</h6>
+                    <hr>
                     <p class="text">${contentsDto.cnts_op_date}</p>
                     <p class="text">${contentsDto.cnts_cnty}</p>
                     <table>
@@ -174,7 +175,7 @@
                     </c:if>
 
                     <c:if test="${contentsDto.ott1_stat==0 && contentsDto.ott2_stat==0 && contentsDto.ott3_stat==0}">
-                    <p class="text"> 현재 감상 가능한 OTT 가 없습니다.</p>
+                    <p class="text"> 컨텐츠를 시청할 수 있는 OTT 가 없습니다.</p>
                     </c:if>
 
                 </div>

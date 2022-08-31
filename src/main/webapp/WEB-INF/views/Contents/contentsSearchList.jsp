@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentslist.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentslist.css?after'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -77,7 +77,7 @@
 
     <div class="container">
         <!-- Carousel wrapper -->
-        <section class="container py-3 bg-light">
+        <section class="container bg-light">
             <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <br>
                 <div>"${ph.sc.keyword}" 에 대한 검색 결과입니다.</div>
@@ -86,7 +86,7 @@
         </section>
     </div>
 
-    <section class="contents container" py-5>
+    <section class="contents container">
         <div class="contents_container">
                 <c:forEach var="i" items="${cntsDtoList}">
                         <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
@@ -105,9 +105,9 @@
 
 
     <br>
-    <section class="container" py-5>
+    <section class="container">
     <div class="paging-container" style="text-align:center">
-        <div class="paging">
+        <div class="paging" style="margin-bottom: 3rem;">
             <c:if test="${totalCnt==null || totalCnt==0}">
                 <br>
                 <div>"${ph.sc.keyword}" 에 대한 검색 결과가 없습니다. 다른 검색어를 입력해주세요.</div>     <!--페이지 고정 사이즈 줄것-->

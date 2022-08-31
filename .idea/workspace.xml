@@ -9,10 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="feat: 컨텐츠 한줄평 등록&#10;&#10;컨텐츠 한줄평 등록 ajax">
+    <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="feat: 컨텐츠 메인, 상세, 검색 화면 css 수정 및 추가&#10;&#10;컨텐츠 3개 페이지 css 수정">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/contents/contentslist.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsSearchList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsSearchList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/testtTestReviewView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/testtTestReviewView.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/contents/test.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +29,7 @@
       <list>
         <option value="Jsp File" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -52,22 +58,23 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/psvm/diagram.uml&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;1e765f8ae1bb8e5badc9fe01a7fa7b82&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/psvm/Dopamin/src/main/webapp/resources/css/contents",
+    "list.type.of.created.stylesheet": "CSS",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "spring.configuration.checksum": "1e765f8ae1bb8e5badc9fe01a7fa7b82"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\psvm\Dopamin\src\main\webapp\resources\css\contents" />
       <recent name="C:\psvm\Dopamin\src\main\webapp\resources\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -76,6 +83,22 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.65">
+    <configuration name="ContentsServiceImplTest.testInsertDeleteWish" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Dopamin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PSVM.dopamin.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service" />
+      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.ContentsServiceImplTest" />
+      <option name="METHOD_NAME" value="testInsertDeleteWish" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ReviewDaoImplTest.deleteRevw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Dopamin" />
       <extension name="coverage">
@@ -119,22 +142,6 @@
       <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service" />
       <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.ReviewServiceImplTest" />
       <option name="METHOD_NAME" value="testDeleteRevw" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReviewServiceImplTest.testInsertRevw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Dopamin" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.PSVM.dopamin.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.PSVM.dopamin.service" />
-      <option name="MAIN_CLASS_NAME" value="com.PSVM.dopamin.service.ReviewServiceImplTest" />
-      <option name="METHOD_NAME" value="testInsertRevw" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -246,20 +253,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ContentsServiceImplTest.testInsertDeleteWish" />
       <item itemvalue="JUnit.ReviewDaoImplTest.deleteRevw" />
       <item itemvalue="JUnit.ReviewDaoImplTest.selectAllRevw" />
       <item itemvalue="JUnit.ReviewServiceImplTest.testDeleteRevw" />
-      <item itemvalue="JUnit.ReviewServiceImplTest.testInsertRevw" />
       <item itemvalue="JUnit.ReviewServiceImplTest.testUpdateRevw" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.65" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ContentsServiceImplTest.testInsertDeleteWish" />
         <item itemvalue="JUnit.ReviewDaoImplTest.deleteRevw" />
         <item itemvalue="JUnit.ReviewDaoImplTest.selectAllRevw" />
         <item itemvalue="JUnit.ReviewServiceImplTest.testDeleteRevw" />
         <item itemvalue="JUnit.ReviewServiceImplTest.testUpdateRevw" />
-        <item itemvalue="JUnit.ReviewServiceImplTest.testInsertRevw" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +289,7 @@
       <workItem from="1661672031413" duration="7516000" />
       <workItem from="1661691122814" duration="6349000" />
       <workItem from="1661826303907" duration="591000" />
-      <workItem from="1661826915673" duration="16067000" />
+      <workItem from="1661826915673" duration="83744000" />
     </task>
     <task id="LOCAL-00002" summary="refactor: 컨텐츠 장르 데이터 타입 변경&#10;&#10;Integer -&gt; String 변경함.">
       <created>1661739601721</created>
@@ -333,7 +340,42 @@
       <option name="project" value="LOCAL" />
       <updated>1661851429188</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: 컨텐츠 한줄평 삭제&#10;&#10;컨텐츠 한줄평 삭제 ajax">
+      <created>1661855083425</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1661855083425</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: 컨텐츠 통합 검색 조건 추가&#10;&#10;컨텐츠 관련 전체 페이지에 통합 검색 조건 추가">
+      <created>1661931989783</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1661931989783</updated>
+    </task>
+    <task id="LOCAL-00011" summary="style: 컨텐츠 통합 검색 조건 추가(옵션명 변경)&#10;&#10;컨텐츠 관련 전체 페이지에 통합 검색 조건 추가(옵션명 변경)">
+      <created>1661932197800</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1661932197800</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: 로그인 유저 추천 컨텐츠 문구 추가&#10;&#10;로그인 유저에게 보이는 추천 컨텐츠에 유저 닉네임 추가">
+      <created>1661946174768</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1661946174768</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: 컨텐츠 메인, 상세, 검색 화면 css 수정 및 추가&#10;&#10;컨텐츠 3개 페이지 css 수정">
+      <created>1661964927948</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1661964927948</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,6 +401,11 @@
     <MESSAGE value="feat: 컨텐츠 한줄평 페이지 수정중&#10;&#10;컨텐츠 한줄평 페이지 뷰 수정 작업중" />
     <MESSAGE value="my page merge" />
     <MESSAGE value="feat: 컨텐츠 한줄평 등록&#10;&#10;컨텐츠 한줄평 등록 ajax" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 한줄평 등록&#10;&#10;컨텐츠 한줄평 등록 ajax" />
+    <MESSAGE value="feat: 컨텐츠 한줄평 삭제&#10;&#10;컨텐츠 한줄평 삭제 ajax" />
+    <MESSAGE value="feat: 컨텐츠 통합 검색 조건 추가&#10;&#10;컨텐츠 관련 전체 페이지에 통합 검색 조건 추가" />
+    <MESSAGE value="style: 컨텐츠 통합 검색 조건 추가(옵션명 변경)&#10;&#10;컨텐츠 관련 전체 페이지에 통합 검색 조건 추가(옵션명 변경)" />
+    <MESSAGE value="feat: 로그인 유저 추천 컨텐츠 문구 추가&#10;&#10;로그인 유저에게 보이는 추천 컨텐츠에 유저 닉네임 추가" />
+    <MESSAGE value="feat: 컨텐츠 메인, 상세, 검색 화면 css 수정 및 추가&#10;&#10;컨텐츠 3개 페이지 css 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 메인, 상세, 검색 화면 css 수정 및 추가&#10;&#10;컨텐츠 3개 페이지 css 수정" />
   </component>
 </project>

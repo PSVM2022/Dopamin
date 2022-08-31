@@ -130,7 +130,7 @@
 
             <section class="contents">
                 <div class="swiper-container">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" style="height: 30rem;">
                         <div class="swiper-slide">
                             <div class="contents_container">
                                 <c:forEach var="i" end="4" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
