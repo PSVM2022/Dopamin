@@ -1,14 +1,5 @@
 @import "../../common/default.css";
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:hover {
-  color: inherit;
-}
-
 .rank-title {
   margin-bottom: 1rem;
   color: var(--orange2);
