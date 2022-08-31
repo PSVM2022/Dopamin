@@ -7,6 +7,9 @@ import com.PSVM.dopamin.error.Message;
 import com.PSVM.dopamin.service.Item.ItemUserService;
 import com.PSVM.dopamin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +63,10 @@ public class ItemUserController {
 
         return null;
     }
-
+    @GetMapping("/chargePoint")
+    public String charge_point(){
+        return "Item/new_point_charge";
+    }
     //구매 버튼 클릭 시
     //일단 포인트가 충분한지 확인
     //만일 포인트가 부족하다면, 보유 포인트가 부족합니다. 포인트 충전하러 가시겠습니까? 예/아니오
@@ -115,39 +122,36 @@ public class ItemUserController {
     }
     @PostMapping("/addCart/{item_id}")//장바구니에 아이템 담기
     @ResponseBody
+    public ResponseEntity<Object> add_Cart(@PathVariable Integer item_id){
     public ResponseEntity<String> add_Cart(@PathVariable Integer item_id,HttpSession session){
         //세션에서 cart_id 받는다. 지금은 세션이 없으니깐, 임시로 cart_id 하드코딩
         Cart_ItemDto cart_itemDto=new Cart_ItemDto();
         try {
             int find_result=0;
-            int cart_id= (int) session.getAttribute("CARTID");//세션에서 받아오기-> 지금은 하드코딩
+            int cart_id=2;//세션에서 받아오기-> 지금은 하드코딩
             cart_itemDto.setCart_id(cart_id);
             String user_id= (String) session.getAttribute("USERID");
             cart_itemDto.setIn_user(user_id);
             cart_itemDto.setUp_user(user_id);
-            //없는 경우
-            find_result=itemUserService.find_item(item_id);
-            if(find_result==0){//일반적으로 담기는 유저가 클릭해서 담지만
-                //만약에 없는 아이템 번호에 대해, 혹은 비공개인 아이템 번호에 대해
-                //url에 적어서 들어온다면 "없는 아이템입니다".라는 메시지 반환해야함.
-                throw new Exception("없는 아이템 입니다.");
-            }//없으면 널포인트 익센션 터짐
-            int item_stat=itemUserService.getItem_stat(item_id);
-            if(item_stat==0){
-                throw new Exception("없는 아이템입니다.");
-            }
+            //없는 아이템이거나 비공개 아이템인 경우,
+            itemUserService.find_item(item_id);
             cart_itemDto.setItem_id(item_id);
-
-            int result=itemUserService.addCart(cart_itemDto);
-            if(result!=1){
-                throw new Exception("담아지지 않았습니다.");
-            }
+            //개인당 하나의 아이템밖에 구매하지 못함.//todo
+            //구매한 아이템의 경우 예외 발생.
+            //따라서, 장바구니에 이미 있는 경우 예외 발생해야함.
+            itemUserService.addCart(cart_itemDto);
             return new ResponseEntity<>("장바구니에 추가되었습니다.", HttpStatus.OK);
-        } catch (Exception e) {
+        }catch(SQLException e){
             Message message = Message.builder()
                     .message1(e.getMessage())
                     .build();
-            return new ResponseEntity<>("이미 담겨져있습니다.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
+        }
+        catch (NullPointerException e) {
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
     }
     @GetMapping("/cart")//장바구니 조회
@@ -170,22 +174,47 @@ public class ItemUserController {
             int total_point=0;
             List<ItemDto> list=itemUserService.getCart_list(cart_id);
             if(list.size()==0){
-                throw new Exception("보여줄 아이템이 없습니다.");
+                throw new Exception("장바구니에 담긴 아이템이 없습니다.");
             }
             for(ItemDto itemDto:list){
                 total_point+=itemDto.getItem_price();
             }
-            m.addAttribute("list",list);
-            m.addAttribute("my_point",my_point);
-            m.addAttribute("total_point",total_point);
-            m.addAttribute("after_point",my_point-total_point);
-            return "Item/cart";
+            Map map = new HashMap();
+            map.put("list",list);
+            map.put("my_point",my_point);
+            map.put("total_point",total_point);
+            map.put("after_point",my_point-total_point);
+            return new ResponseEntity<>(map,HttpStatus.OK);
         } catch (Exception e) {
             Message message = Message.builder()
                     .message1(e.getMessage())
                     .build();
-            return "Item/cart";
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
         //없으면 없는대로 보여주면 됨.
+    }
+    @GetMapping("/main")//todo
+    @ResponseBody
+    public ResponseEntity<Object> main(){
+        List<ItemDto> list=null;
+        try {
+            list=itemUserService.getItem_list();
+            if(list.size()==0){
+                throw new Exception("시스템 점검으로 인해 잠시후 다시 시도해주시기 바랍니다.");
+            }
+            //      m.addAttribute("list",list);
+            //return "Item/cart_main2";
+            return new ResponseEntity<>(list,HttpStatus.OK);
+        } catch (Exception e) {
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+
+//            return "Item/cart_main2";
+            return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
+        }
+    }
+    private boolean login_check() {
+        return false;
     }
 }

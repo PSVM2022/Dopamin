@@ -5,6 +5,7 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="ItemDto" type="com.PSVM.dopamin.domain.Item.ItemDto"/>
+        <typeAlias alias="Pymt_DetlDto" type="com.PSVM.dopamin.domain.Item.Pymt_DetlDto"/>
         <typeAlias alias="OrderDto" type="com.PSVM.dopamin.domain.Item.OrderDto"/>
         <typeAlias alias="Cart_ItemDto" type="com.PSVM.dopamin.domain.Item.Cart_ItemDto"/>
         <typeAlias alias="BbsDto" type="com.PSVM.dopamin.domain.BbsDto"/>

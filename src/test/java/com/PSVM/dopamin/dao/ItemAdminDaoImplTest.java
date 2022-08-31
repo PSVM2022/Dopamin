@@ -2,6 +2,7 @@ package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
 import com.PSVM.dopamin.domain.Item.ItemDto;
+import com.PSVM.dopamin.domain.Item.Pymt_DetlDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,7 @@ public class ItemAdminDaoImplTest {
         if(result!=null) {
             itemAdminDaoImpl.test_delete_item(item_name);
         }//테스트의 독립성을 위해 넣고자하는 데이터가 있으면 지우고 Insert를 한다.
-        ItemDto itemDto=new ItemDto(2,"전설",item_name,"야 빡치면 뿌시지말고 스킨으로 뿌셔봐 뿌셔뿌셔",3000, "url","후후른훈",new Timestamp(System.currentTimeMillis()),"ldhoon0813","ldhoon0813");
+        ItemDto itemDto=new ItemDto(2,"전설",item_name,"야 빡치면 뿌시지말고 스킨으로 뿌셔봐 뿌셔뿌셔",3000, "url",new Timestamp(System.currentTimeMillis()),"ldhoon0813","ldhoon0813");
         int result1= itemAdminDaoImpl.registerItem(itemDto);
         assertTrue(result1==1);
     }
@@ -140,5 +141,39 @@ public class ItemAdminDaoImplTest {
             }
             assertTrue(flag == 0);
         }
+    }
+    @Test
+    public void 유저_포인트_가져오기() throws Exception{
+        Pymt_DetlDto pymt_detlDto = new Pymt_DetlDto();
+        pymt_detlDto.setPymt_amt(5000);
+        pymt_detlDto.setChg_pnt(8000);
+        pymt_detlDto.setUser_id("ldhoon0813");
+        int result=itemAdminDaoImpl.get_user_point(pymt_detlDto.getUser_id());
+        System.out.println("result = " + result);
+    }
+    @Test
+    @Transactional
+    public void 유저_포인트_증가() throws Exception{
+        Pymt_DetlDto pymt_detlDto = new Pymt_DetlDto();
+        pymt_detlDto.setPymt_amt(5000);
+        pymt_detlDto.setChg_pnt(8000);
+        pymt_detlDto.setUser_id("ldhoon0813");
+        int user_point=itemAdminDaoImpl.get_user_point(pymt_detlDto.getUser_id());
+        pymt_detlDto.setChg_pnt(user_point+ pymt_detlDto.getChg_pnt());
+        int result=itemAdminDaoImpl.increase_user_point(pymt_detlDto);
+        System.out.println("result = " + result);
+    }
+    @Test
+    @Transactional
+    public void 포인트_사용_내역_추가() throws Exception{
+        Pymt_DetlDto pymt_detlDto = new Pymt_DetlDto();
+        pymt_detlDto.setPymt_amt(5000);
+        pymt_detlDto.setChg_pnt(8000);
+        pymt_detlDto.setUser_id("ldhoon0813");
+        pymt_detlDto.setPg_corp_detl_id("2c7785a334e1fbab53a2");
+
+        System.out.println("pymt_detlDto = " + pymt_detlDto);
+        int result=itemAdminDaoImpl.insert_pymt_detl(pymt_detlDto);
+        System.out.println("result = " + result);
     }
 }
