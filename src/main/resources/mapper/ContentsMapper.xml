@@ -120,6 +120,14 @@
         DELETE FROM CNTS_WISH WHERE cnts_id = #{cnts_id} AND user_id = #{user_id}
     </delete>
 
+    <!--찜 기록 확인-->
+    <select id="wish" parameterType="map" resultType="com.PSVM.dopamin.domain.ContentsWishDto">
+        select *
+        from CNTS_WISH
+        where cnts_id = #{cnts_id}
+        and user_id = #{user_id}
+    </select>
+
     <!--컨텐츠 평가(좋아요/싫어요)-->
     <!--평가 기록 있는지 확인-->
     <select id="evalCheck" parameterType="map" resultType="CntsEvalDto">

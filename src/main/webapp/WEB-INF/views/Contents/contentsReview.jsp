@@ -54,7 +54,7 @@
             }
             $.ajax({
                 type: 'POST',   // 요청 메서드
-                url: '/psvm/contents/' + cnts_id + '/reviews1',
+                url: '/psvm/contents/' + cnts_id + '/writeReview',
                 // data: JSON.stringify({cnts_id: cnts_id, revw_body: review}),
                 data: {
                     "review": review
@@ -93,7 +93,7 @@
 
             $.ajax({
                 type: 'POST',       // 요청 메서드
-                url: '/psvm/contents/' + cnts_id + '/reviews2',
+                url: '/psvm/contents/' + cnts_id + '/modifyReview',
                 data: {
                     data: {
                         "revw_id": revw_id,
@@ -120,7 +120,7 @@
             //alert("여기까지")  //여기까지는 실행됨
             $.ajax({
                 type: 'POST',       // 요청 메서드
-                url: '/psvm/contents/' + cnts_id + '/reviews3',
+                url: '/psvm/contents/' + cnts_id + '/deleteReview',
                 data: {
                     "revw_id": revw_id
                 },

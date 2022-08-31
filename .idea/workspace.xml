@@ -9,15 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="feat: 컨텐츠 한줄평 화면 작성 및 수정&#10;&#10;화면 css 작성">
+    <list default="true" id="ba5667b1-7e0e-4721-a681-6d63771876f4" name="Changes" comment="docs: 컨텐츠 불필요한 파일 정리&#10;&#10;테스트용으로 쓰던 파일, css 등 정리">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ContentsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/dao/ContentsDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ContentsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsReview.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsReview.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/loginAction.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/review.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/reviewView.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/testtTestReviewView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Contents/contentsReview.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/contents/testcontentsmain.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,7 +289,7 @@
       <workItem from="1661672031413" duration="7516000" />
       <workItem from="1661691122814" duration="6349000" />
       <workItem from="1661826303907" duration="591000" />
-      <workItem from="1661826915673" duration="85061000" />
+      <workItem from="1661826915673" duration="92512000" />
     </task>
     <task id="LOCAL-00002" summary="refactor: 컨텐츠 장르 데이터 타입 변경&#10;&#10;Integer -&gt; String 변경함.">
       <created>1661739601721</created>
@@ -382,7 +382,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661972816704</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="docs: 컨텐츠 불필요한 파일 정리&#10;&#10;테스트용으로 쓰던 파일, css 등 정리">
+      <created>1661973986595</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1661973986595</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,6 +421,7 @@
     <MESSAGE value="feat: 로그인 유저 추천 컨텐츠 문구 추가&#10;&#10;로그인 유저에게 보이는 추천 컨텐츠에 유저 닉네임 추가" />
     <MESSAGE value="feat: 컨텐츠 메인, 상세, 검색 화면 css 수정 및 추가&#10;&#10;컨텐츠 3개 페이지 css 수정" />
     <MESSAGE value="feat: 컨텐츠 한줄평 화면 작성 및 수정&#10;&#10;화면 css 작성" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 컨텐츠 한줄평 화면 작성 및 수정&#10;&#10;화면 css 작성" />
+    <MESSAGE value="docs: 컨텐츠 불필요한 파일 정리&#10;&#10;테스트용으로 쓰던 파일, css 등 정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs: 컨텐츠 불필요한 파일 정리&#10;&#10;테스트용으로 쓰던 파일, css 등 정리" />
   </component>
 </project>

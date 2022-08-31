@@ -42,22 +42,19 @@
         function wishBtn(cnts_id) {
             //let revw_id = $(this).parent().attr("deleteBtn");
             console.log(cnts_id);
-            console.log(user_id);
-            //console.log("click");
+
+            console.log("click");
             //alert("여기까지")  //여기까지는 실행됨
             $.ajax({
                 type: 'POST',       // 요청 메서드
                 url: '/psvm/contents/' + cnts_id + '/wish',
-                data: {
-                    "cnts_id": cnts_id
-                },
                 success: function () {
-                    alert("컨텐츠 찜 완료")
+                    alert("컨텐츠 찜")
                     location.replace('/psvm/contents/' + cnts_id)
                 },
                 error: function () {// 에러가 발생했을 때, 호출될 함수
-                    alert("잠시 후 다시 시도해 주세요")
-                    //location.replace('/psvm/contents/' + cnts_id + '/contentsReview')
+                    alert("컨텐츠 찜 취소")
+                    location.replace('/psvm/contents/' + cnts_id)
                 }
             }); // $.ajax()
         };
@@ -148,7 +145,7 @@
             <div>
                 <div class="cnts-view-btn">
                     <input type="button" class="wishBtn" value="찜"
-                           onclick="wishBtn(${contentsWishDto.cnts_id})"/>
+                           onclick="wishBtn(${contentsWishDto.cnts_id});"/>
                     <input type="button" class="like-btn" value="좋아요" onclick="alert('좋아요 평가 완료');"/>
                     <input type="button" class="dislike-btn" value="싫어요" onclick="alert('싫어요 평가 완료');"/>
 

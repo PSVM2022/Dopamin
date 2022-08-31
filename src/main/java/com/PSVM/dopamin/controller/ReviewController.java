@@ -42,7 +42,7 @@ public class ReviewController {
     }
 
     //한줄평 등록
-    @PostMapping("/{cnts_id}/reviews1")
+    @PostMapping("/{cnts_id}/writeReview")
     @ResponseBody
     public ResponseEntity<String> insertRevw(@RequestParam("review") String revw_body, @PathVariable Integer cnts_id, HttpSession session) throws Exception {
 
@@ -72,7 +72,7 @@ public class ReviewController {
 
 
     //한줄평 수정
-    @PostMapping("/{cnts_id}/reviews2")
+    @PostMapping("/{cnts_id}/modifyReview")
     @ResponseBody
     public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, ReviewDto reviewDto, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
@@ -93,7 +93,7 @@ public class ReviewController {
     }
 
     //한줄평 삭제
-    @PostMapping("/{cnts_id}/reviews3")
+    @PostMapping("/{cnts_id}/deleteReview")
     @ResponseBody
     public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
