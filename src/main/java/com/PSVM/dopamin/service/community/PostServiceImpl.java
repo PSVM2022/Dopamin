@@ -74,4 +74,9 @@ public class PostServiceImpl implements PostService {
 
         return bbsDao.getName(post.getBbs_id());
     }
+
+    @Override
+    public Integer getRecenltyPostedId(String userId) throws SQLException {
+        return postDao.getRecentlyPostedId(userId);
+    }
 }

@@ -23,4 +23,6 @@ public interface PostService {
     String getBbsName(Integer bbsId) throws SQLException;
 
     String getBbsNameByPostId(Integer postId) throws SQLException;
+
+    Integer getRecenltyPostedId(String userId) throws SQLException;
 }
