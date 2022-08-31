@@ -6,14 +6,14 @@
 <!--그래야 id의 충돌하는 경우가 적어지니까. 다른 이유도 있는데 일단 이 정도만 알아두시기 바랍니다.&ndash;&gt;-->
 <mapper namespace="com.PSVM.dopamin.dao.MyPageMapper">
     <select id="selectrevw" parameterType="String" resultType="RevwDto">
-        select r.user_id, r.revw_id, r.cnts_id, r.revw_body, c.cnts_title, r.revw_visib_stat
+        select r.user_id, r.revw_id, r.cnts_id, r.revw_body, c.cnts_title, r.revw_visib_stat, r.up_date
         from REVW r
                  join CNTS c on c.cnts_id = r.cnts_id
         where r.user_id = #{user_id}
     </select>
 
     <select id="selectrevwRt" parameterType="String" resultType="RevwDto">
-        select re.revw_id, r.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat
+        select re.revw_id, r.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat, r.revw_body, re.up_date, c.cnts_id
         from REVW_RT re
                  join REVW r on r.revw_id = re.revw_id
                  join CNTS c on c.cnts_id = r.cnts_id
@@ -29,7 +29,7 @@
     </select>
 
     <select id="selectCntsView" parameterType="String" resultType="MyPageCntsDto">
-        select cv.cnts_id, cv.user_id, cv.in_date, c.cnts_postr_img, c.cnts_visib_stat
+        select cv.cnts_id, c.cnts_title, cv.user_id, cv.in_date, c.cnts_postr_img, c.cnts_visib_stat
         from CNTS_VIEW cv
                  join CNTS c on c.cnts_id = cv.cnts_id
         where cv.user_id = #{user_id}
@@ -37,52 +37,111 @@
     </select>
 
     <select id="selectPost" parameterType="String" resultType="MyPagePostDto">
-        select user_id,
-               bbs_id,
-               post_id,
-               post_title,
-               post_view_cnt,
-               post_reply_cnt,
-               in_date,
-               post_visib
-        from POST
-        order by in_date desc;
+        select p.user_id,
+               p.bbs_id,
+               b.bbs_nm,
+               p.post_id,
+               p.post_title,
+               p.post_view_cnt,
+               p.post_reply_cnt,
+               p.up_date,
+               p.post_visib
+        from POST p
+                 join BBS b on p.bbs_id = b.bbs_id
+        where p.user_id = #{user_id}
+        order by up_date desc;
     </select>
 
-<!--    <select id="selectUserInfo" parameterType="String" resultType="MyPageDto">-->
-<!--        select u.user_id,-->
-<!--               u.prf_img,-->
-<!--               u.nic,-->
-<!--               u.dopa_exp,-->
-<!--               u.dopa_point,-->
-<!--               u.fav_genre1,-->
-<!--               u.sex,-->
-<!--               u.btdt,-->
-<!--               i.item_img-->
-<!--        from USER u-->
-<!--                 join POSSESION p on p.user_id = u.user_id-->
-<!--                 join ITEM i on i.item_id = p.item_id-->
-<!--        where u.user_id = #{user_id}-->
-<!--          and p.equip_stat = 1;-->
-<!--    </select>-->
-
     <select id="selectUserInfo" parameterType="String" resultType="MyPageDto">
-            select u.user_id,
-                   u.prf_img,
-                   u.nic,
-                   u.dopa_exp,
-                   u.dopa_point,
-                   u.fav_genre1,
-                   u.sex,
-                   u.btdt
-            from USER u
-            where u.user_id = #{user_id}
-        </select>
+        select u.user_id,
+               u.prf_img,
+               u.nic,
+               u.dopa_exp,
+               u.dopa_point,
+               u.fav_genre1,
+               u.sex,
+               u.btdt
+        from USER u
+        where u.user_id = #{user_id}
+    </select>
 
-    <select id="selectSkin" parameterType="String" resultType="MyPageDto">
+    <select id="selectSkin" parameterType="String" resultType="String">
         select i.item_img
         from ITEM i
                  join POSSESION p on i.item_id = p.item_id
         WHERE p.user_id = #{user_id}
+          and p.equip_stat = 1
     </select>
+
+    <select id="genreIdToNm" parameterType="int" resultType="String">
+        select genre_nm
+        from GENRE
+        WHERE genre_id = #{genre_id}
+    </select>
+
+    <select id="selectSkinItem" parameterType="String" resultType="MyPageItemsDto">
+        select i.item_id, i.list_id, i.item_nm, i.item_img, p.user_id, p.equip_stat
+        from ITEM i
+                 join POSSESION p on i.item_id = p.item_id
+        where user_id = #{user_id}
+          and i.list_id = 1
+    </select>
+
+    <select id="selectProfItem" parameterType="String" resultType="MyPageItemsDto">
+        select i.item_id, i.list_id, i.item_nm, i.item_img, p.user_id, p.equip_stat
+        from ITEM i
+                 join POSSESION p on i.item_id = p.item_id
+        where user_id = #{user_id}
+          and i.list_id = 2
+    </select>
+
+    <select id="selectPntList" parameterType="String" resultType="MyPagePointDto">
+        select p.pnt_use_id,
+               p.pchs_item_id,
+               p.use_stat,
+               p.pnt,
+               p.user_id,
+               i.list_id,
+               i.grd_nm,
+               i.item_nm,
+               i.item_img,
+               p.in_date
+        from PNT_USE_DETL p
+                 join ITEM i on p.pchs_item_id = i.item_id
+        where p.user_id = #{user_id}
+        ORDER BY p.in_date desc
+    </select>
+
+    <update id="skinWearOff" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 0
+        where p.equip_stat = 1 and i.list_id = 1 and p.user_id = #{user_id}
+    </update>
+
+    <update id="equipSkin" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 1
+        where i.list_id = 1 and p.user_id = #{user_id} and p.item_id = #{item_id}
+    </update>
+
+    <update id="equipProf" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 2
+        where i.list_id = 1 and p.user_id = #{user_id} and p.item_id = #{item_id}
+    </update>
+
+    <update id="profWearOff" parameterType="myPageItemsDto">
+        UPDATE possesion p
+            JOIN item i
+        on p.item_id = i.item_id
+            SET p.equip_stat = 0
+        where p.equip_stat = 1 and i.list_id = 2 and p.user_id = #{user_id}
+    </update>
+
 </mapper>

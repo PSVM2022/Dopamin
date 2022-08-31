@@ -23,6 +23,16 @@ public interface UserDao {
 
     String selectCartId(String user_id);
 
+    int updateUserGenre(UserDto userDto);
+
+    int updateUserPwd(UserDto userDto);
+
+    int deleteUserPwdHist(String user_id);
+
+    int insertUserPwdHist(String user_id, String user_pwd);
+
+    String selectUserPwdHist(String user_id);
+
 
 
 }

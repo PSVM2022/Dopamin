@@ -1,9 +1,6 @@
 package com.PSVM.dopamin.service;
 
-import com.PSVM.dopamin.domain.MyPageCntsDto;
-import com.PSVM.dopamin.domain.MyPageDto;
-import com.PSVM.dopamin.domain.MyPagePostDto;
-import com.PSVM.dopamin.domain.RevwDto;
+import com.PSVM.dopamin.domain.*;
 
 import java.util.List;
 
@@ -19,4 +16,18 @@ public interface MyPageService {
     List<MyPagePostDto> postList(String user_id);
 
     MyPageDto selectMyInfo(String user_id);
+
+    List<MyPageItemsDto> profList(String user_id);
+
+    List<MyPageItemsDto> skinList(String user_id);
+
+    List<MyPagePointDto> pntList(String user_id);
+
+    void modSkin(MyPageItemsDto myPageItemsDto) throws Exception;
+
+    void modProf(MyPageItemsDto myPageItemsDto)throws Exception;
+
+    void defaultSkin(MyPageItemsDto myPageItemsDto);
+
+    void defaultProf(MyPageItemsDto myPageItemsDto);
 }

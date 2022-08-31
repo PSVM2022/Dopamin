@@ -3,6 +3,8 @@ package com.PSVM.dopamin.domain;
 import java.sql.Timestamp;
 
 public class ContentsDto {
+
+    private ContentsWishDto cntsw;
     private Integer cnts_id;
     private String cnts_title;
     private String cnts_subttl;
@@ -21,6 +23,9 @@ public class ContentsDto {
     private String cnts_g_rated;
     private String cnts_szn_cnt;
     private String cnts_ep_cnt;
+    private Integer ott1_stat;
+    private Integer ott2_stat;
+    private Integer ott3_stat;
     private Long ott1_click_cnt;
     private Long ott2_click_cnt;
     private Long ott3_click_cnt;
@@ -39,48 +44,50 @@ public class ContentsDto {
     private String up_user;
 
     //기본생성자
-    public ContentsDto() {
+
+    public ContentsDto(){
+
+    }
+    public ContentsDto(ContentsWishDto cntsw) {
+        this.cntsw = cntsw;
 
     }
 
-    @Override
-    public String toString() {
-        return "ContentsDto{" +
-                "cnts_id=" + cnts_id +
-                ", cnts_title='" + cnts_title + '\'' +
-                ", cnts_subttl='" + cnts_subttl + '\'' +
-                ", cnts_postr_img='" + cnts_postr_img + '\'' +
-                ", cnts_op_date='" + cnts_op_date + '\'' +
-                ", cnts_genre1='" + cnts_genre1 + '\'' +
-                ", cnts_genre2='" + cnts_genre2 + '\'' +
-                ", cnts_genre3='" + cnts_genre3 + '\'' +
-                ", cnts_genre4='" + cnts_genre4 + '\'' +
-                ", cnts_genre5='" + cnts_genre5 + '\'' +
-                ", cnts_cnty='" + cnts_cnty + '\'' +
-                ", cnts_director='" + cnts_director + '\'' +
-                ", cnts_actor='" + cnts_actor + '\'' +
-                ", cnts_synop='" + cnts_synop + '\'' +
-                ", cnts_rning_t='" + cnts_rning_t + '\'' +
-                ", cnts_g_rated='" + cnts_g_rated + '\'' +
-                ", cnts_szn_cnt='" + cnts_szn_cnt + '\'' +
-                ", cnts_ep_cnt='" + cnts_ep_cnt + '\'' +
-                ", ott1_click_cnt=" + ott1_click_cnt +
-                ", ott2_click_cnt=" + ott2_click_cnt +
-                ", ott3_click_cnt=" + ott3_click_cnt +
-                ", cnts_harmful_imit_rsk=" + cnts_harmful_imit_rsk +
-                ", cnts_harmful_sexuality=" + cnts_harmful_sexuality +
-                ", cnts_harmful_vioc=" + cnts_harmful_vioc +
-                ", cnts_harmful_fear=" + cnts_harmful_fear +
-                ", cnts_harmful_drug=" + cnts_harmful_drug +
-                ", cnts_grd='" + cnts_grd + '\'' +
-                ", cnts_lang='" + cnts_lang + '\'' +
-                ", cnts_dub=" + cnts_dub +
-                ", cnts_visib_stat=" + cnts_visib_stat +
-                ", in_date=" + in_date +
-                ", in_user='" + in_user + '\'' +
-                ", up_date=" + up_date +
-                ", up_user='" + up_user + '\'' +
-                '}';
+    public ContentsDto(Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, String cnts_genre1, String cnts_genre2, String cnts_genre3, String cnts_genre4, String cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Integer ott1_stat, Integer ott2_stat, Integer ott3_stat, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_visib_stat) {
+        this.cnts_id = cnts_id;
+        this.cnts_title = cnts_title;
+        this.cnts_subttl = cnts_subttl;
+        this.cnts_postr_img = cnts_postr_img;
+        this.cnts_op_date = cnts_op_date;
+        this.cnts_genre1 = cnts_genre1;
+        this.cnts_genre2 = cnts_genre2;
+        this.cnts_genre3 = cnts_genre3;
+        this.cnts_genre4 = cnts_genre4;
+        this.cnts_genre5 = cnts_genre5;
+        this.cnts_cnty = cnts_cnty;
+        this.cnts_director = cnts_director;
+        this.cnts_actor = cnts_actor;
+        this.cnts_synop = cnts_synop;
+        this.cnts_rning_t = cnts_rning_t;
+        this.cnts_g_rated = cnts_g_rated;
+        this.cnts_szn_cnt = cnts_szn_cnt;
+        this.cnts_ep_cnt = cnts_ep_cnt;
+        this.ott1_stat = ott1_stat;
+        this.ott2_stat = ott2_stat;
+        this.ott3_stat = ott3_stat;
+        this.ott1_click_cnt = ott1_click_cnt;
+        this.ott2_click_cnt = ott2_click_cnt;
+        this.ott3_click_cnt = ott3_click_cnt;
+        this.cnts_visib_stat = cnts_visib_stat;
+    }
+
+    //getter setter
+    public ContentsWishDto getCntsw() {
+        return cntsw;
+    }
+
+    public void setCntsw(ContentsWishDto cntsw) {
+        this.cntsw = cntsw;
     }
 
     public Integer getCnts_id() {
@@ -227,6 +234,30 @@ public class ContentsDto {
         this.cnts_ep_cnt = cnts_ep_cnt;
     }
 
+    public Integer getOtt1_stat() {
+        return ott1_stat;
+    }
+
+    public void setOtt1_stat(Integer ott1_stat) {
+        this.ott1_stat = ott1_stat;
+    }
+
+    public Integer getOtt2_stat() {
+        return ott2_stat;
+    }
+
+    public void setOtt2_stat(Integer ott2_stat) {
+        this.ott2_stat = ott2_stat;
+    }
+
+    public Integer getOtt3_stat() {
+        return ott3_stat;
+    }
+
+    public void setOtt3_stat(Integer ott3_stat) {
+        this.ott3_stat = ott3_stat;
+    }
+
     public Long getOtt1_click_cnt() {
         return ott1_click_cnt;
     }
@@ -355,41 +386,48 @@ public class ContentsDto {
         this.up_user = up_user;
     }
 
-    public ContentsDto(Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, String cnts_genre1, String cnts_genre2, String cnts_genre3, String cnts_genre4, String cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_harmful_imit_rsk, Integer cnts_harmful_sexuality, Integer cnts_harmful_vioc, Integer cnts_harmful_fear, Integer cnts_harmful_drug, String cnts_grd, String cnts_lang, Integer cnts_dub, Integer cnts_visib_stat, Timestamp in_date, String in_user, Timestamp up_date, String up_user) {
-        this.cnts_id = cnts_id;
-        this.cnts_title = cnts_title;
-        this.cnts_subttl = cnts_subttl;
-        this.cnts_postr_img = cnts_postr_img;
-        this.cnts_op_date = cnts_op_date;
-        this.cnts_genre1 = cnts_genre1;
-        this.cnts_genre2 = cnts_genre2;
-        this.cnts_genre3 = cnts_genre3;
-        this.cnts_genre4 = cnts_genre4;
-        this.cnts_genre5 = cnts_genre5;
-        this.cnts_cnty = cnts_cnty;
-        this.cnts_director = cnts_director;
-        this.cnts_actor = cnts_actor;
-        this.cnts_synop = cnts_synop;
-        this.cnts_rning_t = cnts_rning_t;
-        this.cnts_g_rated = cnts_g_rated;
-        this.cnts_szn_cnt = cnts_szn_cnt;
-        this.cnts_ep_cnt = cnts_ep_cnt;
-        this.ott1_click_cnt = ott1_click_cnt;
-        this.ott2_click_cnt = ott2_click_cnt;
-        this.ott3_click_cnt = ott3_click_cnt;
-        this.cnts_harmful_imit_rsk = cnts_harmful_imit_rsk;
-        this.cnts_harmful_sexuality = cnts_harmful_sexuality;
-        this.cnts_harmful_vioc = cnts_harmful_vioc;
-        this.cnts_harmful_fear = cnts_harmful_fear;
-        this.cnts_harmful_drug = cnts_harmful_drug;
-        this.cnts_grd = cnts_grd;
-        this.cnts_lang = cnts_lang;
-        this.cnts_dub = cnts_dub;
-        this.cnts_visib_stat = cnts_visib_stat;
-        this.in_date = in_date;
-        this.in_user = in_user;
-        this.up_date = up_date;
-        this.up_user = up_user;
+    @Override
+    public String toString() {
+        return "ContentsDto{" +
+                "cntsw=" + cntsw +
+                ", cnts_id=" + cnts_id +
+                ", cnts_title='" + cnts_title + '\'' +
+                ", cnts_subttl='" + cnts_subttl + '\'' +
+                ", cnts_postr_img='" + cnts_postr_img + '\'' +
+                ", cnts_op_date='" + cnts_op_date + '\'' +
+                ", cnts_genre1='" + cnts_genre1 + '\'' +
+                ", cnts_genre2='" + cnts_genre2 + '\'' +
+                ", cnts_genre3='" + cnts_genre3 + '\'' +
+                ", cnts_genre4='" + cnts_genre4 + '\'' +
+                ", cnts_genre5='" + cnts_genre5 + '\'' +
+                ", cnts_cnty='" + cnts_cnty + '\'' +
+                ", cnts_director='" + cnts_director + '\'' +
+                ", cnts_actor='" + cnts_actor + '\'' +
+                ", cnts_synop='" + cnts_synop + '\'' +
+                ", cnts_rning_t='" + cnts_rning_t + '\'' +
+                ", cnts_g_rated='" + cnts_g_rated + '\'' +
+                ", cnts_szn_cnt='" + cnts_szn_cnt + '\'' +
+                ", cnts_ep_cnt='" + cnts_ep_cnt + '\'' +
+                ", ott1_stat=" + ott1_stat +
+                ", ott2_stat=" + ott2_stat +
+                ", ott3_stat=" + ott3_stat +
+                ", ott1_click_cnt=" + ott1_click_cnt +
+                ", ott2_click_cnt=" + ott2_click_cnt +
+                ", ott3_click_cnt=" + ott3_click_cnt +
+                ", cnts_harmful_imit_rsk=" + cnts_harmful_imit_rsk +
+                ", cnts_harmful_sexuality=" + cnts_harmful_sexuality +
+                ", cnts_harmful_vioc=" + cnts_harmful_vioc +
+                ", cnts_harmful_fear=" + cnts_harmful_fear +
+                ", cnts_harmful_drug=" + cnts_harmful_drug +
+                ", cnts_grd='" + cnts_grd + '\'' +
+                ", cnts_lang='" + cnts_lang + '\'' +
+                ", cnts_dub=" + cnts_dub +
+                ", cnts_visib_stat=" + cnts_visib_stat +
+                ", in_date=" + in_date +
+                ", in_user='" + in_user + '\'' +
+                ", up_date=" + up_date +
+                ", up_user='" + up_user + '\'' +
+                '}';
     }
 }
 

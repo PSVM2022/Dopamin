@@ -1,9 +1,6 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.MyPageCntsDto;
-import com.PSVM.dopamin.domain.MyPageDto;
-import com.PSVM.dopamin.domain.MyPagePostDto;
-import com.PSVM.dopamin.domain.RevwDto;
+import com.PSVM.dopamin.domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,9 +46,48 @@ public class MyPageDaoImpl implements MyPageDao {
     }
 
     @Override
-    public MyPageDto selectSkin(String user_id) {
+    public String selectSkin(String user_id) throws Exception {
         return session.selectOne(namespace + "selectSkin", user_id);
     }
 
+    @Override
+    public String genreIdToNm(int genre_id) {
+        return session.selectOne(namespace + "genreIdToNm", genre_id);
+    }
+
+    @Override
+    public List<MyPageItemsDto> selectSkinItem(String user_id) {
+        return session.selectList(namespace + "selectSkinItem", user_id);
+    }
+
+    @Override
+    public List<MyPageItemsDto> selectProfItem(String user_id) {
+        return session.selectList(namespace + "selectProfItem", user_id);
+    }
+
+    @Override
+    public List<MyPagePointDto> selectPntList(String user_id) {
+        return session.selectList(namespace + "selectPntList", user_id);
+    }
+
+    @Override
+    public int equipSkin(MyPageItemsDto myPageItemsDto) {
+        return session.update(namespace + "equipSkin", myPageItemsDto);
+    }
+
+    @Override
+    public int skinWearOff(MyPageItemsDto myPageItemsDto) {
+        return session.update(namespace + "skinWearOff", myPageItemsDto);
+    }
+
+    @Override
+    public int equipProf(MyPageItemsDto myPageItemsDto) {
+        return session.update(namespace + "equipSkin", myPageItemsDto);
+    }
+
+    @Override
+    public int profWearOff(MyPageItemsDto myPageItemsDto) {
+        return session.update(namespace + "profWearOff", myPageItemsDto);
+    }
 
 }

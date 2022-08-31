@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="false" %>
 
-<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID='+=loginId}"/>
+<c:set var="USERID" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
+<c:set var="loginOutLink" value="${USERID=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${USERID=='' ? 'Login' : 'ID='+=USERID}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
         <div class="logo-wrapper">
             <img alt="" src="<c:url value='/image/logo_example.svg' />" width="50" height="30">
         </div>
-        <a class="topnav-menu" href="#" onclick='alert("홈으로 페이지 전환")'>홈</a>
+        <a class="topnav-menu" href="/psvm/" onclick='alert("홈으로 페이지 전환")'>홈</a>
         <a class="topnav-menu" href="#" onclick='alert("신규작 페이지로 이동")'>신규작</a>
         <a class="topnav-menu" href="#" onclick='alert("인기작 페이지로 이동")'>인기작</a>
         <a class="topnav-menu" href="#" onclick='alert("커뮤니티에서 게시판봐요")'>커뮤니티</a>

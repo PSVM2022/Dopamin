@@ -16,6 +16,9 @@
         <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
         <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
         <typeAlias alias="CntsEvalDto" type="com.PSVM.dopamin.domain.CntsEvalDto"/>
+        <typeAlias alias="MyPageItemsDto" type="com.PSVM.dopamin.domain.MyPageItemsDto"/>
+        <typeAlias alias="MyPagePointDto" type="com.PSVM.dopamin.domain.MyPagePointDto"/>
+
         <typeAlias alias="SearchCondition" type="com.PSVM.dopamin.domain.SearchCondition"/>
     </typeAliases>
 </configuration>

@@ -1,0 +1,39 @@
+main{
+    margin: 2% 0 2% 0;
+}
+
+.join-container{
+
+    width: 60rem;
+    margin: auto;
+    padding: 1% 4% 2% 4%;
+
+}
+
+.input-box{
+    width: 70%;
+}
+
+/* SECTION - BIRTH */
+.info#info__birth {
+    display: flex;
+}
+
+.info#info__birth select {
+    margin-left : 7px;
+}
+
+.info#info__birth select:first-child {
+    margin-left : 0px;
+}
+table{
+    border: 2px solid #FFBC97 ;
+    width: 100%;
+}
+table > tr > td{
+
+}
+
+.msg{
+    color: #FF7800;
+}
