@@ -1,10 +1,13 @@
 package com.PSVM.dopamin.controller;
 
+import com.PSVM.dopamin.service.AmazonS3Utils;
 import com.PSVM.dopamin.domain.*;
 import com.PSVM.dopamin.domain.User.UserDto;
 import com.PSVM.dopamin.service.MyPageService;
 import com.PSVM.dopamin.service.User.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,17 +18,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/mypage")
 public class MyPageController {
     @Autowired
     MyPageService myPageService;
     @Autowired
     UserService userService;
+
+    private final AmazonS3Utils amazonS3Utils;
+
+    @Value("${AWS_S3_BUCKET_URL}")
+    private String AWS_S3_BUCKET_URL;
+
 
 
     // MyPage 메인 화면
@@ -265,11 +276,10 @@ public class MyPageController {
 
     @PostMapping("/modifyprfimg")
     @ResponseBody
-    public String modifyProfileImg(@RequestParam("uploadImg") MultipartFile uploadImg, HttpSession session){
-        System.out.println("uploadImg = " + uploadImg);
+    public String modifyProfileImg(@RequestParam("uploadImg") MultipartFile uploadImg, HttpSession session) throws IOException {
         String user_id = (String) session.getAttribute("USERID");
-        userService.modifyUserPrfImg(uploadImg,user_id);
-
+        String s3Url = amazonS3Utils.uploadFile("user", uploadImg);
+        userService.modifyUserPrfImg(s3Url,user_id);
         return "success";
     }
 

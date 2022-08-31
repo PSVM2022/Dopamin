@@ -105,11 +105,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int modifyUserPrfImg(MultipartFile uploadImg,String user_id) {
+    public int modifyUserPrfImg(String s3Url,String user_id) throws IOException {
         System.out.println("call modifyUserPrfImg in UserServiceImpl");
-        String path = convertFileToPath(uploadImg);
-        System.out.println(path);
-        userDao.updateUserPrfImg(path,user_id);
+        userDao.updateUserPrfImg(s3Url,user_id);
 
         return 0;
     }
