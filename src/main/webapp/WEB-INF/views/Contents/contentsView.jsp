@@ -57,7 +57,7 @@
         </ul>
         <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
             <select class="search-option" name="option">
-                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합검색</option>
+                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합</option>
                 <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
                 <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
                 <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
