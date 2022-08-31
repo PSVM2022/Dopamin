@@ -1,35 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<%@ page session="false" %>
-<%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
-<%
-    response.setHeader("Cache-Control", "no-cache");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires", 0);
-%>
-<%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
-<c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}" />
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}" />
-<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}" />
-<html>
-<html lang="ko">
-<head>
-    <title>도파민!</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png'/>">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
 
     <!--home.css 부분을 빼고 자기 페이지의 css를 넣으세요-->
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
@@ -47,12 +15,12 @@
             <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/psvm/" class="nav-link px-2 link-secondary">홈</a></li>
+            <li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
-            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">

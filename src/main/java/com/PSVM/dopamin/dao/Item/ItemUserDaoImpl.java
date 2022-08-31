@@ -6,6 +6,7 @@ import com.PSVM.dopamin.domain.Item.OrderDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,15 +19,16 @@ public class ItemUserDaoImpl {
     public ItemUserDaoImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
-    public int addCart(Cart_ItemDto cart_itemDto) throws Exception{
-        return sqlSession.insert(namespace+"addCart",cart_itemDto);
-    }
-
-    public int find_item(Integer item_id) throws Exception {
+    public ItemDto find_item(Integer item_id) throws Exception {
         return sqlSession.selectOne(namespace+"find_item",item_id);
     }
-
-    public int getItem_Stat(Integer item_id) throws Exception {
+    public int addCart(Cart_ItemDto cart_itemDto) throws SQLException,Exception{
+        return sqlSession.insert(namespace+"addCart",cart_itemDto);
+    }
+    public Cart_ItemDto find_possesion(Cart_ItemDto cart_itemDto) throws Exception{
+        return sqlSession.selectOne(namespace+"find_possesion",cart_itemDto);
+    }
+    public int getItem_Stat(int item_id) throws Exception {
         return sqlSession.selectOne(namespace+"item_stat",item_id);
     }
 
@@ -79,5 +81,9 @@ public class ItemUserDaoImpl {
 
     public int exchange_insert_pnt_detl(OrderDto orderDto) {
         return sqlSession.insert(namespace+"exchange_insert_pnt_detl",orderDto);
+    }
+
+    public List<ItemDto> getItem_list() {
+        return sqlSession.selectList(namespace+"getItem_list");
     }
 }

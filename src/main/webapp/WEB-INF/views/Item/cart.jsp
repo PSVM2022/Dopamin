@@ -12,7 +12,7 @@
        value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}" />
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}" />
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}" />
-<html>
+
 <html lang="ko">
 
 <head>
@@ -43,10 +43,9 @@
     <script>
         $(document).ready(function() {
             let point=Number($('#amount_price').text().split(" ",1));
-            //let total_point=Number($('#total_point').text().split(" ",1));
             if(point<0){
                 $("#amount_price").css("color", "#f00");
-            }//$("test2 li").css("color", "#f00");
+            }
             $('#buy_item').click(function(){
                 console.log("click");
                 if(point<0){
@@ -161,9 +160,8 @@
                                 </c:forEach>
                                 <div class="pt-5">
                                     <h6 class="mb-0">
-                                        <a href="#!" class="text-body">
-                                        <i class="fas fa-long-arrow-alt-left me-2">
-                                        </i>상점으로 돌아가기
+                                        <a href="/psvm/item/" class="text-body">
+                                            <i class="fas fa-long-arrow-alt-left me-2"></i>상점으로 돌아가기
                                         </a>
                                     </h6>
                                 </div>

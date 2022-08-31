@@ -69,7 +69,6 @@
 
 <body>
 <div class="container">
-    <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
         <a href="<c:url value='/'/>"

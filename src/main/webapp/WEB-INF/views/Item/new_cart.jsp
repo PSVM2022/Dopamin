@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <%@ page session="false" %>
 <%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
 <%
@@ -12,10 +11,10 @@
 %>
 <%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
 <c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
-<html>
+
 <html lang="ko">
 <head>
     <title>도파민!</title>
@@ -35,15 +34,125 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/psvm.css?after'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>
+        let toHtml1=function(items){
+            let tmp1='<div class="delete_select_entire"> 전체 선택 | 선택 삭제 </div>';
+                items.list.forEach(function(item){
+                    tmp1+='<div class="item-num" data-item_id='+item.item_id+'>';
+                    tmp1+='<div class="image-wrap_cart">';
+                    tmp1+='<img class="cart-image" src='+item.item_img+'>';
+                    tmp1+='</div>';
+                    tmp1+='<div class="cart_item_info">';
+                    tmp1+='<div class="cart_item_detail" style="font-size: 1.1rem; font-weight: 500;">'+item.item_nm+'</div>';
+                    tmp1+='<div style="display:flex; font-size: 0.8rem;">'
+                    tmp1+='<div class="cart_item_detail" style="width: 3rem;">'+item.grd_nm+'</div>';
+                    tmp1+='<div class="cart_item_detail">'+item.list_nm+'</div>';
+                    tmp1+='</div>'
+                    tmp1+='<div class="cart_item_dsc">'+item.item_dsc+'</div>';
+                    tmp1+='</div>';
+                    tmp1+='<div class="cart_item_price">'+item.item_price+' DP</div>';
+                    tmp1+='<buuton class="closed">x</buuton>';
+                    tmp1+='</div>';
+                })
+            return tmp1
+        }
+        let toHtml2=function(items){
+            let tmp2='';
+            tmp2+='<div class="cart_point">';
+            tmp2+='<div class="pay_info"> 결제 예정금액 </div>';
+            tmp2+='<div class="cart_item_pay_info">';
+            tmp2+='<div class="more_info"><span class="item_info">상품수</span><span class="numberofitem">'+items.list.length+' 개</span></div>';
+            tmp2+='<div class="more_info"><span class="item_info">보유 금액</span><span class="numberofitem">'+items.my_point+' DP</span></div>';
+            tmp2+='<div class="more_info"><span class="item_info">상품금액</span><span class="numberofitem"  style="color:red;">'+items.total_point+' DP</span></div>';
+            tmp2+='<div class="more_info"><span class="item_info">할인금액</span><span class="numberofitem">0개</span></div>';
+            tmp2+='</div>';
+            tmp2+='<div class="total_info"><span class="total_amount">총 결제금액</span><span class="total_money">'+items.after_point+' DP</span></div>';
+            tmp2+='<button class="buy_button">구매하기</button>';
+            return tmp2+"</div>"
+        }
+        $(document).ready(function(){
+            const price = document.getElementsByClassName("numberofitem");
+            const _value = parseInt(price.innerHTML);
+            const priceChange = _value ? parseInt(_value).toLocaleString("ko-KR") : 0
+            price.innerHTML = priceChange;
+
+            $('.cart_item').on("click",".closed",function(){
+                let item_id=$(this).parent().attr("data-item_id");
+                console.log(item_id);
+                $.ajax({
+                    type:'DELETE',
+                    url:'/psvm/item/deleteCart/'+item_id,
+                    success:function(result){
+                        alert(result);
+                        location.reload();
+                    },
+                    error:function(){
+                        alert("삭제에 실패했습니다. 잠시후 다시 시도해주세요.");
+                    }
+                })
+            })
+            $.ajax({
+                type:'GET',
+                url:'/psvm/item/cart_main',
+                success:function(result){
+                    console.log(result)
+                    $('.cart_item').html(toHtml1(result));
+                    $('#cart_detail_price').html(toHtml2(result));
+                    let point=Number($('.total_money').text().split(' ',1)[0]);
+                    console.log("총결제금액="+point);
+                    if(point<0){
+                        $(".total_money").css("color", "#f00");
+                    }//$("test2 li").css("color", "#f00");
+                    $('.buy_button').click(function(){
+                        console.log("click");
+                        if(point<0){
+                            if(confirm("포인트가 부족합니다. 포인트 충전하러 갈까요?")){
+                                //충전페이지로 이동.
+                            }
+                        }
+                        else{
+                            if(confirm("구매하시겠습니까?")){
+                                let count=result.list.length;
+                                let dto_array=new Array();
+                                for(let i=0;i<count;i++){
+                                    let dto={"item_id":result.list[i].item_id,"item_nm":result.list[i].item_nm,"item_price":result.list[i].item_price}
+                                    dto_array.push(dto);
+                                }
+                                console.log(dto_array);
+                                $.ajax({
+                                    url:'/psvm/item/buyCart',
+                                    type:'POST',
+                                    headers : { "content-type": "application/json"},
+                                    data:JSON.stringify(dto_array),
+                                    success:function(data){
+                                        alert("구매가 확정되었습니다.");
+                                        location.reload();
+                                    },
+                                    error:function(request,status,error){
+                                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                    }
+                                })
+                            }
+                        }
+                    });
+                },
+                error:function(){
+                    alert("장바구니가 비어있습니다. 구매하실 물건을 선택해 주세요.");
+                    location.href="/psvm/item/item";
+                }
+            });
+        })
+
     </script>
 </head>
 
 <body>
 <div class="container">
-    <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
         <a href="<c:url value='/'/>"
@@ -52,91 +161,52 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/psvm/" class="nav-link px-2 link-secondary">홈</a></li>
+            <li><a href="#" class="nav-link px-2 link-secondary">홈</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
-            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">이벤트</a></li>
+            <li><a href="/psvm/item/item" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
-
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <input type="search" class="form-control form-control-dark" placeholder="Search..."
                    aria-label="Search">
         </form>
-
         <div class="text-end">
             <button type="button" class="btn btn-warning me-2">Login</button>
         </div>
     </header>
-</div>
-
-
-<!--
-    내용 컨테이너. 여러개의 Row를 만들 때 secion 태그로 나눕니다.
-    container - 컨텐츠를 포함하고 채우고 정렬하는 부트스트랩 기본구성요소
-    py-5 - padding y축방향(위아래)로 5 단위만큼 부여 https://getbootstrap.kr/docs/5.0/utilities/spacing/ 참고
-    // 컨텐츠를 넣는 태그 만들 때 무조건 section 태그에 container py-5 주고 시작합니다(위 아래 컨텐츠간 여백)
-    bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
--->
-<main>
-    <section class="container py-5">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
-
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5 bg-light">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
-
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5">
-        모든 국민은 신체의 자유를 가진다. 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며, 법률과 적법한 절차에 의하지 아니하고는
-        처벌·보안처분 또는 강제노역을 받지
-        아니한다.
-
-        국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다. 모든 국민은 인간으로서의 존엄과 가치를 가지며, 행복을 추구할 권리를 가진다. 국가는
-        개인이 가지는 불가침의 기본적
-        인권을 확인하고 이를 보장할 의무를 진다.
-    </section>
-    <section class="container py-5 bg-light">
-        <!-- Carousel -->
-        <div id="demo" class="carousel slide w-25" data-bs-ride="carousel">
-            <!-- The slideshow/carousel -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=1" alt="Los Angeles"
-                         class="d-block w-100">
+    <div id="main_bar" style="justify-content: center;text-align: center;">
+        <div class="dropdown" style="margin-left: -1rem;">
+            <span class="item_menu" onclick="location.href='/psvm/item/item'" style="cursor:hand" onfocus="blur();">상점</span>
+            <div class="dropdown-content">
+                <div class="category">
+                    <a href="/psvm/item/list/스킨" class="skin">스킨</a>
                 </div>
-                <div class="carousel-item">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=2" alt="Chicago"
-                         class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://dummyimage.com/160x240/000/fff&text=3" alt="New York"
-                         class="d-block w-100">
+                <div class="category">
+                    <a href="/psvm/item/list/꾸미기" class="skin">꾸미기</a>
                 </div>
             </div>
-
-            <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#demo"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
         </div>
-    </section>
+        <span class="item_menu" onclick="location.href='/psvm/item/cart'" style="cursor:hand" onfocus="blur();">장바구니</span>
+        <span class="item_menu">포인트사용내역</span>
+        <span class="item_menu" onclick="location.href='/psvm/item/chargePoint'" style="cursor:hand" onfocus="blur();">충전샵</span>
+        <span class="item_menu">마이페이지</span>
+    </div>
+    <div class="cartBar"><span style="font-size: 1.6rem; padding: 5rem; font-weight: 500;">장바구니</span><span style="float:right; padding: 0.6rem 10rem 0 0;">장바구니 > 주문완료</span></div>
+</div>
+<main style="display: flex;justify-content: center;">
+    <div id="left_ad"></div>
+    <div id="main_container">
+        <div class="cartDetail">
+            <div class="cart_item">
+
+            </div>
+            <div id="cart_detail_price">
+            </div>
+        </div>
+    </div>
+    <div id="right_ad"></div>
 </main>
 
 <footer class="footer mt-auto py-3 bg-light">
