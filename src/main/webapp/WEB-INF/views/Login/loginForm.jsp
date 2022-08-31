@@ -85,7 +85,7 @@
 
         <form action="<c:url value='/login/login'/>" method="post" onsubmit="return formCheck(this);">
 
-            <h1 class="form-tag">LOGIN</h1>
+            <h1><span style="color: #e0994d;">DOPAMIN </span>LOGIN</h1>
             <div class="input-box form-tag">
                 <c:choose>
                     <c:when test="${not empty param.id}">
@@ -117,8 +117,8 @@
                 </div>
 
                 <div class="box form-tag">
-                    <a href="/">비밀번호 찾기</a> |
-                    <a href="/">아이디 찾기</a> |
+                    <a href="#">아이디 찾기</a> |
+                    <a href="#">비밀번호 찾기</a> |
                     <a href="<c:url value="/join/join"/>">회원가입</a>
                 </div>
 

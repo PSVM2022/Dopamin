@@ -1,13 +1,28 @@
 main{
     margin: 2% 0 2% 0;
 }
-
 .join-container{
-
-    width: 60rem;
+    width: 70rem;
     margin: auto;
     padding: 1% 4% 2% 4%;
+}
+h1{
+    font-weight: bolder;
+}
+#join-table{
+    border: 0.3rem solid #FFBC97 ;
+    border-radius: 1.3rem;
+}
+table{
+    width: 100%;
+    margin: 2%;
+    border-collapse: collapse;
+    padding: 1% 1% 1% 1%;
+}
 
+th{
+    border-spacing: 2px;
+    padding: 1.5% 0px 1% 1.5%;
 }
 
 .input-box{
@@ -26,14 +41,51 @@ main{
 .info#info__birth select:first-child {
     margin-left : 0px;
 }
-table{
-    border: 2px solid #FFBC97 ;
-    width: 100%;
-}
-table > tr > td{
-
-}
 
 .msg{
     color: #FF7800;
+}
+
+input{
+    width: 200px;
+    padding: 0.5%;
+
+}
+
+select{
+    padding: 0.5%;
+}
+
+button{
+    /*background-color: #FF7800;*/
+    padding: 0.5%;
+    border: 2.5px solid #e0994d;
+    border-radius: 5px;
+    background-color: #e0994d;
+
+
+}
+button:hover{
+    color:white;
+}
+
+#authNum-box{
+    margin-top: 1.5%;
+}
+
+#joinBtn{
+    width: 10rem;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    background-color: #e0994d;
+    border-radius: 5px;
+    padding: 1.5%;
+    font-weight: bold;
+    margin-top: 2%;
+
+}
+
+#joinBtn:hover{
+    color:white;
 }

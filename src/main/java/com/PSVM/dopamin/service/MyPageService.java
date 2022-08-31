@@ -5,9 +5,9 @@ import com.PSVM.dopamin.domain.*;
 import java.util.List;
 
 public interface MyPageService {
-    List<RevwDto> revwList(String user_id) throws Exception;
+    List<MyPageRevwDto> revwList(String user_id) throws Exception;
 
-    List<RevwDto> revwRtList(String user_id);
+    List<MyPageRevwDto> revwRtList(String user_id);
 
     List<MyPageCntsDto> cntsWishList(String user_id);
 
@@ -30,4 +30,8 @@ public interface MyPageService {
     void defaultSkin(MyPageItemsDto myPageItemsDto);
 
     void defaultProf(MyPageItemsDto myPageItemsDto);
+
+    int deleterevw(List<Integer> valueArr) throws Exception;
+
+    int deletePost(List<Integer> valueArr) throws Exception;
 }

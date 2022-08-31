@@ -1,7 +1,8 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.UserDao;
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
+import com.PSVM.dopamin.service.User.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -75,18 +76,30 @@ public class UserServiceImplTest {
 
     @Test
     @Transactional
-    public void testIdDuplicateCheck(){
+    public void testIdDuplicateCheckWhenIdIsDuplication() throws Exception {
 
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         int rowCnt = userService.joinUser(userDto);
 
         //when
-        int cnt = userService.idDuplicateCheck(userDto.getUser_id());
+        int cnt = userService.idDuplicateCheck("testid");
 
         //then
         assertEquals(3, rowCnt);
         assertEquals(1, cnt);
+    }
+
+    @Test
+    @Transactional
+    public void IsSuccessIdDuplicateCheck() throws Exception {
+        //given
+        String id="newId";
+        //when
+        int cnt = userService.idDuplicateCheck(id);
+        //then
+        assertEquals(0,cnt);
+
     }
 
     @Test
@@ -131,7 +144,7 @@ public class UserServiceImplTest {
         }catch (NullPointerException ne){
             String msg =ne.getMessage();
             //then
-            assertEquals("User doesn't exist",msg);
+            assertEquals("존재하지 않는 아이디입니다.",msg);
         }
     }
 
@@ -150,15 +163,15 @@ public class UserServiceImplTest {
         //given
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         userService.joinUser(userDto);
-        UserDto survey = new UserDto(userDto.getUser_id(),3,1,6,12,5);
+        UserDto survey = new UserDto(userDto.getUser_id(),"액션", "로맨스", "코미디", "다큐", "공포");
         //when
-        int rowCnt = userService.surveyGenre(survey);
+        int rowCnt = userService.surveyDo(survey);
         UserDto user = userService.getUser(userDto.getUser_id());
 
         //then
         assertEquals(1,rowCnt);
-        assertEquals((Integer)12,user.getFav_genre4());
-        assertEquals((Integer) 5,user.getFav_genre5());
+        assertEquals("다큐",user.getFav_genre4());
+        assertEquals("공포",user.getFav_genre5());
     }
 
     @Test
@@ -166,9 +179,9 @@ public class UserServiceImplTest {
     public void shouldNullPointerExceptionWhenSurveyIfUserIdIsNull(){
         try{
             //given
-            UserDto survey = new UserDto(null,3,1,6,12,5);
+            UserDto survey = new UserDto(null,"액션","공포","다큐","로맨스","코미디");
             //when
-            int rowCnt = userService.surveyGenre(survey);
+            int rowCnt = userService.surveyDo(survey);
 
         }catch (NullPointerException ne){
             String msg = ne.getMessage();
@@ -185,18 +198,72 @@ public class UserServiceImplTest {
         //가입
         UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
         userService.joinUser(userDto);
-        UserDto upUserDto = new UserDto(userDto.getUser_id(),"upPwd", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", 7, 6, 5, 4, 3, new Date(), "testid");
+        UserDto upUserDto = new UserDto(userDto.getUser_id(),"", "upFnm", "upLnm", "010-9877-9877", "infp", "upCnty", "bbb@naver.com", "upNic", "19990101", (byte) 1, "upProfile", "액션", "로맨스", "코미디", "다큐", "", new Date(), "testid");
 
         //when
         //수정
-        int rowCnt = userService.modifyUserInform(upUserDto);
+        int rowCnt = userService.modifyUserInfo(upUserDto);
         userDto = userService.getUser("testid");
-        String pwd = userDao.selectUserPwd("testid");
+        System.out.println("upUserDto = " + upUserDto);
+        System.out.println("userDto = " + userDto);
         //then
+        assertEquals(1,rowCnt);
 
-        assertEquals("upPwd",pwd);
+        assertEquals(upUserDto.getPhone_num(), userDto.getPhone_num());
+        assertEquals(upUserDto.getNic(),userDto.getNic());
         assertEquals("upFnm",userDto.getF_nm());
     }
+
+    @Test
+    @Transactional
+    public void testGetCartId(){
+        //given
+        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+        userService.joinUser(userDto);
+        UserDto user = userService.getUser("testid");
+
+        //when
+        String cartId = userService.getCartId(user.getUser_id());
+        //then
+        assertTrue(cartId!=null);
+        System.out.println("cartId = " + cartId);
+        int test = Integer.parseInt(cartId);
+
+    }
+
+    @Test
+    @Transactional
+    public void isFalseIdValidCheck(){
+        //given
+        String id= "12test";
+        //when
+        boolean result = userService.idValidCheck(id);
+        //then
+        assertTrue(!result);
+    }
+    @Test
+    @Transactional
+    public void isTrueIdValidCheck(){
+        //given
+        String id="testid";
+        //when
+        boolean result = userService.idValidCheck(id);
+        //then
+        assertTrue(result);
+    }
+
+
+    //테스트 작성 중
+//    @Test
+//    @Transactional
+//    public void testModifyUserPrfImg(){
+//        //given
+//        UserDto userDto = new UserDto("testid","testpwd","성","이름","010-1234-1234","KOREA","test@email.com","testnic","20000101",(byte)1);
+//        userService.joinUser(userDto);
+//        //when
+//        userService.modifyUserPrfImg("updatePrf","testid");
+//        //then
+//    }
 
 
 }

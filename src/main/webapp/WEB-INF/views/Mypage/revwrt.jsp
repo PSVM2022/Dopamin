@@ -93,7 +93,7 @@
                         <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
                         <td>${revw.revw_body}</td>
                         <td>${revw.user_id}</td>
-                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.mm.dd"/> ${revw.up_date}</td>
+                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.MM.dd"/> ${revw.up_date}</td>
 
                     </tr>
                 </c:forEach>

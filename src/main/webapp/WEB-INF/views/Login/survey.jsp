@@ -15,7 +15,6 @@
        value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
-<c:set var="SURVEY" value="${pageContext.request.getSession(false).getAttribute('SURVEY')}"/>
 
 
 <html lang="ko">
@@ -36,9 +35,9 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/user/survey.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/user/survey.css?after'/>">
 
-<%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
+    <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -76,160 +75,183 @@
 </div>
 
 <main>
+
+    <h2><span style="color:#e0994d;">DOPAMIN </span>설문조사</h2>
     <div class="survey-container">
-        <form action="<c:url value="/join/survey"/>" method="post" onsubmit="dupleCheck();">
+        <form action="<c:url value="/join/survey"/>" method="post" onsubmit="surveyCheck();">
             <div class="content-preview" style="text-align:center">
-                <h4>설문조사</h4>
-                <p>본 설문조사는 마이페이지와 영화 추천 기능에 필요한 기능입니다. 선호하는 장르를 중복없이 최소1개 최대 5개 선택해주세요.</p>
                 <input type="hidden" name="user_id" value="${loginId}"/>
-                <select required class="form-select form-select-sm" aria-label=".form-select-sm example"
-                        name="fav_genre1">
-                    <option selected value="">--선택--</option>
-                    <option value="1">액션</option>
-                    <option value="2">애니메이션</option>
-                    <option value="3">범죄</option>
-                    <option value="4">드라마</option>
-                    <option value="5">코미디</option>
-                    <option value="6">로맨스</option>
-                    <option value="7">스릴러</option>
-                    <option value="8">호러</option>
-                    <option value="9">SF</option>
-                    <option value="10">성인</option>
-                    <option value="11">판타지</option>
-                    <option value="12">어드벤쳐</option>
-                    <option value="13">미스터리</option>
-                    <option value="14">가족</option>
-                    <option value="15">전쟁</option>
-                    <option value="16">사극</option>
-                    <option value="17">다큐멘터리</option>
-                    <option value="18">뮤지컬</option>
-                    <option value="19">서부극</option>
-                    <option value="20">공연</option>
-                    <option value="21">게임</option>
-                    <option value="22">리얼리티</option>
-                    <option value="23">토크쇼</option>
-                    <option value="24">스포츠</option>
-                    <option value="25">유러피안</option>
-                </select>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre2">
-                    <option selected value="">--선택--</option>
-                    <option value="1">액션</option>
-                    <option value="2">애니메이션</option>
-                    <option value="3">범죄</option>
-                    <option value="4">드라마</option>
-                    <option value="5">코미디</option>
-                    <option value="6">로맨스</option>
-                    <option value="7">스릴러</option>
-                    <option value="8">호러</option>
-                    <option value="9">SF</option>
-                    <option value="10">성인</option>
-                    <option value="11">판타지</option>
-                    <option value="12">어드벤쳐</option>
-                    <option value="13">미스터리</option>
-                    <option value="14">가족</option>
-                    <option value="15">전쟁</option>
-                    <option value="16">사극</option>
-                    <option value="17">다큐멘터리</option>
-                    <option value="18">뮤지컬</option>
-                    <option value="19">서부극</option>
-                    <option value="20">공연</option>
-                    <option value="21">게임</option>
-                    <option value="22">리얼리티</option>
-                    <option value="23">토크쇼</option>
-                    <option value="24">스포츠</option>
-                    <option value="25">유러피안</option>
-                </select>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre3">
-                    <option selected value="">--선택--</option>
-                    <option value="1">액션</option>
-                    <option value="2">애니메이션</option>
-                    <option value="3">범죄</option>
-                    <option value="4">드라마</option>
-                    <option value="5">코미디</option>
-                    <option value="6">로맨스</option>
-                    <option value="7">스릴러</option>
-                    <option value="8">호러</option>
-                    <option value="9">SF</option>
-                    <option value="10">성인</option>
-                    <option value="11">판타지</option>
-                    <option value="12">어드벤쳐</option>
-                    <option value="13">미스터리</option>
-                    <option value="14">가족</option>
-                    <option value="15">전쟁</option>
-                    <option value="16">사극</option>
-                    <option value="17">다큐멘터리</option>
-                    <option value="18">뮤지컬</option>
-                    <option value="19">서부극</option>
-                    <option value="20">공연</option>
-                    <option value="21">게임</option>
-                    <option value="22">리얼리티</option>
-                    <option value="23">토크쇼</option>
-                    <option value="24">스포츠</option>
-                    <option value="25">유러피안</option>
-                </select>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre4">
-                    <option selected value="">--선택--</option>
-                    <option value="1">액션</option>
-                    <option value="2">애니메이션</option>
-                    <option value="3">범죄</option>
-                    <option value="4">드라마</option>
-                    <option value="5">코미디</option>
-                    <option value="6">로맨스</option>
-                    <option value="7">스릴러</option>
-                    <option value="8">호러</option>
-                    <option value="9">SF</option>
-                    <option value="10">성인</option>
-                    <option value="11">판타지</option>
-                    <option value="12">어드벤쳐</option>
-                    <option value="13">미스터리</option>
-                    <option value="14">가족</option>
-                    <option value="15">전쟁</option>
-                    <option value="16">사극</option>
-                    <option value="17">다큐멘터리</option>
-                    <option value="18">뮤지컬</option>
-                    <option value="19">서부극</option>
-                    <option value="20">공연</option>
-                    <option value="21">게임</option>
-                    <option value="22">리얼리티</option>
-                    <option value="23">토크쇼</option>
-                    <option value="24">스포츠</option>
-                    <option value="25">유러피안</option>
-                </select>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="fav_genre5">
-                    <option selected value="">--선택--</option>
-                    <option value="1">액션</option>
-                    <option value="2">애니메이션</option>
-                    <option value="3">범죄</option>
-                    <option value="4">드라마</option>
-                    <option value="5">코미디</option>
-                    <option value="6">로맨스</option>
-                    <option value="7">스릴러</option>
-                    <option value="8">호러</option>
-                    <option value="9">SF</option>
-                    <option value="10">성인</option>
-                    <option value="11">판타지</option>
-                    <option value="12">어드벤쳐</option>
-                    <option value="13">미스터리</option>
-                    <option value="14">가족</option>
-                    <option value="15">전쟁</option>
-                    <option value="16">사극</option>
-                    <option value="17">다큐멘터리</option>
-                    <option value="18">뮤지컬</option>
-                    <option value="19">서부극</option>
-                    <option value="20">공연</option>
-                    <option value="21">게임</option>
-                    <option value="22">리얼리티</option>
-                    <option value="23">토크쇼</option>
-                    <option value="24">스포츠</option>
-                    <option value="25">유러피안</option>
-                </select>
+                <p>본 설문조사는 마이페이지와 영화 추천 기능에 필요한 정보입니다.</p>
+                <label for="fav-genres-box" class="survey-label">선호 장르</label>
+                <p>선호 장르 최소1개 최대 5개를 선택해주세요. (중복X)</p>
+                <div class="fav-genres-box" id="fav-genres-box">
+                    <select required
+                            name="fav_genre1">
+                        <option selected value="" disabled>--선호장르1(필수)--</option>
+                        <option value="액션">액션</option>
+                        <option value="애니메이션">애니메이션</option>
+                        <option value="범죄">범죄</option>
+                        <option value="드라마">드라마</option>
+                        <option value="코미디">코미디</option>
+                        <option value="로맨스">로맨스</option>
+                        <option value="스릴러">스릴러</option>
+                        <option value="호러">호러</option>
+                        <option value="SF">SF</option>
+                        <option value="성인">성인</option>
+                        <option value="판타지">판타지</option>
+                        <option value="어드벤쳐">어드벤쳐</option>
+                        <option value="미스터리">미스터리</option>
+                        <option value="가족">가족</option>
+                        <option value="전쟁">전쟁</option>
+                        <option value="사극">사극</option>
+                        <option value="다큐멘터리">다큐멘터리</option>
+                        <option value="뮤지컬">뮤지컬</option>
+                        <option value="서부극">서부극</option>
+                        <option value="공연">공연</option>
+                        <option value="게임">게임</option>
+                        <option value="리얼리티">리얼리티</option>
+                        <option value="토크쇼">토크쇼</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="유러피안">유러피안</option>
+                    </select>
+                    <select name="fav_genre2">
+                        <option selected value="" disabled>--선호장르2--</option>
+                        <option value="액션">액션</option>
+                        <option value="애니메이션">애니메이션</option>
+                        <option value="범죄">범죄</option>
+                        <option value="드라마">드라마</option>
+                        <option value="코미디">코미디</option>
+                        <option value="로맨스">로맨스</option>
+                        <option value="스릴러">스릴러</option>
+                        <option value="호러">호러</option>
+                        <option value="SF">SF</option>
+                        <option value="성인">성인</option>
+                        <option value="판타지">판타지</option>
+                        <option value="어드벤쳐">어드벤쳐</option>
+                        <option value="미스터리">미스터리</option>
+                        <option value="가족">가족</option>
+                        <option value="전쟁">전쟁</option>
+                        <option value="사극">사극</option>
+                        <option value="다큐멘터리">다큐멘터리</option>
+                        <option value="뮤지컬">뮤지컬</option>
+                        <option value="서부극">서부극</option>
+                        <option value="공연">공연</option>
+                        <option value="게임">게임</option>
+                        <option value="리얼리티">리얼리티</option>
+                        <option value="토크쇼">토크쇼</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="유러피안">유러피안</option>
+                    </select>
+                    <select name="fav_genre3">
+                        <option selected value="" disabled>--선호장르3--</option>
+                        <option value="액션">액션</option>
+                        <option value="애니메이션">애니메이션</option>
+                        <option value="범죄">범죄</option>
+                        <option value="드라마">드라마</option>
+                        <option value="코미디">코미디</option>
+                        <option value="로맨스">로맨스</option>
+                        <option value="스릴러">스릴러</option>
+                        <option value="호러">호러</option>
+                        <option value="SF">SF</option>
+                        <option value="성인">성인</option>
+                        <option value="판타지">판타지</option>
+                        <option value="어드벤쳐">어드벤쳐</option>
+                        <option value="미스터리">미스터리</option>
+                        <option value="가족">가족</option>
+                        <option value="전쟁">전쟁</option>
+                        <option value="사극">사극</option>
+                        <option value="다큐멘터리">다큐멘터리</option>
+                        <option value="뮤지컬">뮤지컬</option>
+                        <option value="서부극">서부극</option>
+                        <option value="공연">공연</option>
+                        <option value="게임">게임</option>
+                        <option value="리얼리티">리얼리티</option>
+                        <option value="토크쇼">토크쇼</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="유러피안">유러피안</option>
+                    </select>
+                    <select name="fav_genre4">
+                        <option selected value="" disabled>--선호장르4--</option>
+                        <option value="액션">액션</option>
+                        <option value="애니메이션">애니메이션</option>
+                        <option value="범죄">범죄</option>
+                        <option value="드라마">드라마</option>
+                        <option value="코미디">코미디</option>
+                        <option value="로맨스">로맨스</option>
+                        <option value="스릴러">스릴러</option>
+                        <option value="호러">호러</option>
+                        <option value="SF">SF</option>
+                        <option value="성인">성인</option>
+                        <option value="판타지">판타지</option>
+                        <option value="어드벤쳐">어드벤쳐</option>
+                        <option value="미스터리">미스터리</option>
+                        <option value="가족">가족</option>
+                        <option value="전쟁">전쟁</option>
+                        <option value="사극">사극</option>
+                        <option value="다큐멘터리">다큐멘터리</option>
+                        <option value="뮤지컬">뮤지컬</option>
+                        <option value="서부극">서부극</option>
+                        <option value="공연">공연</option>
+                        <option value="게임">게임</option>
+                        <option value="리얼리티">리얼리티</option>
+                        <option value="토크쇼">토크쇼</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="유러피안">유러피안</option>
+                    </select>
+                    <select name="fav_genre5">
+                        <option selected value="" disabled>--선호장르5--</option>
+                        <option value="액션">액션</option>
+                        <option value="애니메이션">애니메이션</option>
+                        <option value="범죄">범죄</option>
+                        <option value="드라마">드라마</option>
+                        <option value="코미디">코미디</option>
+                        <option value="로맨스">로맨스</option>
+                        <option value="스릴러">스릴러</option>
+                        <option value="호러">호러</option>
+                        <option value="SF">SF</option>
+                        <option value="성인">성인</option>
+                        <option value="판타지">판타지</option>
+                        <option value="어드벤쳐">어드벤쳐</option>
+                        <option value="미스터리">미스터리</option>
+                        <option value="가족">가족</option>
+                        <option value="전쟁">전쟁</option>
+                        <option value="사극">사극</option>
+                        <option value="다큐멘터리">다큐멘터리</option>
+                        <option value="뮤지컬">뮤지컬</option>
+                        <option value="서부극">서부극</option>
+                        <option value="공연">공연</option>
+                        <option value="게임">게임</option>
+                        <option value="리얼리티">리얼리티</option>
+                        <option value="토크쇼">토크쇼</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="유러피안">유러피안</option>
+                    </select>
+                </div>
+                <label for="mbti-wrapper" class="survey-label">MBTI</label>
+                <div id="mbti-wrapper" class="mbti-wrapper">
+                    <div class="mbti-box">
+                        <input type="radio" name="ei" value="E" id="e"><label for="e" class="mbti-font">E</label><br>
+                        <input type="radio" name="ei" value="I" id="i"><label for="i" class="mbti-font">I</label>
+                    </div>
+                    <div class="mbti-box">
+                        <input type="radio" name="ns" value="N" id="n"><label for="n" class="mbti-font" >N</label><br>
+                        <input type="radio" name="ns" value="S" id="s"><label for="s" class="mbti-font">S</label>
+                    </div>
+                    <div class="mbti-box">
+                        <input type="radio" name="ft" value="F" id="f"><label for="f" class="mbti-font" >F</label><br>
+                        <input type="radio" name="ft" value="T" id="t"><label for="t" class="mbti-font" >T</label>
+                    </div >
+                    <div class="mbti-box" >
+                        <input type="radio" name="jp" value="J" id="j"><label for="j" class="mbti-font">J</label><br>
+                        <input type="radio" name="jp" value="P" id="p"><label for="p" class="mbti-font">P</label>
+                    </div>
+                    <input type=hidden value="" name="mbti">
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="">Save changes</button>
-            </div>
+            <button type="submit" id="submitBtn">제출하기</button>
         </form>
     </div>
+
 </main>
 
 <footer class="footer mt-auto py-3 bg-light">
@@ -355,25 +377,14 @@
     </div>
 </footer>
 <script>
-    function dupleCheck() {
-        var dd = $('[name="fav_genre1"]').val();
-        console.log(dd);
+    function surveyCheck() {
+        let mbti = $('[name="ei"]:checked').val() + $('[name="ns"]:checked').val() + $('[name="ft"]:checked').val() + $('[name="jp"]:checked').val()+"";
+        $('[name="mbti"]').val(mbti);
         const arr = [$('[name="fav_genre1"]').val(), $('[name="fav_genre2"]').val(), $('[name="fav_genre3"]').val(), $('[name="fav_genre4"]').val(), $('[name="fav_genre5"]').val()];
-
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i] === null) {
-                arr.splice(i, 1);
-                i--;
-            }
-        }
-
-
-        const set = new Set(arr);
-        console.log("arr=" + arr)
-        console.log("set=" + set)
-        console.log(arr.length, set.size)
-        if (arr.length != set.size) {
-            alert("선호 장르를 모두 다르게 선택해주세요.")
+        const resultArr = arr.filter(x => x!="")//빈문자열 제거
+        const set = new Set(resultArr);
+        if (resultArr.length !== set.size || mbti.length!==4) {
+            alert("정확히 선택해주세요!")
             event.preventDefault();
         }
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -34,8 +35,9 @@ public class KakaoPayController {
     @PostMapping("/item/recharge/{pymt_amt}")
     @ResponseBody
     //뷰에서 DTO로 넘겨주자. 여기서 회원 인증 후, DTO로 받고, 승인이 되면 그때 사용하자.
-    public String recharge_kakaopay(@PathVariable Integer pymt_amt){
+    public String recharge_kakaopay(@PathVariable Integer pymt_amt, HttpSession session){
         try {
+            String user_id = (String) session.getAttribute("USERID");
             //0.세션이 없다면 예외처리
 
             Map map=new HashMap<>();
@@ -47,8 +49,7 @@ public class KakaoPayController {
             pymt_detlDto.setPymt_amt(pymt_amt);
             Integer chg_pnt= (Integer) map.get(Integer.toString(pymt_amt));
             pymt_detlDto.setChg_pnt(chg_pnt);
-            pymt_detlDto.setUser_id("ldhoon0813");
-            System.out.println("pymt_detlDto = " + pymt_detlDto);
+            pymt_detlDto.setUser_id(user_id);
 
             //1.URL 이 있어야 원하는 곳으로감
             URL address=new URL("https://kapi.kakao.com/v1/payment/ready");
