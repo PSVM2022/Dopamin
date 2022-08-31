@@ -21,6 +21,7 @@ html {
 }
 
 body {
+	min-width: 1080px;
 }
 
 main {
