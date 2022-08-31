@@ -34,6 +34,6 @@ public interface UserDao {
     String selectUserPwdHist(String user_id);
 
 
-    int updateUserPrfImg(String path,String user_id);
+    int updateUserPrfImg(String s3Url,String user_id);
 
 }

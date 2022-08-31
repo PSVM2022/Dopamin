@@ -121,7 +121,7 @@
 
 
     <update id="updateUserPrfImg" parameterType="String">
-        UPDATE USER SET prf_img=#{path} WHERE user_id=#{user_id};
+        UPDATE USER SET prf_img=#{s3Url} WHERE user_id=#{user_id};
     </update>
 
 </mapper>

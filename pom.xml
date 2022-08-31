@@ -16,6 +16,13 @@
     </properties>
     <dependencies>
 
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.1000</version>
+        </dependency>
+
+
 
         <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
         <dependency>

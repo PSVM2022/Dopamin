@@ -4,6 +4,7 @@ import com.PSVM.dopamin.domain.User.UserDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 public interface UserService {
 
@@ -27,7 +28,7 @@ public interface UserService {
 
     boolean idValidCheck(String id);
 
-    int modifyUserPrfImg(MultipartFile uploadImg,String user_id);
+    int modifyUserPrfImg(String s3Url,String user_id) throws IOException;
 
     String convertFileToPath(MultipartFile multipartFile);
 

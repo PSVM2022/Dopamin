@@ -98,9 +98,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int updateUserPrfImg(String path,String user_id) {
+    public int updateUserPrfImg(String s3Url,String user_id) {
         Map map = new HashMap();
-        map.put("path",path);
+        map.put("s3Url",s3Url);
         map.put("user_id",user_id);
         return session.update(namespace+"updateUserPrfImg", map);
     }
