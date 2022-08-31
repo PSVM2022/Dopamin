@@ -98,28 +98,25 @@
     <div class="container">
 
 
-        <div class="bg-image d-flex justify-content-center align-items-center"
-             style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJmR8LF39ptV7-8XwO-3fw1VV0iU0cXa46-A&usqp=CAU');
-                 height: 28rem;">
+        <div class="search-bg-image">
             <section class="container">
-                <h1 class="fw-bold text-white text-center">DOPAMIN</h1>
-                <section class="container py-2">
-                    <div class="col-lg- mx-auto">
-                        <p class="lead mb-4 text-center text-white">Search Contents!</p>
-                        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                            <div class="input-group input-group-lg">
-                                <!--검색창 가운데정렬(col-lg-auto me-lg-auto 이거 빼주면 됨) : option 손봐야함-->
-                                <form class="nav col-12 mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
-                                    <select class="search-option" name="option">
-                                        <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합검색</option>
-                                        <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
-                                        <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
-                                        <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
-                                    </select>
-                                    <li><input type="text" class="form-control form-control-lg rounded" placeholder="search your contents" aria-label="Type Keywords" aria-describedby="basic-addon2" name="keyword" class="search-input" type="text" value="${sc.keyword}" /></li>
-                                </form>
-                            </div>
-                        </div>
+                <h1 class="search-main-text">DOPAMIN</h1>
+                <section class="container">
+                    <p class="search-sc-text">Search Contents!</p>
+                    <div>
+                        <form class="search-container"
+                              action="<c:url value="/contents/search/${sc.keyword}"/>" method="get">
+                            <select class="search-option" name="option" >
+                                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합</option>
+                                <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
+                                <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
+                                <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
+                            </select>
+                            <input type="text" class="search-main"
+                                   placeholder="search your contents" aria-label="Type Keywords"
+                                   name="keyword"
+                                   value="${sc.keyword}"/>
+                        </form>
                     </div>
                 </section>
             </section>
@@ -128,11 +125,10 @@
         <!--로그인된 회원-->
         <c:if test="${pageContext.request.getSession(false)!=null}">
             <br>
-            <div>${user_id}맞춤형 추천 컨텐츠</div>
+            <div>"${contentsUserDto.nic}" 님을 위한 추천 컨텐츠</div>
             <br>
 
             <section class="contents">
-                <div>text test</div>
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -209,9 +205,8 @@
 
         <!--컨텐츠 슬라이드-->
         <section class="contents">
-            <div></div>
             <div class="swiper-container">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" style="height: 30rem;">
                     <div class="swiper-slide">
                         <div class="contents_container">
                             <c:forEach var="i" end="4" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->

@@ -8,76 +8,88 @@
     -moz-transition: all 1s;
     transition: all 1s;
 }
-
+.container{
+    margin-top: 4rem;
+}
+.contents-view{
+    height: 33rem;
+    width: 37rem;
+    border-radius: 0.3rem;
+    margin-left: 4rem;
+}
+.contents-value{
+    border: 0.15rem solid;
+    width: 65rem;
+    border-color: #ddd;
+    border-radius: 0.3rem;
+    padding: 1.2rem;
+    margin-right: 4rem;
+}
+.img-fluid{
+    height: 33rem;
+    max-width: 100%;
+    border-radius: 0.3rem;
+}
+.ott{
+    display: flex;
+    margin-left: 4rem;
+    margin-top: 0.1rem;
+    margin-top: -1rem;
+    flex-direction: row;
+    align-items: center;
+    border: 0.15rem solid;
+    width: 23rem;
+    height: 5rem;
+    border-color: #ddd;
+    border-radius: 0.3rem;
+    margin-right: 4rem;
+}
 .ott1ProImg {
     position: relative;
     z-index: 1;
-    background: url(https://an2-glx.amz.wtchn.net/images/ex_netflix_logo_square.png) center center / cover no-repeat;
-    width: 15%;
-    height: 7%;
+    background: url('https://an2-glx.amz.wtchn.net/images/ex_netflix_logo_square.png')center center / cover no-repeat;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 1rem;
+    cursor: pointer;
     border-radius: 50%;
     box-shadow: rgb(0 0 0 / 8%) 0px 0px 0px 1px inset;
 }
-
 .ott2ProImg {
     position: relative;
     z-index: 1;
-    background: url(https://an2-glx.amz.wtchn.net/images/ex_watcha_logo_square.png) center center / cover no-repeat;
-    width: 15%;
-    height: 7%;
+    background: url('https://an2-glx.amz.wtchn.net/images/ex_watcha_logo_square.png')center center / cover no-repeat;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 1rem;
+    cursor: pointer;
     border-radius: 50%;
     box-shadow: rgb(0 0 0 / 8%) 0px 0px 0px 1px inset;
 }
-
 .ott3ProImg {
     position: relative;
     z-index: 1;
-    background: url(https://an2-img.amz.wtchn.net/image/v2/ryWIr0pNWgEBU-qIsDRsYw.png?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKd0lqb2lMM1l5TDNOMGIzSmxMM1ZwYldGblpTOHhOalF5TURZME16SXlPVEUxT0RJNE9EazFJbjAuVEM5ZjBaTnBlUmM5MklUTWdVakxmM3BieElmaTFHLTNWc0d2RUxqa3FDSQ) center center / cover no-repeat;
-    width: 15%;
-    height: 7%;
+    background: url('https://an2-img.amz.wtchn.net/image/v2/ryWIr0pNWgEBU-qIsDRsYw.png?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKd0lqb2lMM1l5TDNOMGIzSmxMM1ZwYldGblpTOHhOalF5TURZME16SXlPVEUxT0RJNE9EazFJbjAuVEM5ZjBaTnBlUmM5MklUTWdVakxmM3BieElmaTFHLTNWc0d2RUxqa3FDSQ')center center / cover no-repeat;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 1rem;
+    cursor: pointer;
     border-radius: 50%;
     box-shadow: rgb(0 0 0 / 8%) 0px 0px 0px 1px inset;
 }
-
-/*모달창*/
-button {
-    background-color: #F9B514;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.cnts-view-btn{
     display: flex;
-    justify-content: center;
+    margin-left: 4rem;
+    margin-top: 0.1rem;
+    flex-direction: row;
     align-items: center;
 }
-
-.modal .bg {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+.wishBtn{
+    width: 9rem;
 }
-
-.modalBox {
-    position: absolute;
-    background-color: #fff;
-    width: 400px;
-    height: 200px;
-    padding: 15px;
+.like-btn{
+    width: 7rem;
 }
-
-.modalBox button {
-    display: block;
-    width: 80px;
-    margin: 0 auto;
-}
-
-.hidden {
-    display: none;
+.dislike-btn{
+    width: 7rem;
 }

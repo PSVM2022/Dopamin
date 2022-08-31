@@ -1,6 +1,23 @@
 @import "../common/default.css";
 /* 이걸 각자 만드는 css 모듈마다 import 해줘야 default.css에 정의된 컬러변수를 사용할 수 있음 */
 
+
+:root {
+    margin: 0;
+    font-family: 'NotoSans KR', 'Noto Serif';
+    background-color: var(--main-white);
+    /* 이런식으로 해서 사용하세요 */
+    /* 정의된 컬러 -  검정, 흰색(배경용), 회색(음영1, 음영2) 오렌지, 베이지, 옐로우 */
+    --main-black: #292A32;
+    --main-white: #F7F7F7;
+    --main-grey: #A5A5AA;
+    --main-grey2: rgba(0, 0, 0, 0.05);
+    --orange: #FF7800;
+    --beige: #FFBC97;
+    --yellow: #FFE300;
+}
+
+
 .form-control:focus {
     border: 1px solid var(--orange);
     box-shadow: 0 0 10px var(--orange);
@@ -17,6 +34,36 @@ element.style {
     text-align: inherit;
     width: 60rem;
     height: 3rem;
+}
+/*메인 화면 검색창 속성*/
+.search-bg-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://img.freepik.com/free-photo/yellow-watercolor-paper_95678-446.jpg?w=1060&t=st=1661937320~exp=1661937920~hmac=353360d062a3c04e57e18e255f6d6dded0df6e6e4c97058d1d02948b577ce57c');
+    height: 28rem;
+}
+.search-main-text{
+    color: #F7F7F7;
+    text-align: center;
+}
+.search-sc-text{
+    color: #F7F7F7;
+    text-align: center;
+}
+.search-container{
+    text-align: center;
+    margin-top: 2rem;
+}
+/*검색옵션*/
+.search-option{
+    height: 3rem;
+}
+/*검색창*/
+.search-main{
+    width: 30rem;
+    height: 3rem;
+    border-radius: 0.3rem;
 }
 /*적용할 태그 속성 body, div를 쓰고 괄호안에 css 속성을 넣으면 된다*/
 div.hover-test:hover {

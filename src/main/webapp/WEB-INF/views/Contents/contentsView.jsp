@@ -34,17 +34,43 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentsview.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentsview.css?after'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function wishBtn(cnts_id) {
+            //let revw_id = $(this).parent().attr("deleteBtn");
+            console.log(cnts_id);
+            console.log(user_id);
+            //console.log("click");
+            //alert("여기까지")  //여기까지는 실행됨
+            $.ajax({
+                type: 'POST',       // 요청 메서드
+                url: '/psvm/contents/' + cnts_id + '/wish',
+                data: {
+                    "cnts_id": cnts_id
+                },
+                success: function () {
+                    alert("컨텐츠 찜 완료")
+                    location.replace('/psvm/contents/' + cnts_id)
+                },
+                error: function () {// 에러가 발생했을 때, 호출될 함수
+                    alert("잠시 후 다시 시도해 주세요")
+                    //location.replace('/psvm/contents/' + cnts_id + '/testReviewView')
+                }
+            }); // $.ajax()
+        };
+    </script>
+
 </head>
 
 <body>
 <div class="container">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
-        <a href="<c:url value='/'/>" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
+        <a href="<c:url value='/'/>"
+           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
             <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -55,20 +81,26 @@
             <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
             <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
-        <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
+        <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+              action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
             <select class="search-option" name="option">
                 <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합</option>
                 <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
                 <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
                 <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
             </select>
-            <li><input  type="text" class="form-control form-control-dark" name="keyword" class="search-input" type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요." aria-label="Search"></li>
-            <li><button type="submit" class="btn btn-warning me-2">검색</button></li>
+            <li><input type="text" class="form-control form-control-dark" name="keyword" class="search-input"
+                       type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요." aria-label="Search"></li>
+            <li>
+                <button type="submit" class="btn btn-warning me-2">검색</button>
+            </li>
         </form>
 
         <!--로그인/회원가입버튼-->
         <div class="text-end">
-            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">Login</button>
+            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">
+                Login
+            </button>
         </div>
     </header>
 </div>
@@ -81,58 +113,74 @@
     bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
 -->
 <main>
-    <section class="container py-5">
+    <section class="container">
         <!-- Carousel -->
-        <div id="demo" class="w-25" data-bs-ride="carousel">
+        <div id="demo">
             <!-- 컨텐츠 포스터 들어갈 자리 -->
-            <div class="col-12">
-                <div class="row-3">
-                    <img class="img-fluid" style="width:100%" src="${contentsDto.cnts_postr_img}"
+            <div class="col-12" style="display:flex;">
+                <div class="contents-view">
+                    <img class="img-fluid" src="${contentsDto.cnts_postr_img}"
                          alt="${contentsDto.cnts_title}"/>
                 </div>
-                <div class="row-7">
+                <div class="contents-value">
                     <h4 class="title">${contentsDto.cnts_title}</h4>
                     <h6 class="subttle-text-muted">${contentsDto.cnts_subttl}</h6>
                     <p class="text">${contentsDto.cnts_op_date}</p>
                     <p class="text">${contentsDto.cnts_cnty}</p>
                     <table>
-                    <tr>
-                        <td><p class="text">${contentsDto.cnts_genre1}&nbsp;&nbsp;</p></td>
-                        <td><p class="text">${contentsDto.cnts_genre2}&nbsp;&nbsp;</p></td>
-                        <td><p class="text">${contentsDto.cnts_genre3}&nbsp;&nbsp;</p></td>
-                        <td><p class="text">${contentsDto.cnts_genre4}&nbsp;&nbsp;</p></td>
-                        <td><p class="text">${contentsDto.cnts_genre5}</p></td>
-                    </tr>
+                        <tr>
+                            <td><p class="text">${contentsDto.cnts_genre1}&nbsp;&nbsp;</p></td>
+                            <td><p class="text">${contentsDto.cnts_genre2}&nbsp;&nbsp;</p></td>
+                            <td><p class="text">${contentsDto.cnts_genre3}&nbsp;&nbsp;</p></td>
+                            <td><p class="text">${contentsDto.cnts_genre4}&nbsp;&nbsp;</p></td>
+                            <td><p class="text">${contentsDto.cnts_genre5}</p></td>
+                        </tr>
                     </table>
+                    <p class="text">${contentsDto.cnts_rning_t}</p>
+                    <p class="text">${contentsDto.cnts_g_rated}</p>
                     <p class="text">${contentsDto.cnts_director}</p>
                     <p class="text">${contentsDto.cnts_actor}</p>
                     <p class="text">${contentsDto.cnts_synop}</p>
-                </div><br>
+                </div>
+                <br>
+            </div>
+            <div>
+                <div class="cnts-view-btn">
+                    <input type="button" class="wishBtn" value="찜"
+                           onclick="wishBtn(${contentsWishDto.cnts_id})"/>
+                    <input type="button" class="like-btn" value="좋아요" onclick="alert('좋아요 평가 완료');"/>
+                    <input type="button" class="dislike-btn" value="싫어요" onclick="alert('싫어요 평가 완료');"/>
 
-                <div>
-                    <c:if test="${contentsDto.ott1_stat==1}">
-                        <div class="ott1ProImg" onclick="window.open('https://www.netflix.com/browse')" style="cursor: pointer;"></div>
-                    </c:if>
-                    <c:if test="${contentsDto.ott2_stat==1}">
-                        <div class="ott2ProImg" onclick="window.open('https://watcha.com/')" style="cursor: pointer;"></div>
-                    </c:if>
-                    <c:if test="${contentsDto.ott3_stat==1}">
-                        <div class="ott3ProImg" onclick="window.open('https://www.disneyplus.com/ko-kr')" style="cursor: pointer;"></div>
-                    </c:if>
+                    <button class="show_cnts_rt" style="margin-left: 37rem; margin-top: 0.2rem; border-radius: 0.3rem;" type="button">
+                        <a href="/psvm/contents/${contentsDto.cnts_id}/testReviewView/" class="nav-link px-2 link-dark">컨텐츠
+                        한줄평 보러가기</a>
+                    </button>
+
                 </div>
                 <br>
 
-                <div class="cnts-view-btn">
-                    <button type="button" class="wish-btn" onclick="location.href='/'">찜</button>
-                    <button type="button" class="like-btn" onclick="alert('좋아요 평가 완료');">좋아요</button>
-                    <button type="button" class="dislike-btn" onclick="alert('싫어요 평가 완료');">싫어요</button>
-                </div><br>
-                    <!--테스트용으로 /psvm/달아놓음 나중에 한줄평 페이지로 바꿀것-->
-                    <button class="show_cnts_rt" type="button"><a href="/psvm/contents/${contentsDto.cnts_id}/testReviewView/" class="nav-link px-2 link-dark">컨텐츠 한줄평 보러가기!</a></button>
+                <div class="ott">
+                    <c:if test="${contentsDto.ott1_stat==1 || contentsDto.ott2_stat==1 || contentsDto.ott3_stat==1}">
+                        <p class="text"> 감상 가능 OTT </p>
+                        <c:if test="${contentsDto.ott1_stat==1}">
+                            <div class="ott1ProImg" onclick="window.open('https://www.netflix.com/browse')"></div>
+                        </c:if>
+                        <c:if test="${contentsDto.ott2_stat==1}">
+                            <div class="ott2ProImg" onclick="window.open('https://watcha.com/')"></div>
+                        </c:if>
+                        <c:if test="${contentsDto.ott3_stat==1}">
+                            <div class="ott3ProImg" onclick="window.open('https://www.disneyplus.com/ko-kr')"></div>
+                        </c:if>
+                    </c:if>
 
+                    <c:if test="${contentsDto.ott1_stat==0 && contentsDto.ott2_stat==0 && contentsDto.ott3_stat==0}">
+                    <p class="text"> 현재 감상 가능한 OTT 가 없습니다.</p>
+                    </c:if>
 
                 </div>
+
             </div>
+        </div>
         </div>
 
     </section>
