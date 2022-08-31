@@ -52,7 +52,8 @@
         </tbody>
     </table>
     <div class="button-wrapper">
-        <button class="write-button">
+        <button id="writeBtn" class="write-button"
+                onclick='location.href="<c:url value="/community/write/${bbsId}"/>"'>
             <i class="fa-solid fa-pencil"></i> 글쓰기
         </button>
     </div>

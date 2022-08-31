@@ -12,7 +12,7 @@
 <html lang="ko">
 
 <head>
-    <title>데일리 베스트 판 - 도파민</title>
+    <title>${bbsNm} 판 - 도파민</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png'/>">
@@ -74,16 +74,21 @@
 <main>
     <section name="post-editor" class="container py-4">
         <div class="bbs-name">
-            <h3><a href="/">데일리 베스트 판</a></h3>
+            <h3><a href="<c:url value='/community/${bbsId}'/>">${bbsNm} 판</a></h3>
         </div>
-        <form>
-            <input class="post-title" type="text" placeholder="제목을 입력해주세요.">
-            <div id="editor"></div>
+        <form id="register_post" action="" method="">
+            <input name="post_title" id="post_title" class="post-title" type="text"
+                   placeholder="제목을 입력해주세요.">
+            <input id="editor">
             <div class="content-search-bar">
                 <input type="search" placeholder="참조 컨텐츠 검색">
             </div>
+
+            <textarea id="post_body" name="post_body" class="invisible-input"></textarea>
+            <input name="bbs_id" class="invisible-input">
+
             <div class="editor-action">
-                <input type="submit" value="등록">
+                <input id="write-post" type="submit" value="등록">
             </div>
         </form>
     </section>
@@ -212,9 +217,35 @@
 </footer>
 </body>
 <script>
+  let myEditor
   ClassicEditor.create(document.querySelector('#editor'))
-  .then(editor => console.log(editor))
-  .catch(error => console.error(error))
+  .then(editor => myEditor = editor)
+
+  let msg = "${msg}"
+  if (msg == "error") alert("서버와의 연결에 문제가 생겼습니다.")
+
+  $('#write-post').on('click', function (e) {
+    let title = $('#post_title').val()
+    let content = myEditor.getData();
+
+    if (!title.length) {
+      alert("제목을 입력해주세요")
+      return false;
+    }
+
+    if (!content.length) {
+      alert("내용을 입력해주세요")
+      return false;
+    }
+
+    $('#post_body').val(myEditor.getData())
+    $('input[name=bbs_id]').val(${bbsId})
+
+    let form = $('#register_post')
+    form.attr("action", "<c:url value='/community/write'/>")
+    form.attr('method', 'post')
+    form.submit();
+  })
 </script>
 
 </html>
