@@ -57,7 +57,8 @@
         </ul>
         <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
             <select class="search-option" name="option">
-                <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>제목/부제목</option>
+                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합검색</option>
+                <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
                 <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
                 <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
             </select>
@@ -123,8 +124,8 @@
 
                 <div class="cnts-view-btn">
                     <button type="button" class="wish-btn" onclick="location.href='/'">찜</button>
-                    <button type="button" class="like-btn" onclick="location.href='/'">좋아요</button>
-                    <button type="button" class="dislike-btn" onclick="location.href='/'">싫어요</button>
+                    <button type="button" class="like-btn" onclick="alert('좋아요 평가 완료');">좋아요</button>
+                    <button type="button" class="dislike-btn" onclick="alert('싫어요 평가 완료');">싫어요</button>
                 </div><br>
                     <!--테스트용으로 /psvm/달아놓음 나중에 한줄평 페이지로 바꿀것-->
                     <button class="show_cnts_rt" type="button"><a href="/psvm/contents/${contentsDto.cnts_id}/testReviewView/" class="nav-link px-2 link-dark">컨텐츠 한줄평 보러가기!</a></button>

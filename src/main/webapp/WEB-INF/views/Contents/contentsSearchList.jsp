@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentslist.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -57,7 +57,8 @@
         </ul>
         <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
            <select class="search-option" name="option">
-                <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>제목/부제목</option>
+               <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합 검색</option>
+               <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
                 <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
                 <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
             </select>
@@ -72,13 +73,6 @@
     </header>
 </div>
 
-<!--
-  내용 컨테이너. 여러개의 Row를 만들 때 section 태그로 나눕니다.
-  container - 컨텐츠를 포함하고 채우고 정렬하는 부트스트랩 기본구성요소
-  py-5 - padding y축방향(위아래)로 5 단위만큼 부여 https://getbootstrap.kr/docs/5.0/utilities/spacing/ 참고
-  // 컨텐츠를 넣는 태그 만들 때 무조건 section 태그에 container py-5 주고 시작합니다(위 아래 컨텐츠간 여백)
-  bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
--->
 <main>
 
     <div class="container">
@@ -86,29 +80,26 @@
         <section class="container py-3 bg-light">
             <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <br>
-                <div>"${ph.sc.keyword}" 에 대한 검색 결과입니다.</div>        <!--폰트, 색상 css 손볼것-->
+                <div>"${ph.sc.keyword}" 에 대한 검색 결과입니다.</div>
                 <br>
             </c:if>
         </section>
     </div>
 
-    <!--clear-->
-    <section class="container py-5">
-        <div class="container">
-            <div class="row">
+    <section class="contents container" py-5>
+        <div class="contents_container">
                 <c:forEach var="i" items="${cntsDtoList}">
-                    <div class="col-4">
-                    <div class="card m-2" style="width: 18rem;" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                        <img class="img-fluid" style="width:100%" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                        <div class="card-body">
-                            <h4 class="card-title">${i.cnts_title}</h4>
-                            <h6 class="text-muted">${i.cnts_subttl}</h6>
-                            <p class="card-text">${i.cnts_op_date} : ${i.cnts_cnty}</p>
+                        <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                            <div id="poster-img" style="margin-bottom: 0.1rem">
+                                <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                            </div>
+                            <div>
+                                <span class="contents_title">${i.cnts_title}</span><br>
+                                <span class="item_nm">${i.cnts_subttl}</span>
+                                <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                            </div>
                         </div>
-                    </div>
-                </div>
                 </c:forEach>
-            </div>
         </div>
     </section>
 
@@ -137,16 +128,6 @@
     </div>
 
     </section>
-
-
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-    <!-- Inner -->
-    <section class="container py-5"></section>
 
 </main>
 

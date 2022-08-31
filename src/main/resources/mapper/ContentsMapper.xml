@@ -27,11 +27,24 @@
 
     <!--컨텐츠 검색(옵션3개)-->
     <select id="searchSelectCnts" parameterType="SearchCondition" resultType="com.PSVM.dopamin.domain.ContentsDto">
-        select *,
-               replace(#{keyword},' ','')
-        from CNTS
+        select * from CNTS
         where cnts_visib_stat = 1
           <choose>
+          <when test='option=="total"'> <!--전체 통합 검색-->
+              and (cnts_title LIKE concat('%', #{keyword}, '%')
+              or cnts_subttl LIKE concat('%', #{keyword}, '%')
+              or cnts_op_date LIKE concat('%', #{keyword}, '%')
+              or cnts_cnty LIKE concat('%', #{keyword}, '%')
+              or cnts_director LIKE concat('%', #{keyword}, '%')
+              or cnts_actor LIKE concat('%', #{keyword}, '%')
+              or cnts_g_rated LIKE concat('%', #{keyword}, '%')
+              or cnts_genre1 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre2 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre3 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre4 LIKE concat('%', #{keyword}, '%')
+              or cnts_genre5 LIKE concat('%', #{keyword}, '%'))
+          </when>
+
           <when test='option=="ttl"'> <!--제목부제목-->
           and (cnts_title LIKE concat('%', #{keyword}, '%')
             or cnts_subttl LIKE concat('%', #{keyword}, '%'))
@@ -60,6 +73,20 @@
         from CNTS
         where cnts_visib_stat = 1
         <choose>
+            <when test='option=="total"'> <!--전체 통합 검색-->
+                and (cnts_title LIKE concat('%', #{keyword}, '%')
+                or cnts_subttl LIKE concat('%', #{keyword}, '%')
+                or cnts_op_date LIKE concat('%', #{keyword}, '%')
+                or cnts_cnty LIKE concat('%', #{keyword}, '%')
+                or cnts_director LIKE concat('%', #{keyword}, '%')
+                or cnts_actor LIKE concat('%', #{keyword}, '%')
+                or cnts_g_rated LIKE concat('%', #{keyword}, '%')
+                or cnts_genre1 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre2 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre3 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre4 LIKE concat('%', #{keyword}, '%')
+                or cnts_genre5 LIKE concat('%', #{keyword}, '%'))
+            </when>
             <when test='option=="ttl"'> <!--제목부제목-->
                 and (cnts_title LIKE concat('%', #{keyword}, '%')
                 or cnts_subttl LIKE concat('%', #{keyword}, '%'))
@@ -134,4 +161,13 @@
     <delete id="deleteCntsEval">
         delete from cnts_rt where cnts_id = #{cnts_id} and user_id=#{user_id} and cnts_eval
     </delete>
+
+    <!--유저별 추천 컨텐츠-->
+    <select id="selectUserAllCnts" resultType="com.PSVM.dopamin.domain.ContentsUserDto">
+        select u.user_id, u.nic, u.fav_genre1, c.cnts_id, c.cnts_title, c.cnts_subttl, c.cnts_postr_img, c.cnts_op_date, c.cnts_genre1, c.cnts_genre1, c.cnts_genre2, c.cnts_genre3, c.cnts_genre4, c.cnts_genre5, c.cnts_cnty
+        from CNTS c
+                 join USER u on c.cnts_genre1 = u.fav_genre1
+        where c.cnts_visib_stat = 1
+          and u.user_id = #{user_id}
+    </select>
 </mapper>

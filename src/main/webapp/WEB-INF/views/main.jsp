@@ -84,7 +84,7 @@
     $(function() {
         new Swiper('.contents .swiper-container', {
             slidesPerView: 1, //한번에 보여줄 개수
-            autoplay: false, // 자동 재생 여부
+            autoplay: true, // 자동 재생 여부
             loop: true, // 반복 재생 여부
             navigation: {
                 prevEl: '.contents .swiper-prev',   //이전 슬라이드를 볼 수 있음
@@ -111,7 +111,8 @@
                                 <!--검색창 가운데정렬(col-lg-auto me-lg-auto 이거 빼주면 됨) : option 손봐야함-->
                                 <form class="nav col-12 mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
                                     <select class="search-option" name="option">
-                                        <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>제목/부제목</option>
+                                        <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합검색</option>
+                                        <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
                                         <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
                                         <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
                                     </select>
@@ -124,10 +125,91 @@
             </section>
         </div>
 
+        <!--로그인된 회원-->
+        <c:if test="${pageContext.request.getSession(false)!=null}">
+            <br>
+            <div>${user_id}맞춤형 추천 컨텐츠</div>
+            <br>
+
+            <section class="contents">
+                <div>text test</div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="contents_container">
+                                <c:forEach var="i" end="4" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                        <div id="poster-img" style="margin-bottom: 0.1rem">
+                                            <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                        </div>
+                                        <div>
+                                            <span class="contents_title">${i.cnts_title}</span><br>
+                                            <span class="item_nm">${i.cnts_subttl}</span>
+                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="contents_container">
+                                <c:forEach var="i" begin="5" end="9" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                        <div id="poster-img" style="margin-bottom: 0.1rem">
+                                            <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                        </div>
+                                        <div>
+                                            <span class="contents_title">${i.cnts_title}</span><br>
+                                            <span class="item_nm">${i.cnts_subttl}</span>
+                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="contents_container">
+                                <c:forEach var="i" begin="10" end="14" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                        <div id="poster-img" style="margin-bottom: 0.1rem">
+                                            <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                        </div>
+                                        <div>
+                                            <span class="contents_title">${i.cnts_title}</span><br>
+                                            <span class="item_nm">${i.cnts_subttl}</span>
+                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-prev">
+                    <div class="material-icons">chevron_left</div>
+                </div>
+                <div class="swiper-next">
+                    <div class="material-icons">chevron_right</div>
+                </div>
+
+            </section>
+        </c:if>
+
+
+        <!--비로그인-->
+        <c:if test="${pageContext.request.getSession(false)==null}">
+            <br>
+            <div>DOPAMIN에 오신것을 환영합니다, 회원가입 후 더 많은 도파민을 경험해보세요!</div>
+            <br>
 
         <!--컨텐츠 슬라이드-->
         <section class="contents">
-            <div>text test</div>
+            <div></div>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -191,7 +273,9 @@
             <div class="swiper-next">
                 <div class="material-icons">chevron_right</div>
             </div>
+
         </section>
+        </c:if>
 
 
 
