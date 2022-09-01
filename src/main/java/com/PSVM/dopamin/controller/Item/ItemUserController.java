@@ -80,10 +80,7 @@ public class ItemUserController {
     @ResponseBody
     public ResponseEntity<Object> buy_item_in_Cart(@RequestBody List<OrderDto> orderDtoList, HttpSession session){
         try{
-            for(OrderDto orderDto:orderDtoList)
-            {
-                System.out.println("orderDto = " + orderDto);
-            }
+
             int cart_id = Integer.parseInt((String)session.getAttribute("CARTID"));
             String user_id = (String)session.getAttribute("USERID");
             if(orderDtoList.size()==0 || orderDtoList==null){
@@ -142,7 +139,6 @@ public class ItemUserController {
             //구매한 아이템의 경우 예외 발생.
             //따라서, 장바구니에 이미 있는 경우 예외 발생해야함.
             itemUserService.addCart(cart_itemDto);
-            System.out.println("장바구니에 추가되었습니다.");
             return new ResponseEntity<>("장바구니에 추가되었습니다.", HttpStatus.OK);
         }catch(SQLException e){
             Message message = Message.builder()
@@ -167,23 +163,13 @@ public class ItemUserController {
     @GetMapping("/cart_main")//장바구니 조회
     public ResponseEntity<Object> cart_list(Model m,HttpServletRequest request){
         HttpSession session = request.getSession(false);
-
-//        if(!userService.loginCheck(request)){
-//            return "redirect:/login/login";
-//        }
-        //1. 세션에 "유저"의 "장바구니번호"를 가져온다.
-//        int cart_id=session.getAttribute("ldhoon0813"); //
-
-        //url로 그냥 들어오는 경우는 어떻게 처리할 것인가? login_check 함수로 체크하자.
-        //장바구니에 들어있는 아이템 정보들을 다 가져와야함.
-        //장바구니_아이템 테이블과 아이템 테이블 아이템_아이디 로 조인해서 원하는 값만 뽑아내자.
-        //가져와야하는 정보들: 아이템_아이디, 리스트_아이디, 등급_이름, 아이템_이름, 아이템_설명, 아이템_가격, 아이템_이미지
         try {//지금은 로그인이 항상 되어있다는 가정하에 진행. 추후, 수정해야함.
-            int cart_id = Integer.parseInt((String)session.getAttribute("CARTID"));
-            String user_id= (String) session.getAttribute("USERID");
-            if(user_id==null){
+            if(session == null){
                 throw new Exception("로그인이 필요합니다.");
             }
+            int cart_id = Integer.parseInt((String)session.getAttribute("CARTID"));
+            String user_id= (String) session.getAttribute("USERID");
+
             int my_point= itemUserService.getUser_point(user_id);
             int total_point=0;
             List<ItemDto> list=itemUserService.getCart_list(cart_id);

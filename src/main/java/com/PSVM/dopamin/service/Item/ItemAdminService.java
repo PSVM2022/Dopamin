@@ -43,14 +43,14 @@ public class ItemAdminService {
     public List<ItemDto> getStat_1() throws Exception {
         return itemAdminDaoImpl.getStat_1();
     }
-    public int registerItem(ItemForm itemForm, MultipartFile multipartFile, Map map) throws Exception{
+    public int registerItem(ItemForm itemForm, String s3Url, Map map) throws Exception{
         //Controller에서 이미 검증된 정보들이 service로 넘어왔다.
         //여기서는 itemForm들의 정보를 item table처럼 가공해야하고,
         //file의 저장 경로도 설정해줘야 한다.
         //전제: 이미지 무조건 있다 -> Controller에서 검사하고 들어왔으니
-        String save_url=save_File(multipartFile);//파일 저장 //이미지 경로 반환
+        //String save_url=save_File(multipartFile);//파일 저장 //이미지 경로 반환
         ItemDto itemDto=save_into_ItemDto(itemForm);
-        itemDto.setItem_img(save_url);
+        itemDto.setItem_img(s3Url);
         itemDto.setIn_user((String)map.get("user_id"));
         itemDto.setUp_user((String)map.get("user_id"));
         return itemAdminDaoImpl.registerItem(itemDto);
