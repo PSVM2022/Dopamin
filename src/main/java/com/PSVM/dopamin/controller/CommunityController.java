@@ -52,7 +52,7 @@ public class CommunityController {
             m.addAttribute("bbsNm", bbsNm);
 
             int totalCnt = postService.getCountInBbs(bbsId);
-            PageHandler ph = new PageHandler(totalCnt, new SearchCondition(page, 25, ""));
+            PageHandler ph = new PageHandler(totalCnt, new SearchCondition(page, 25, "", ""));
 
             m.addAttribute("ph", ph);
         } catch (Exception e) {
@@ -76,7 +76,7 @@ public class CommunityController {
             String bbsNm = postService.getBbsNameByPostId(postId);
             String nowUrl = String.valueOf(req.getRequestURL());
             int totalCnt = postService.getCountInBbs(bbsId);
-            PageHandler ph = new PageHandler(totalCnt, new SearchCondition(page, 25, ""));
+            PageHandler ph = new PageHandler(totalCnt, new SearchCondition(page, 25, "", ""));
             List<PostDto> list = postService.getPage(bbsId, page);
 
             m.addAttribute("post", post);

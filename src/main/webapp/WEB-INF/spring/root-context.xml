@@ -10,7 +10,8 @@
     <!-- Root Context: defines shared resources visible to all other web components -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://10.35.120.140:3306/testDB?useUnicode=true&amp;characterEncoding=utf8"></property>
+        <property name="url"
+          value="jdbc:mysql://10.35.120.140:3306/dopaDB?useUnicode=true&amp;characterEncoding=utf8"></property>
         <property name="username" value="PSVM"></property>
         <property name="password" value="Psvm12!@"></property>
 <!--        <property name="url" value="jdbc:mysql://localhost:3306/dopadbtest?useUnicode=true&amp;characterEncoding=utf8"></property>-->
@@ -21,7 +22,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+      <property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/>
     </bean>
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

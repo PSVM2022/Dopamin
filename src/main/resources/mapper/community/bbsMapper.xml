@@ -6,7 +6,7 @@
   <delete id="deleteById" parameterType="int">
     DELETE
     FROM BBS
-    WHERE bbs_id = #{id}
+    WHERE bbs_id = #{id};
   </delete>
 
   <insert id="insertAll" parameterType="list">
