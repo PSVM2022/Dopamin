@@ -1,0 +1,15 @@
+@import "../common/default.css";
+
+.cnts-img{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    padding: 0 1.73rem;
+}
+
+.cnts-a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-size: 1.6rem;
+}
