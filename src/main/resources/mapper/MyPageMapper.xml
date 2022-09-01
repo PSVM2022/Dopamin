@@ -67,7 +67,8 @@
                u.dopa_point,
                u.fav_genre1,
                u.sex,
-               u.btdt
+               u.btdt,
+               u.mbti
         from USER u
         where u.user_id = #{user_id}
     </select>

@@ -28,15 +28,8 @@
             <img class="user_profile_img" src="${myPageDto.prf_img}" alt="..."/>
             <h1 class="user_nickname">${myPageDto.nic}님</h1>
             <p class="user_info">
-                <c:choose>
-                    <c:when test="${empty myPageDto.fav_genre1}">
-                        ${myPageDto.nic}님 설문 조사를 참여해주세요! 설문 링크 첨부
-                    </c:when>
-                    <c:otherwise>
-                        ${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를
-                        좋아하는 ${myPageDto.age}대 ${myPageDto.sex == 0 ? '여성' : '남성'}입니다.
-                    </c:otherwise>
-                </c:choose>
+                ${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를
+                좋아하는 ${myPageDto.age}대 ${myPageDto.mbti} ${myPageDto.sex == 0 ? '여성' : '남성'}입니다.
             </p>
             <p>dopa_point = ${myPageDto.dopa_point}</p>
         </div>
