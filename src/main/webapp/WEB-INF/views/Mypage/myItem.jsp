@@ -62,32 +62,32 @@
 <div class="content">
     <div class="responsive-content">
         <div>
-            <h2>스킨</h2>
-            <br>
-            <div>
-                <img src="https://dummyimage.com/1200X200/ff00fb/053bff&text=default-skin">
-                기본 스킨
+
+            <header class="user-skin"
+                    style="background-image: url('${empty myPageDto.item_img ? 'https://dummyimage.com/600x400/ff7800/ffffff&text=_' : myPageDto.item_img}')">
+            </header>
+            <div class="user-profile">
+                <img class="user_profile_img" src="${myPageDto.prf_img}" alt="..."/>
+                <h1 class="user_nickname">${myPageDto.nic}님</h1>
             </div>
-            ${s}
+        </div>
+        <div>
+            <h2>스킨</h2>
             <c:forEach var="skin" items="${skinList}">
                 <div id="${skin.item_id}" onclick="equipSkin(${skin.item_id},${skin.equip_stat},${skin.list_id})">
                     <img src="${skin.item_img}">
                         ${skin.item_nm}
                     <c:if test="${skin.equip_stat==1}">착용중</c:if>
-
                 </div>
-
             </c:forEach>
         </div>
         <div>
             <h2>꾸미기</h2>
-            <br>
-            <img src="https://dummyimage.com/138x102/f5dd05/ff0505&text=default-profile">
-            기본 꾸미기
             <c:forEach var="prof" items="${profList}">
-                <div>
+                <div id="${prof.item_id}" onclick="equipSkin(${prof.item_id},${prof.equip_stat},${prof.list_id})">
                     <img src="${prof.item_img}">
                         ${prof.item_nm}
+                    <c:if test="${prof.equip_stat==1}">착용중</c:if>
                 </div>
             </c:forEach>
         </div>
