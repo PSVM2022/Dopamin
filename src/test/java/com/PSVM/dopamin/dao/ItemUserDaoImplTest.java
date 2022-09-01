@@ -1,8 +1,10 @@
 package com.PSVM.dopamin.dao;
 
 import com.PSVM.dopamin.dao.Item.ItemUserDaoImpl;
+import com.PSVM.dopamin.domain.Item.Cart_ItemDto;
 import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.domain.Item.OrderDto;
+import com.PSVM.dopamin.error.Message;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,11 @@ public class ItemUserDaoImplTest {
     ItemUserDaoImpl itemUserDaoImpl;
 
     @Test
+    public void 아이템_전체_가져오기() throws Exception{
+        List<ItemDto> list=itemUserDaoImpl.getItem_list();
+        System.out.println("list.size() = " + list.size());
+    }
+    @Test
     @Transactional
     public void 장바구니_삭제() throws Exception{
         int item_id=14;
@@ -40,35 +47,27 @@ public class ItemUserDaoImplTest {
     }
     @Test
     public void find_item_실패() {
-        int item_id=1;
+        int item_id=16;
         int find_result= 0;
         try {
-            find_result = itemUserDaoImpl.find_item(item_id);
-            if(find_result==0){
-                throw new Exception("없습니다.");
-            }
+            itemUserDaoImpl.find_item(item_id);
         } catch (Exception e) {
-            //System.out.println("e.getMessage() = " + e.getMessage());
+            Message message = Message.builder()
+                    .message1(e.getMessage())
+                    .build();
+            System.out.println("message = " + message);
+            System.out.println("e.getMessage() = " + e.getMessage());
             assertTrue(find_result==0);
         }
     }
     @Test
     public void find_item_성공() throws Exception{
         int item_id=4;
-        int find_result=itemUserDaoImpl.find_item(item_id);
-        assertTrue(find_result==item_id);
-    }
-    @Test
-    public void item_stat_비공개() throws Exception{
-        int item_id=13;
-        int item_stat=itemUserDaoImpl.getItem_Stat(item_id);
-        assertTrue(item_stat==0);
-    }
-    @Test
-    public void item_stat_공개() throws Exception{
-        int item_id=4;
-        int item_stat=itemUserDaoImpl.getItem_Stat(item_id);
-        assertTrue(item_stat==1);
+        ItemDto itemDto=itemUserDaoImpl.find_item(item_id);
+        assertTrue(itemDto.getItem_id()==item_id);
+        assertTrue(itemDto.getStat()==0);
+//        System.out.println("itemDto.getItem_id() = " + itemDto.getItem_id());
+//        System.out.println("itemDto.getStat() = " + itemDto.getStat());
     }
 
     @Test
@@ -204,5 +203,35 @@ public class ItemUserDaoImplTest {
         int result=itemUserDaoImpl.exchange_insert_pnt_detl(orderDto);
         assertTrue(result==1);
     }
-
+    @Test
+    @Transactional//이거 없이 담으려면 Duplicate에러 발생
+    public void 장바구니_담기_성공() throws Exception{
+        Cart_ItemDto cart_itemDto=new Cart_ItemDto();
+        cart_itemDto.setCart_id(1);
+        cart_itemDto.setIn_user("ldhoon0813");
+        cart_itemDto.setUp_user("ldhoon0813");
+        cart_itemDto.setItem_id(17);
+        int result=itemUserDaoImpl.addCart(cart_itemDto);
+        System.out.println("result = " + result);
+    }
+    @Test
+    public void 보유목록에서찾기_성공() throws Exception{
+        Cart_ItemDto cart_itemDto=new Cart_ItemDto();
+        cart_itemDto.setCart_id(1);
+        cart_itemDto.setIn_user("ldhoon0813");
+        cart_itemDto.setUp_user("ldhoon0813");
+        cart_itemDto.setItem_id(2);
+        Cart_ItemDto ci= itemUserDaoImpl.find_possesion(cart_itemDto);
+        assertTrue(ci.getItem_id()==2);
+    }
+    @Test
+    public void 보유목록에서찾기_실패() throws Exception{
+        Cart_ItemDto cart_itemDto=new Cart_ItemDto();
+        cart_itemDto.setCart_id(1);
+        cart_itemDto.setIn_user("ldhoon0813");
+        cart_itemDto.setUp_user("ldhoon0813");
+        cart_itemDto.setItem_id(3);
+        Cart_ItemDto ci= itemUserDaoImpl.find_possesion(cart_itemDto);
+        assertTrue(ci==null);
+    }
 }

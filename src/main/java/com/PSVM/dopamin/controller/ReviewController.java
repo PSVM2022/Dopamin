@@ -2,20 +2,20 @@ package com.PSVM.dopamin.controller;
 
 import com.PSVM.dopamin.domain.ReviewDto;
 import com.PSVM.dopamin.service.ReviewService;
-import com.PSVM.dopamin.service.UserService;
+import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@RequestMapping("/contents")
 public class ReviewController {
 
     @Autowired
@@ -25,36 +25,45 @@ public class ReviewController {
     UserService userService;
 
     //지정 컨텐츠의 모든 한줄평 조회
-    @GetMapping("/contents/{cnts_id}/reviews")
-    public ResponseEntity<List<ReviewDto>> list(@PathVariable Integer cnts_id) {
-        List<ReviewDto> list = null;
+    @GetMapping("/{cnts_id}/contentsReview")
+    public String list(@PathVariable Integer cnts_id, Model model) {
+        List<ReviewDto> reviewDtoList = null;
         try {
-            list = reviewService.getRevwList(cnts_id);
-            return new ResponseEntity<List<ReviewDto>>(list, HttpStatus.OK); //200
+            reviewDtoList = reviewService.getRevwList(cnts_id);
+            //System.out.println(list);
+            model.addAttribute("cnts_id",cnts_id);
+            model.addAttribute("reviewDtoList", reviewDtoList);
+            //return new ResponseEntity<List<ReviewDto>>(list, HttpStatus.OK); //200
+            return "Contents/contentsReview";
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<List<ReviewDto>>(HttpStatus.BAD_REQUEST); //400
+            return null;    //임시로 return null 바꿔줄것!!!!!
+            //return new ResponseEntity<List<ReviewDto>>(HttpStatus.BAD_REQUEST); //400
         }
     }
-    /*  List<ReviewDto> list = null;
-        List<ReviewDto> reviewDtoList = reviewService.getRevwList(cnts_id);
-        model.addAttribute("reviewDtoList", reviewDtoList);
-        return "Contents/contentsView";}*/
 
     //한줄평 등록
-    @PostMapping("/contents/{cnts_id}/reviews1")
-    public ResponseEntity<String> insertRevw(@RequestBody ReviewDto reviewDto, BindingResult bindingResult, @PathVariable Integer cnts_id, HttpSession session) {
+    @PostMapping("/{cnts_id}/writeReview")
+    @ResponseBody
+    public ResponseEntity<String> insertRevw(@RequestParam("review") String revw_body, @PathVariable Integer cnts_id, HttpSession session) throws Exception {
 
+        //System.out.println(revw_body);
+
+        ReviewDto reviewDto = new ReviewDto();
         String user_id = (String) session.getAttribute("USERID");
-        System.out.println("bindingResult = " + bindingResult);
-        System.out.println(reviewDto);
+//        System.out.println(reviewDto);
         reviewDto.setUser_id(user_id);
         reviewDto.setCnts_id(cnts_id);
+        reviewDto.setRevw_body(revw_body);
+        reviewDto.setIn_user(user_id);
+        reviewDto.setUp_user(user_id);
         //System.out.println(reviewDto);
+        //reviewService.insertRevw(reviewDto);
 
         try {
-            if(reviewService.insertRevw(reviewDto)!=1)
-                throw new Exception("글쓰기 실패");
+            reviewService.insertRevw(reviewDto);
+//            if(reviewService.insertRevw(reviewDto)!=1)
+//                throw new Exception("글쓰기 실패");
             return new ResponseEntity<>("write succsess", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,13 +73,14 @@ public class ReviewController {
 
 
     //한줄평 수정
-    @PostMapping("/contents/{cnts_id}/reviews2")
-    //@ResponseBody
-    public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, ReviewDto reviewDto, HttpSession session) {
+    @PostMapping("/{cnts_id}/modifyReview")
+    @ResponseBody
+    public ResponseEntity<String> updateRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, ReviewDto reviewDto, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
         //String bal = reviewDto.getRevw_body();
         //System.out.println(bal);
         reviewDto.setUser_id(user_id);
+        reviewDto.setCnts_id(cnts_id);
         System.out.println(reviewDto);
 
         try {
@@ -84,10 +94,11 @@ public class ReviewController {
     }
 
     //한줄평 삭제
-    @DeleteMapping("/contents/{cnts_id}/reviews/{revw_id}")
-    public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @PathVariable Integer revw_id, HttpSession session) {
+    @PostMapping("/{cnts_id}/deleteReview")
+    @ResponseBody
+    public ResponseEntity<String> deleteRevw(@PathVariable Integer cnts_id, @RequestParam("revw_id") Integer revw_id, HttpSession session) {
         String user_id = (String)session.getAttribute("USERID");
-
+        System.out.println("revw_id"+revw_id);
         try {
             int rowCnt = reviewService.deleteRevw(revw_id, cnts_id, user_id);
             if (rowCnt!=1)  //삭제되면 1 반환됨

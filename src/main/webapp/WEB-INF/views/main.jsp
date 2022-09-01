@@ -32,13 +32,17 @@
           crossorigin="anonymous">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/contentsmain.css?after'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentsmain.css'/>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -76,256 +80,200 @@
     if ("${SUR_SUCCESS}" != "") alert("${SUR_SUCCESS}")
     if ("${SUR_ERR}" != "") alert("${SUR_ERR}")
 
+    <%--js스와이프--%>
+    $(function() {
+        new Swiper('.contents .swiper-container', {
+            slidesPerView: 1, //한번에 보여줄 개수
+            autoplay: true, // 자동 재생 여부
+            loop: true, // 반복 재생 여부
+            navigation: {
+                prevEl: '.contents .swiper-prev',   //이전 슬라이드를 볼 수 있음
+                nextEl: '.contents .swiper-next'    //이후 슬라이드를 볼 수 있음
+            }
+        });
+    })
 </script>
 
 <main>
     <div class="container">
-        <section>
-            <!-- Carousel wrapper -->
-        </section>
 
-        <div class="bg-image d-flex justify-content-center align-items-center"
-             style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJmR8LF39ptV7-8XwO-3fw1VV0iU0cXa46-A&usqp=CAU');
-                 height: 28rem;">
+
+        <div class="search-bg-image">
             <section class="container">
-                <h1 class="fw-bold text-white text-center">DOPAMIN</h1>
-                <section class="container py-2">
-                    <div class="col-lg- mx-auto">
-                        <p class="lead mb-4 text-center text-white">Search Contents!</p>
-                        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                            <div class="input-group input-group-lg">
-                                <!--검색창 가운데정렬(col-lg-auto me-lg-auto 이거 빼주면 됨) : option 손봐야함-->
-                                <form class="nav col-12 mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
-                                    <select class="search-option" name="option">
-                                        <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>제목/부제목</option>
-                                        <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
-                                        <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
-                                    </select>
-                                    <li><input type="text" class="form-control form-control-lg rounded" placeholder="search your contents" aria-label="Type Keywords" aria-describedby="basic-addon2" name="keyword" class="search-input" type="text" value="${sc.keyword}" /></li>
-
-
-                                </form>
-                            </div>
-                        </div>
+                <h1 class="search-main-text">DOPAMIN</h1>
+                <section class="container">
+                    <p class="search-sc-text">Search Contents!</p>
+                    <div>
+                        <form class="search-container"
+                              action="<c:url value="/contents/search/${sc.keyword}"/>" method="get">
+                            <select class="search-option" name="option" >
+                                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합</option>
+                                <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
+                                <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
+                                <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
+                            </select>
+                            <input type="text" class="search-main"
+                                   placeholder="search your contents" aria-label="Type Keywords"
+                                   name="keyword"
+                                   value="${sc.keyword}"/>
+                        </form>
                     </div>
                 </section>
             </section>
         </div>
 
-        <!--section을 py-5로 주고하는게 여기도 해당되나?-->
-        <!--1-->
-        <section class="container py-5">
-            <div class="row">
-                <div class="col-6">
-                    <h3 class="mb-3">인기 컨텐츠</h3>
-                </div>
-                <div class="col-6 text-right">  <!--(<,>)버튼-->
-                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button" data-slide="prev">
-                        <i class="fa fa-arrow-left"></i>
-                    </a>
-                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button" data-slide="next">
-                        <i class="fa fa-arrow-right"></i>
-                    </a>
-                </div>
+        <!--로그인된 회원-->
+        <c:if test="${pageContext.request.getSession(false)!=null}">
+            <br>
+            <div>"${contentsUserDto.nic}" 님을 위한 추천 컨텐츠</div>
+            <br>
 
-                <!--여기부터 반복-->
-                <div class="col-12">
-                    <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-
-                                    <section class="container py-5">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach var="i" begin="0" end="2" items="${cntsDtoList}">
-                                                    <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                                            <div class="card-body">
-                                                                <h4 class="card-title">${i.cnts_title}</h4>
-                                                                <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                <p class="card-text">${i.cnts_op_date}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+            <section class="contents">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" style="height: 30rem;">
+                        <div class="swiper-slide">
+                            <div class="contents_container">
+                                <c:forEach var="i" end="4" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;" >
+                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                         </div>
-                                    </section>
-
-                                </div>
-                            </div>    <!--한 번에 보여지는 카드 수-->
-
-                            <div class="carousel-item">
-                                <div class="row">
-
-                                    <section class="container py-5">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach var="i" begin="3" end="5" items="${cntsDtoList}">
-                                                    <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                                            <div class="card-body">
-                                                                <h4 class="card-title">${i.cnts_title}</h4>
-                                                                <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                <p class="card-text">${i.cnts_op_date}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+                                        <div>
+                                            <span class="contents_title">${i.cnts_title}</span><br>
+                                            <span class="item_nm">${i.cnts_subttl}</span>
+                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
                                         </div>
-                                    </section>
-
-                                </div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
                             </div>
+                        </div>
 
-                            <div class="carousel-item">
-                                <div class="row">
-
-                                    <section class="container py-5">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach var="i" begin="6" end="8" items="${cntsDtoList}">
-                                                    <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                                            <div class="card-body">
-                                                                <h4 class="card-title">${i.cnts_title}</h4>
-                                                                <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                <p class="card-text">${i.cnts_op_date}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+                        <div class="swiper-slide">
+                            <div class="contents_container">
+                                <c:forEach var="i" begin="5" end="9" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                         </div>
-                                    </section>
-
-                                </div>
+                                        <div>
+                                            <span class="contents_title">${i.cnts_title}</span><br>
+                                            <span class="item_nm">${i.cnts_subttl}</span>
+                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
                             </div>
+                        </div>
 
+                        <div class="swiper-slide">
+                            <div class="contents_container">
+                                <c:forEach var="i" begin="10" end="14" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                        </div>
+                                        <div>
+                                            <span class="contents_title">${i.cnts_title}</span><br>
+                                            <span class="item_nm">${i.cnts_subttl}</span>
+                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </c:forEach>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-
-        </section>
-
-        <!--2-->
-        <section class="container py-5">
-            <div class="row">
-                <div class="col-6">
-                    <h3 class="mb-3">신규 컨텐츠</h3>
+                <div class="swiper-prev">
+                    <div class="material-icons">chevron_left</div>
                 </div>
-                <div class="col-6 text-right">  <!--(<,>)버튼-->
-                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators4" role="button" data-slide="prev">
-                        <i class="fa fa-arrow-left"></i>
-                    </a>
-                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators4" role="button" data-slide="next">
-                        <i class="fa fa-arrow-right"></i>
-                    </a>
+                <div class="swiper-next">
+                    <div class="material-icons">chevron_right</div>
                 </div>
 
-                <!--여기부터 반복-->
-                <div class="col-12">
-                    <div id="carouselExampleIndicators4" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
+            </section>
+        </c:if>
 
-                                    <section class="container py-5">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach var="i" begin="9" end="11" items="${cntsDtoList}">
-                                                    <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                                            <div class="card-body">
-                                                                <h4 class="card-title">${i.cnts_title}</h4>
-                                                                <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                <p class="card-text">${i.cnts_op_date}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
-                                        </div>
-                                    </section>
 
+        <!--비로그인-->
+        <c:if test="${pageContext.request.getSession(false)==null}">
+            <br>
+            <br>
+
+        <!--컨텐츠 슬라이드-->
+        <section class="contents">
+            <div class="swiper-container">
+                <div class="swiper-wrapper" style="height: 30rem;">
+                    <div class="swiper-slide">
+                        <div class="contents_container">
+                            <c:forEach var="i" end="4" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                    </div>
+                                    <div>
+                                        <span class="contents_title">${i.cnts_title}</span><br>
+                                        <span class="item_nm">${i.cnts_subttl}</span>
+                                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                    </div>
                                 </div>
-                            </div>    <!--한 번에 보여지는 카드 수-->
+                                <br>
+                            </c:forEach>
+                        </div>
+                    </div>
 
-                            <div class="carousel-item">
-                                <div class="row">
-
-                                    <section class="container py-5">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach var="i" begin="12" end="14" items="${cntsDtoList}">
-                                                    <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                                            <div class="card-body">
-                                                                <h4 class="card-title">${i.cnts_title}</h4>
-                                                                <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                <p class="card-text">${i.cnts_op_date}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
-                                        </div>
-                                    </section>
-
+                    <div class="swiper-slide">
+                        <div class="contents_container">
+                            <c:forEach var="i" begin="5" end="9" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                    </div>
+                                    <div>
+                                        <span class="contents_title">${i.cnts_title}</span><br>
+                                        <span class="item_nm">${i.cnts_subttl}</span>
+                                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                    </div>
                                 </div>
-                            </div>
+                                <br>
+                            </c:forEach>
+                        </div>
+                    </div>
 
-                            <div class="carousel-item">
-                                <div class="row">
-
-                                    <section class="container py-5">
-                                        <div class="container">
-                                            <div class="row">
-                                                <c:forEach var="i" begin="15" end="17" items="${cntsDtoList}">
-                                                    <div class="col-4">
-                                                        <div class="card m-2" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                                            <img class="img-fluid" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                                            <div class="card-body">
-                                                                <h4 class="card-title">${i.cnts_title}</h4>
-                                                                <h6 class="text-muted">${i.cnts_subttl}</h6>
-                                                                <p class="card-text">${i.cnts_op_date}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
-                                        </div>
-                                    </section>
-
+                    <div class="swiper-slide">
+                        <div class="contents_container">
+                            <c:forEach var="i" begin="10" end="14" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                    </div>
+                                    <div>
+                                        <span class="contents_title">${i.cnts_title}</span><br>
+                                        <span class="item_nm">${i.cnts_subttl}</span>
+                                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
+                                    </div>
                                 </div>
-                            </div>
-
+                                <br>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="swiper-prev">
+                <div class="material-icons">chevron_left</div>
+            </div>
+            <div class="swiper-next">
+                <div class="material-icons">chevron_right</div>
             </div>
 
         </section>
+        </c:if>
 
-        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
     </div>
-
-    <!-- Inner -->
-    <section class="container py-5"></section>
 
 </main>
 

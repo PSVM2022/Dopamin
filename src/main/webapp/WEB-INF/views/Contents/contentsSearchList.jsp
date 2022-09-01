@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/contents/contentslist.css?after'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -44,7 +44,8 @@
 <div class="container">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
-        <a href="<c:url value='/'/>" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
+        <a href="<c:url value='/'/>"
+           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
             <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -55,98 +56,82 @@
             <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
             <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
-        <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
-           <select class="search-option" name="option">
-                <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>제목/부제목</option>
+        <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+              action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
+            <select class="search-option" name="option">
+                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합</option>
+                <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
                 <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
                 <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
             </select>
-            <li><input  type="text" class="form-control form-control-dark" name="keyword" class="search-input" type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요." aria-label="Search"></li>
-            <li><button type="submit" class="btn btn-warning me-2">검색</button></li>
+            <li><input type="text" class="form-control form-control-dark" name="keyword" class="search-input"
+                       type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요." aria-label="Search"></li>
+            <li>
+                <button type="submit" class="btn btn-warning me-2">검색</button>
+            </li>
         </form>
 
         <!--로그인/회원가입버튼-->
         <div class="text-end">
-            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">Login</button>
+            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">
+                Login
+            </button>
         </div>
     </header>
 </div>
 
-<!--
-  내용 컨테이너. 여러개의 Row를 만들 때 section 태그로 나눕니다.
-  container - 컨텐츠를 포함하고 채우고 정렬하는 부트스트랩 기본구성요소
-  py-5 - padding y축방향(위아래)로 5 단위만큼 부여 https://getbootstrap.kr/docs/5.0/utilities/spacing/ 참고
-  // 컨텐츠를 넣는 태그 만들 때 무조건 section 태그에 container py-5 주고 시작합니다(위 아래 컨텐츠간 여백)
-  bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
--->
 <main>
-
     <div class="container">
         <!-- Carousel wrapper -->
-        <section class="container py-3 bg-light">
+        <section class="container bg-light">
             <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <br>
-                <div>"${ph.sc.keyword}" 에 대한 검색 결과입니다.</div>        <!--폰트, 색상 css 손볼것-->
+                <div>"${ph.sc.keyword}" 에 대한 검색 결과입니다.</div>
                 <br>
             </c:if>
         </section>
     </div>
 
-    <!--clear-->
-    <section class="container py-5">
-        <div class="container">
-            <div class="row">
-                <c:forEach var="i" items="${cntsDtoList}">
-                    <div class="col-4">
-                    <div class="card m-2" style="width: 18rem;" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                        <img class="img-fluid" style="width:100%" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                        <div class="card-body">
-                            <h4 class="card-title">${i.cnts_title}</h4>
-                            <h6 class="text-muted">${i.cnts_subttl}</h6>
-                            <p class="card-text">${i.cnts_op_date}</p>
-                        </div>
+    <section class="container">
+        <div class="contents_container">
+            <c:forEach var="i" items="${cntsDtoList}">
+                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                    <div id="poster-img" style="margin-bottom: 0.1rem">
+                        <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                    </div>
+                    <div>
+                        <span class="contents_title">${i.cnts_title}</span><br>
+                        <span class="item_nm">${i.cnts_subttl}</span>
+                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span>
                     </div>
                 </div>
-                </c:forEach>
-            </div>
+            </c:forEach>
         </div>
     </section>
 
-
-    <br>
-    <section class="container" py-5>
     <div class="paging-container" style="text-align:center">
-        <div class="paging">
+        <div class="paging" style="margin-bottom: 3rem;">
             <c:if test="${totalCnt==null || totalCnt==0}">
                 <br>
-                <div>"${ph.sc.keyword}" 에 대한 검색 결과가 없습니다. 다른 검색어를 입력해주세요.</div>     <!--페이지 고정 사이즈 줄것-->
+                <div>"${ph.sc.keyword}" 에 대한 검색 결과가 없습니다. 다른 검색어를 입력해주세요.</div>
                 <br>
             </c:if>
             <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <c:if test="${ph.showPrev}">
-                    <a class="page" href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                    <a class="page"
+                       href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
                 </c:if>
                 <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/contents/search/${ph.sc.getQueryString(i)}"/>">${i}</a>
+                    <a class="page ${i==ph.sc.page? "paging-active" : ""}"
+                       href="<c:url value="/contents/search/${ph.sc.getQueryString(i)}"/>">${i}</a>
                 </c:forEach>
                 <c:if test="${ph.showNext}">
-                    <a class="page" href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                    <a class="page"
+                       href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
                 </c:if>
             </c:if>
         </div>
     </div>
-
-    </section>
-
-
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-    <!-- Inner -->
-    <section class="container py-5"></section>
 
 </main>
 

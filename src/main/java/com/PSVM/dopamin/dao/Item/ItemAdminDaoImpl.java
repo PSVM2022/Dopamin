@@ -1,6 +1,7 @@
 package com.PSVM.dopamin.dao.Item;
 
 import com.PSVM.dopamin.domain.Item.ItemDto;
+import com.PSVM.dopamin.domain.Item.Pymt_DetlDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -66,5 +67,17 @@ public class ItemAdminDaoImpl {
     }
     public List<ItemDto> get_pop(Integer num) throws Exception{
         return sqlSession.selectList(namespace+"get_pop",num);
+    }
+
+    public int increase_user_point(Pymt_DetlDto pymt_detlDto) {
+        return sqlSession.insert(namespace+"increase_user_point",pymt_detlDto);
+    }
+
+    public int get_user_point(String user_id) {
+        return sqlSession.selectOne(namespace+"get_user_point",user_id);
+    }
+
+    public int insert_pymt_detl(Pymt_DetlDto pymt_detlDto) {
+        return sqlSession.insert(namespace+"insert_pymt_detl",pymt_detlDto);
     }
 }

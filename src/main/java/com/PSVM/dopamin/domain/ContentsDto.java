@@ -12,7 +12,7 @@ public class ContentsDto {
     private String cnts_op_date;
     private String cnts_genre1;
     private String cnts_genre2;
-    private String  cnts_genre3;
+    private String cnts_genre3;
     private String cnts_genre4;
     private String cnts_genre5;
     private String cnts_cnty;
@@ -53,7 +53,8 @@ public class ContentsDto {
 
     }
 
-    public ContentsDto(Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, String cnts_genre1, String cnts_genre2, String cnts_genre3, String cnts_genre4, String cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Integer ott1_stat, Integer ott2_stat, Integer ott3_stat, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_visib_stat) {
+    public ContentsDto(ContentsWishDto cntsw, Integer cnts_id, String cnts_title, String cnts_subttl, String cnts_postr_img, String cnts_op_date, String cnts_genre1, String cnts_genre2, String cnts_genre3, String cnts_genre4, String cnts_genre5, String cnts_cnty, String cnts_director, String cnts_actor, String cnts_synop, String cnts_rning_t, String cnts_g_rated, String cnts_szn_cnt, String cnts_ep_cnt, Integer ott1_stat, Integer ott2_stat, Integer ott3_stat, Long ott1_click_cnt, Long ott2_click_cnt, Long ott3_click_cnt, Integer cnts_visib_stat) {
+        this.cntsw = cntsw;
         this.cnts_id = cnts_id;
         this.cnts_title = cnts_title;
         this.cnts_subttl = cnts_subttl;

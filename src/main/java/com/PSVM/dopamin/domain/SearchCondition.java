@@ -5,7 +5,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class SearchCondition {
 
     private Integer page = 1;
-    private Integer pageSize = 9;   //한 페이지에 보여줄 컨텐츠 개수
+    private Integer pageSize = 15;   //한 페이지에 보여줄 컨텐츠 개수
     private String  keyword = "";
     //private Integer  offset = 0;
     private String  option = "";

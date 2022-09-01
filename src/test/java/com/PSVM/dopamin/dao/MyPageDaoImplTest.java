@@ -3,7 +3,7 @@
 //import com.PSVM.dopamin.domain.MyPageCntsDto;
 //import com.PSVM.dopamin.domain.MyPageDto;
 //import com.PSVM.dopamin.domain.MyPagePostDto;
-//import com.PSVM.dopamin.domain.MyPageRevwDto;
+//import com.PSVM.dopamin.domain.RevwDto;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@
 //
 //    @Test
 //    public void selectRevwRt() throws Exception {
-//        List<MyPageRevwDto> list = myPageDao.selectRevwRt("eunbi");
+//        List<RevwDto> list = myPageDao.selectRevwRt("eunbi");
 //        String title = list.get(0).getCnts_title();
 //        System.out.println("title = " + title);
 //        for (int i = 0; i < list.size(); i++)

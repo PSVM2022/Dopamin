@@ -3,7 +3,9 @@ package com.PSVM.dopamin.service.Item;
 import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.dao.Item.ItemAdminDaoImpl;
 import com.PSVM.dopamin.domain.Item.ItemForm;
+import com.PSVM.dopamin.domain.Item.Pymt_DetlDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -46,13 +48,11 @@ public class ItemAdminService {
         //여기서는 itemForm들의 정보를 item table처럼 가공해야하고,
         //file의 저장 경로도 설정해줘야 한다.
         //전제: 이미지 무조건 있다 -> Controller에서 검사하고 들어왔으니
-        System.out.println(multipartFile.getOriginalFilename());
         String save_url=save_File(multipartFile);//파일 저장 //이미지 경로 반환
         ItemDto itemDto=save_into_ItemDto(itemForm);
-        itemDto.setItem_img((String) map.get("save_url"));
+        itemDto.setItem_img(save_url);
         itemDto.setIn_user((String)map.get("user_id"));
         itemDto.setUp_user((String)map.get("user_id"));
-        itemDto.setUser_nic((String)map.get("user_nic"));
         return itemAdminDaoImpl.registerItem(itemDto);
     }
     public int remove(Integer item_id) throws Exception{
@@ -66,11 +66,13 @@ public class ItemAdminService {
     }
     private ItemDto save_into_ItemDto(ItemForm itemForm) {
         ItemDto itemDto = new ItemDto();
-        if(itemForm.getList_nm().equals("스킨")){
-            itemDto.setList_id(1);
-        }
-        else{
-            itemDto.setList_id(2);
+        if(itemForm.getList_nm()!=null){
+            if(itemForm.getList_nm().equals("스킨")){
+                itemDto.setList_id(1);
+            }
+            else{
+                itemDto.setList_id(2);
+            }
         }
         itemDto.setGrd_nm(itemForm.getItem_grd());
         itemDto.setItem_nm(itemForm.getItem_nm());
@@ -132,5 +134,24 @@ public class ItemAdminService {
 
     public List<ItemDto> get_pop(Integer num) throws Exception {
         return itemAdminDaoImpl.get_pop(num);
+    }
+    @Transactional
+    //결제 실패 시 되돌려야 함.
+    public boolean pymt_detl(Pymt_DetlDto pymt_detlDto) throws Exception{
+        //현금으로 포인트 충전 시, 유저 포인트 올려주고, 결제내역 테이블에 내역 쌓아야 함.
+        int result_PY=itemAdminDaoImpl.insert_pymt_detl(pymt_detlDto);
+        if(result_PY!=1){
+            throw new Exception("잠시 후 다시 시도해주세요.");
+        }
+        //유저포인트 가져와서
+        int user_point=itemAdminDaoImpl.get_user_point(pymt_detlDto.getUser_id());
+        //충전한 포인트를 기존포인트에 더해서 올려줌.
+        pymt_detlDto.setChg_pnt(user_point+ pymt_detlDto.getChg_pnt());
+        int result_UP=itemAdminDaoImpl.increase_user_point(pymt_detlDto);
+        if(result_UP!=1){
+            throw new Exception("잠시 후 다시 시도해주세요.");
+        }
+
+        return true;
     }
 }

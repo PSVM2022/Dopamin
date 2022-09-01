@@ -3,21 +3,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.PSVM.dopamin.dao.ItemUserMapper">
+    <select id="find_item" parameterType="int" resultType="ItemDto">
+        SELECT item_id,stat
+        FROM ITEM
+        WHERE item_id=#{item_id}
+    </select>
     <select id="addCart" parameterType="Cart_ItemDto">
         INSERT INTO CART_ITEM
             (item_id,cart_id,in_user,in_date,up_user)
         VALUES
             (#{item_id},#{cart_id},#{in_user},now(),#{up_user})
     </select>
-    <select id="find_item" parameterType="int" resultType="int">
-        SELECT item_id
-        FROM ITEM
-        WHERE item_id=#{item_id}
-    </select>
-    <select id="item_stat" parameterType="int" resultType="int">
-        SELECT stat
-        FROM ITEM
-        WHERE item_id=#{item_id}
+    <select id="find_possesion" parameterType="Cart_ItemDto" resultType="Cart_ItemDto">
+        SELECT *
+        FROM POSSESION
+        WHERE item_id=#{item_id} and user_id=#{in_user}
     </select>
     <select id="getCart_list" parameterType="int" resultType="ItemDto">
         SELECT i.item_id,il.list_nm,i.grd_nm,i.item_nm,i.item_dsc,i.item_price,i.item_img
@@ -96,6 +96,14 @@
         INSERT INTO
             PNT_USE_DETL(pchs_item_id,use_stat,pnt,user_id,in_date,in_user,up_user)
         VALUES(#{item_id},0,#{item_price},#{user_id},now(),#{user_id},#{user_id});
+    </select>
+    <select id="getItem_list" resultType="ItemDto">
+        SELECT *
+        FROM ITEM as i
+        JOIN ITEM_LIST as il
+        ON i.list_id=il.list_id
+        WHERE stat=1
+        LIMIT 5
     </select>
 </mapper>
 

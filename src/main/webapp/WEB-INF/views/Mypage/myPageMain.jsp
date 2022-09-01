@@ -35,6 +35,9 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPageMain.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/user/myPage2.css?after'/>">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -43,6 +46,27 @@
 </head>
 
 <body>
+<script>
+    let msg = "${msg}";
+    if (msg != "") alert(msg);
+</script>
+<div class="container py-5">
+    <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
+    <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
+        <a href="<c:url value='/'/>"
+           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
+            <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/psvm/" class="nav-link px-2 link-secondary">홈</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
+            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
+            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
+        </ul>
 
 <main>
     <section class="container">
@@ -139,6 +163,18 @@
                                 class="fa-solid fa-user mypage-icon"></i></div>
                         <h2 class="mypage-title">Edit User Info</h2>
                         <p class="mypage-subtitle">회원정보를 수정하세요!</p>
+    <section class="container py-5">
+
+        <div><h2>회원 정보</h2><br></div>
+
+        <div class="row gx-lg-5">
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0" id="userInfo">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                class="fa-solid fa-user"></i></div>
+                        <h2 class="fs-4 fw-bold">Edit User Info</h2>
+                        <p class="mb-0">회원정보를 수정하세요!</p>
                     </div>
                 </div>
             </div>
@@ -166,8 +202,49 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
     </section>
+
+
+    <!--회원 정보 수정 비밀번호 확인 모달 -->
+    <div class="modal hidden">
+        <div class="bg"></div>
+        <div class="modal-box">
+            <h5>비밀번호 확인</h5>
+            <form action="<c:url value="/mypage/userInfo"/>" method="post" onsubmit="pwdCheck();">
+                <input type="password" name="pwd" id="pwd" placeholder="비밀번호 입력">
+                <div class="modal-btns">
+                    <button type="button" class="closeBtn">닫기</button>
+                    <button type="submit">확인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function pwdCheck() {
+            console.log("pwd=", $("#pwd").val())
+            if ($("#pwd").val() == "") {
+                alert("비밀번호를 입력해주세요!")
+                event.preventDefault();
+            }
+        }
+
+        const open = () => {
+            console.log("모달창열기")
+            document.querySelector(".modal").classList.remove("hidden");
+        }
+        const close = () => {
+            console.log("닫기")
+            document.querySelector(".modal").classList.add("hidden");
+        }
+        document.querySelector("#userInfo").addEventListener("click", open);
+        document.querySelector(".closeBtn").addEventListener("click", close);
+        document.querySelector(".bg").addEventListener("click", close);
+
+    </script>
 
 </main>
 
@@ -294,6 +371,8 @@
     </div>
 </footer>
 
+
 </body>
+
 
 </html>
