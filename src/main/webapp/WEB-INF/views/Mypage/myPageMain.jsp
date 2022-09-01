@@ -28,15 +28,8 @@
             <img class="user_profile_img" src="${myPageDto.prf_img}" alt="..."/>
             <h1 class="user_nickname">${myPageDto.nic}님</h1>
             <p class="user_info">
-                <c:choose>
-                    <c:when test="${empty myPageDto.fav_genre1}">
-                        ${myPageDto.nic}님 설문 조사를 참여해주세요! 설문 링크 첨부
-                    </c:when>
-                    <c:otherwise>
-                        ${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를
-                        좋아하는 ${myPageDto.age}대 ${myPageDto.sex == 0 ? '여성' : '남성'}입니다.
-                    </c:otherwise>
-                </c:choose>
+                ${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를
+                좋아하는 ${myPageDto.age}대 ${myPageDto.mbti} ${myPageDto.sex == 0 ? '여성' : '남성'}입니다.
             </p>
             <p>dopa_point = ${myPageDto.dopa_point}</p>
         </div>
@@ -114,100 +107,83 @@
 
             <div class="list_col">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb" onclick="location.href='/psvm'">
+                    <div class="mypage_cardb" id="userInfo">
                         <div class="mypage-cardc"><i class="fa-solid fa-user mypage-icon"></i></div>
                         <h2 class="mypage-title">Edit User Info</h2>
                         <p class="mypage-subtitle">회원정보를 수정하세요!</p>
+                    </div>
+                </div>
+            </div>
 
-                        <section class="container py-5">
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb"
+                         onclick="location.href='<c:url
+                                 value="mypage/point"/>'">
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-coins mypage-icon"></i></div>
+                        <h2 class="mypage-title">Points</h2>
+                        <p class="mypage-subtitle">포인트 사용 내역을 확인하세요!</p>
+                    </div>
+                </div>
+            </div>
 
-                            <div><h2>회원 정보</h2><br></div>
-
-                            <div class="row gx-lg-5">
-                                <div class="col-lg-6 col-xxl-4 mb-5">
-                                    <div class="card bg-light border-0 h-100">
-                                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
-                                             id="userInfo">
-                                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
-                                                <i
-                                                        class="fa-solid fa-user"></i></div>
-                                            <h2 class="fs-4 fw-bold">Edit User Info</h2>
-                                            <p class="mb-0">회원정보를 수정하세요!</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="list_col">
-                                    <div class="mypage_carda">
-                                        <div class="mypage_cardb"
-                                             onclick="location.href='<c:url
-                                                     value="mypage/point"/>'">
-                                            <div class="mypage-cardc"><i
-                                                    class="fa-solid fa-coins mypage-icon"></i></div>
-                                            <h2 class="mypage-title">Points</h2>
-                                            <p class="mypage-subtitle">포인트 사용 내역을 확인하세요!</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="list_col">
-                                    <div class="mypage_carda">
-                                        <div class="mypage_cardb" onclick="location.href='<c:url
-                                                value="mypage/myItem"/>'">
-                                            <div class="mypage-cardc"><i
-                                                    class="fa-solid fa-gift mypage-icon"></i></div>
-                                            <h2 class="mypage-title">My Items</h2>
-                                            <p class="mypage-subtitle">보유 아이템 목록을 확인하세요!</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!--회원 정보 수정 비밀번호 확인 모달 -->
-                        <div class="modal hidden">
-                            <div class="bg"></div>
-                            <div class="modal-box">
-                                <h5>비밀번호 확인</h5>
-                                <form action="<c:url value="/mypage/userInfo"/>" method="post"
-                                      onsubmit="pwdCheck();">
-                                    <input type="password" name="pwd" id="pwd"
-                                           placeholder="비밀번호 입력">
-                                    <div class="modal-btns">
-                                        <button type="button" class="closeBtn">닫기</button>
-                                        <button type="submit">확인</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+            <div class="list_col">
+                <div class="mypage_carda">
+                    <div class="mypage_cardb" onclick="location.href='<c:url
+                            value="mypage/myItem"/>'">
+                        <div class="mypage-cardc"><i
+                                class="fa-solid fa-gift mypage-icon"></i></div>
+                        <h2 class="mypage-title">My Items</h2>
+                        <p class="mypage-subtitle">보유 아이템 목록을 확인하세요!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+    <!--회원 정보 수정 비밀번호 확인 모달 -->
+    <div class="modal hidden">
+        <div class="bg"></div>
+        <div class="modal-box">
+            <h5>비밀번호 확인</h5>
+            <form action="<c:url value="/mypage/userInfo"/>" method="post"
+                  onsubmit="pwdCheck();">
+                <input type="password" name="pwd" id="pwd"
+                       placeholder="비밀번호 입력">
+                <div class="modal-btns">
+                    <button type="button" class="closeBtn">닫기</button>
+                    <button type="submit">확인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 </main>
 <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 <script>
-  function pwdCheck() {
-    console.log("pwd=", $("#pwd").val())
-    if ($("#pwd").val() == "") {
-      alert("비밀번호를 입력해주세요!")
-      event.preventDefault();
+    function pwdCheck() {
+        console.log("pwd=", $("#pwd").val())
+        if ($("#pwd").val() == "") {
+            alert("비밀번호를 입력해주세요!")
+            event.preventDefault();
+        }
     }
-  }
 
-  const open = () => {
-    console.log("모달창열기")
-    document.querySelector(".modal").classList.remove("hidden");
-  }
-  const close = () => {
-    console.log("닫기")
-    document.querySelector(".modal").classList.add("hidden");
-  }
-  document.querySelector("#userInfo").addEventListener("click", open);
-  document.querySelector(".closeBtn").addEventListener("click", close);
-  document.querySelector(".bg").addEventListener("click", close);
+    const open = () => {
+        console.log("모달창열기")
+        document.querySelector(".modal").classList.remove("hidden");
+    }
+    const close = () => {
+        console.log("닫기")
+        document.querySelector(".modal").classList.add("hidden");
+    }
+    document.querySelector("#userInfo").addEventListener("click", open);
+    document.querySelector(".closeBtn").addEventListener("click", close);
+    document.querySelector(".bg").addEventListener("click", close);
 
 </script>
 </html>

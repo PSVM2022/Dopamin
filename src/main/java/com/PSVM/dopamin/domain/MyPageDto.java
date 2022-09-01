@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class MyPageDto {
+    private String mbti;
     private String user_id;
     private String prf_img; //프로필 이미지 url
     private String nic;     //닉네임
