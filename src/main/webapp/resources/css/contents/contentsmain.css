@@ -1,140 +1,95 @@
 @import "../common/default.css";
 /* 이걸 각자 만드는 css 모듈마다 import 해줘야 default.css에 정의된 컬러변수를 사용할 수 있음 */
 
-
-:root {
-    margin: 0;
-    font-family: 'NotoSans KR', 'Noto Serif';
-    background-color: var(--main-white);
-    /* 이런식으로 해서 사용하세요 */
-    /* 정의된 컬러 -  검정, 흰색(배경용), 회색(음영1, 음영2) 오렌지, 베이지, 옐로우 */
-    --main-black: #292A32;
-    --main-white: #F7F7F7;
-    --main-grey: #A5A5AA;
-    --main-grey2: rgba(0, 0, 0, 0.05);
-    --orange: #FF7800;
-    --beige: #FFBC97;
-    --yellow: #FFE300;
-}
-
-
-.form-control:focus {
-    border: 1px solid var(--orange);
-    box-shadow: 0 0 10px var(--orange);
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
-}
-
-.rounded {
-    border-radius: 1.8rem;
-}
-
-element.style {
-    text-align: inherit;
-    width: 60rem;
-    height: 3rem;
-}
 /*메인 화면 검색창 속성*/
 .search-bg-image{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('https://img.freepik.com/free-photo/yellow-watercolor-paper_95678-446.jpg?w=1060&t=st=1661937320~exp=1661937920~hmac=353360d062a3c04e57e18e255f6d6dded0df6e6e4c97058d1d02948b577ce57c');
+    background: url('https://img.freepik.com/free-vector/flat-comic-style-background_23-2148819596.jpg?w=2000&t=st=1662055031~exp=1662055631~hmac=dda1a216b99008111b605c978ba018d7f62b7cdffbadaac3da84eb7b5adda377') no-repeat;
+    background-size : cover;
     height: 28rem;
 }
-.search-main-text{
-    color: #F7F7F7;
+.search-main-text {
     text-align: center;
+    font-size: 5rem;
 }
 .search-sc-text{
-    color: #F7F7F7;
     text-align: center;
+    font-size: 1.5rem;
 }
 .search-container{
     text-align: center;
     margin-top: 2rem;
 }
-/*검색옵션*/
+
 .search-option{
-    height: 3rem;
+    width: 7rem;
+    height: 40px;
+    background-color: var(--main-grey2);
 }
-/*검색창*/
-.search-main{
-    width: 30rem;
-    height: 3rem;
-    border-radius: 0.3rem;
+
+.search-option:focus {
+    border: none;
 }
+
+.search-input-wrapper {
+    background: var(--main-grey2) url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIyIDIyIj4KICAgIDxwYXRoIGZpbGw9IiNCQUJBQzMiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuODE0IDE1LjczNWMtMy4yMDcgMC01LjgxNy0yLjYzLTUuODE3LTUuODYxIDAtMy4yMzMgMi42MS01Ljg2MiA1LjgxNy01Ljg2MiAzLjIwNyAwIDUuODE4IDIuNjMgNS44MTggNS44NjJzLTIuNjEgNS44Ni01LjgxOCA1Ljg2bTkuODQxIDIuNTRsLTMuNjYtMy43MDRjLjk4LTEuMzEgMS41NzEtMi45MzIgMS41NzEtNC42OTYgMC00LjMwOC0zLjQ3OC03LjgxMi03Ljc1Mi03LjgxMi00LjI3NCAwLTcuNzUyIDMuNTA0LTcuNzUyIDcuODEyIDAgNC4zMDcgMy40NzggNy44MSA3Ljc1MiA3LjgxIDEuODI5IDAgMy41MDctLjY0NCA0LjgzNC0xLjcxNGwzLjYzNyAzLjY4Yy4xODIuMTg2LjQyNi4yODguNjg1LjI4OC4yNTcgMCAuNS0uMS42ODMtLjI4NC4xODItLjE4NC4yODQtLjQzLjI4NS0uNjkgMC0uMjYtLjEtLjUwNS0uMjgzLS42OSIvPgo8L3N2Zz4K) no-repeat 9px 8px;
+    padding: 7px 10px 8px 36px;
+    border-radius: 2px;
+    border: 1px solid;
+}
+
+/*!*검색창*!*/
+.main-search-input{
+    background: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 3px;
+    width: 15rem;
+    border: none;
+}
+
+.main-search-input:focus {
+    outline: none;
+}
+
+.recommend-content {
+    margin-top: 2rem;
+}
+
+.recommend-mention {
+    font-size: 2rem;
+}
+
 /*적용할 태그 속성 body, div를 쓰고 괄호안에 css 속성을 넣으면 된다*/
-div.hover-test:hover {
-    width: 10rem;
-}
+
 /*main poster*/
 #poster-image{
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 320px;
 }
 /*포인트시 포스터 확대*/
 #poster-img:hover {
     cursor: pointer;
     transition: all 0.2s linear;
-    transform: scale(1.15);
+    transform: scale(1.05);
 }
 .contents_container{
     margin-top: 2.4rem;
     justify-content: center;
     display:flex;   /*요소들을 가로로 수평 정렬*/
-    flex-direction: row;
-    flex-wrap: wrap;    /*요소들을 여러줄로 묶음*/
-    align-content: flex-start;
 }
 .detail-container {
-    /*min-width: 18rem;   페이지 줄어들면 같이 줄어들게 할건지? 고정값을 줄건지?*/
-    border: 0.05rem solid; /*border: 포스터랑 제목 틀 보려고 넣어놓은거임 나중에 뺄것*/
-    border-color: #A5A5AA;
     border-radius: 0.32rem;
     cursor: pointer;
-    width: 15%;
-    height:15%;
-    margin-bottom: 2.5rem;
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
+    margin: 0 1.2rem;
 }
 .detail-container:last-child{
     margin-right: 0;
 }
+
 .contents_title{
     font-size:20px;
 }
-/*컨텐츠 슬라이드 좌우*/
-.contents .swiper-prev,
-.contents .swiper-next{
-    width: 3rem;
-    height: 3rem;
-    border: 2px solid #FF7800;
-    border-radius: 50%;
-    outline: none;
-    color: #292A32;;
-    opacity: .3;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 47rem;
-    bottom: 0;
-    margin: auto;
-    z-index: 1;     /*div우선순위*/
 
-}
-.contents .swiper-prev{
-    left: 5rem;
-}
-.contents .swiper-next{
-    right:  5rem;
-}
-.contents .swiper-prev:hover,
-.contents .swiper-next:hover {
-    background-color: #F7F7F7;
-    color: #292A32;
-}

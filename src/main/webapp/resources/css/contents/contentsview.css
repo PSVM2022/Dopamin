@@ -1,13 +1,5 @@
 @import "../common/default.css";
-/* 이걸 각자 만드는 css 모듈마다 import 해줘야 default.css에 정의된 컬러변수를 사용할 수 있음 */
 
-.form-control:focus {
-    border: 1px solid var(--orange);
-    box-shadow: 0 0 10px var(--orange);
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
-}
 .container{
     margin-top: 4rem;
 }
@@ -18,9 +10,7 @@
     margin-left: 4rem;
 }
 .contents-value{
-    border: 0.15rem solid;
     width: 65rem;
-    border-color: #ddd;
     border-radius: 0.3rem;
     padding: 1.2rem;
     margin-right: 4rem;
@@ -32,18 +22,10 @@
 }
 .ott{
     display: flex;
-    margin-left: 4rem;
-    margin-top: 0.1rem;
-    margin-top: -1rem;
     flex-direction: row;
-    align-items: center;
-    border: 0.15rem solid;
-    width: 23rem;
-    height: 5rem;
-    border-color: #ddd;
-    border-radius: 0.3rem;
-    margin-right: 4rem;
+    margin-bottom: .5rem;
 }
+
 .ott1ProImg {
     position: relative;
     z-index: 1;
@@ -78,18 +60,15 @@
     box-shadow: rgb(0 0 0 / 8%) 0px 0px 0px 1px inset;
 }
 .cnts-view-btn{
-    display: flex;
-    margin-left: 4rem;
-    margin-top: 0.1rem;
-    flex-direction: row;
-    align-items: center;
 }
-.wishBtn{
-    width: 9rem;
+
+.cnts-action {
+    font-size: 1.5rem;
+    cursor: pointer;
 }
-.like-btn{
-    width: 7rem;
-}
-.dislike-btn{
-    width: 7rem;
+
+
+.content-oneLineReview {
+    float: right;
+    font-weight: bold;
 }

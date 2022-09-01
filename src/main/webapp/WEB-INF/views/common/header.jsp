@@ -5,6 +5,11 @@
 
 <%@ page session="false" %>
 
+<c:set var="loginId"
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'Logout'}"/>
+
 <header class="header-main">
     <nav class="header-navigation">
         <a href="<c:url value="/"/>" class="header-logo">
@@ -32,7 +37,7 @@
             </label>
         </form>
 
-        <a href="<c:url value="/login/login"/>"><b>로그인</b></a>
+        <a href="<c:url value="/login/login"/>"><b>${loginOut}</b></a>
     </nav>
     <script>
       let form = $("search-form")

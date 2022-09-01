@@ -13,7 +13,7 @@
 <html lang="ko">
 <head>
     <title>도파민!</title>
-    <c:import url="/WEB-INF/views/common/default.jsp"/
+    <c:import url="/WEB-INF/views/common/default.jsp"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/user/joinForm.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css'/>">
 </head>
@@ -304,7 +304,7 @@
 
     $.ajax({
       type: 'POST',
-      url: '<c:url value ="/join/email"/>',
+      url: '<c:url value="/join/email"/>',
       data: {email: email},
       success: function (response) {
         alert(response.msg);

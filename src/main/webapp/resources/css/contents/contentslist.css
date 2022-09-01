@@ -1,28 +1,10 @@
 @import "../common/default.css";
-/* 이걸 각자 만드는 css 모듈마다 import 해줘야 default.css에 정의된 컬러변수를 사용할 수 있음 */
 
-.form-control:focus {
-    border: 1px solid var(--orange);
-    box-shadow: 0 0 10px var(--orange);
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
+.result-message {
+    font-size: 2rem;
 }
 
-.rounded {
-    border-radius: 1.8rem;
-}
 
-element.style {
-    text-align: inherit;
-    width: 60rem;
-    height: 3rem;
-}
-/*적용할 태그 속성 body, div를 쓰고 괄호안에 css 속성을 넣으면 된다*/
-div.hover-test:hover {
-    width: 10rem;
-}
-/*main poster*/
 #poster-image{
     width: 100%;
     height: 100%;
@@ -32,39 +14,18 @@ div.hover-test:hover {
 #poster-img:hover {
     cursor: pointer;
     transition: all 0.2s linear;
-    transform: scale(1.15);
+    transform: scale(1.05);
 }
 .contents_container{
-    /*margin-top: 2.4rem; !*검색어랑 컨텐츠 컨테이너 사이*!*/
-    /*justify-content: center;*/
-    /*display:flex;   !*요소들을 가로로 수평 정렬*!*/
-    /*flex-direction: row;*/
-    /*flex-wrap: wrap;    !*요소들을 여러줄로 묶음*!*/
-    /*align-content: flex-start;*/
-    /*margin-bottom: 2.4rem;   !*컨테이너 맨 아래 하단 공백*!*/
-
-    /* margin-top: 2.4rem; */
-    /* justify-content: center; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* align-content: flex-start; */
     width: 100%;
     margin-bottom: 2.4rem;
-
-
-    /* margin-left: 1rem; */
-
-
 }
-.detail-container {
 
-    border: 0.05rem solid;
-    border-color: #A5A5AA;
-    border-radius: 0.3rem;
+.detail-container {
     cursor: pointer;
-    width: 15%;
-    height: 15%;
     margin: 1rem 1rem 0 1rem;
 }
 .detail-container:last-child{
