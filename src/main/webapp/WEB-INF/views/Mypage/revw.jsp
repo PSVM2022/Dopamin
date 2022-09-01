@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/revw.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -43,41 +43,13 @@
 </head>
 
 <body>
-<div class="container py-5">
-    <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
-    <header
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
-        <a href="<c:url value='/'/>"
-           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
-            <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/psvm/" class="nav-link px-2 link-secondary">홈</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">신규작</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">인기작</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">커뮤니티</a></li>
-            <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
-            <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
-        </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-            <input type="search" class="form-control form-control-dark" placeholder="Search..."
-                   aria-label="Search">
-        </form>
-
-        <div class="text-end">
-            <button type="button" class="btn btn-warning me-2">Login</button>
-        </div>
-    </header>
-</div>
-
+<div class="container">
 <main>
-    <section class="container py-5">
-        <h2>Contents Review</h2><br>
-
+    <section class="container">
+        <h2 class="revw-h2">Contents Review</h2>
+<%--        <div class="table-responsive">--%>
         <div>
-            <table>
+            <table class="revw-table">
                 <thead>
                 <tr>
                     <th><input type="checkbox" id="allCheck" name="allCheck"></th>
@@ -85,7 +57,6 @@
                     <th>컨텐츠 제목</th>
                     <th>내용</th>
                     <th>등록일</th>
-                    <%--                <th scope="col" class="text-end" width="20%"><span>등록일</span></th>--%>
                 </tr>
                 </thead>
                 <tbody>
@@ -94,7 +65,7 @@
                         <th>
                             <input type="checkbox" name="revwId" value="${revw.revw_id}"></th>
                         <td>${revw.revw_id}</td>
-                        <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
+                        <td><a class="revw-title" href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
                         <td>${revw.revw_body}</td>
                         <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.MM.dd"/></td>
                     </tr>
@@ -103,7 +74,7 @@
             </table>
         </div>
         <div>
-            <input type="button" calss="btn" value="선택삭제" onclick="deleteValue();">
+            <input type="button" class="revw-btn" value="선택삭제" onclick="deleteValue();">
         </div>
 
     </section>

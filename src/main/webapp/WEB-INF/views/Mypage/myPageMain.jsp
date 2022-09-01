@@ -85,7 +85,7 @@
                          onclick="location.href='/psvm/mypage/revwrt'">
                         <div class="mypage-cardc"><i
                                 class="fa-solid fa-thumbs-up mypage-icon"></i></div>
-                        <h2 class="mypage-title">Contents Good Review</h2>
+                        <h2 class="mypage-title">Review Like</h2>
                         <p class="mypage-subtitle">좋아요 누른 한줄평을 확인하세요!</p>
                     </div>
                 </div>

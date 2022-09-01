@@ -36,8 +36,9 @@
 .list_col {
     margin-bottom: 3rem !important;
     flex: 0 0 auto;
-    width: 33.33333333%;
+    width: 28%;
     height: 14rem;
+    margin: 0 2rem;
 }
 .mypage_h2 {
     margin: 1rem;
@@ -60,7 +61,8 @@
     border: orange solid 3px;
     border-radius: 2rem;
     height: 3rem;
-    margin-bottom: 1rem;
+    width: 6rem;
+    margin: auto;
 }
 
 .mypage-icon{
@@ -70,8 +72,10 @@
 .mypage-title{
     font-weight: 700;
     font-size: 2rem;
+    padding: 1rem 0;
 }
 
 .mypage-subtitle{
-    font-size: 1.3rem;
+    padding: 1rem 0;
+    font-size: 1.1rem;
 }
