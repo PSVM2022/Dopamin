@@ -60,13 +60,14 @@
         WHERE user_id = #{user_id};
     </select>
 
-    <update id="updateUserGenre" parameterType="UserDto">
+    <update id="updateUserSurvey" parameterType="UserDto">
         UPDATE USER
         SET fav_genre1=#{fav_genre1},
             fav_genre2=#{fav_genre2},
             fav_genre3=#{fav_genre3},
             fav_genre4=#{fav_genre4},
             fav_genre5=#{fav_genre5},
+            mbti=#{mbti},
             up_date=now(),
             up_user=#{user_id}
         WHERE user_id = #{user_id};
@@ -77,11 +78,11 @@
         SET f_nm=#{f_nm},
             l_nm=#{l_nm},
             phone_num=#{phone_num},
+            mbti=#{mbti},
+            cnty=#{cnty},
             nic=#{nic},
             btdt=#{btdt},
             sex=#{sex},
-            mbti=#{mbti},
-            cnty=#{cnty},
             fav_genre1=#{fav_genre1},
             fav_genre2=#{fav_genre2},
             fav_genre3=#{fav_genre3},
@@ -117,5 +118,10 @@
         FROM USER_PWD_UPD_HIST
         WHERE user_id = #{user_id};
     </delete>
+
+
+    <update id="updateUserPrfImg" parameterType="String">
+        UPDATE USER SET prf_img=#{s3Url} WHERE user_id=#{user_id};
+    </update>
 
 </mapper>

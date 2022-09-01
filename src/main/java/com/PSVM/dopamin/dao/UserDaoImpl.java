@@ -1,11 +1,12 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int insertUserPwd(UserDto userDto) throws DuplicateKeyException {
         System.out.println("call insertUserPwdin UserDaoImpl");
-
         return session.insert(namespace+"insertUserPwd",userDto);
     }
 
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int selectIdDuplCnt(String user_id) {
+    public int selectIdDuplCnt(String user_id)throws Exception {
         return session.selectOne(namespace+"selectIdDuplCnt",user_id);
     }
 
@@ -70,8 +70,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int updateUserGenre(UserDto userDto) {
-        return session.update(namespace+"updateUserGenre",userDto);
+    public int updateUserSurvey(UserDto userDto) {
+        return session.update(namespace+"updateUserSurvey",userDto);
     }
 
     @Override
@@ -95,5 +95,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String selectUserPwdHist(String user_id) {
         return session.selectOne(namespace+"selectUserPwdHist",user_id);
+    }
+
+    @Override
+    public int updateUserPrfImg(String s3Url,String user_id) {
+        Map map = new HashMap();
+        map.put("s3Url",s3Url);
+        map.put("user_id",user_id);
+        return session.update(namespace+"updateUserPrfImg", map);
     }
 }

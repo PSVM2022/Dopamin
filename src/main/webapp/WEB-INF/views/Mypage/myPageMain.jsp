@@ -35,6 +35,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/user/myPage2.css?after'/>">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -44,8 +46,8 @@
 
 <body>
 <script>
-	let msg = "${msg}";
-	if(msg!="") alert(msg);
+    let msg = "${msg}";
+    if (msg != "") alert(msg);
 </script>
 <div class="container py-5">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
@@ -98,7 +100,6 @@
             </div>
         </header>
     </section>
-
     <section class="container py-5">
         <div><h2>활동 기록</h2><br></div>
         <div class="row gx-lg-5">
@@ -159,14 +160,14 @@
             </div>
         </div>
     </section>
-
     <section class="container py-5">
+
         <div><h2>회원 정보</h2><br></div>
+
         <div class="row gx-lg-5">
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0" id="userInfo">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
                                 class="fa-solid fa-user"></i></div>
                         <h2 class="fs-4 fw-bold">Edit User Info</h2>
@@ -185,20 +186,63 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0"
                          onclick="location.href='/psvm/mypage/myItem'">
-                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i
                                 class="fa-solid fa-gift"></i></div>
                         <h2 class="fs-4 fw-bold">My Items</h2>
                         <p class="mb-0">보유 아이템 목록을 확인하세요!</p>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
     </section>
+
+
+    <!--회원 정보 수정 비밀번호 확인 모달 -->
+    <div class="modal hidden">
+        <div class="bg"></div>
+        <div class="modal-box">
+            <h5>비밀번호 확인</h5>
+            <form action="<c:url value="/mypage/userInfo"/>" method="post" onsubmit="pwdCheck();">
+                <input type="password" name="pwd" id="pwd" placeholder="비밀번호 입력">
+                <div class="modal-btns">
+                    <button type="button" class="closeBtn">닫기</button>
+                    <button type="submit">확인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function pwdCheck() {
+            console.log("pwd=", $("#pwd").val())
+            if ($("#pwd").val() == "") {
+                alert("비밀번호를 입력해주세요!")
+                event.preventDefault();
+            }
+        }
+
+        const open = () => {
+            console.log("모달창열기")
+            document.querySelector(".modal").classList.remove("hidden");
+        }
+        const close = () => {
+            console.log("닫기")
+            document.querySelector(".modal").classList.add("hidden");
+        }
+        document.querySelector("#userInfo").addEventListener("click", open);
+        document.querySelector(".closeBtn").addEventListener("click", close);
+        document.querySelector(".bg").addEventListener("click", close);
+
+    </script>
 
 </main>
 
@@ -325,6 +369,8 @@
     </div>
 </footer>
 
+
 </body>
+
 
 </html>

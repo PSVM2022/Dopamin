@@ -1,27 +1,42 @@
 package com.PSVM.dopamin.controller;
 
+import com.PSVM.dopamin.service.AmazonS3Utils;
 import com.PSVM.dopamin.domain.*;
+import com.PSVM.dopamin.domain.User.UserDto;
 import com.PSVM.dopamin.service.MyPageService;
-import com.PSVM.dopamin.service.UserService;
+import com.PSVM.dopamin.service.User.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/mypage")
 public class MyPageController {
     @Autowired
     MyPageService myPageService;
     @Autowired
     UserService userService;
+
+    private final AmazonS3Utils amazonS3Utils;
+
+    @Value("${AWS_S3_BUCKET_URL}")
+    private String AWS_S3_BUCKET_URL;
+
 
 
     // MyPage 메인 화면
@@ -182,32 +197,11 @@ public class MyPageController {
         return "Mypage/point";
     }
 
-    @PostMapping("/usercheck")
-    public String modifyUserCheck(HttpSession session, String pwd, RedirectAttributes redirectAttributes, Model model) {
-        System.out.println("getMapping /userinform");
-        String id = (String) session.getAttribute("USERID");
-        System.out.println("id = " + id);
-        //비밀번호 불일치
-        if (!userService.idPwdCheck(id, pwd)) {
-            redirectAttributes.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다!");
-            return "redirect:/mypage";
-        }
-        UserDto userDto = userService.getUser(id);
-        model.addAttribute("userDto", userDto);
-        return "Mypage/modifyUserInform";
-    }
 
-    @PostMapping("/userinform")
-    public String modifyUserInform(UserDto userDto, RedirectAttributes redirectAttributes, HttpSession session) {
-        //수정 완료
-        String user_id = (String) session.getAttribute("USERID");
-        userDto.setUser_id(user_id);
-        userService.modifyUserInform(userDto);
-        redirectAttributes.addFlashAttribute("msg", "MODIFY_SUCCESS");
-        return "redirect:/mypage";
-    }
 
     //한줄평 삭제
+
+
     @PostMapping("/deleterevw")
     @ResponseBody
     public ResponseEntity<?> delrevw(@RequestBody List<Integer> valueArr, HttpSession session) throws Exception {
@@ -237,6 +231,56 @@ public class MyPageController {
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+
+
+    @PostMapping("/userInfo")
+    public String userInfocheck(HttpSession session, @RequestParam String pwd, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            String id = (String) session.getAttribute("USERID");
+            System.out.println("id = " + id);
+            System.out.println("pwd = " + pwd);
+            Map result = new HashMap();
+            //비밀번호 불일치
+            if (!userService.idPwdCheck(id, pwd)) {
+                redirectAttributes.addFlashAttribute("msg", "비밀번호가 일치하지 않습니다!");
+                return "redirect:/mypage";
+            }
+            //비밀번호 일치하면 userInfo 페이지로.
+            UserDto userDto = userService.getUser(id);
+            model.addAttribute("userDto", userDto);
+        } catch (Exception e) {
+            //아직 예외처리 안함.
+            return "redirect:/login/login";
+        }
+        return "Mypage/userInfo";
+    }
+
+    @GetMapping("/userInfo")
+    public String userInfo(){
+        return "redirect:/mypage";
+    }
+
+    @PostMapping("/modifyuserinfo")
+    @ResponseBody
+    public Map modifyUserInfo(@RequestBody UserDto userDto, HttpSession session) {
+        //유효성 검사, 예외 처리 필요.
+        String user_id = (String) session.getAttribute("USERID");
+        userDto.setUser_id(user_id);
+        userService.modifyUserInfo(userDto);
+        Map result = new HashMap();
+        result.put("msg","내 정보가 수정되었습니다");
+        return result;
+    }
+
+    @PostMapping("/modifyprfimg")
+    @ResponseBody
+    public String modifyProfileImg(@RequestParam("uploadImg") MultipartFile uploadImg, HttpSession session) throws IOException {
+        String user_id = (String) session.getAttribute("USERID");
+        String s3Url = amazonS3Utils.uploadFile("user", uploadImg);
+        userService.modifyUserPrfImg(s3Url,user_id);
+        return "success";
     }
 
 }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
+        <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.User.UserDto"/>
 
     </typeAliases>
 </configuration>

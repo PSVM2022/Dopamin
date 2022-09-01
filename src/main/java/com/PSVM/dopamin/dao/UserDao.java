@@ -1,6 +1,6 @@
 package com.PSVM.dopamin.dao;
 
-import com.PSVM.dopamin.domain.UserDto;
+import com.PSVM.dopamin.domain.User.UserDto;
 
 public interface UserDao {
 
@@ -15,7 +15,7 @@ public interface UserDao {
 
     int deleteUser(String user_id);
 
-    int selectIdDuplCnt(String user_id);
+    int selectIdDuplCnt(String user_id) throws Exception;
 
     String selectUserPwd(String user_id);
 
@@ -23,7 +23,7 @@ public interface UserDao {
 
     String selectCartId(String user_id);
 
-    int updateUserGenre(UserDto userDto);
+    int updateUserSurvey(UserDto userDto);
 
     int updateUserPwd(UserDto userDto);
 
@@ -34,5 +34,6 @@ public interface UserDao {
     String selectUserPwdHist(String user_id);
 
 
+    int updateUserPrfImg(String s3Url,String user_id);
 
 }

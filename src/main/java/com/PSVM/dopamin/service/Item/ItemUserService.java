@@ -4,9 +4,14 @@ import com.PSVM.dopamin.dao.Item.ItemUserDaoImpl;
 import com.PSVM.dopamin.domain.Item.Cart_ItemDto;
 import com.PSVM.dopamin.domain.Item.ItemDto;
 import com.PSVM.dopamin.domain.Item.OrderDto;
+import org.apache.ibatis.jdbc.Null;
+import org.apache.ibatis.jdbc.SQL;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,15 +25,29 @@ public class ItemUserService {
         this.itemUserDaoimpl = itemUserDaoimpl;
     }
 
-    public int addCart(Cart_ItemDto cart_itemDto) throws Exception{
-        return itemUserDaoimpl.addCart(cart_itemDto);
-    }
-
-    public int find_item(Integer item_id) throws Exception {
+    public ItemDto find_item(Integer item_id) throws Exception {
+        if(itemUserDaoimpl.find_item(item_id).getStat()==0||itemUserDaoimpl.find_item(item_id)==null){
+            throw new NullPointerException("없는 아이템입니다.");
+        }
         return itemUserDaoimpl.find_item(item_id);
+    }//테스트코드까지 완료.
+    public boolean addCart(Cart_ItemDto cart_itemDto) throws Exception{
+        //장바구니에 담으려고 하는데
+        //1. 보유목록에 있다면
+        if(itemUserDaoimpl.find_possesion(cart_itemDto)!=null){
+            throw new NullPointerException("이미 구매한 아이템 입니다.");
+        };
+        //2. 장바구니에 있다면->Insert 시 DuplicateKey 에러 발생
+        try {
+            int result=itemUserDaoimpl.addCart(cart_itemDto);
+        } catch (Exception e) {
+            throw new Exception("이미 장바구니에 추가된 아이템입니다.");
+        }
+
+        return true;
     }
 
-    public int getItem_stat(Integer item_id) throws Exception {
+    public int getItem_stat(int item_id) throws Exception {
         return itemUserDaoimpl.getItem_Stat(item_id);
     }
 
@@ -45,19 +64,16 @@ public class ItemUserService {
 
     @Transactional(rollbackFor = Exception.class)//오류 발생 시 모든 변경을 이전상태로 롤백시킴
     public int buy_item(List<OrderDto> orderDtoList,String user_id,int cart_id) throws Exception{
-        System.out.println(" = ");
         //유저포인트 랑
         int total_point=0;
         List<Integer> id_list=new ArrayList<>();
         int user_point=itemUserDaoimpl.getUser_point(user_id);
-        System.out.println(" = ");
         //장바구니에서 구매하겠다고 선택한 목록의 포인트의 총합 비교
         for(OrderDto orderDto:orderDtoList){
             total_point+=orderDto.getItem_price();
             id_list.add(orderDto.getItem_id());
             orderDto.setUser_id(user_id);
         }
-        System.out.println(" = ");
         if(total_point>user_point){//구매하고자 하는 아이템의 총액이 유저가 가지고있는 포인트보다 적다면
             //구매 불가
             throw new Exception("포인트가 부족합니다. 충전하러 가시겠습니까?");
@@ -127,5 +143,9 @@ public class ItemUserService {
             throw new Exception("환불에 실패했습니다. 포인트 사용내역에 추가되지 않았습니다.");
         }
         return true;
+    }
+
+    public List<ItemDto> getItem_list() {
+        return itemUserDaoimpl.getItem_list();
     }
 }

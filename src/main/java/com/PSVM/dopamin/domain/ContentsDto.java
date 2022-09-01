@@ -12,7 +12,7 @@ public class ContentsDto {
     private String cnts_op_date;
     private String cnts_genre1;
     private String cnts_genre2;
-    private String  cnts_genre3;
+    private String cnts_genre3;
     private String cnts_genre4;
     private String cnts_genre5;
     private String cnts_cnty;
