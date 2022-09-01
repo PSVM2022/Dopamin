@@ -1,20 +1,27 @@
 package com.PSVM.dopamin.controller;
 
-import com.PSVM.dopamin.domain.*;
+import com.PSVM.dopamin.domain.ContentsDto;
+import com.PSVM.dopamin.domain.ContentsUserDto;
+import com.PSVM.dopamin.domain.ContentsWishDto;
+import com.PSVM.dopamin.domain.PageHandler;
+import com.PSVM.dopamin.domain.SearchCondition;
 import com.PSVM.dopamin.service.ContentsService;
 import com.PSVM.dopamin.service.User.UserService;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
-import java.util.List;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -41,6 +48,8 @@ public class ContentsController {
     public String contentsList(HttpServletRequest request, Model model) {
         //설문조사 안했다면
         HttpSession session = request.getSession(false);
+        System.out.println(session);
+
         if (session != null) {
             //SURVEY가 존재한다면,아직 설문 조사안한것
             if (session.getAttribute("SURVEY") != null) {
@@ -53,14 +62,12 @@ public class ContentsController {
             //System.out.println("로그인 유저정보: "+user_id);
             model.addAttribute("userContentsDtoList", userContentsDtoList);
             model.addAttribute("contentsUserDto", contentsUserDto);
-
+            return "main";
         }
 
         //로그인 안한 상태
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
-
         model.addAttribute("cntsDtoList", cntsDtoList);
-        //System.out.println("model: "+model);
 
         return "main";
     }
@@ -68,7 +75,7 @@ public class ContentsController {
     //컨텐츠 상세 조회
     @GetMapping("/contents/{cnts_id}")
     public String contentsView(@PathVariable(required = false) Integer cnts_id, HttpServletRequest request, HttpSession session, Model model) {
-        String user_id = (String) session.getAttribute("USERID");
+        String user_id = (String) request.getSession(false).getAttribute("USERID");
 
         List<ContentsDto> cntsDtoList = contentsService.contentsList();
 

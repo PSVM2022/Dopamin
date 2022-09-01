@@ -67,8 +67,7 @@ public class CommunityController {
         @PathVariable int postId,
         @RequestParam(required = false, defaultValue = "1") Integer page,
         Model m,
-        HttpServletRequest req,
-        HttpSession session
+        HttpServletRequest req
     ) {
         try {
             PostDto post = postService.read(postId);

@@ -168,7 +168,6 @@
                 </div>
 
             </c:forEach>
-
         </div>
     </section>
 </main>
