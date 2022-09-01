@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ page session="true"%>
-<c:set var="loginId" value="${sessionScope.id}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID='+=loginId}"/>
+<c:set var="USERID" value="${sessionScope.id}"/>
+<c:set var="loginOutLink" value="${USERID=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${USERID=='' ? 'Login' : 'ID='+=USERID}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +37,11 @@
                         return false;
                     }
                 }
+                console.log($("#item_img")[0].files[0])
                 var formData=new FormData();
                 formData.append('key',new Blob([JSON.stringify(data)],{type:"application/json"}));
                 formData.append("item_img",$("#item_img")[0].files[0]);
+                console.log(formData)
                 if(formData.get("item_img")==null){
                     alert("이미지는 필수 값입니다.");
                 }
@@ -49,14 +51,6 @@
                     data:formData,
                     success: function(response){
                         alert("성공");
-                        console.log(response);
-                        console.log(response.list_nm);
-                        console.log(response.item_grd);
-                        console.log(response.item_nm);
-                        console.log(response.item_dsc);
-                        console.log(response.item_price);
-                        //console.log(response.item_img);
-
                         $("#list_nm_msg").html(response.list_nm=(response.list_nm!==undefined ? response.list_nm : ""));
                         $("#item_grd_msg").html(response.item_grd=(response.item_grd!==undefined ? response.item_grd : ""));
                         $("#item_nm_msg").html(response.item_nm=(response.item_nm!==undefined ? response.item_nm : ""));

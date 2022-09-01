@@ -1,0 +1,507 @@
+#left_ad{
+    width: 300px;
+    height: 500px;
+    /*background-color: red;*/
+    padding: 0;
+    display: flex;
+    margin-left:2rem;
+    margin-top:10rem;
+    /*border: 1px solid;*/
+}
+#main_container{
+    max-width: 1140px;
+    width: 100%;
+    overflow: hidden;
+}
+#item_main_container{
+    width: 100%;
+    overflow: hidden;
+
+}
+#right_ad{
+    width: 300px;
+    height: 499px;
+    /*background: yellow;*/
+    margin-right:2rem;
+    margin-top:11rem;
+    /*border: 1px solid;*/
+}
+.item-container {
+    min-width: 180px;
+    max-height: 232px;
+    border: 1px solid blue;
+    width: 100%;
+    margin-right: 40px;
+}
+.item-container:last-child{
+    margin-right: 0;
+}
+#item-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.items{
+    display:flex;
+}
+#main_bar{
+    height: 2rem;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+}
+.item_menu{
+    width: 12rem;
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    font-weight: 500;
+}
+.banner{
+    width:70rem;
+    height:28rem;
+    margin: 2rem auto;
+}
+#rullet{
+    font-size:10rem;
+    color:yellow;
+}
+#section{
+    padding:3rem;
+}
+.item_grd{
+    float:right;
+}
+.item_dsc{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:12px;
+}
+.item_price{
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    float: right;
+    margin-top: 0.6rem;
+    margin-right: 1rem;
+}
+.item_nm{
+    font-size: 1rem;
+    margin: 0 0.3rem;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-weight: 600;
+}
+.item_grd{
+    font-size: 14px;
+    line-height: 2;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    margin-right: 0.3rem;
+}
+.img-wrap{
+    display: block; /* 영역적용위해 사용 */
+    width: 100%;
+
+    overflow: hidden;
+
+    position: relative; /* absolute의 기본기준은 body로 처리 - 현재 요소로 기준변경 */
+}
+
+.detail-container:hover {
+    /* 마우스를 올리면 보이게 처리 */
+
+    filter: brightness(50%);
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 5px;
+}
+.add_cart_btn{
+    opacity: 0;
+    top: 7rem;
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+    margin: 7rem -1rem;
+    color: #000;
+    background-color: #fca317cc;
+    border-color: #fca317cc;
+}
+
+.detail-container:hover .add_cart_btn, .detail-container:focus .add_cart_btn{
+    /* 마우스를 올리면 보이게 처리 */
+    opacity: 1;
+    /*display: block;*/
+    left: 35.9%;
+    /*top: -85px;*/
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 12rem;
+    height: 2rem;
+    padding: 0.39rem;
+}
+
+.dropdown-content {
+    display: none;
+    box-shadow: 2px 2px 2px 2px rgb(0 0 0);
+    padding: 12px 16px;
+    z-index: 1;
+    font-size: 0.8rem;
+    margin: 0.33rem 3rem;
+    width: 5rem;
+}
+.skin{
+    text-decoration: none;
+    color: black;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.item_bar{
+    padding-left: 2rem;
+    padding-top: 1rem;
+    background-color: #A5A5AA;
+    height:4rem;
+}
+.item{
+    font-size:1.2rem;
+}
+.item_skin{
+    font-size:1.1rem;
+}
+.detail-container {
+    min-width: 180px;
+    border: 0.2rem solid #ddd;
+    width: 14.2rem;
+    height: 19rem;
+    margin: 0 1rem 2rem;
+    border-radius: 1rem;
+    padding: 0.1rem;
+}
+.detail-container:last-child{
+    margin-right: 0;
+}
+.item_details{
+    display:flex;
+    flex-wrap: wrap;
+}
+.item_detail_dsc{
+    height: 4.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 12.5rem;
+    margin: auto;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+.cartBar
+{
+    border-bottom: 1px solid #ddd;
+    height: 3rem;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    padding-top:0.2rem;
+}
+.cartDetail{
+    display: flex;
+    gap:4rem;
+    margin-top: 1rem;
+}
+.cart_item{
+    width: 45rem;
+    max-width: 45rem;
+}
+.cart_point{
+    width: 18rem;
+    max-width: 18rem;
+    min-height: 51rem;
+    max-height: 20rem;
+    padding: 2rem 0 0 1rem;
+    border-left: 1px solid #ddd;
+}
+.cart_item_num{
+    background-color: #e9e8e8;
+}
+.cart_img{
+    position: absolute;
+    width: 151.88px;
+    height: 119.48px;
+    left: 902.06px;
+    top: 417.15px;
+    background-color: #222222;
+}
+.image-wrap_cart {
+    width: 10rem;
+    height: 8rem;
+}
+.item-num{
+    display: flex;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    border-top: 1px solid #ddd;
+    FONT-WEIGHT: 100;
+}
+.cart-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+}
+.cart_item_info{
+    width: 20rem;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 0 1rem;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+.cart_item_price{
+    width: 6.5rem;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 1.1rem;
+    padding-top: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+.cart_item_detail{
+    width: 11rem;
+    margin-top: 0.3rem;
+}
+.delete_select_entire{
+    background: #eaeaea45;
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.cart_item_dsc {
+    margin-top: 1rem;
+    height: 6.3rem;
+    width: 18rem;
+    font-size: 0.9rem;
+}
+.closed{
+    width: 8rem;
+    text-align: right;
+    border-bottom: 1px solid #ddd;
+    float: right;
+    cursor: pointer;
+}
+.pay_info{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-weight: 600;
+}
+.cart_item_pay_info{
+    border-bottom: 0.15rem dashed #ddd;
+    border-top: 0.15rem dashed #ddd;
+    padding-top: 0.8rem;
+}
+.item_info{
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+.numberofitem{
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    float: right;
+}
+.total_amount{
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+.total_money{
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    float: right;
+}
+.more_info{
+    height: 2rem;
+}
+.total_info{
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+.buy_button{
+    width: 15rem;
+    height: 3rem;
+    border-radius: 0.3rem;
+    margin-left: 1.5rem;
+    margin-top: 2rem;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+#nav{
+
+    list-style: none;
+    width: 15rem;
+
+    padding: 5px 1px;
+    /* background-color: #f29c74; */
+    margin-left: 4rem;
+    margin-top: 4rem;
+    border-radius: 1rem;
+    border: 1px solid;
+    text-align: center;
+
+}
+#nav li{
+    position: relative;
+    margin: 1rem 1.2rem;
+    padding: 0;
+}
+#nav li a{
+    display: block;
+    /* font-family: "굴림"; */
+    font-weight: bold;
+    font-size: 18px;
+    /* padding: 7px 8px; */
+    margin: 0;
+    color: #fff;
+    margin: 0;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgb(0 0 0);
+}
+#nav li:hover > a{
+    background:#ffcab2;
+    color:black;
+    margin:0;
+}
+#nav ul{
+    list-style: none;
+    padding-left: 1rem;
+    /* position: absolute; */
+    left: 0;
+    top: 40px;
+    width: 10rem;
+    margin-left: 0.6rem;
+}
+#nav ul a{
+    font-weight:normal;
+    color:black;
+}
+#nav ul li:hover a{
+    background-color: #cc9882;
+    font-weight:bold;
+}
+#admin_content{
+    width: 70rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.admin_title{
+    font-size: 3rem;
+    font-weight: 600;
+}
+.ad{
+    width:100%;
+    height:100%;
+    object-fit: fill;
+}
+@font-face { font-family: 'GmarketSansMedium'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); font-weight: normal; font-style: normal; }
+#wrap{
+    position: relative;
+    overflow: hidden;
+    width: 25rem;
+    height: 25rem;
+}
+#wrap #gameContainer{
+    width: 25rem;
+    height: 25rem;
+    text-align: center;
+    position: relative;
+}
+#wrap #gameContainer h1{}
+#wrap #gameContainer .obj{position: absolute;}
+#wrap #gameContainer .board_start{
+    padding: 10px;
+    line-height: 3.5rem;
+    border: 1px solid #000;
+    color: #fff;
+    background: #f00;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    position: absolute;
+    left: 10rem;
+    top: 10rem;
+    z-index: 9;
+    width: 5rem;
+    border-radius: 100px;
+}
+/*컨텐츠 슬라이드 좌우*/
+.swiper-prev,
+.swiper-next{
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid #FF7800;
+    border-radius: 50%;
+    outline: none;
+    color: #292A32;;
+    opacity: .3;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 47rem;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;     /*div우선순위*/
+
+}
+.swiper-prev{
+    left: 5rem;
+}
+.swiper-next{
+    right:  5rem;
+}
+.swiper-prev:hover,
+.swiper-next:hover {
+    background-color: #F7F7F7;
+    color: #292A32;
+}
+@font-face { font-family: 'GmarketSansMedium'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); font-weight: normal; font-style: normal; }
+#wrap{  background-color:#ffffff;  position: relative; overflow: hidden;}
+#wrap #gameContainer{width:508px; height:671px; text-align: center; position: relative;margin:0px auto;}
+#wrap #gameContainer h1{}
+#wrap #gameContainer .obj{position: absolute;}
+#wrap #gameContainer .board_start{
+    padding: 10px;
+    background: #f00;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    border: 1px solid #000;
+    color: #fff;
+    background: #f00;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    position:absolute; left:165px; top:210px;z-index:9; width:150px; border-radius:100px;}
+#wrap #gameContainer .board_start
+img{width:100%;}
+#wrap #gameContainer .board_bg{width:508px; height:508px; top:40px; left:0px; z-index: 2;}
+#wrap #gameContainer .board_bg img{width:100%;}
+#wrap #gameContainer .board_on{width:508px; height:508px; top:40px; left:0px; z-index: 3; background-image: url('//img.babathe.com/upload/specialDisplay/htmlImage/2019/test/roulette_circle_bg.png');    background-size: 508px;
+}
+#wrap #gameContainer .board_on img{position:absolute; width:100px;top:115px; height:100px;}
+#wrap #gameContainer .board_on img:nth-child(1){    left: 55px;  transform: rotate( -60deg );  top: 120px;}
+#wrap #gameContainer .board_on img:nth-child(2){left: 62px;  transform: rotate( -113deg );  top: 286px;  }
+#wrap #gameContainer .board_on img:nth-child(3){  left: 208px;  top: 372px; transform: rotate(-180deg);}
+#wrap #gameContainer .board_on img:nth-child(4){left: 351px; top: 286px;  transform: rotate(-245deg);}
+#wrap #gameContainer .board_on img:nth-child(5){ left: 351px;  top: 125px;  transform: rotate(-292deg);   }
+#wrap #gameContainer .board_on img:nth-child(6){  left: 205px;  top: 42px;  transform: rotate(5deg); }
+
+#wrap #gameContainer .obj.board_arrow{width:90px; height:105px; top:0px; left:195px; z-index: 5;}
+#wrap #gameContainer .char1{width:259px; height:246px; top:400px; left:90px; z-index: 1;}
+#wrap #gameContainer .char2{width:175px; height:198px; top:449px; left:600px; z-index: 1;}
+#wrap #gameContainer .char3{width:112px; height:108px; top:540px; left:550px; z-index: 3;}
+#wrap #gameContainer .txt1{width:420px; height:30px; bottom:20px; left:260px; z-index: 3;}
+
+.popup {display: none; position: fixed; left: 50%; z-index: 99999; text-align: center; background:#fff; font-size:20px; color:#000;}
+#fade {display: none;background: #000;position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: .60;z-index: 9999;}
+#popup_gift{width:475px; height:505px; top:120px;}
+#popup_gift .lottery_present {text-align:center;}
+#popup_gift .lottery_present img{ display:block; margin: 50px auto 30px;}
+
+#popup_fail{width:475px; height:505px; top:120px;}
+.popup  .close{ display:inline-block; width:150px; hegiht:50px; line-height:50px; color:#fff; background:#333; margin: 30px 0 0;}

@@ -1,0 +1,62 @@
+main{
+    margin: 2% 0 2% 0;
+}
+.login-container{
+    border-radius: 1.3rem;
+    border: 0.3rem solid #FFBC97;
+    width: 30rem;
+    height: 35rem;
+    margin:auto;
+    padding: 5%;
+}
+
+
+.login-container > input{
+    width: 100%;
+}
+
+
+.input-box{
+    position: relative;
+    margin: 0.5rem 0;
+}
+.input-box > input{
+    background: transparent;
+    border: none;
+    border-bottom: solid 1px black;
+    width: 100%;
+}
+form > h1{
+    font-weight: bolder;
+}
+
+.box{
+    display: flex;
+    justify-content: space-around;
+}
+form{
+    height: 100%;
+
+}
+.form-tag{
+    margin: 7% 0 7% 0;
+}
+.box > a{
+    text-decoration: none;
+    color: black;
+}
+.login-btn{
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    background-color: #e0994d;
+    border-radius: 3px;
+    padding: 3%;
+    font-weight: bold;
+
+}
+.login-btn:hover{
+    color:white;
+}
+

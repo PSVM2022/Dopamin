@@ -1,94 +1,175 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html lang="ko">
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<%@ page session="false" %>
+<%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+%>
+<%-- jsp 작성할 때만 브라우저 캐싱 금지 --%>
+<c:set var="loginId"
+       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+<html>
+<html lang="ko">
 <head>
     <title>도파민!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png' />">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css' />">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css' />">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap');
-    </style>
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <link rel="icon" type="image/x-icon" href="<c:url value='/image/favicon.png'/>">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR&family=Noto+Serif&display=swap">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
+    <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/revw.css'/>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
 
 </head>
 
 <body>
-
-<div class="topnav">
-    <div class="responsive">
-        <div class="logo-wrapper">
-            <img alt="" src="<c:url value='/image/logo_example.svg' />" width="50" height="30">
-        </div>
-        <a class="topnav-menu" href="#" onclick='alert("홈으로 페이지 전환")'>홈</a>
-        <a class="topnav-menu" href="#" onclick='alert("커뮤니티 페이지로 이동")'>커뮤니티</a>
-        <a class="topnav-menu" href="#" onclick='alert("찜목록 페이지로 이동")'>찜목록</a>
-        <a class="topnav-menu" href="#" onclick='alert("시청기록 게시판봐요")'>시청기록</a>
-        <a class="topnav-menu" href="#" onclick='alert("룰렛 한판 돌려요")'>이벤트</a>
-        <a class="topnav-menu" href="#" onclick='alert("도파~파워")'>상점</a>
-    </div>
-</div>
-
-<div class="content">
-    <div class="responsive-content">
+<div class="container">
+<main>
+    <section class="container">
+        <h2 class="revw-h2">Contents Review</h2>
+<%--        <div class="table-responsive">--%>
         <div>
-            <h1> 내가 작성한 한줄평 모아보기 </h1>
-        </div>
-        <div class="revw">
-            <tr>
-                <th></th>
-            </tr>
-            <c:forEach var="revw" items="${revwDtoList}">
-                <br>
-                <c:choose>
-                    <c:when test="${revw.revw_visib_stat eq 0}">
-                        <tr>
-                            <td> 가려진 한줄평 입니다.</td>
-                            <td>${revw.revw_visib_stat}</td>
-                        </tr>
-                        <br>
-                    </c:when>
-                    <c:otherwise>
-                        <tr>
-                            <td>${revw.cnts_title}</td>
-                            <td>${revw.revw_body}</td>
-                            <td>${revw.revw_visib_stat}</td>
-                        </tr>
-                        <br>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-        </div>
-
-        <div>
-            <h3>cnts title 누르면 cnts 상세 페이지로 이동 추가</h3>
-            <h3>체크박스 달아서 선택한 한줄평 삭제하는 기능 추가 </h3>
-
+            <table class="revw-table">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" id="allCheck" name="allCheck"></th>
+                    <th>#</th>
+                    <th>컨텐츠 제목</th>
+                    <th>내용</th>
+                    <th>등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="revw" items="${revwDtoList}">
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="revwId" value="${revw.revw_id}"></th>
+                        <td>${revw.revw_id}</td>
+                        <td><a class="revw-title" href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
+                        <td>${revw.revw_body}</td>
+                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.MM.dd"/></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
         <div>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-youtube"></i>
-            <div class="content-preview">
+            <input type="button" class="revw-btn" value="선택삭제" onclick="deleteValue();">
+        </div>
+
+    </section>
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
             </div>
-            <div class="content-teenager-girl-movie"></div>
+            <!-- Left -->
 
-        </div>
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
     </div>
 
+</footer>
 
-    <div class="footer">
-        <div>about</div>
-        <div>2022 PSVM팀</div>
-    </div>
-</div>
+<script type="text/javascript">
+    $(function () {
+        var chkObj = document.getElementsByName("revwId");
+        var rowCnt = chkObj.length;
+
+        $("input[name='allCheck']").click(function () {
+            var chk_listArr = $("input[name='revwId']");
+            for (var i = 0; i < chk_listArr.length; i++) {
+                chk_listArr[i].checked = this.checked;
+            }
+        });
+        $("input[name='revwId']").click(function () {
+            if ($("input[name='revwId']:checked").length == rowCnt) {
+                $("input[name='allCheck']")[0].checked = true;
+            } else {
+                $("input[name='allCheck']")[0].checked = false;
+            }
+        });
+    });
+
+    function deleteValue() {
+        var valueArr = new Array();
+        var list = $("input[name='revwId']");
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].checked) { //선택되어 있으면 배열에 값을 저장함
+                valueArr.push(list[i].value);
+            }
+        }
+        console.log(valueArr)
+
+
+        if (valueArr.length == 0) {
+            alert("선택된 한줄평이 없습니다.");
+        } else {
+            var chk = confirm("정말 삭제하시겠습니까?");
+            $.ajax({
+                url: '/psvm/mypage/deleterevw',                    // 전송 URL
+                type: 'POST',                // POST 방식
+                headers: {"content-type": "application/json"},
+                data: JSON.stringify(valueArr),
+                success: function () {
+                    alert("삭제 성공");
+                    location.replace("revw")
+                },
+                error: function () {
+                    alert("error")
+                } // 에러가 발생했을 때, 호출될 함수
+            });
+        }
+    }
+</script>
+
 </body>
 
 </html>
+

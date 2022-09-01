@@ -1,0 +1,201 @@
+#charge_container{
+    /*background-color: indianred;*/
+    width: 68rem;
+    height: 64rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top:1.5rem;
+
+}
+.before_after_hori{
+    width:6rem;
+}
+#charge_banner{
+    height: 18rem;
+    display:flex;
+}
+#charge-banner-image{
+    width: 100%;
+    height: 100%;
+}
+#payment_item{
+    margin-top: 1.5rem;
+}
+.item_title{
+    display:flex;
+}
+.item_list{
+    display:flex;
+}
+.head_item_hori{
+    border-collapse: collapse;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.item_hori{
+    border-collapse: collapse;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.payment_cell_01{
+    border-top: 2px solid;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #f6f6f6;
+    height: 3rem;
+    width:13rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-top: 0.6rem;
+}
+.payment_cell_02{
+    border-top: 2px solid;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #f6f6f6;
+    height: 3rem;
+    width:28rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-top: 0.6rem;
+}
+.payment_cell_03{
+    border-top: 2px solid;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #f6f6f6;
+    height:3rem;
+    width:17rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-top: 0.6rem;
+}
+.payment_01{
+    text-align: center;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    height: 2.5rem;
+    width:13rem;
+    font-weight: 400;
+    font-size: 1rem;
+    padding-top: 0.6rem;
+}
+.payment_02{
+    justify-content: center;
+    padding-left: 0.5rem;
+    display: flex;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    height: 2.5rem;
+    width:28rem;
+    font-weight: 400;
+    font-size: 1rem;
+    padding-top: 0.6rem;
+}
+.payment_03{
+    text-align: center;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    height:2.5rem;
+    width:17rem;
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding-top: 0.6rem;
+    padding-right: 0.5rem;
+    color:red;
+}
+.charge_btn{
+    border: none;
+    width: 5rem;
+    border-radius: 0.3rem;
+    height: 1.6rem;
+    margin-top: -0.2rem;
+    float: right;
+    background-color: darkorange;
+}
+.image-wrap_charge{
+    width:1rem;
+    height:1rem;
+}
+.charge_img{
+    padding-top: 0.3rem;
+    padding-right:0.1rem;
+}
+.fake_price{
+    -webkit-text-decoration-line: line-through; /* Safari */
+    text-decoration-line: line-through;
+    color:red;
+    font-size:0.9rem;
+}
+.payment_method{
+    font-size: 1.2rem;
+    font-weight: 600;
+    width:70rem;
+}
+.item_hori1{
+    width: 55rem;
+    height: 10rem;
+    border: 1px solid #ddd;
+    background-color: #ddd;
+    border-radius: 1rem;
+    display: flex;
+}
+.charge_payment{
+    width:20rem;
+    height:6rem;
+    background-color: #0ed994;
+}
+.not_ready{
+    font-size: 0.8rem;
+    font-weight: 200;
+    margin-left: 10rem;
+}
+.item_hori:hover{
+    background: #f6c497;
+}
+
+.payment_wrap{
+    height: 20rem;
+    background-color: #F6F6F6;
+    border-radius: 0.5rem;
+    padding: 0rem 1.3rem;
+    width: 58rem;
+}
+.pay_method{
+    padding-top: 2rem;
+    padding-left: 3.8rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+.method_category{
+    height:5.3rem;
+    width: 47rem;
+    background-color: white;
+    display:flex;
+    border-radius: 0.5rem;
+}
+.pay{
+    width: 7.74rem;
+    height: 4rem;
+    background-color: white;
+    border: 1px;
+    border-radius: 0.5rem;
+}
+.pay_img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

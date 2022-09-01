@@ -1,10 +1,7 @@
 package com.PSVM.dopamin.service;
 
 import com.PSVM.dopamin.dao.MyPageDao;
-import com.PSVM.dopamin.domain.MyPageCntsDto;
-import com.PSVM.dopamin.domain.MyPageDto;
-import com.PSVM.dopamin.domain.MyPagePostDto;
-import com.PSVM.dopamin.domain.RevwDto;
+import com.PSVM.dopamin.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +14,12 @@ public class MyPageServiceImple implements MyPageService {
     MyPageDao myPageDao;
 
     @Override
-    public List<RevwDto> revwList(String user_id) throws Exception {
+    public List<MyPageRevwDto> revwList(String user_id) throws Exception {
         return myPageDao.selectRevw(user_id);
     }
 
     @Override
-    public List<RevwDto> revwRtList(String user_id) {
+    public List<MyPageRevwDto> revwRtList(String user_id) {
         return myPageDao.selectRevwRt(user_id);
     }
 
@@ -43,17 +40,23 @@ public class MyPageServiceImple implements MyPageService {
 
     @Override
     public MyPageDto selectMyInfo(String user_id) {
-        System.out.println("service 도착");
+        //유저 아이디가 null일때 예외처리 필요!
         MyPageDto myPageDto = myPageDao.selectMyInfo(user_id);
-        System.out.println("selectMyInfo dao 성공");
-        myPageDto = myPageDao.selectSkin(user_id);
-        System.out.println("myPageDto = " + myPageDto);
-        System.out.println("myPageDto.gets = " + myPageDto.getItem_img());
+        try {
+            String item_img = myPageDao.selectSkin(user_id);
+            myPageDto.setItem_img(item_img);
 
-        System.out.println("myPageDto.getBtdt() = " + myPageDto.getBtdt());
+//            if (myPageDto.getGenre_nm() != null) {
+//                int genre_id = myPageDto.getFav_genre1();
+//                myPageDto.setGenre_nm(myPageDao.genreIdToNm(genre_id));
+//            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //유저의 생년월일 정보를 받아서 나이값 구하고 myPageDto에 넣어주기
         calAge(myPageDto);
-        //myPageDto에 착용 스킨
         return myPageDto;
     }
 
@@ -64,5 +67,72 @@ public class MyPageServiceImple implements MyPageService {
         myPageDto.setAge(age);
     }
 
+    @Override
+    public List<MyPageItemsDto> profList(String user_id) {
+        return myPageDao.selectProfItem(user_id);
+    }
 
+    @Override
+    public List<MyPageItemsDto> skinList(String user_id) {
+        return myPageDao.selectSkinItem(user_id);
+    }
+
+    @Override
+    public List<MyPagePointDto> pntList(String user_id) {
+        return myPageDao.selectPntList(user_id);
+    }
+
+    @Override
+    public void modSkin(MyPageItemsDto myPageItemsDto) throws Exception {
+        try {
+            myPageDao.skinWearOff(myPageItemsDto);
+            myPageDao.equipSkin(myPageItemsDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void defaultSkin(MyPageItemsDto myPageItemsDto){
+        myPageDao.skinWearOff(myPageItemsDto);
+    }
+
+    @Override
+    public void modProf(MyPageItemsDto myPageItemsDto) throws Exception {
+        try {
+            myPageDao.profWearOff(myPageItemsDto);
+            myPageDao.equipProf(myPageItemsDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void defaultProf(MyPageItemsDto myPageItemsDto){
+        myPageDao.profWearOff(myPageItemsDto);
+    }
+
+    @Override
+    public int deleterevw(List<Integer> valueArr) throws Exception{
+        try{
+            for (Integer revwId : valueArr){
+                myPageDao.deleteRevw(revwId);
+            }
+        }catch (Exception e){
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public int deletePost(List<Integer> valueArr) throws Exception{
+        try{
+            for (Integer postId : valueArr){
+                myPageDao.deletePost(postId);
+            }
+        }catch (Exception e){
+            return 0;
+        }
+        return 1;
+    }
 }

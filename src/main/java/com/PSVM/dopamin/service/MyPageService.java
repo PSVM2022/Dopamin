@@ -1,16 +1,13 @@
 package com.PSVM.dopamin.service;
 
-import com.PSVM.dopamin.domain.MyPageCntsDto;
-import com.PSVM.dopamin.domain.MyPageDto;
-import com.PSVM.dopamin.domain.MyPagePostDto;
-import com.PSVM.dopamin.domain.RevwDto;
+import com.PSVM.dopamin.domain.*;
 
 import java.util.List;
 
 public interface MyPageService {
-    List<RevwDto> revwList(String user_id) throws Exception;
+    List<MyPageRevwDto> revwList(String user_id) throws Exception;
 
-    List<RevwDto> revwRtList(String user_id);
+    List<MyPageRevwDto> revwRtList(String user_id);
 
     List<MyPageCntsDto> cntsWishList(String user_id);
 
@@ -19,4 +16,22 @@ public interface MyPageService {
     List<MyPagePostDto> postList(String user_id);
 
     MyPageDto selectMyInfo(String user_id);
+
+    List<MyPageItemsDto> profList(String user_id);
+
+    List<MyPageItemsDto> skinList(String user_id);
+
+    List<MyPagePointDto> pntList(String user_id);
+
+    void modSkin(MyPageItemsDto myPageItemsDto) throws Exception;
+
+    void modProf(MyPageItemsDto myPageItemsDto)throws Exception;
+
+    void defaultSkin(MyPageItemsDto myPageItemsDto);
+
+    void defaultProf(MyPageItemsDto myPageItemsDto);
+
+    int deleterevw(List<Integer> valueArr) throws Exception;
+
+    int deletePost(List<Integer> valueArr) throws Exception;
 }

@@ -3,14 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.PSVM.dopamin.dao.ItemAdminMapper">
+    <select id="get_pop" parameterType="int" resultType="ItemDto">
+        SELECT *
+        FROM ITEM
+        WHERE stat=1
+        LIMIT #{num}
+    </select>
     <select id="item_getCount" resultType="int">
         SELECT count(*)
         FROM ITEM
+        WHERE stat=1
     </select>
     <select id="item_getPage" parameterType="int" resultType="ItemDto">
-        SELECT item_nm,grd_nm,item_dsc,item_price,item_img
+        SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
         FROM ITEM
-        WHERE list_id=#{index}
+        WHERE list_id=#{index} and stat=1
+    </select>
+    <select id="getPage_map" parameterType="map" resultType="ItemDto">
+        SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
+        FROM ITEM
+        WHERE list_id=#{index} and stat=1
+        LIMIT #{offset},#{pageSize}
     </select>
     <select id="item_getStat_0" parameterType="map" resultType="ItemDto">
         SELECT item_id, item_nm,grd_nm,item_dsc,item_price,item_img
@@ -34,9 +47,9 @@
     </select>
     <select id="item_register" parameterType="ItemDto">
         INSERT INTO ITEM
-        (list_id,grd_nm,item_nm,item_dsc,item_price,item_img,user_nic,in_date,in_user,up_user)
+        (list_id,grd_nm,item_nm,item_dsc,item_price,item_img,in_date,in_user,up_user)
         VALUES
-            (#{list_id},#{grd_nm},#{item_nm},#{item_dsc},#{item_price},#{item_img},#{user_nic},now(),#{in_user},#{up_user});
+            (#{list_id},#{grd_nm},#{item_nm},#{item_dsc},#{item_price},#{item_img},now(),#{in_user},#{up_user})
     </select>
     <select id="remove_item" parameterType="int">
         DELETE FROM ITEM
@@ -44,7 +57,7 @@
     </select>
     <select id="modify_item" parameterType="ItemDto">
         UPDATE ITEM
-        SET item_nm=#{item_nm}, item_dsc=#{item_dsc}, item_price=#{item_price}
+        SET item_nm=#{item_nm}, grd_nm=#{grd_nm},item_dsc=#{item_dsc}, item_price=#{item_price}
         WHERE item_id=#{item_id}
     </select>
     <select id="ShowToNoShow" parameterType="Integer">
@@ -66,19 +79,18 @@
         DELETE FROM ITEM
         WHERE item_nm=#{item_name}
     </select>
-
+    <select id="increase_user_point" parameterType="Pymt_DetlDto">
+        UPDATE USER set dopa_point=#{chg_pnt} where user_id=#{user_id}
+    </select>
+    <select id="get_user_point" parameterType="String" resultType="Integer">
+        SELECT dopa_point FROM USER WHERE user_id=#{user_id}
+    </select>
+    <select id="insert_pymt_detl" parameterType="Pymt_DetlDto" resultType="Integer">
+        INSERT INTO PYMT_DETL
+            (user_id,pymt_amt,chg_pnt,pg_corp_detl_id,in_date,in_user,up_user)
+        VALUES
+            (#{user_id},#{pymt_amt},#{chg_pnt},#{pg_corp_detl_id},now(),#{user_id},#{user_id})
+    </select>
 </mapper>
-<!--    <select id="UserStatus" parameterType="String" resultType="int">-->
-<!--        SELECT user_stat-->
-<!--        FROM USER-->
-<!--        WHERE user_id=#{user_id}-->
-<!--    </select>-->
-
-
-<!--    <select id="item_getStatus" parameterType="int">-->
-<!--        SELECT stat-->
-<!--        FROM ITEM-->
-<!--        WHERE item_id=#{item_id}-->
-<!--    </select>-->
 
 
