@@ -3,13 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<header class="header">
-    <nav class="navigation">
-        <a href="<c:url value="/"/>" class="logo">
+<header class="header-main">
+    <nav class="header-navigation">
+        <a href="<c:url value="/"/>" class="header-logo">
             <object data="<c:url value='/image/main_logo.svg' />" width="102" height="64"></object>
         </a>
 
-        <ul class="nav-list">
+        <ul class="header-nav-list">
             <li><a href="<c:url value='/' />">홈</a></li>
             <li><a href="<c:url value='/' />">신규작</a></li>
             <li><a href="<c:url value='/' />">인기작</a></li>
@@ -18,20 +18,16 @@
             <li><a href="<c:url value='/' />">상점</a></li>
         </ul>
 
-        <form id="search-form" class="search-form"
+        <form id="search-form" class="header-search-form"
               action="<c:url value="/contents/search/${sc.keyword}"/>" method="get">
-            <select class="search-option" name="option">
-                <option value="ttl" ${ph.sc.option=='ttl' || ph.sc.option=='' ? "selected" : ""}>
-                    제목/부제목
-                </option>
-                <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
-                <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
+            <select class="header-search-option" name="option">
+                <option value="ttl">제목/부제목</option>
+                <option value="cast" }>감독/출연진</option>
+                <option value="genre">장르별</option>
             </select>
-
-
-            <label class="input-wrapper">
-                <input id="search-content" type="text" name="keyword" class="search-input"
-                       value="${sc.keyword}" placeholder="검색어를 입력해주세요." autocomplete="off">
+            <label class="header-input-wrapper">
+                <input id="search-content" type="text" name="keyword" class="header-search-input"
+                       placeholder="검색어를 입력해주세요." autocomplete="off">
             </label>
         </form>
 

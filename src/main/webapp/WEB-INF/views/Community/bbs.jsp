@@ -89,7 +89,7 @@
             </select>
 
             <input type="text" name="keyword" class="search-input" type="text" value=""
-                   placeholder="검색">
+                   placeholder="검색" autocomplete="off">
             <input type="submit" class="search-button" value="검색">
         </form>
 

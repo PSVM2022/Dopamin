@@ -139,7 +139,7 @@ td {
 .write-button {
   padding: 0.5rem 1rem;
   border: none;
-  background-color: var(--main-white);
+  background-color: white !important;
   font-size: 0.9rem;
 }
 
