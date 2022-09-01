@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.PSVM.dopamin.dao.community.BbsMapper">
+  <delete id="deleteById" parameterType="int">
+    DELETE
+    FROM BBS
+    WHERE bbs_id = #{id}
+  </delete>
+
+  <insert id="insertAll" parameterType="list">
+    INSERT INTO BBS
+    (bbs_nm, bbs_prior, bbs_visib, in_date, in_user, up_user)
+    VALUES
+    <foreach close=")" collection="list" item="item" open="(" separator="),(">
+      (#{item.bbs_Nm}, #{item.bbs_prior}, #{item.bbs_visib}, #{item.in_date}, #{item.in_user},
+      #{item.up_user})
+    </foreach>
+  </insert>
+
+  <insert id="insert" parameterType="bbs">
+    INSERT INTO BBS
+      (bbs_nm, bbs_prior, bbs_visib, in_date, in_user, up_user)
+    VALUES (#{bbs_nm}, #{bbs_prior}, #{bbs_visib}, #{in_date}, #{in_user}, #{up_user});
+  </insert>
+
+  <select id="selectByPrefixName" parameterType="string" resultType="bbs">
+    SELECT *
+    FROM BBS
+    WHERE bbs_nm like CONCAT(#{prefix}, '%');
+  </select>
+
+  <select id="selectAll" resultType="bbs">
+    SELECT *
+    FROM BBS
+    ORDER BY bbs_id ASC;
+  </select>
+
+  <select id="getName" parameterType="int" resultType="string">
+    SELECT bbs_nm FROM BBS
+    WHERE bbs_id = #{bbsId};
+  </select>
+
+  <select id="selectAllVisib" resultType="bbs">
+    SELECT *
+    FROM BBS
+    WHERE bbs_visib = 1
+    ORDER BY bbs_prior ASC;
+  </select>
+
+  <select id="count" resultType="_int">
+    SELECT count(*)
+    FROM BBS;
+  </select>
+
+  <select id="selectById" parameterType="int" resultType="bbs">
+    SELECT *
+    FROM BBS
+    WHERE bbs_id = #{id};
+  </select>
+
+  <update id="update" parameterType="bbs">
+    UPDATE BBS
+    SET bbs_nm    = #{bbs_nm},
+        bbs_prior = #{bbs_prior},
+        bbs_visib = #{bbs_visib},
+        up_date   = #{up_date},
+        up_user   = #{up_user}
+    WHERE bbs_id = #{bbs_id}
+  </update>
+</mapper>

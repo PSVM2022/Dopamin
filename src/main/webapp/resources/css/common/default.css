@@ -3,31 +3,40 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: auto;
 	text-rendering: optimizeLegibility;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 :root {
-	margin: 0;
-	font-family: 'NotoSans KR', 'Noto Serif';
-	background-color: var(--main-white);
-	/* 이런식으로 해서 사용하세요 */
-	/* 정의된 컬러 -  검정, 흰색(배경용), 회색(음영1, 음영2) 오렌지, 베이지, 옐로우 */
 	--main-black: #292A32;
 	--main-white: #F7F7F7;
 	--main-grey: #A5A5AA;
 	--main-grey2: rgba(0, 0, 0, 0.05);
 	--orange: #FF7800;
+	--orange2: #843E00;
 	--beige: #FFBC97;
 	--yellow: #FFE300;
 }
 
+html {
+}
+
 body {
-	background-color: white !important;
+	min-width: 1080px;
+}
+
+main {
+	height: auto;
 }
 
 object {
 	pointer-events: none;
 }
 
-footer .copyright {
-	background-color: var(--main-grey2);
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	color: inherit;
 }
