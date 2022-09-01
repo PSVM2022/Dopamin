@@ -148,6 +148,7 @@
               response.item_dsc = (response.item_dsc !== undefined ? response.item_dsc : ""));
           $("#item_price_msg").html(
               response.item_price = (response.item_price !== undefined ? response.item_price : ""));
+            window.location.href="<c:url value='/item/item_admin '/>";
         },
         error: function (request, status, error) {
           var result = JSON.parse(request.responseText);

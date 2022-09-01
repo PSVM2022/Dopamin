@@ -29,10 +29,10 @@ public class AmazonS3Utils {
     private String region="ap-northeast-2";//todo
 
 //    @Value("${cloud.aws.credentials.accessKey}")
-    private String accessKey="AKIAWOW5ZA7IA5DT7YI3";//todo
 
+    private String accessKey="AKIAWOW5ZA7IAKJ53S7I";//todo
 //    @Value("${cloud.aws.credentials.secretKey}")
-    private String secretKey="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";//todo
+    private String secretKey="WlXEdnuMIRRhcsEw/k1amGUn6qqinFwrzMR7bJCh";//todo
 
     private final AmazonS3 s3;
 

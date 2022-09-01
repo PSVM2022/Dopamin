@@ -87,17 +87,17 @@
   let toHtml2 = function (items) {
     let tmp2 = '';
     tmp2 += '<div class="cart_point">';
-    tmp2 += '<div class="pay_info"> 결제 예정금액 </div>';
+    tmp2 += '<div class="pay_info"> 결제 예정포인트 </div>';
     tmp2 += '<div class="cart_item_pay_info">';
     tmp2 += '<div class="more_info"><span class="item_info">상품수</span><span class="numberofitem">'
         + items.list.length + ' 개</span></div>';
-    tmp2 += '<div class="more_info"><span class="item_info">보유 금액</span><span class="numberofitem">'
+    tmp2 += '<div class="more_info"><span class="item_info">보유 포인트</span><span class="numberofitem">'
         + items.my_point + ' DP</span></div>';
-    tmp2 += '<div class="more_info"><span class="item_info">상품금액</span><span class="numberofitem"  style="color:red;">'
+    tmp2 += '<div class="more_info"><span class="item_info">상품포인트</span><span class="numberofitem"  style="color:red;">'
         + items.total_point + ' DP</span></div>';
-    tmp2 += '<div class="more_info"><span class="item_info">할인금액</span><span class="numberofitem">0개</span></div>';
+    tmp2 += '<div class="more_info"><span class="item_info">할인포인트</span><span class="numberofitem">0개</span></div>';
     tmp2 += '</div>';
-    tmp2 += '<div class="total_info"><span class="total_amount">총 결제금액</span><span class="total_money">'
+    tmp2 += '<div class="total_info"><span class="total_amount">잔여 포인트</span><span class="total_money">'
         + items.after_point + ' DP</span></div>';
     tmp2 += '<button class="buy_button">구매하기</button>';
     return tmp2 + "</div>"
@@ -115,7 +115,7 @@
         type: 'DELETE',
         url: '/psvm/item/deleteCart/' + item_id,
         success: function (result) {
-          alert(result);
+          alert("삭제에 성공했습니다.");
           location.reload();
         },
         error: function () {
@@ -139,7 +139,7 @@
           console.log("click");
           if (point < 0) {
             if (confirm("포인트가 부족합니다. 포인트 충전하러 갈까요?")) {
-              //충전페이지로 이동.
+                window.location.href="<c:url value='/item/chargePoint'/>";
             }
           } else {
             if (confirm("구매하시겠습니까?")) {
@@ -161,7 +161,12 @@
                 data: JSON.stringify(dto_array),
                 success: function (data) {
                   alert("구매가 확정되었습니다.");
-                  location.reload();
+                  if(confirm("보유 아이템 확인하러 갈까요?")){
+                      window.location.href="<c:url value='/mypage/myItem'/>";
+                  }
+                  else{
+                      location.reload();
+                  }
                 },
                 error: function (request, status, error) {
                   alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n"

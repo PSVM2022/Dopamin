@@ -2,6 +2,7 @@ package com.PSVM.dopamin.controller.Item;
 
 import com.PSVM.dopamin.domain.Item.*;
 import com.PSVM.dopamin.error.Message;
+import com.PSVM.dopamin.service.AmazonS3Utils;
 import com.PSVM.dopamin.service.Item.ItemAdminService;
 import com.PSVM.dopamin.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class ItemAdminController {
     @Autowired
     private ItemAdminService itemAdminService;
 
+    @Autowired
+    private AmazonS3Utils amazonS3Utils;
+
     @ExceptionHandler(ItemValidatorException.class)
     @ResponseBody
     public Map catcher1(ItemValidatorException ve){
@@ -37,18 +41,12 @@ public class ItemAdminController {
         return ve.getError_msg();
     }
     @InitBinder
-    public void ItemValidator(WebDataBinder binder){
-        binder.setValidator(new ItemValidator ());
-    }//webdatabinder에 validator 추가
-
-
+    public void ItemValidator(WebDataBinder binder) {
+        binder.setValidator(new ItemValidator());
+    }
 
     @GetMapping("/list/{order}")
     public String list(@PathVariable String order,Model m, RedirectAttributes redirectAttributes){
-        //로그인 여부와 상관없이
-        //메인에서 <스킨> 누르면 스킨에 해당하는 아이템 목록 스킨==1
-        //메인에서 <꾸미기> 누르면 꾸미이게 해당하는 아이템 목록 보여주기 꾸미기==2
-        //그외 나머지는 예외처리해야함.
         try{
             if(Objects.equals(order,"스킨")||Objects.equals(order,"꾸미기")){
                 int totalCnt= itemAdminService.getCount();
@@ -60,6 +58,7 @@ public class ItemAdminController {
                 List<ItemDto> list= itemAdminService.getPage(order);//ItemDto list에다가 order에 해당하는 아이템들 받아올 거임.
                 m.addAttribute("list",list);
                 m.addAttribute("order",order);
+                System.out.println("list = " + list);
                 return "Item/new_itemlist";
             }
             else{
@@ -75,16 +74,15 @@ public class ItemAdminController {
     }
     @GetMapping("/item_admin")
     public String item_admin(Model m, HttpServletRequest request) throws Exception{
-        //관리자가에게만 버튼 보이는데
-        //관리자가 아닌 사람이 url로 접근하려려고 할때, 권한 확인해서 "접근할 수 없는 페이지"입니다. 출력
-        //여기서 고민해봐야 할 것들이. "접근할 수 없는 페이지"입니다. 라는 메시지를 띄우는게 좋을까?
-        //어떠한 행위를 한다는 것 자체가, 어떤 유저에게는 "아 이 페이지에 뭐가 있구나" 알고,
-        //어떻게든 접근하려하지 않을까?
-        //그럴바에는 해당 ur로 접근 시, 관리자가 아니라면 에러메시지 보단, 상점 메인페이지 반환하자.
-        int userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
-        if(userstat!=0){
-            return "redirect:/";
-        }
+        System.out.println(" item_admin= " );
+//        Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+////        System.out.println("userstat = " + userstat);
+//        String userstat1 = (String) request.getSession(false).getAttribute("USERSTAT");
+//        System.out.println("userstat1 = " + userstat1);
+
+//        if(userstat!=0){
+//            return "redirect:/";
+//        }
         try{
             List<ItemDto> list_0= itemAdminService.getStat_0();//상태 0이 비공개
             List<ItemDto> list_1= itemAdminService.getStat_1();//상태 1이 공개
@@ -92,8 +90,6 @@ public class ItemAdminController {
             m.addAttribute("list_1",list_1);
             m.addAttribute("mode","list");
             return "Item/new_admin"; //조회와 수정에 사용.
-            // 조회에 사용시-> mode:list;
-            // 수정에 사용시-> mode:change,
         }
         catch(Exception e){
             throw new Exception("잘못된 요청입니다.");
@@ -101,12 +97,10 @@ public class ItemAdminController {
     }
     @GetMapping(value="/register")
     public String write(Model m,HttpServletRequest request){
-        int userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
-        if(userstat!=0){
-            return "redirect:/";
-        }
-        //관리자가 아니라면 비관리자들한테 이페이지의 존재 유무를 알릴 필요가 없기 때문에
-        //item 메인화면으로 돌아간다.
+//        int userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+//        if(userstat!=0){
+//            return "redirect:/";
+//        }
         return "Item/new_item_register";
     }
     @PostMapping("/registerItem")
@@ -118,10 +112,11 @@ public class ItemAdminController {
         try {
             String user_id="ldhoon0813";
             String user_nic="후후른훈";
-            Map<String,String> map = new HashMap<>();//map에다가 데이터 담아서 이동
+            Map<String,String> map = new HashMap<>();
             map.put("user_id",user_id);
             map.put("user_nic",user_nic);
-            int result= itemAdminService.registerItem(itemForm,file,map);
+            String s3Url=amazonS3Utils.uploadFile("item",file);
+            int result= itemAdminService.registerItem(itemForm,s3Url,map);
             if(result==1){
                 return new ResponseEntity<>("아이템 등록에 성공했습니다.",HttpStatus.OK);
             }
@@ -140,10 +135,10 @@ public class ItemAdminController {
     public ResponseEntity<Object> remove(@PathVariable Integer item_id,HttpServletRequest request){
 
         try {
-            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
-            if(userstat==null || userstat!=0){
-                throw new Exception("삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-            }
+//            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+//            if(userstat==null || userstat!=0){
+//                throw new Exception("삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+//            }
             int row_cnt= itemAdminService.remove(item_id);//삭제 성공 시 1반환
             if(row_cnt!=1){
                 throw new Exception("삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -160,10 +155,10 @@ public class ItemAdminController {
     @ResponseBody
     public ResponseEntity<Object> show(@PathVariable Integer item_id,HttpServletRequest request){
         try {
-            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
-            if(userstat==null || userstat!=0){
-                throw new Exception("공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-            }
+//            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+//            if(userstat==null || userstat!=0){
+//                throw new Exception("공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+//            }
             int result= itemAdminService.show(item_id);
             if(result!=1){
                 throw new Exception("공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -180,10 +175,10 @@ public class ItemAdminController {
     @ResponseBody
     public ResponseEntity<Object> noShow(@PathVariable Integer item_id,HttpServletRequest request){
         try {
-            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
-            if(userstat==null || userstat!=0){
-                throw new Exception("비공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-            }
+//            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+//            if(userstat==null || userstat!=0){
+//                throw new Exception("비공개에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+//            }
             int result= itemAdminService.noShow(item_id);
             if(result!=1){
                 throw new Exception("비공개에 실패했습니다. 잠시 후 다시 시도해주세요.");
@@ -201,10 +196,10 @@ public class ItemAdminController {
     public ResponseEntity<Object> modify(@RequestBody ItemForm itemForm,HttpServletRequest request){
         String[] grd_nm={"1등급","2등급","3등급","4등급","5등급"};
         try {
-            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
-            if(userstat==null || userstat!=0){
-                throw new Exception("수정에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-            }
+//            Integer userstat = Integer.parseInt((String)request.getSession(false).getAttribute("USERSTAT"));
+//            if(userstat==null || userstat!=0){
+//                throw new Exception("수정에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+//            }
             //입력받은 데이터에 대해서 백단에서 검증이 필요함.
             if(itemForm.getItem_nm()==null){
                 throw new Exception("아이템 이름을 입력해 주세요.");
