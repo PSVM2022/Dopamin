@@ -80,11 +80,10 @@ public class ContentsController {
             contentsWishDto.setCnts_id(cnts_id);
             contentsWishDto.setUser_id(user_id);
             model.addAttribute("contentsWishDto", contentsWishDto);
-            System.out.println(contentsWishDto.getCnts_id());
-            System.out.println(contentsWishDto.getUser_id());
-            System.out.println(user_id);
+            //System.out.println(contentsWishDto.getCnts_id());
+            //System.out.println(contentsWishDto.getUser_id());
+            //System.out.println(user_id);
             return "Contents/contentsView";
-
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -121,14 +120,14 @@ public class ContentsController {
         contentsWishDto.setUser_id(user_id);
         contentsWishDto.setIn_user(user_id);
         contentsWishDto.setUp_user(user_id);
-        System.out.println("출력: " + cnts_id);
-        System.out.println("유저 츨력: " + user_id);
+        //System.out.println("출력: " + cnts_id);
+        //System.out.println("유저 츨력: " + user_id);
 
         //inset wish
         try {
             int insertWish = contentsService.insertWish(contentsWishDto);
 
-            System.out.println("컨텐츠 찜" + insertWish);
+            //System.out.println("컨텐츠 찜" + insertWish);
 
             return new ResponseEntity<>("wish insert succsess", HttpStatus.OK);
         } catch (DuplicateKeyException e) {
@@ -136,7 +135,7 @@ public class ContentsController {
 
             int deleteWish = contentsService.deleteWish(contentsWishDto.getCnts_id(), contentsWishDto.getUser_id());
 
-            System.out.println("컨텐츠 찜 취소" + deleteWish);
+            //System.out.println("컨텐츠 찜 취소" + deleteWish);
             return new ResponseEntity<>("wish delete succsess", HttpStatus.BAD_REQUEST);
 
         }

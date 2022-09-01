@@ -135,8 +135,8 @@
                             <div class="contents_container">
                                 <c:forEach var="i" end="4" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                     <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                        <div id="poster-img" style="margin-bottom: 0.1rem">
-                                            <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;" >
+                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                         </div>
                                         <div>
                                             <span class="contents_title">${i.cnts_title}</span><br>
@@ -153,8 +153,8 @@
                             <div class="contents_container">
                                 <c:forEach var="i" begin="5" end="9" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                     <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                        <div id="poster-img" style="margin-bottom: 0.1rem">
-                                            <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                         </div>
                                         <div>
                                             <span class="contents_title">${i.cnts_title}</span><br>
@@ -171,8 +171,8 @@
                             <div class="contents_container">
                                 <c:forEach var="i" begin="10" end="14" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                     <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                        <div id="poster-img" style="margin-bottom: 0.1rem">
-                                            <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                         </div>
                                         <div>
                                             <span class="contents_title">${i.cnts_title}</span><br>
@@ -200,7 +200,6 @@
         <!--비로그인-->
         <c:if test="${pageContext.request.getSession(false)==null}">
             <br>
-            <div>DOPAMIN에 오신것을 환영합니다, 회원가입 후 더 많은 도파민을 경험해보세요!</div>
             <br>
 
         <!--컨텐츠 슬라이드-->
@@ -211,8 +210,8 @@
                         <div class="contents_container">
                             <c:forEach var="i" end="4" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                 <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                    <div id="poster-img" style="margin-bottom: 0.1rem">
-                                        <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                     </div>
                                     <div>
                                         <span class="contents_title">${i.cnts_title}</span><br>
@@ -229,8 +228,8 @@
                         <div class="contents_container">
                             <c:forEach var="i" begin="5" end="9" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                 <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                    <div id="poster-img" style="margin-bottom: 0.1rem">
-                                        <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                     </div>
                                     <div>
                                         <span class="contents_title">${i.cnts_title}</span><br>
@@ -247,8 +246,8 @@
                         <div class="contents_container">
                             <c:forEach var="i" begin="10" end="14" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                 <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                    <div id="poster-img" style="margin-bottom: 0.1rem">
-                                        <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                                     </div>
                                     <div>
                                         <span class="contents_title">${i.cnts_title}</span><br>

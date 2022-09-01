@@ -35,26 +35,37 @@ div.hover-test:hover {
     transform: scale(1.15);
 }
 .contents_container{
-    margin-top: 2.4rem; /*검색어랑 컨텐츠 컨테이너 사이*/
-    justify-content: center;
-    display:flex;   /*요소들을 가로로 수평 정렬*/
+    /*margin-top: 2.4rem; !*검색어랑 컨텐츠 컨테이너 사이*!*/
+    /*justify-content: center;*/
+    /*display:flex;   !*요소들을 가로로 수평 정렬*!*/
+    /*flex-direction: row;*/
+    /*flex-wrap: wrap;    !*요소들을 여러줄로 묶음*!*/
+    /*align-content: flex-start;*/
+    /*margin-bottom: 2.4rem;   !*컨테이너 맨 아래 하단 공백*!*/
+
+    /* margin-top: 2.4rem; */
+    /* justify-content: center; */
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;    /*요소들을 여러줄로 묶음*/
-    align-content: flex-start;
-    margin-bottom: 2.4rem;   /*컨테이너 맨 아래 하단 공백*/
+    flex-wrap: wrap;
+    /* align-content: flex-start; */
+    width: 100%;
+    margin-bottom: 2.4rem;
+
+
+    /* margin-left: 1rem; */
+
+
 }
 .detail-container {
-    /*min-width: 18rem;   페이지 줄어들면 같이 줄어들게 할건지? 고정값을 줄건지?*/
-    border: 0.05rem solid; /*border: 포스터랑 제목 틀 보려고 넣어놓은거임 나중에 뺄것*/
+
+    border: 0.05rem solid;
     border-color: #A5A5AA;
     border-radius: 0.3rem;
     cursor: pointer;
     width: 15%;
-    height:15%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-left: 0.8rem;
-    margin-right: 0.8rem;
+    height: 15%;
+    margin: 1rem 1rem 0 1rem;
 }
 .detail-container:last-child{
     margin-bottom: 0;
@@ -64,4 +75,7 @@ div.hover-test:hover {
 }
 .page{
     text-decoration: none;
+}
+.item_grd{
+    font-size: 0.9rem;
 }

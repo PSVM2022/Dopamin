@@ -85,7 +85,6 @@
             $("#updateBtn").attr("revw_id", revw_id);
             console.log(revw);
 
-
             if(revw==[] || revw.trim().length==0) {     //공백 문자열만 들어올 시 처리
                 alert("수정할 내용을 입력해주세요!")
                 return false
@@ -96,7 +95,6 @@
                 url: '/psvm/contents/' + cnts_id + '/modifyReview',
                 data: {
                     data: {
-                        "revw_id": revw_id,
                         "review": review
                     }
                 },
@@ -117,7 +115,7 @@
             //console.log(revw_id);
             //console.log(cnts_id);
             //console.log("click");
-            //alert("여기까지")  //여기까지는 실행됨
+
             $.ajax({
                 type: 'POST',       // 요청 메서드
                 url: '/psvm/contents/' + cnts_id + '/deleteReview',

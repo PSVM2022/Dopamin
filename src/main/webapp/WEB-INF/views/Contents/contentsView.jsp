@@ -41,10 +41,13 @@
     <script>
         function wishBtn(cnts_id) {
             //let revw_id = $(this).parent().attr("deleteBtn");
-            console.log(cnts_id);
+            //console.log(cnts_id);
+            //console.log("click");
+            if(session="false") {     //비로그인시 처리 alert
+                alert("로그인 후 이용 가능합니다. ")
+                return false
+            }
 
-            console.log("click");
-            //alert("여기까지")  //여기까지는 실행됨
             $.ajax({
                 type: 'POST',       // 요청 메서드
                 url: '/psvm/contents/' + cnts_id + '/wish',
@@ -111,9 +114,7 @@
 -->
 <main>
     <section class="container">
-        <!-- Carousel -->
         <div id="demo">
-            <!-- 컨텐츠 포스터 들어갈 자리 -->
             <div class="col-12" style="display:flex;">
                 <div class="contents-view">
                     <img class="img-fluid" src="${contentsDto.cnts_postr_img}"

@@ -44,7 +44,8 @@
 <div class="container">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start border-bottom">
-        <a href="<c:url value='/'/>" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
+        <a href="<c:url value='/'/>"
+           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none px-3">
             <object data="<c:url value='/image/main_logo.svg' />" width="150" height="96"></object>
         </a>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -55,26 +56,31 @@
             <li><a href="<c:url value="/mypage"/>" class="nav-link px-2 link-dark">마이페이지</a></li>
             <li><a href="<c:url value="/item/"/>" class="nav-link px-2 link-dark">상점</a></li>
         </ul>
-        <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"  action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
-           <select class="search-option" name="option">
-               <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합</option>
-               <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
+        <form class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+              action="<c:url value="/contents/search/${sc.keyword}"/>" class="search-form" method="get">
+            <select class="search-option" name="option">
+                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>통합</option>
+                <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>제목/부제목</option>
                 <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>감독/출연진</option>
                 <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>장르별</option>
             </select>
-            <li><input  type="text" class="form-control form-control-dark" name="keyword" class="search-input" type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요." aria-label="Search"></li>
-            <li><button type="submit" class="btn btn-warning me-2">검색</button></li>
+            <li><input type="text" class="form-control form-control-dark" name="keyword" class="search-input"
+                       type="text" value="${sc.keyword}" placeholder="검색어를 입력해주세요." aria-label="Search"></li>
+            <li>
+                <button type="submit" class="btn btn-warning me-2">검색</button>
+            </li>
         </form>
 
         <!--로그인/회원가입버튼-->
         <div class="text-end">
-            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">Login</button>
+            <button type="button" class="btn btn-warning me-2" onclick="location.href='<c:url value="/login/login"/>';">
+                Login
+            </button>
         </div>
     </header>
 </div>
 
 <main>
-
     <div class="container">
         <!-- Carousel wrapper -->
         <section class="container bg-light">
@@ -86,48 +92,46 @@
         </section>
     </div>
 
-    <section class="contents container">
+    <section class="container">
         <div class="contents_container">
-                <c:forEach var="i" items="${cntsDtoList}">
-                        <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                            <div id="poster-img" style="margin-bottom: 0.1rem">
-                                <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                            </div>
-                            <div>
-                                <span class="contents_title">${i.cnts_title}</span><br>
-                                <span class="item_nm">${i.cnts_subttl}</span>
-                                <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
-                            </div>
-                        </div>
-                </c:forEach>
+            <c:forEach var="i" items="${cntsDtoList}">
+                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                    <div id="poster-img" style="margin-bottom: 0.1rem">
+                        <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
+                    </div>
+                    <div>
+                        <span class="contents_title">${i.cnts_title}</span><br>
+                        <span class="item_nm">${i.cnts_subttl}</span>
+                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
     </section>
 
-
-    <br>
-    <section class="container">
     <div class="paging-container" style="text-align:center">
         <div class="paging" style="margin-bottom: 3rem;">
             <c:if test="${totalCnt==null || totalCnt==0}">
                 <br>
-                <div>"${ph.sc.keyword}" 에 대한 검색 결과가 없습니다. 다른 검색어를 입력해주세요.</div>     <!--페이지 고정 사이즈 줄것-->
+                <div>"${ph.sc.keyword}" 에 대한 검색 결과가 없습니다. 다른 검색어를 입력해주세요.</div>
                 <br>
             </c:if>
             <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <c:if test="${ph.showPrev}">
-                    <a class="page" href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                    <a class="page"
+                       href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
                 </c:if>
                 <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/contents/search/${ph.sc.getQueryString(i)}"/>">${i}</a>
+                    <a class="page ${i==ph.sc.page? "paging-active" : ""}"
+                       href="<c:url value="/contents/search/${ph.sc.getQueryString(i)}"/>">${i}</a>
                 </c:forEach>
                 <c:if test="${ph.showNext}">
-                    <a class="page" href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                    <a class="page"
+                       href="<c:url value="/contents/search/${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
                 </c:if>
             </c:if>
         </div>
     </div>
-
-    </section>
 
 </main>
 

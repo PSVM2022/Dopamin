@@ -92,7 +92,7 @@ div.hover-test:hover {
     /*min-width: 18rem;   페이지 줄어들면 같이 줄어들게 할건지? 고정값을 줄건지?*/
     border: 0.05rem solid; /*border: 포스터랑 제목 틀 보려고 넣어놓은거임 나중에 뺄것*/
     border-color: #A5A5AA;
-    border-radius: 0.1rem;
+    border-radius: 0.32rem;
     cursor: pointer;
     width: 15%;
     height:15%;
