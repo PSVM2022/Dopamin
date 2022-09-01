@@ -1,35 +1,57 @@
-package com.PSVM.dopamin.domain;
+package com.PSVM.dopamin.domain.community;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class PostDto {
 
-    private Integer post_id;
-    private Integer bbs_id;
-    private String user_id;
+    private Integer post_id; // AI
+    private Integer bbs_id; // FK
+    private String user_id; // FK
     private String post_title;
     private String post_body;
-    private Integer post_reply_cnt;
-    private Integer post_view_cnt;
-    private Byte post_visib;
-    private Byte post_prior;
-    private String post_atch1;
-    private String post_atch2;
-    private String post_atch3;
-    private String post_atch4;
-    private String post_atch5;
-    private Integer post_rept_cnt;
-    private Date int_date;
+    private int post_reply_cnt; // N 0
+    private int post_view_cnt; // N 0
+    private int post_visib; // N 1
+    private int post_prior; // N 1
+    private String post_atch1; // N
+    private String post_atch2; // N
+    private String post_atch3; // N
+    private String post_atch4; // N
+    private String post_atch5; // N
+    private Integer post_rept_cnt; // N 0
+    private Timestamp in_date;
     private String in_user;
-    private Date up_date;
+    private Timestamp up_date; // N now()
     private String up_user;
 
-    public PostDto(String user_id, String post_title, String post_body) {
+    public PostDto(
+        Integer bbs_id,
+        String user_id,
+        String post_title,
+        String post_body,
+        Timestamp in_date
+    ) {
+        this.bbs_id = bbs_id;
         this.user_id = user_id;
         this.post_title = post_title;
         this.post_body = post_body;
+        this.in_date = in_date;
+        this.in_user = this.up_user = user_id;
     }
+
+    public PostDto(Integer bbs_id, String user_id, String post_title, String post_body) {
+        this(bbs_id, user_id, post_title, post_body, new Timestamp(System.currentTimeMillis()));
+    }
+
+
+    public PostDto(Integer bbs_id, String user_id) {
+        this(bbs_id, user_id, "changmoo1234", "changmoo12345555555555");
+    }
+
+    public PostDto() {
+    }
+
 
     public Integer getPost_id() {
         return post_id;
@@ -71,7 +93,7 @@ public class PostDto {
         this.post_body = post_body;
     }
 
-    public Integer getPost_reply_cnt() {
+    public int getPost_reply_cnt() {
         return post_reply_cnt;
     }
 
@@ -79,7 +101,7 @@ public class PostDto {
         this.post_reply_cnt = post_reply_cnt;
     }
 
-    public Integer getPost_view_cnt() {
+    public int getPost_view_cnt() {
         return post_view_cnt;
     }
 
@@ -87,19 +109,19 @@ public class PostDto {
         this.post_view_cnt = post_view_cnt;
     }
 
-    public Byte getPost_visib() {
+    public int getPost_visib() {
         return post_visib;
     }
 
-    public void setPost_visib(Byte post_visib) {
+    public void setPost_visib(int post_visib) {
         this.post_visib = post_visib;
     }
 
-    public Byte getPost_prior() {
+    public int getPost_prior() {
         return post_prior;
     }
 
-    public void setPost_prior(Byte post_prior) {
+    public void setPost_prior(Integer post_prior) {
         this.post_prior = post_prior;
     }
 
@@ -151,12 +173,12 @@ public class PostDto {
         this.post_rept_cnt = post_rept_cnt;
     }
 
-    public Date getInt_date() {
-        return int_date;
+    public Timestamp getIn_date() {
+        return in_date;
     }
 
-    public void setInt_date(Date int_date) {
-        this.int_date = int_date;
+    public void setIn_date(Timestamp in_date) {
+        this.in_date = in_date;
     }
 
     public String getIn_user() {
@@ -167,11 +189,11 @@ public class PostDto {
         this.in_user = in_user;
     }
 
-    public Date getUp_date() {
+    public Timestamp getUp_date() {
         return up_date;
     }
 
-    public void setUp_date(Date up_date) {
+    public void setUp_date(Timestamp up_date) {
         this.up_date = up_date;
     }
 
@@ -192,11 +214,38 @@ public class PostDto {
             return false;
         }
         PostDto postDto = (PostDto) o;
-        return post_id.equals(postDto.post_id) && bbs_id.equals(postDto.bbs_id) && user_id.equals(postDto.user_id) && post_title.equals(postDto.post_title);
+        return bbs_id.equals(postDto.bbs_id) && user_id.equals(postDto.user_id)
+            && post_title.equals(
+            postDto.post_title) && post_body.equals(postDto.post_body);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(post_id, bbs_id, user_id, post_title);
+        return Objects.hash(bbs_id, user_id, post_title, post_body);
+    }
+
+    @Override
+    public String toString() {
+        return "PostDto{" +
+            "post_id=" + post_id +
+            ", bbs_id=" + bbs_id +
+            ", user_id='" + user_id + '\'' +
+            ", post_title='" + post_title + '\'' +
+            ", post_body='" + post_body + '\'' +
+            ", post_reply_cnt=" + post_reply_cnt +
+            ", post_view_cnt=" + post_view_cnt +
+            ", post_visib=" + post_visib +
+            ", post_prior=" + post_prior +
+            ", post_atch1='" + post_atch1 + '\'' +
+            ", post_atch2='" + post_atch2 + '\'' +
+            ", post_atch3='" + post_atch3 + '\'' +
+            ", post_atch4='" + post_atch4 + '\'' +
+            ", post_atch5='" + post_atch5 + '\'' +
+            ", post_rept_cnt=" + post_rept_cnt +
+            ", in_date=" + in_date +
+            ", in_user='" + in_user + '\'' +
+            ", up_date=" + up_date +
+            ", up_user='" + up_user + '\'' +
+            '}';
     }
 }

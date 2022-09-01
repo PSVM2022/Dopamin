@@ -1,0 +1,166 @@
+@import "../../common/default.css";
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.bbs-title {
+  margin-bottom: 1rem;
+  color: var(--orange2);
+}
+
+.recommand-post-wrapper > * {
+  font-size: 0.8rem;
+}
+
+.recommand-post {
+  display: flex;
+  justify-content: space-between;
+  padding: .2rem 0;
+}
+
+.post-title {
+  width: 350px;
+  padding: 0 .5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.img-wrapper > img {
+  width: 100%;
+  height: 8rem;
+  object-fit: contain;
+}
+
+.post-content-synopsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  height: 5rem;
+}
+
+.bbs-page {
+  table-layout: fixed;
+  width: 940px;
+  margin-bottom: 1rem;
+}
+
+.bbs-define-col {
+  display: table-column-group;
+}
+
+th,
+td {
+  height: 2rem;
+  border-width: 2px 0 1px;
+  border: 2px 0 1px solid var(--main-black);
+  vertical-align: middle;
+  text-align: center;
+}
+
+tr {
+  border-bottom: 1px solid var(--main-black);
+}
+
+th:nth-child(1) {
+  width: 7%;
+}
+
+th:nth-child(3) {
+  width: 18%;
+}
+
+th:nth-child(4),
+th:nth-child(5),
+th:nth-child(6) {
+  width: 8%;
+}
+
+td {
+  border-bottom: 3px dashed #f1f1f1;
+  height: 2rem;
+}
+
+.bbs-post:hover {
+  background-color: var(--main-grey2);
+}
+
+.bbs-post-title {
+  width: 500px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.post-comment-cnt {
+  color: var(--orange);
+  font-size: .9rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination a {
+  float: left;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 .25rem;
+}
+
+.pagination a.active {
+  background-color: var(--orange);
+  color: var(--main-white);
+}
+
+.pagination a:hover:not(.active) {
+  background-color: var(--main-white);
+}
+
+.search-container {
+  display: inline-block;
+  width: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.write-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: white !important;
+  font-size: 0.9rem;
+}
+
+.write-button:hover {
+  color: var(--orange);
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.search-option, .search-input {
+  padding: 0.5rem;
+}
+
+.search-button {
+  padding: 0.5rem;
+  background-color: var(--orange);
+  color: var(--main-white);
+  border: 1px solid #ddd;
+}
+
