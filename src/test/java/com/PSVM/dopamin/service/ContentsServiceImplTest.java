@@ -21,7 +21,7 @@ public class ContentsServiceImplTest extends TestCase {
     //컨텐츠 찜 중복 테스트
     @Test
     public void testInsertDeleteWish() throws Exception {
-        ContentsWishDto contentsWishDto = new ContentsWishDto(18, "sohyeon9253", new Timestamp(System.currentTimeMillis()), "sohyeon9253", new Timestamp(System.currentTimeMillis()), "sohyeon9253");
+        ContentsWishDto contentsWishDto = new ContentsWishDto(1, "user5", new Timestamp(System.currentTimeMillis()), "user5", new Timestamp(System.currentTimeMillis()), "user5");
         try {
             int inserttest = contentsService.insertWish(contentsWishDto);
             System.out.println("컨텐츠 찜 했다!");
