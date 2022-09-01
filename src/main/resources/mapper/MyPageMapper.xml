@@ -13,12 +13,19 @@
     </select>
 
     <select id="selectrevwRt" parameterType="String" resultType="MyPageRevwDto">
-        select re.revw_id, r.user_id, re.revw_eval, c.cnts_title, r.revw_visib_stat, r.revw_body, re.up_date, c.cnts_id
+        select re.revw_id,
+               r.user_id,
+               re.revw_eval,
+               c.cnts_title,
+               r.revw_visib_stat,
+               r.revw_body,
+               re.up_date,
+               c.cnts_id
         from REVW_RT re
                  join REVW r on r.revw_id = re.revw_id
                  join CNTS c on c.cnts_id = r.cnts_id
         where re.user_id = #{user_id}
-          AND r.revw_visib_stat = 1;
+          AND re.revw_eval = 1;
     </select>
 
     <select id="selectCntsWish" parameterType="String" resultType="MyPageCntsDto">
@@ -125,7 +132,9 @@
             JOIN ITEM i
         on p.item_id = i.item_id
             SET p.equip_stat = 1
-        where i.list_id = 1 and p.user_id = #{user_id} and p.item_id = #{item_id}
+        where i.list_id = 1
+          and p.user_id = #{user_id}
+          and p.item_id = #{item_id}
     </update>
 
     <update id="equipProf" parameterType="myPageItemsDto">
@@ -133,7 +142,9 @@
             JOIN ITEM i
         on p.item_id = i.item_id
             SET p.equip_stat = 2
-        where i.list_id = 1 and p.user_id = #{user_id} and p.item_id = #{item_id}
+        where i.list_id = 1
+          and p.user_id = #{user_id}
+          and p.item_id = #{item_id}
     </update>
 
     <update id="profWearOff" parameterType="myPageItemsDto">
@@ -145,11 +156,15 @@
     </update>
 
     <delete id="deleteRevw" parameterType="Integer">
-        delete From REVW where revw_id = #{revwId}
+        delete
+        From REVW
+        where revw_id = #{revwId}
     </delete>
 
     <delete id="deletePost" parameterType="Integer">
-        delete From POST where post_id = #{postId}
+        delete
+        From POST
+        where post_id = #{postId}
     </delete>
 
 </mapper>

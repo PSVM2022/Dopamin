@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/cnts.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -74,32 +74,34 @@
 </div>
 
 <main>
-    <section class="container py-5">
+    <section class="container">
         <h2>Contents Wish</h2><br>
-        <div class="container py-5">
-            <ul class="row">
-                <c:choose>
-                    <c:when test="${empty cntsDtoList}">
-                        <li class="col-2">
-                            <div>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6w87nBO1Els6CpW4xtA5TgpqvYMU3CB_F5g&usqp=CAU"
-                                     class="css-qhzw1o-StyledImg">
-                                <h3>아직 평가하신 작품이 없어요!</h3>
-                            </div>
-                        </li>
-                    </c:when>
-                    <c:otherwise>
+        <div>
+
+            <c:choose>
+                <c:when test="${empty cntsDtoList}">
+                    <div>
+                        <div>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6w87nBO1Els6CpW4xtA5TgpqvYMU3CB_F5g&usqp=CAU"
+                                 class="css-qhzw1o-StyledImg">
+                            <h3>아직 평가하신 작품이 없어요!</h3>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="cnts-img">
                         <c:forEach var="cnts" items="${cntsDtoList}">
-                                    <li class="css-8y23cj">
-                                        <a href='<c:url value="/contents/${cnts.cnts_id}"/>'>
-                                            <div><img src="${cnts.cnts_postr_img}" class="col2"></div>
-                                            <div>${cnts.cnts_title}</div>
-                                        </a>
-                                    </li>
+                            <div class="item">
+                                <a class="cnts-a" href='<c:url value="/contents/${cnts.cnts_id}"/>'>
+                                    <div><img src="${cnts.cnts_postr_img}"></div>
+                                    <div>${cnts.cnts_title}</div>
+                                </a>
+                            </div>
                         </c:forEach>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
         </div>
     </section>
 </main>
