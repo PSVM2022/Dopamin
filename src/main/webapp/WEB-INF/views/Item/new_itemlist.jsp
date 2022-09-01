@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/psvm.css'/>">
+    <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -50,8 +51,8 @@
     <div id="left_ad"></div>
     <div id="item_main_container">
         <div style='width: 20rem; margin: 2rem 5rem -1.1rem; font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;'>
-            <span style="font-size: 1.6rem;">아이템</span><span
-                style="font-size: 1.2rem;"> > ${order} </span></div>
+            <span style="font-size: 1.6rem;">아이템</span><span style="font-size: 1.2rem;"> > ${order} </span>
+        </div>
         <div id="section">
             <div class="swiper-container">
                 <div class="swiper-wrapper" style="height: 21rem;">
@@ -59,8 +60,7 @@
                         <div class="swiper-slide">
                             <div class="item_details">
                                 <div class="detail-container" item_id="${item.item_id}">
-                                    <div id="item-img"
-                                         style="width: 11rem; height: 9rem; margin: 0 auto;">
+                                    <div id="item-img" style="width: 11rem; height: 9rem; margin: 0 auto;">
                                         <div class="image-wrap" item_id="${item.item_id}">
                                             <img id="item-image" src="${item.item_img}">
                                             <button class="add_cart_btn">담기</button>
@@ -71,8 +71,7 @@
                                         <span class="item_grd">${item.grd_nm}</span>
                                     </div>
                                     <div class="item_detail_dsc"> ${item.item_dsc}</div>
-                                    <span class="item_price">${item.item_price}<span
-                                            class="point">P</span></span>
+                                    <span class="item_price">${item.item_price}<span class="point">P</span></span>
                                 </div>
                             </div>
                         </div>
@@ -83,8 +82,7 @@
                         <div class="swiper-slide">
                             <div class="item_details">
                                 <div class="detail-container" item_id="${item.item_id}">
-                                    <div id="item-img"
-                                         style="width: 11rem; height: 9rem; margin: 0 auto;">
+                                    <div id="item-img" style="width: 11rem; height: 9rem; margin: 0 auto;">
                                         <div class="image-wrap" item_id="${item.item_id}">
                                             <img id="item-image" src="${item.item_img}">
                                             <button class="add_cart_btn">담기</button>
@@ -95,10 +93,8 @@
                                         <span class="item_grd">${item.grd_nm}</span>
                                     </div>
                                     <div class="item_detail_dsc"> ${item.item_dsc}</div>
-                                    <span class="item_price">${item.item_price}<span
-                                            class="point">P</span></span>
+                                    <span class="item_price">${item.item_price}<span class="point">P</span></span>
                                 </div>
-
                             </div>
                         </div>
                     </c:forEach>
@@ -117,43 +113,43 @@
 <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 <script>
-  $(function () {
-    new Swiper('.swiper-container', {
-      slidesPerView: 5, //한번에 보여줄 개수
-      autoplay: false, // 자동 재생 여부
-      loop: true, // 반복 재생 여부
-      loopAdditionalSlides: 1,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        prevEl: '.swiper-prev',   //이전 슬라이드를 볼 수 있음
-        nextEl: '.swiper-next'    //이후 슬라이드를 볼 수 있음
-      }
-    });
-  })
-  $(document).ready(function () {
-    $(".item_details").on("click", ".add_cart_btn", function () {
-      let item_id = $(this).parent().attr("item_id");
-      console.log("item_id=" + item_id);
-      if (confirm("장바구니에 담으시겠습니까?")) {
-        $.ajax({
-          type: 'POST',
-          url: '/psvm/item/addCart/' + item_id,
-          success: function (result) {
-            alert("장바구니에 담겼습니다.");
-            if (confirm("장바구니로 바로 가시겠습니까?")) {
-              location.href = "/psvm/item/cart";
+    $(function () {
+        new Swiper('.swiper-container', {
+            slidesPerView: 5, //한번에 보여줄 개수
+            autoplay: false, // 자동 재생 여부
+            loop: true, // 반복 재생 여부
+            loopAdditionalSlides: 1,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                prevEl: '.swiper-prev',   //이전 슬라이드를 볼 수 있음
+                nextEl: '.swiper-next'    //이후 슬라이드를 볼 수 있음
             }
-          },
-          error: function (request, status, error) {
-            var result = JSON.parse(request.responseText);
-            alert(result["message1"]);
-          }
-        })
-      }
+        });
     })
-  })
+    $(document).ready(function () {
+        $(".item_details").on("click", ".add_cart_btn", function () {
+            let item_id = $(this).parent().attr("item_id");
+            console.log("item_id=" + item_id);
+            if (confirm("장바구니에 담으시겠습니까?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/psvm/item/addCart/' + item_id,
+                    success: function (result) {
+                        alert("장바구니에 담겼습니다.");
+                        if (confirm("장바구니로 바로 가시겠습니까?")) {
+                            location.href = "/psvm/item/cart";
+                        }
+                    },
+                    error: function (request, status, error) {
+                        var result = JSON.parse(request.responseText);
+                        alert(result["message1"]);
+                    }
+                })
+            }
+        })
+    })
 </script>
 </html>
