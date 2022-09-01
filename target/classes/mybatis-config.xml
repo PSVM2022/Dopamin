@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="ItemDto" type="com.PSVM.dopamin.domain.Item.ItemDto"/>
+        <typeAlias alias="OrderDto" type="com.PSVM.dopamin.domain.Item.OrderDto"/>
+        <typeAlias alias="Cart_ItemDto" type="com.PSVM.dopamin.domain.Item.Cart_ItemDto"/>
+        <typeAlias alias="BbsDto" type="com.PSVM.dopamin.domain.BbsDto"/>
+        <typeAlias alias="PostDto" type="com.PSVM.dopamin.domain.PostDto"/>
+        <typeAlias alias="MyPageRevwDto" type="com.PSVM.dopamin.domain.MyPageRevwDto"/>
+        <typeAlias alias="MyPageCntsDto" type="com.PSVM.dopamin.domain.MyPageCntsDto"/>
+        <typeAlias alias="MyPagePostDto" type="com.PSVM.dopamin.domain.MyPagePostDto"/>
+        <typeAlias alias="MyPageDto" type="com.PSVM.dopamin.domain.MyPageDto"/>
+        <typeAlias alias="UserDto" type="com.PSVM.dopamin.domain.UserDto"/>
+        <typeAlias alias="CntsEvalDto" type="com.PSVM.dopamin.domain.CntsEvalDto"/>
+        <typeAlias alias="MyPageItemsDto" type="com.PSVM.dopamin.domain.MyPageItemsDto"/>
+        <typeAlias alias="MyPagePointDto" type="com.PSVM.dopamin.domain.MyPagePointDto"/>
+
+        <typeAlias alias="SearchCondition" type="com.PSVM.dopamin.domain.SearchCondition"/>
+    </typeAliases>
+</configuration>
