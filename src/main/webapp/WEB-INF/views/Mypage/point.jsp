@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/point.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -80,19 +80,19 @@
     bg-light - 약간의 음영을 주는 속성. 짝수 section 마다 주면 좋을거 같아요 컨텐츠 구별용(흰색-음영회색-흰색)
 -->
 <main>
-    <section class="container py-5">
+    <section class="container">
         <c:if test="${empty pntList}">
             nothing!
         </c:if>
-        <div class="table-responsive">
-            <table class="table table-responsive table-borderless">
+        <div>
+            <table>
                 <thead>
-                <tr class="bg-light">
-                    <th scope="col" width="10%"></th>
-                    <th scope="col" width="20%"></th>
-                    <th scope="col" width="20%"></th>
-                    <th scope="col" width="10%"></th>
-                    <th scope="col" width="10%"></th>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -100,7 +100,7 @@
                     <tr>
                         <td><fmt:formatDate value="${list.in_date}" pattern="yyyy.MM.dd"/></td>
 <%--                        <td>${list.in_date}</td>--%>
-                        <td><div style = "height:100%"><img src="${list.item_img}"></div></td>
+                        <td><div class="imgdiv"><img class="point-img" src="${list.item_img}"></div></td>
                         <td>
                             <div>
                                     [${list.grd_nm}] ${list.item_nm}
@@ -117,7 +117,7 @@
                             <c:if test="${list.use_stat == 0}">
                                 -${list.pnt}
                             </c:if>
-                            <c:if test="${list.use_stat == 1}">
+                            <c:if test="${list.use_stat == -1}">
                                 ${list.pnt}
                             </c:if>
                         </td>

@@ -15,7 +15,8 @@
        value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('USERID')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
-<html>
+
+
 <html lang="ko">
 <head>
     <title>도파민!</title>
@@ -34,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/revw.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -73,28 +74,27 @@
 </div>
 
 <main>
-    <section class="container py-5">
-        <h2>Contents Good Review</h2><br>
-        <div class="table-responsive">
-            <table class="table table-responsive table-borderless">
+    <section class="container">
+        <h2 class="revw-h2">Contents Good Review</h2><br>
+        <div>
+            <table class="revw-table">
                 <thead>
-                <tr class="bg-light">
-                    <th scope="col" width="5%">#</th>
-                    <th scope="col" width="10%">컨텐츠 제목</th>
-                    <th scope="col" width="20%">내용</th>
-                    <th scope="col" width="20%">작성자</th>
-                    <th scope="col" width="20%">등록일</th>
+                <tr>
+                    <th width="3%">#</th>
+                    <th width="10%">컨텐츠 제목</th>
+                    <th width="30%">내용</th>
+                    <th width="10%">작성자</th>
+                    <th width="10%">등록일</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="revw" items="${revwDtoList}">
                     <tr>
                         <td>${revw.revw_id}</td>
-                        <td><a href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
+                        <td><a class="revw-title" href='<c:url value="/contents/${revw.cnts_id}"/>'>${revw.cnts_title}</a></td>
                         <td>${revw.revw_body}</td>
                         <td>${revw.user_id}</td>
-                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.MM.dd"/> ${revw.up_date}</td>
-
+                        <td><fmt:formatDate value="${revw.up_date}" pattern="yyyy.MM.dd"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>

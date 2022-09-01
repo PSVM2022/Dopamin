@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/normalize.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common/default.css'/>">
     <%--home.css 부분을 빼고 자기 페이지의 css를 넣으세요--%>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/myPage.css?20210502'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/revw.css'/>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -73,10 +73,10 @@
 </div>
 
 <main>
-    <section class="container py-5">
+    <section class="container">
         <h2>Community Post</h2><br>
-        <div class="table-responsive">
-            <table class="table table-responsive table-borderless">
+        <div>
+            <table class="revw-table">
                 <thead>
                 <tr>
                     <th><input type="checkbox" id="allCheck" name="allCheck"></th>
@@ -112,7 +112,7 @@
             </table>
         </div>
         <div>
-            <input type="button" calss="btn" value="선택삭제" onclick="deleteValue();">
+            <input type="button" class="revw-btn" value="선택삭제" onclick="deleteValue();">
         </div>
     </section>
 </main>
@@ -298,78 +298,3 @@
 
 </html>
 
-
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-
-<body>
-
-<div class="topnav">
-    <div class="responsive">
-        <div class="logo-wrapper">
-            <img alt="" src="<c:url value='/image/logo_example.svg' />" width="50" height="30">
-        </div>
-        <a class="topnav-menu" href="#" onclick='alert("홈으로 페이지 전환")'>홈</a>
-        <a class="topnav-menu" href="#" onclick='alert("커뮤니티 페이지로 이동")'>커뮤니티</a>
-        <a class="topnav-menu" href="#" onclick='alert("찜목록 페이지로 이동")'>찜목록</a>
-        <a class="topnav-menu" href="#" onclick='alert("시청기록 게시판봐요")'>시청기록</a>
-        <a class="topnav-menu" href="#" onclick='alert("룰렛 한판 돌려요")'>이벤트</a>
-        <a class="topnav-menu" href="#" onclick='alert("도파~파워")'>상점</a>
-    </div>
-</div>
-
-<div class="content">
-    <div class="responsive-content">
-        <div>
-            <h1> 내가 작성한 커뮤니티 게시글 모아보기 </h1>
-        </div>
-        <div class="cnts">
-            <c:forEach var="post" items="${postDtoList}">
-                <br>
-                <c:choose>
-                    <c:when test="${post.post_visib eq 0}">
-                        <tr>
-                            <td> 가려진 게시물 입니다.</td>
-                        </tr>
-                        <br>
-                    </c:when>
-                    <c:otherwise>
-                        <tr>
-                            <td>${post.post_id}</td>
-                            <td>${post.bbs_nm}</td>
-                            <td>${post.post_title}[${post.post_reply_cnt}]</td>
-                            <td><fmt:formatDate value="${post.up_date}" pattern="yyyy.MM.dd"/></td>
-                            <td>${post.post_view_cnt}</td>
-                        </tr>
-                        <br>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-        </div>
-
-        <div>
-            <h3>post title 누르면 게시글 상세 페이지로 이동 추가</h3>
-            <h3>체크박스 체크하면 게시글 한번에 삭제되는 기능 추가 </h3>
-            <h3></h3>
-
-        </div>
-        <div>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-youtube"></i>
-            <div class="content-preview">
-            </div>
-            <div class="content-teenager-girl-movie"></div>
-
-        </div>
-    </div>
-
-
-    <div class="footer">
-        <div>about</div>
-        <div>2022 PSVM팀</div>
-    </div>
-</div>
-</body>
-
-</html>
