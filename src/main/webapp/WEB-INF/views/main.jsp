@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <%@ page session="false" %>
 <%--  getsession(false)==null  기존에 세션이 없음을 의미.즉,로그인되어있지 않음. --%>
@@ -133,6 +134,7 @@
                     <div class="swiper-wrapper" style="height: 30rem;">
                         <div class="swiper-slide">
                             <div class="contents_container">
+
                                 <c:forEach var="i" end="4" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                     <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
                                         <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;" >
@@ -208,6 +210,8 @@
                 <div class="swiper-wrapper" style="height: 30rem;">
                     <div class="swiper-slide">
                         <div class="contents_container">
+                            <c:out value="${fn:length(cntsDtoList)}"></c:out>
+
                             <c:forEach var="i" end="4" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
                                 <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
                                     <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
