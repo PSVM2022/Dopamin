@@ -26,185 +26,208 @@
 <main>
     <c:import url="/WEB-INF/views/common/header.jsp"/>
 
-    <div class="container">
-        <div class="search-bg-image">
+    <div class="search-bg-image">
+        <section class="container">
+            <h1 class="search-main-text">지루할 땐 <b>DOPAMIN!</b></h1>
             <section class="container">
-                <h1 class="search-main-text">DOPAMIN</h1>
-                <section class="container">
-                    <p class="search-sc-text">Search Contents!</p>
-                    <div>
-                        <form class="search-container"
-                              action="<c:url value="/contents/search/${sc.keyword}"/>" method="get">
-                            <select class="search-option" name="option">
-                                <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>
-                                    통합검색
-                                </option>
-                                <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>
-                                    제목/부제목
-                                </option>
-                                <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>
-                                    감독/출연진
-                                </option>
-                                <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>
-                                    장르별
-                                </option>
-                            </select>
-                            <input type="text" class="search-main"
-                                   placeholder="search your contents" aria-label="Type Keywords"
+                <p class="search-sc-text">20여개의 OTT 서비스의 컨텐츠를 한번에 검색해보세요!</p>
+                <div>
+                    <form class="search-container"
+                          action="<c:url value="/contents/search/${sc.keyword}"/>" method="get">
+                        <select class="search-option" name="option">
+                            <option value="total" ${ph.sc.option=='total' || ph.sc.option=='' ? "selected" : ""}>
+                                통합검색
+                            </option>
+                            <option value="ttl" ${ph.sc.option=='ttl' ? "selected" : ""}>
+                                제목/부제목
+                            </option>
+                            <option value="cast" ${ph.sc.option=='cast' ? "selected" : ""}>
+                                감독/출연진
+                            </option>
+                            <option value="genre" ${ph.sc.option=='genre' ? "selected" : ""}>
+                                장르별
+                            </option>
+                        </select>
+                        <label class="search-input-wrapper">
+                            <input type="text" class="main-search-input"
+                                   placeholder="영화나 드라마 컨텐츠를 검색해보세요" aria-label="Type Keywords"
                                    name="keyword"
                                    value="${sc.keyword}"/>
-                        </form>
+                        </label>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <div class="container">
+        <c:if test="${pageContext.request.getSession(false)!=null}">
+            <div class="recommend-content">
+                <div class="recommend-mention"><b>${contentsUserDto.nic}</b> 님을 위한 추천 컨텐츠</div>
+
+                <section class="contents">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper" style="height: 30rem;">
+                            <div class="swiper-slide">
+                                <div class="contents_container">
+                                    <c:forEach var="i" end="4"
+                                               items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                        <div class="detail-container"
+                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                            <div id="poster-img"
+                                                 style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                                <img id="poster-image"
+                                                     style="border-radius: 0.3rem;"
+                                                     src="${i.cnts_postr_img}"
+                                                     alt="${i.cnts_title}"/>
+                                            </div>
+                                            <div>
+                                                <span class="contents_title"><b>${i.cnts_title}</b></span><br>
+                                                <span class="item_nm">${i.cnts_subttl}</span>
+                                                <span class="item_grd">${i.cnts_op_date} | ${i.cnts_cnty}</span><br>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </c:forEach>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="contents_container">
+                                    <c:forEach var="i" begin="5" end="9"
+                                               items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                        <div class="detail-container"
+                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                            <div id="poster-img"
+                                                 style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                                <img id="poster-image"
+                                                     style="border-radius: 0.3rem;"
+                                                     src="${i.cnts_postr_img}"
+                                                     alt="${i.cnts_title}"/>
+                                            </div>
+                                            <div>
+                                                <span class="contents_title"><b>${i.cnts_title}</b></span><br>
+                                                <span class="item_nm">${i.cnts_subttl}</span>
+                                                <span class="item_grd">${i.cnts_op_date} | ${i.cnts_cnty}</span><br>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </c:forEach>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="contents_container">
+                                    <c:forEach var="i" begin="10" end="14"
+                                               items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                        <div class="detail-container"
+                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                            <div id="poster-img"
+                                                 style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                                <img id="poster-image"
+                                                     style="border-radius: 0.3rem;"
+                                                     src="${i.cnts_postr_img}"
+                                                     alt="${i.cnts_title}"/>
+                                            </div>
+                                            <div>
+                                                <span class="contents_title"><b>${i.cnts_title}</b></span><br>
+                                                <span class="item_nm">${i.cnts_subttl}</span>
+                                                <span class="item_grd">${i.cnts_op_date} | ${i.cnts_cnty}</span><br>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
-            </section>
-        </div>
-
-        <c:if test="${pageContext.request.getSession(false)!=null}">
-            <br>
-            <div>"${contentsUserDto.nic}" 님을 위한 추천 컨텐츠</div>
-            <br>
-
-            <section class="contents">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper" style="height: 30rem;">
-                        <div class="swiper-slide">
-                            <div class="contents_container">
-                                <c:forEach var="i" end="4" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
-                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;" >
-                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                        </div>
-                                        <div>
-                                            <span class="contents_title">${i.cnts_title}</span><br>
-                                            <span class="item_nm">${i.cnts_subttl}</span>
-                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </c:forEach>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="contents_container">
-                                <c:forEach var="i" begin="5" end="9" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
-                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
-                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                        </div>
-                                        <div>
-                                            <span class="contents_title">${i.cnts_title}</span><br>
-                                            <span class="item_nm">${i.cnts_subttl}</span>
-                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </c:forEach>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="contents_container">
-                                <c:forEach var="i" begin="10" end="14" items="${userContentsDtoList}"> <!--페이징 x 일단 다뿌리기-->
-                                    <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                        <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
-                                            <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                        </div>
-                                        <div>
-                                            <span class="contents_title">${i.cnts_title}</span><br>
-                                            <span class="item_nm">${i.cnts_subttl}</span>
-                                            <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-prev">
-                    <div class="material-icons">chevron_left</div>
-                </div>
-                <div class="swiper-next">
-                    <div class="material-icons">chevron_right</div>
-                </div>
-
-            </section>
+            </div>
         </c:if>
 
 
         <!--비로그인-->
         <c:if test="${pageContext.request.getSession(false)==null}">
-            <br>
-            <br>
-
-        <!--컨텐츠 슬라이드-->
-        <section class="contents">
-            <div class="swiper-container">
-                <div class="swiper-wrapper" style="height: 30rem;">
-                    <div class="swiper-slide">
-                        <div class="contents_container">
-                            <c:forEach var="i" end="4" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
-                                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
-                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                    </div>
-                                    <div>
-                                        <span class="contents_title">${i.cnts_title}</span><br>
-                                        <span class="item_nm">${i.cnts_subttl}</span>
-                                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
-                                    </div>
+            <div class="recommend-content">
+                <div class="recommend-mention"><b>최근 인기작들을 확인해보세요!</b></div>
+                <!--컨텐츠 슬라이드-->
+                <section class="contents">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper" style="height: 30rem;">
+                            <div class="swiper-slide">
+                                <div class="contents_container">
+                                    <c:forEach var="i" end="4"
+                                               items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                        <div class="detail-container"
+                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                            <div id="poster-img"
+                                                 style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                                <img id="poster-image"
+                                                     style="border-radius: 0.3rem;"
+                                                     src="${i.cnts_postr_img}"
+                                                     alt="${i.cnts_title}"/>
+                                            </div>
+                                            <div>
+                                                <span class="contents_title"><b>${i.cnts_title}</b></span><br>
+                                                <span class="item_nm">${i.cnts_subttl}</span>
+                                                <span class="item_grd">${i.cnts_op_date} | ${i.cnts_cnty}</span><br>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </c:forEach>
                                 </div>
-                                <br>
-                            </c:forEach>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="contents_container">
+                                    <c:forEach var="i" begin="5" end="9"
+                                               items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                        <div class="detail-container"
+                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                            <div id="poster-img"
+                                                 style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                                <img id="poster-image"
+                                                     style="border-radius: 0.3rem;"
+                                                     src="${i.cnts_postr_img}"
+                                                     alt="${i.cnts_title}"/>
+                                            </div>
+                                            <div>
+                                                <span class="contents_title"><b>${i.cnts_title}</b></span><br>
+                                                <span class="item_nm">${i.cnts_subttl}</span>
+                                                <span class="item_grd">${i.cnts_op_date} | ${i.cnts_cnty}</span><br>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </c:forEach>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="contents_container">
+                                    <c:forEach var="i" begin="10" end="14"
+                                               items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
+                                        <div class="detail-container"
+                                             onclick="location.href='/psvm/contents/${i.cnts_id}'">
+                                            <div id="poster-img"
+                                                 style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
+                                                <img id="poster-image"
+                                                     style="border-radius: 0.3rem;"
+                                                     src="${i.cnts_postr_img}"
+                                                     alt="${i.cnts_title}"/>
+                                            </div>
+                                            <div>
+                                                <span class="contents_title"><b>${i.cnts_title}</b></span><br>
+                                                <span class="item_nm">${i.cnts_subttl}</span>
+                                                <span class="item_grd">${i.cnts_op_date} | ${i.cnts_cnty}</span><br>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="swiper-slide">
-                        <div class="contents_container">
-                            <c:forEach var="i" begin="5" end="9" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
-                                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
-                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                    </div>
-                                    <div>
-                                        <span class="contents_title">${i.cnts_title}</span><br>
-                                        <span class="item_nm">${i.cnts_subttl}</span>
-                                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
-                                    </div>
-                                </div>
-                                <br>
-                            </c:forEach>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="contents_container">
-                            <c:forEach var="i" begin="10" end="14" items="${cntsDtoList}"> <!--페이징 x 일단 다뿌리기-->
-                                <div class="detail-container" onclick="location.href='/psvm/contents/${i.cnts_id}'">
-                                    <div id="poster-img" style="margin-bottom: 0.1rem; border-radius: 0.3rem;">
-                                        <img id="poster-image" style="border-radius: 0.3rem;" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
-                                    </div>
-                                    <div>
-                                        <span class="contents_title">${i.cnts_title}</span><br>
-                                        <span class="item_nm">${i.cnts_subttl}</span>
-                                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span><br>
-                                    </div>
-                                </div>
-                                <br>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
+              </section>
             </div>
-            <div class="swiper-prev">
-                <div class="material-icons">chevron_left</div>
-            </div>
-            <div class="swiper-next">
-                <div class="material-icons">chevron_right</div>
-            </div>
-
-        </section>
         </c:if>
     </div>
 </main>
@@ -222,10 +245,7 @@
       slidesPerView: 1, //한번에 보여줄 개수
       autoplay: true, // 자동 재생 여부
       loop: true, // 반복 재생 여부
-      navigation: {
-        prevEl: '.contents .swiper-prev',   //이전 슬라이드를 볼 수 있음
-        nextEl: '.contents .swiper-next'    //이후 슬라이드를 볼 수 있음
-      }
+      speed: 2000,
     });
   })
 </script>

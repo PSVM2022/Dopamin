@@ -22,10 +22,10 @@
     <c:import url="/WEB-INF/views/common/header.jsp"/>
     <div class="container">
         <!-- Carousel wrapper -->
-        <section class="container bg-light">
+        <section class="container">
             <c:if test="${totalCnt!=null && totalCnt!=0}">
                 <br>
-                <div>"${ph.sc.keyword}" 에 대한 검색 결과입니다.</div>
+                <div class="result-message"><b>${ph.sc.keyword}</b> 에 대한 검색 결과입니다.</div>
                 <br>
             </c:if>
         </section>
@@ -39,9 +39,9 @@
                         <img id="poster-image" src="${i.cnts_postr_img}" alt="${i.cnts_title}"/>
                     </div>
                     <div>
-                        <span class="contents_title">${i.cnts_title}</span><br>
+                        <span class="contents_title"><b>${i.cnts_title}</b></span><br>
                         <span class="item_nm">${i.cnts_subttl}</span>
-                        <span class="item_grd">${i.cnts_op_date} : ${i.cnts_cnty}</span>
+                        <span class="item_grd">${i.cnts_op_date} | ${i.cnts_cnty}</span>
                     </div>
                 </div>
             </c:forEach>
