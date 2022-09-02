@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <%@ page session="false" %>
 
@@ -64,7 +65,6 @@
         <c:if test="${pageContext.request.getSession(false)!=null}">
             <div class="recommend-content">
                 <div class="recommend-mention"><b>${contentsUserDto.nic}</b> 님을 위한 추천 컨텐츠</div>
-
                 <section class="contents">
                     <div class="swiper-container">
                         <div class="swiper-wrapper" style="height: 30rem;">

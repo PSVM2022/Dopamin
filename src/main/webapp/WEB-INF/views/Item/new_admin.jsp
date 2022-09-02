@@ -262,7 +262,7 @@
                     type: 'DELETE',
                     url: '/psvm/item/remove/' + item_id,
                     success: function (result) {
-                        alert(result)
+                        alert("삭제되었습니다.")
                         location.reload();
 
                     },
