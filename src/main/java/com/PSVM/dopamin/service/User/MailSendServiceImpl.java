@@ -43,8 +43,8 @@ public class MailSendServiceImpl implements MailSendService {
     @Override
     public void mailSend(String setFrom, String toEmail, String title, String content) throws MessagingException {
         String host="smtp.naver.com";
-        final String username="여기";
-        final String password = "여기";
+        final String username="iks5951";
+        final String password = "like0101@@$$";
         int port=465;
         Properties p = System.getProperties();
         p.put("mail.smtp.host", host);

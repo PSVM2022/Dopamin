@@ -108,9 +108,9 @@
 .detail-container:hover {
     /* 마우스를 올리면 보이게 처리 */
 
-    filter: brightness(50%);
+    filter: brightness(70%);
     cursor: pointer;
-    box-shadow: 5px 5px 5px 5px;
+    box-shadow: 2px 2px 2px 2px;
 }
 .add_cart_btn{
     opacity: 0;

@@ -304,7 +304,7 @@
 
     $.ajax({
       type: 'POST',
-      url: '<c:url value ="/join/email"/>',
+      url: '<c:url value="/join/email"/>',
       data: {email: email},
       success: function (response) {
         alert(response.msg);

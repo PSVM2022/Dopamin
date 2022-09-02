@@ -38,7 +38,6 @@ public class MyPageController {
     private String AWS_S3_BUCKET_URL;
 
 
-
     // MyPage 메인 화면
     @GetMapping("")
     public String myPage(Model m, HttpServletRequest request) throws Exception {
@@ -164,16 +163,30 @@ public class MyPageController {
 
         System.out.println("myPageItemsDto = " + myPageItemsDto);
 
-        try {
-            if (myPageItemsDto.getEquip_stat() == 0 || myPageItemsDto.getEquip_stat() == -1) {
-                myPageService.modSkin(myPageItemsDto);
-            } else if (myPageItemsDto.getEquip_stat() == 1) {
+        if (list_id == 1) {
+            try {
+                if (myPageItemsDto.getEquip_stat() == 0 || myPageItemsDto.getEquip_stat() == -1) {
+                    myPageService.modSkin(myPageItemsDto);
+                } else if (myPageItemsDto.getEquip_stat() == 1) {
+                    myPageService.defaultSkin(myPageItemsDto);
+                } else {
+                    throw new Exception("착용 초기화");
+                }
+            } catch (Exception e) {
                 myPageService.defaultSkin(myPageItemsDto);
-            } else {
-                throw new Exception("착용 초기화");
             }
-        } catch (Exception e) {
-            myPageService.defaultSkin(myPageItemsDto);
+        } else {
+            try {
+                if (myPageItemsDto.getEquip_stat() == 0 || myPageItemsDto.getEquip_stat() == -1) {
+                    myPageService.modProf(myPageItemsDto);
+                } else if (myPageItemsDto.getEquip_stat() == 1) {
+                    myPageService.defaultProf(myPageItemsDto);
+                } else {
+                    throw new Exception("착용 초기화");
+                }
+            } catch (Exception e) {
+                myPageService.defaultProf(myPageItemsDto);
+            }
         }
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -196,7 +209,6 @@ public class MyPageController {
         System.out.println("pntList = " + pntList);
         return "Mypage/point";
     }
-
 
 
     //한줄평 삭제
@@ -234,7 +246,6 @@ public class MyPageController {
     }
 
 
-
     @PostMapping("/userInfo")
     public String userInfocheck(HttpSession session, @RequestParam String pwd, Model model, RedirectAttributes redirectAttributes) {
         try {
@@ -258,7 +269,7 @@ public class MyPageController {
     }
 
     @GetMapping("/userInfo")
-    public String userInfo(){
+    public String userInfo() {
         return "redirect:/mypage";
     }
 
@@ -270,7 +281,7 @@ public class MyPageController {
         userDto.setUser_id(user_id);
         userService.modifyUserInfo(userDto);
         Map result = new HashMap();
-        result.put("msg","내 정보가 수정되었습니다");
+        result.put("msg", "내 정보가 수정되었습니다");
         return result;
     }
 
@@ -279,7 +290,7 @@ public class MyPageController {
     public String modifyProfileImg(@RequestParam("uploadImg") MultipartFile uploadImg, HttpSession session) throws IOException {
         String user_id = (String) session.getAttribute("USERID");
         String s3Url = amazonS3Utils.uploadFile("user", uploadImg);
-        userService.modifyUserPrfImg(s3Url,user_id);
+        userService.modifyUserPrfImg(s3Url, user_id);
         return "success";
     }
 
