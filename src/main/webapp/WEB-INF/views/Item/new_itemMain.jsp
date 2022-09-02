@@ -42,10 +42,8 @@
         <span class="item_menu">마이페이지</span>
     </div>
 </div>
-<main style="display: flex;">
-
-    <div id="left_ad"></div>
-    <div id="item_ main_container" style="width: 85rem;">
+<main>
+    <div id="item_ main_container">
         <%--    <a href="/psvm/item/cart_main">장바구니</a>--%>
         <div class="banner">
             <div id="rullet"><img src="https://i.ytimg.com/vi/i7aqOvCzaq8/maxresdefault.jpg"
@@ -57,7 +55,6 @@
         <div id="section" style="display: flex;justify-content: center;padding: 0rem 0;">
         </div>
     </div>
-    <div id="right_ad"></div>
 </main>
 <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
