@@ -102,10 +102,6 @@
     //let revw_id = $(this).parent().attr("deleteBtn");
     //console.log(cnts_id);
     //console.log("click");
-    if (session = "false") {     //비로그인시 처리 alert
-      alert("로그인 후 이용 가능합니다. ")
-      return false
-    }
 
     $.ajax({
       type: 'POST',       // 요청 메서드
