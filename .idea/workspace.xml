@@ -9,19 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="">
+    <list default="true" id="b84ce764-f4d6-4bba-8cb5-fb3d48eb6ee8" name="Changes" comment="fix. 오류점 해결-location.href, 삭제 성공 후 메시지 반환 에러&#10;   관리자 아이템 사진 s3에 올리기">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/controller/Item/ItemUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/AmazonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/AmazonConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/AmazonS3Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/AmazonS3Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/Item/ItemAdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/User/MailSendServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/PSVM/dopamin/service/User/MailSendServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_item_register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_item_register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Item/new_itemlist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Login/joinForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Login/joinForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/myItem.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Mypage/myItem.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/item/psvm.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +149,14 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="fix. 오류점 해결-location.href, 삭제 성공 후 메시지 반환 에러&#10;   관리자 아이템 사진 s3에 올리기">
+      <created>1662051695973</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1662051695973</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,5 +172,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix. 오류점 해결-location.href, 삭제 성공 후 메시지 반환 에러&#10;   관리자 아이템 사진 s3에 올리기" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix. 오류점 해결-location.href, 삭제 성공 후 메시지 반환 에러&#10;   관리자 아이템 사진 s3에 올리기" />
   </component>
 </project>

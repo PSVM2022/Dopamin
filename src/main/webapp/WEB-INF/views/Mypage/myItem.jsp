@@ -6,16 +6,17 @@
 <html lang="ko">
 <head>
     <title>도파민!</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/psvm.css'/>">
     <c:import url="/WEB-INF/views/common/default.jsp"/>
 </head>
 
 <body>
 <main>
+    <c:import url="/WEB-INF/views/common/header.jsp"/>
     <section class="container py-5">
-        <header class="py-5 bg-image-full"
-                style="background-image: url('${empty myPageDto.item_img ? 'https://dummyimage.com/600x400/ff7800/ffffff&text=DOPAMIN' : myPageDto.item_img}')">
+        <header class="py-5 bg-image-full" style="height:20rem; background-image: url('${empty myPageDto.item_img ? 'https://dummyimage.com/600x400/ff7800/ffffff&text=DOPAMIN' : myPageDto.item_img}')">
             <div class="text-center my-5">
-                <img class="img-fluid rounded-circle mb-4" src="${myPageDto.prf_img}" alt="..."/>
+                <img class="img-fluid rounded-circle mb-4" src="${myPageDto.prf_img}" style="height:20rem;width:20rem;" alt="..."/>
                 <h1 class="text-black fs-3 fw-bolder">${myPageDto.nic}님</h1>
                 <p class="text-black mb-0">
                     <c:choose>
@@ -31,48 +32,52 @@
                 <p class="text-black mb-0">dopa_point = ${myPageDto.dopa_point}</p>
             </div>
         </header>
-    </section>
-    <div class="content">
-        <div class="responsive-content">
-            <div>
-                <h2>스킨</h2>
-                <br>
-                <div>
-                    <img src="https://dummyimage.com/1200X200/ff00fb/053bff&text=default-skin">
-                    기본 스킨
-                </div>
-                ${s}
+        <div class="content">
+            <div class="responsive-content" style="display: flex; margin-top:16rem;">
                 <c:forEach var="skin" items="${skinList}">
-                    <div id="${skin.item_id}"
-                         onclick="equipSkin(${skin.item_id},${skin.equip_stat},${skin.list_id})">
-                        <img src="${skin.item_img}">
-                            ${skin.item_nm}
-                        <c:if test="${skin.equip_stat==1}">착용중</c:if>
-
-                    </div>
-
-                </c:forEach>
-            </div>
-            <div>
-                <h2>꾸미기</h2>
-                <br>
-                <img src="https://dummyimage.com/138x102/f5dd05/ff0505&text=default-profile">
-                기본 꾸미기
-                <c:forEach var="prof" items="${profList}">
-                    <div>
-                        <img src="${prof.item_img}">
-                            ${prof.item_nm}
+                    <div class="item_details">
+                        <div class="detail-container" id="${skin.item_id}" onclick="equipSkin(${skin.item_id},${skin.equip_stat},${skin.list_id})" style="height:13rem;">
+                            <div id="item-img" style="width: 13rem; height: 10rem; margin: 0 auto;">
+                                <div class="image-wrap" item_id="${skin.item_id}">
+                                    <img id="item-image" src="${skin.item_img}">
+                                    <button class="add_cart_btn" style="margin-left: 7rem; margin-top: -0.6rem;">착용하기</button>
+                                </div>
+                            </div>
+                            <div style="padding:0.1rem;">
+                                <span class="item_nm">${skin.item_nm}</span>
+                                <c:if test="${skin.equip_stat==1}">착용중</c:if>
+                            </div>
+                                <%--                <div class="item_detail_dsc"> ${skin.item_dsc}</div>--%>
+                                <%--                <span class="item_price">${skin.item_price}<span class="point">P</span></span>--%>
+                        </div>
                     </div>
                 </c:forEach>
             </div>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-youtube"></i>
-
         </div>
-        <div class="content-teenager-girl-movie"></div>
-    </div>
-    </div>
+        <div class="content">
+            <div class="responsive-content" style="display: flex; margin-top:2rem;">
+                <c:forEach var="skin" items="${profList}">
+                    <div class="item_details">
+                        <div class="detail-container" id="${skin.item_id}" onclick="equipSkin(${skin.item_id},${skin.equip_stat},${skin.list_id})" style="height:15rem;" style="height:13rem;">
+                            <div id="item-img" style="width: 13rem; height: 10rem; margin: 0 auto;">
+                                <div class="image-wrap" item_id="${skin.item_id}">
+                                    <img id="item-image" src="${skin.item_img}">
+                                    <button class="add_cart_btn" style="margin-left: 7rem; margin-top: 0.5rem;">착용하기</button>
+                                </div>
+                            </div>
+                            <div style="padding:0.1rem;">
+                                <span class="item_nm">${skin.item_nm}</span>
+                                <c:if test="${skin.equip_stat==1}">착용중</c:if>
+                            </div>
+                                <%--                <div class="item_detail_dsc"> ${skin.item_dsc}</div>--%>
+                                <%--                <span class="item_price">${skin.item_price}<span class="point">P</span></span>--%>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </section>
+
     <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </main>
 </body>
