@@ -15,12 +15,12 @@
     <title>도파민!</title>
     <c:import url="/WEB-INF/views/common/default.jsp"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/user/loginForm.css'/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css'/>">
 </head>
 
 <body>
 <main>
     <c:import url="/WEB-INF/views/common/header.jsp"/>
+
     <div class="login-container">
         <form action="<c:url value='/login/login'/>" method="post"
               onsubmit="return formCheck(this);">
