@@ -28,114 +28,89 @@
             <img class="user_profile_img" src="${myPageDto.prf_img}" alt="..."/>
             <h1 class="user_nickname">${myPageDto.nic}님</h1>
             <p class="user_info">
-                ${myPageDto.nic}님은 ${myPageDto.fav_genre1} 장르를
+                ${myPageDto.fav_genre1} 장르를
                 좋아하는 ${myPageDto.age}대 ${myPageDto.mbti} ${myPageDto.sex == 0 ? '여성' : '남성'}입니다.
             </p>
-            <p>dopa_point = ${myPageDto.dopa_point}</p>
         </div>
 
         <div><h2 class="mypage_h2">활동 기록</h2></div>
 
-        <div class="list">
-            <div class="list_col">
+        <div class="row">
+            <div class="col-4">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb"
-                         onclick="location.href='/psvm/mypage/revw'">
-                        <div class="mypage-cardc"><i
-                                class="fa-solid fa-comment mypage-icon"></i></div>
-                        <h2 class="mypage-title">Contents Review</h2>
-                        <p class="mypage-subtitle">작성한 컨텐츠 한줄평을 확인하세요!</p>
+                    <div class="mypage_cardb" onclick="location.href='/psvm/mypage/revw'">
+                        <i class="fa-solid fa-comment mypage-icon"></i>
+                        <span class="mypage-title">내 컨텐츠 한줄평</span>
                     </div>
                 </div>
             </div>
 
-            <div class="list_col">
+            <div class="col-4">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb"
-                         onclick="location.href='/psvm/mypage/revwrt'">
-                        <div class="mypage-cardc"><i
-                                class="fa-solid fa-thumbs-up mypage-icon"></i></div>
-                        <h2 class="mypage-title">Review Like</h2>
-                        <p class="mypage-subtitle">좋아요 누른 한줄평을 확인하세요!</p>
+                    <div class="mypage_cardb" onclick="location.href='/psvm/mypage/revwrt'">
+                        <i class="fa-solid fa-thumbs-up mypage-icon"></i>
+                        <span class="mypage-title">한줄평 좋아요 이력</span>
                     </div>
                 </div>
             </div>
 
-            <div class="list_col">
+            <div class="col-4">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb"
-                         onclick="location.href='/psvm/mypage/cntswish'">
-                        <div class="mypage-cardc"><i
-                                class="fa-solid fa-heart mypage-icon"></i></div>
-                        <h2 class="mypage-title">Contents Wish</h2>
-                        <p class="mypage-subtitle">찜한 컨텐츠를 확인하세요!</p>
+                    <div class="mypage_cardb" onclick="location.href='/psvm/mypage/cntswish'">
+                        <i class="fa-solid fa-heart mypage-icon"></i>
+                        <span class="mypage-title">컨텐츠 찜 목록</span>
                     </div>
                 </div>
             </div>
 
-            <div class="list_col">
+            <div class="col-4">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb"
-                         onclick="location.href='/psvm/mypage/cntsview'">
-                        <div class="mypage-cardc"><i
-                                class="fa-solid fa-circle-play mypage-icon"></i>
-                        </div>
-                        <h2 class="mypage-title">Contents View</h2>
-                        <p class="mypage-subtitle">조회한 컨텐츠를 확인하세요!</p>
+                    <div class="mypage_cardb" onclick="location.href='/psvm/mypage/cntsview'">
+                        <i class="fa-solid fa-circle-play mypage-icon"></i>
+                        <span class="mypage-title">조회한 컨텐츠 목록</span>
                     </div>
                 </div>
             </div>
 
-            <div class="list_col">
+            <div class="col-4">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb"
-                         onclick="location.href='/psvm/mypage/post'">
-                        <div class="mypage-cardc"><i class="fa-solid fa-face-smile mypage-icon"></i>
-                        </div>
-                        <h2 class="mypage-title">Community Post</h2>
-                        <p class="mypage-subtitle">작성한 게시물를 확인하세요!!</p>
+                    <div class="mypage_cardb" onclick="location.href='/psvm/mypage/post'">
+                        <i class="fa-solid fa-face-smile mypage-icon"></i>
+                        <span class="mypage-title">내 게시글 목록</span>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
     <section class="container">
         <h2 class="mypage_h2">회원 정보</h2>
 
-        <div class="list">
-
-            <div class="list_col">
+        <div class="row">
+            <div class="col-4">
                 <div class="mypage_carda">
                     <div class="mypage_cardb" id="userInfo">
-                        <div class="mypage-cardc"><i class="fa-solid fa-user mypage-icon"></i></div>
-                        <h2 class="mypage-title">Edit User Info</h2>
-                        <p class="mypage-subtitle">회원정보를 수정하세요!</p>
+                        <i class="fa-solid fa-user mypage-icon"></i>
+                        <span class="mypage-title">내 정보 수정</span>
                     </div>
                 </div>
             </div>
 
-            <div class="list_col">
+            <div class="col-4">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb"
-                         onclick="location.href='<c:url
-                                 value="mypage/point"/>'">
-                        <div class="mypage-cardc"><i
-                                class="fa-solid fa-coins mypage-icon"></i></div>
-                        <h2 class="mypage-title">Points</h2>
-                        <p class="mypage-subtitle">포인트 사용 내역을 확인하세요!</p>
+                    <div class="mypage_cardb" onclick="location.href='<c:url value="mypage/point"/>'">
+                        <i class="fa-solid fa-coins mypage-icon"></i>
+                        <span class="mypage-title">포인트 사용내역</span>
                     </div>
                 </div>
             </div>
 
-            <div class="list_col">
+            <div class="col-4">
                 <div class="mypage_carda">
-                    <div class="mypage_cardb" onclick="location.href='<c:url
-                            value="mypage/myItem"/>'">
-                        <div class="mypage-cardc"><i
-                                class="fa-solid fa-gift mypage-icon"></i></div>
-                        <h2 class="mypage-title">My Items</h2>
-                        <p class="mypage-subtitle">보유 아이템 목록을 확인하세요!</p>
+                    <div class="mypage_cardb" onclick="location.href='<c:url value="mypage/myItem"/>'">
+                        <i class="fa-solid fa-gift mypage-icon"></i>
+                        <span class="mypage-title">내 아이템</span>
                     </div>
                 </div>
             </div>

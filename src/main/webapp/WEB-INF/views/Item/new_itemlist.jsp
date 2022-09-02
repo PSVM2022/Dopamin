@@ -16,13 +16,13 @@
     <c:import url="/WEB-INF/views/common/default.jsp"/>
     <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/page/home.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/item/psvm.css'/>">
     <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
 </head>
 
 <body>
 <c:import url="/WEB-INF/views/common/header.jsp"/>
+
 <div class="container">
     <!-- 헤더 컨테이너. 이 페이지는 로그아웃 상태의 페이지 -->
     <div id="main_bar" style="justify-content: center;text-align: center;">
@@ -47,8 +47,7 @@
     </div>
 </div>
 
-<main style="display: flex;">
-    <div id="left_ad"></div>
+<main class="container">
     <div id="item_main_container">
         <div style='width: 20rem; margin: 2rem 5rem -1.1rem; font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;'>
             <span style="font-size: 1.6rem;">아이템</span><span style="font-size: 1.2rem;"> > ${order} </span>
@@ -108,7 +107,6 @@
             </div>
         </div>
     </div>
-    <div id="right_ad"></div>
 </main>
 <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>

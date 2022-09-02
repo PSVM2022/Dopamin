@@ -7,7 +7,7 @@
 }
 
 .user-profile {
-    margin: 0 2rem;
+    margin: 2rem;
 }
 
 .user_profile_img {
@@ -28,6 +28,9 @@
     font-size: 1.6rem;
 }
 
+.dopa-point {
+}
+
 .list {
 }
 
@@ -38,11 +41,12 @@
 }
 
 .mypage_carda {
-    border: orange 4px solid;
-    border-radius: 1.5rem;
+    border: var(--main-grey) 1px solid;
+    border-radius: 1rem;
 }
 
 .mypage_cardb {
+    padding: .5rem;
 }
 
 .mypage-cardc {
@@ -51,14 +55,14 @@
 }
 
 .mypage-icon{
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    margin-right: .5rem;
 }
 
 .mypage-title{
-    font-weight: 700;
     font-size: 2rem;
 }
 
-.mypage-subtitle{
-    font-size: 1.1rem;
+.col-4 {
+    margin-bottom: 2rem;
 }
