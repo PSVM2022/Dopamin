@@ -63,17 +63,15 @@
                                             <span>
                                                 <i class="fa-solid fa-arrow-up"></i>
                                                 <span>1위</span>
-                                                <span>헌트</span>
+                                                <span>육사오(6/45)</span>
                                             </span>
-                                <span>넷플릭스 디즈니 왓차</span>
                             </a>
                             <a class="list-group-item my-2" href="/">
                                             <span>
                                                 <i class="fa-solid fa-minus"></i>
                                                 <span>2위</span>
-                                                <span>육사오(6/45)</span>
+                                                <span>헌트</span>
                                             </span>
-                                <span>넷플릭스 왓차</span>
                             </a>
                             <a class="list-group-item my-2" href="/">
                                             <span>
@@ -102,37 +100,35 @@
                                             <span>
                                                 <i class="fa-solid fa-arrow-up"></i>
                                                 <span>6위</span>
-                                                <span>헌트</span>
+                                                <span>서울대작전</span>
                                             </span>
-                                <span>넷플릭스 디즈니 왓차</span>
                             </a>
                             <a class="list-group-item my-2" href="/">
                                             <span>
                                                 <i class="fa-solid fa-arrow-up"></i>
                                                 <span>7위</span>
-                                                <span>육사오(6/45)</span>
+                                                <span>미 타임(mé time 2022)</span>
                                             </span>
-                                <span>넷플릭스 왓차</span>
                             </a>
                             <a class="list-group-item my-2" href="/">
                                             <span>
                                                 <i class="fa-solid fa-arrow-up"></i>
                                                 <span>8위</span>
-                                                <span>불릿 트레인</span>
+                                                <span>러빙 어덜츠</span>
                                             </span>
                             </a>
                             <a class="list-group-item my-2" href="/">
                                             <span>
                                                 <i class="fa-solid fa-arrow-down"></i>
                                                 <span>9위</span>
-                                                <span>이상한 변호사 우영우</span>
+                                                <span>데이 시프트</span>
                                             </span>
                             </a>
                             <a class="list-group-item my-2" href="/">
                                             <span>
                                                 <i class="fa-solid fa-arrow-down"></i>
                                                 <span>10위</span>
-                                                <span>탑건: 매버릭</span>
+                                                <span>카터</span>
                                             </span>
                             </a>
                         </ol>

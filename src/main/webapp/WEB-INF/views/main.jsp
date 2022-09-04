@@ -31,7 +31,7 @@
         <section class="container">
             <h1 class="search-main-text">지루할 땐 <b>DOPAMIN!</b></h1>
             <section class="container">
-                <p class="search-sc-text">20여개의 OTT 서비스의 컨텐츠를 한번에 검색해보세요!</p>
+                <p class="search-sc-text">20여개 OTT 서비스의 컨텐츠를 한번에 검색해보세요!</p>
                 <div>
                     <form class="search-container"
                           action="<c:url value="/contents/search/${sc.keyword}"/>" method="get">
