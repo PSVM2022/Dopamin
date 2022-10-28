@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/96059261/195270444-cf871a62-0273-4b8d-9751-41da2ad77cdb.png" width="200" height="35"> **OTT 컨텐츠 통합 검색 포털 사이트**    
+# OTT 컨텐츠 통합 검색 포털 사이트 - 도파민
 
 ![ezgif-1](https://user-images.githubusercontent.com/96059261/198674092-b835d556-1141-46d9-b66e-3ec08f0c8313.gif)
 ![ezgif-2](https://user-images.githubusercontent.com/96059261/198677068-7e185acb-1019-4040-9d97-13146f123e0b.gif)
@@ -19,6 +19,16 @@
 
 `도파민`은 20여가지 OTT서비스 업체들의 컨텐츠를 검색하고, 개인별 추천 컨텐츠를 제공하는 서비스입니다.  
 부가적으로 컨텐츠에 대해 소통할 수 있는 커뮤니티, 유저의 프로필을 꾸밀 수 있는 아이템 판매 기능을 제공합니다.
+
+
+### 🌐 기술 스택
+
+Back-end : <img src="https://img.shields.io/badge/java 11-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/mybatis-black?style=for-the-badge&logo&logoColor=white">
+
+Front-end : <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"> <img src="https://img.shields.io/badge/jsp-000000?style=for-the-badge&logo&logoColor=white">
+
 
 ### 핵심 기능 및 부가 기능
 
@@ -43,12 +53,4 @@
 ![db](https://user-images.githubusercontent.com/96059261/198163653-3995e62b-ce65-4067-a5ff-f6ea68d95006.png)
 
 
-
-### 🌐 기술 스택
-
-Back-end : <img src="https://img.shields.io/badge/java 11-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-<img src="https://img.shields.io/badge/mybatis-black?style=for-the-badge&logo&logoColor=white">
-
-Front-end : <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-<img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"> <img src="https://img.shields.io/badge/jsp-000000?style=for-the-badge&logo&logoColor=white">
 
