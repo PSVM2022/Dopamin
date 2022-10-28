@@ -1,4 +1,6 @@
-<img src="https://user-images.githubusercontent.com/96059261/195270444-cf871a62-0273-4b8d-9751-41da2ad77cdb.png" width="200" height="35"> **OTT 컨텐츠 통합 검색 포털 사이트**
+<img src="https://user-images.githubusercontent.com/96059261/195270444-cf871a62-0273-4b8d-9751-41da2ad77cdb.png" width="200" height="35"> **OTT 컨텐츠 통합 검색 포털 사이트**    
+
+![ezgif-1](https://user-images.githubusercontent.com/96059261/198674092-b835d556-1141-46d9-b66e-3ec08f0c8313.gif)
 
 ## 🧑‍💻 팀 소개 및 팀 노션
 
