@@ -1,7 +1,7 @@
 # OTT 컨텐츠 통합 검색 포털 사이트 - 도파민
 
 ![ezgif-1](https://user-images.githubusercontent.com/96059261/198674092-b835d556-1141-46d9-b66e-3ec08f0c8313.gif)
-![ezgif-2](https://user-images.githubusercontent.com/96059261/198677068-7e185acb-1019-4040-9d97-13146f123e0b.gif)
+![ezgif-222](https://user-images.githubusercontent.com/96059261/198678280-0ddc61dc-a9e6-413b-a074-2be429a43c13.gif)
 
 
 ## 🧑‍💻 팀 소개 및 팀 노션
